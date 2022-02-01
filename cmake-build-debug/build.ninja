@@ -72,8 +72,8 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_comp335_p: phony || CMakeFiles/comp335_p.dir
 
-build CMakeFiles/comp335_p.dir/main.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp335_p/main.cpp || cmake_object_order_depends_target_comp335_p
-  DEP_FILE = CMakeFiles/comp335_p.dir/main.cpp.o.d
+build CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp335_p/GameEngineDriver.cpp || cmake_object_order_depends_target_comp335_p
+  DEP_FILE = CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o.d
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   OBJECT_FILE_DIR = CMakeFiles/comp335_p.dir
@@ -86,7 +86,7 @@ build CMakeFiles/comp335_p.dir/main.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/
 #############################################
 # Link the executable comp335_p
 
-build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/main.cpp.o
+build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   POST_BUILD = :
