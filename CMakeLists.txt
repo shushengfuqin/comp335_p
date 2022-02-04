@@ -3,4 +3,4 @@ project(comp335_p)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(comp335_p main.cpp)
+add_executable(comp335_p main.cpp OrdersList.cpp OrdersList.h)
