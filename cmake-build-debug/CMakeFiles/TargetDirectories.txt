@@ -1,3 +1,0 @@
-/Users/gin/CLionProjects/comp335_p/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/gin/CLionProjects/comp335_p/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/gin/CLionProjects/comp335_p/cmake-build-debug/CMakeFiles/comp335_p.dir
