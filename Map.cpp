@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <vector>
 #include "Map.h"
 
 // Functions for the Territory class
@@ -16,19 +17,18 @@ void Territory::setName(const string &name) {
 
 Territory::Territory(const string &name) : _name(name) {}
 
-// Functions for the Map class
-Map::Map(Territory *territory) : territory(territory) {}
 
-Map::~Map() {
-    delete territory;
-    territory = NULL;
-    cout << "Map is destroyed" << endl;
+// Functions for the Map class
+Map::Map(const vector<Territory> &territory) : territory(territory) {}
+
+void Map::setTerritory(const vector<Territory> &territory) {
+    Map::territory = territory;
 }
 
-Territory *Map::getTerritory() const {
+const vector<Territory> &Map::getTerritory() const {
     return territory;
 }
 
-void Map::setTerritory(Territory *territory) {
-    Map::territory = territory;
+Map::~Map() {
+    territory.clear();
 }

@@ -10,9 +10,7 @@ using namespace std;
 class Territory {
 public:
     const string &getName() const;
-
     void setName(const string &name);
-
     Territory(const string &name);
 
 private:
@@ -21,17 +19,13 @@ private:
 
 class Map {
 public:
-    Map(Territory *territory);
-
-    Territory *getTerritory() const;
-
-    void setTerritory(Territory *territory);
-
+    Map(const vector<Territory> &territory);
+    void setTerritory(const vector<Territory> &territory);
+    const vector<Territory> &getTerritory() const;
     virtual ~Map();
 
-
 private:
-    Territory *territory;
+    vector<Territory> territory;
 };
 
 
