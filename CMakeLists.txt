@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 #add_executable(comp335_p main.cpp)
 
-add_executable(comp335_p Map.cpp Map.h MapDriver.cpp)
+add_executable(comp335_p Map.cpp Map.h MapDriver.cpp Territory.cpp Territory.h)

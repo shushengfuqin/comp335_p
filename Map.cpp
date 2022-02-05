@@ -2,22 +2,21 @@
 // Created by Massimo Lopez on 2022-02-04.
 //
 
+#include <iostream>
 #include "Map.h"
 
-Map::Map(const string &title) : title(title) {}
+Map::Map(Territory *territory) : territory(territory) {}
 
 Map::~Map() {
-
+    delete territory;
+    territory = NULL;
+    cout << "Map is destroyed" << endl;
 }
 
-const string &Map::getTitle() const {
-    return title;
+Territory *Map::getTerritory() const {
+    return territory;
 }
 
-void Map::setTitle(const string &title) {
-    Map::title = title;
-}
-
-Map::Map() {
-
+void Map::setTerritory(Territory *territory) {
+    Map::territory = territory;
 }

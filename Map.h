@@ -5,23 +5,22 @@
 #ifndef COMP335_P_MAP_H
 #define COMP335_P_MAP_H
 
-#include <string>
+#include "Territory.h"
 using namespace std;
 
 class Map {
 public:
-    Map();
+    Map(Territory *territory);
 
-    Map(const string &title);
+    Territory *getTerritory() const;
 
-    void setTitle(const string &title);
+    void setTerritory(Territory *territory);
 
     virtual ~Map();
 
-    const string &getTitle() const;
 
 private:
-    string title;
+    Territory* territory;
 };
 
 
