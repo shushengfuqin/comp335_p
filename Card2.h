@@ -1,0 +1,4 @@
+#ifndef COMP335_P_CARD2_H
+#define COMP335_P_CARD2_H
+
+#endif //COMP335_P_CARD2_H

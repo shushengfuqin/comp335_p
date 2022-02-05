@@ -4,6 +4,8 @@
 #include <iostream>
 using namespace std;
 
+#include "Hand.h"
+
 enum CardType { bomb, reinforcement, blockade, airlift, diplomacy };
 
 class Card{
@@ -12,7 +14,7 @@ public:
     Card(CardType ct);
     // Constructor that initializes the card to a random card type
     Card( );
-    void play();
+    void play(Hand player);
 private:
     CardType cardType;
 };

@@ -1,3 +1,4 @@
-/Users/gin/CLionProjects/comp335_p/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/gin/CLionProjects/comp335_p/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/gin/CLionProjects/comp335_p/cmake-build-debug/CMakeFiles/comp335_p.dir
+C:/Users/Scrib/Documents/GitHub/comp345_p/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Scrib/Documents/GitHub/comp345_p/cmake-build-debug/CMakeFiles/comp335_p.dir
+C:/Users/Scrib/Documents/GitHub/comp345_p/cmake-build-debug/CMakeFiles/comp335_p_cards.dir
+C:/Users/Scrib/Documents/GitHub/comp345_p/cmake-build-debug/CMakeFiles/rebuild_cache.dir
