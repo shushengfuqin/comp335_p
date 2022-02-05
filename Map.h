@@ -5,8 +5,19 @@
 #ifndef COMP335_P_MAP_H
 #define COMP335_P_MAP_H
 
-#include "Territory.h"
 using namespace std;
+
+class Territory {
+public:
+    const string &getName() const;
+
+    void setName(const string &name);
+
+    Territory(const string &name);
+
+private:
+    string _name;
+};
 
 class Map {
 public:
@@ -20,7 +31,7 @@ public:
 
 
 private:
-    Territory* territory;
+    Territory *territory;
 };
 
 
