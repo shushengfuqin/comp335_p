@@ -19,15 +19,16 @@ private:
 
 class Map {
 public:
-    Map(const vector<Territory> &territory);
-    Map();
-    void setTerritoryVector(const vector<Territory> &territory);
-    void addTerritory(Territory territory);
-    const vector<Territory> &getTerritory() const;
+//    Map(const vector<Territory> &territory);
+    Map(const int V);
+    void setTerritoryVector(const vector<Territory> &territory, int rowIndex);
+    void addTerritory(Territory territory, int rowIndex);
+    const vector<Territory> &getTerritory(int rowIndex) const;
     virtual ~Map();
 
 private:
-    vector<Territory> territory;
+//    const int _V;
+    vector<vector<Territory>> territory;
 };
 
 

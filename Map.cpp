@@ -20,27 +20,33 @@ Territory::Territory(const string &name) : _name(name) {}
 
 // Functions for the Map class
 // Constructor with vector of territories
-Map::Map(const vector<Territory> &territory) : territory(territory) {}
+//Map::Map(const vector<Territory> &territory) : territory(territory) {}
 // Constructor with no vector (Vector is empty)
-Map::Map(){}
+Map::Map(const int V) {
+    for (int i = 0; i < V; i++){
+        territory.push_back(vector<Territory>());
+    }
+}
 
 // set the vector
-void Map::setTerritoryVector(const vector<Territory> &territory) {
-    Map::territory = territory;
+void Map::setTerritoryVector(const vector<Territory> &territory, int rowIndex) {
+    Map::territory[rowIndex] = territory;
 }
 
 // Add a pointer to a territory (new Territory).
-void Map::addTerritory(Territory territory) {
+void Map::addTerritory(Territory territory, int rowIndex) {
 //    this->territory.push_back(territory);
-    this->territory.push_back(territory);
+    this->territory[rowIndex].push_back(territory);
 }
 
 // Return a vector of territories
-const vector<Territory> &Map::getTerritory() const {
-    return territory;
+const vector<Territory> &Map::getTerritory(int rowIndex) const {
+    return territory[rowIndex];
 }
 
 // Erase the vector
 Map::~Map() {
     territory.clear();
+//    delete[] territory;
+//    territory = NULL;
 }
