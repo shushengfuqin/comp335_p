@@ -20,7 +20,9 @@ private:
 class Map {
 public:
     Map(const vector<Territory> &territory);
-    void setTerritory(const vector<Territory> &territory);
+    Map();
+    void setTerritoryVector(const vector<Territory> &territory);
+    void addTerritory(Territory territory);
     const vector<Territory> &getTerritory() const;
     virtual ~Map();
 
