@@ -23,7 +23,8 @@ public:
     Map(const int V);
     void setTerritoryVector(const vector<Territory> &territory, int rowIndex);
     void addTerritory(Territory territory, int rowIndex);
-    const vector<Territory> &getTerritory(int rowIndex) const;
+    const vector<Territory> &getTerritoryRow(int rowIndex) const;
+    void printBorders(int rowIndex);
     virtual ~Map();
 
 private:

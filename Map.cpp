@@ -40,7 +40,7 @@ void Map::addTerritory(Territory territory, int rowIndex) {
 }
 
 // Return a vector of territories
-const vector<Territory> &Map::getTerritory(int rowIndex) const {
+const vector<Territory> &Map::getTerritoryRow(int rowIndex) const {
     return territory[rowIndex];
 }
 
@@ -49,4 +49,15 @@ Map::~Map() {
     territory.clear();
 //    delete[] territory;
 //    territory = NULL;
+}
+
+// Prints out the borders of the given country with that rowIndex (Adjacency list).
+// TODO: Make a territory have an id and a name to lookup the borders from that index.
+void Map::printBorders(int rowIndex) {
+    cout << "Borders of Territory with index of ... " << rowIndex + 1 << endl;
+    cout << rowIndex + 1;
+    for (auto neighbour : territory[rowIndex]) {
+        cout << " -> " << neighbour.getName();
+    }
+    cout << endl << endl;
 }
