@@ -25,9 +25,10 @@ Territory::Territory(const string &name) : _name(name) {}
 //Map::Map(const vector<Territory> &territory) : territory(territory) {}
 // Constructor with no vector (Vector is empty)
 Map::Map(const int V) {
-    for (int i = 0; i < V; i++) {
-        territory.push_back(vector<Territory>());
-    }
+//    for (int i = 0; i < V; i++) {
+//        territory.push_back(vector<Territory>());
+//    }
+    territory = new vector<Territory>[V];
 }
 
 // set the vector
@@ -48,7 +49,9 @@ const vector<Territory> &Map::getTerritoryRow(int rowIndex) const {
 
 // Erase the vector
 Map::~Map() {
-    territory.clear();
+    delete[] territory;
+    territory = NULL;
+
 //    delete[] territory;
 //    territory = NULL;
 }
@@ -66,27 +69,12 @@ void Map::printBorders(int rowIndex) {
 
 MapLoader::MapLoader(const string &fileName) {
     ifstream inputFileStream(fileName);
-//    cout << inputFileStream.eof() << endl;
-//    inputFileStream.getline()
 
     if (!inputFileStream) {
         cerr << "Unable to open file .map file";
         exit(1);   // call system to stop
     }
 
-//    if (inputFileStream) {
-//        ostringstream oss;
-//        oss << inputFileStream.rdbuf();
-//        description = oss.str();
-//    }
-
-//    string line;
-//    while (inputFileStream >> line) {
-//
-//        description += line;
-//    }
-
-//    int index = 0;
     string line;
     bool inContinents = false;
     bool inCountries = false;

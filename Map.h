@@ -36,7 +36,7 @@ public:
 
 private:
 //    const int _V;
-    vector<vector<Territory>> territory;
+    vector<Territory> *territory;
 };
 
 class MapLoader {
