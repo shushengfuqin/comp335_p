@@ -32,5 +32,13 @@ private:
     vector<vector<Territory>> territory;
 };
 
+class MapLoader {
+public:
+    MapLoader(const string &fileName);
 
+    const string &getDescription() const;
+
+private:
+    string description;
+};
 #endif //COMP335_P_MAP_H

@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
+#include <sstream>
 #include "Map.h"
 
 // Functions for the Territory class
@@ -60,4 +62,21 @@ void Map::printBorders(int rowIndex) {
         cout << " -> " << neighbour.getName();
     }
     cout << endl << endl;
+}
+
+MapLoader::MapLoader(const string &fileName) {
+    ifstream inputFileStream(fileName);
+//    cout << inputFileStream.eof() << endl;
+//    inputFileStream.getline()
+
+    if (inputFileStream) {
+        ostringstream oss;
+        oss << inputFileStream.rdbuf();
+        description = oss.str();
+    }
+    inputFileStream.close();
+}
+
+const string &MapLoader::getDescription() const {
+    return description;
 }

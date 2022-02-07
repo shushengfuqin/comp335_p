@@ -137,5 +137,14 @@ int main() {
 
     delete (t13); // delete values of territory13 on heap
     t13 = NULL; // erase the address of the territory13.
+
+    cout << "---Map Loader ---" << endl;
+
+    MapLoader *mapLoader = new MapLoader("../canada/canada.map");
+    cout << mapLoader->getDescription() << endl;
+
+    delete (mapLoader);
+    mapLoader = NULL;
+
     return 0;
 }
