@@ -93,7 +93,7 @@ int main() {
         map->printBorders(i);
         cout << "Max size (row " << i << ") = "
              << map->getTerritoryRow(i).max_size() - map->getTerritoryRow(i).size()
-             << endl  << endl;
+             << endl << endl;
     }
 
     delete (map); // delete values of map on heap
@@ -141,7 +141,9 @@ int main() {
     cout << "---Map Loader ---" << endl;
 
     MapLoader *mapLoader = new MapLoader("../canada/canada.map");
-    cout << mapLoader->getDescription() << endl;
+    cout << mapLoader->getContinents() << endl;
+    cout << mapLoader->getCountries() << endl;
+    cout << mapLoader->getBorders() << endl;
 
     delete (mapLoader);
     mapLoader = NULL;
