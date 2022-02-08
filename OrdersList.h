@@ -10,12 +10,23 @@ using namespace std;
 class OrdersList {
 public:
 
-    OrdersList();
-    void initNode(std::string,bool){}
 
-private:
+    static void initNode(struct Node *head, string n, bool isValidate, int orderID);
+    static void addNode(struct Node *head, string n, bool isValidate, int orderID);
+    static void insertFront(struct Node **head, string n,bool isValidate,int orderID);
+    static bool deleteNode(struct Node **head, Node *ptrDel);
+    static bool remove(struct Node **head, int orderID);
+    static void deleteLinkedList(struct Node **node);
+    static void display(struct Node *head);
+    static void move(struct Node **head, int index,int targetPlace );
+    static Node* searchNode(struct Node *head, int n);
+    static struct Node* findPreTargetNode(struct Node *head,int n);
+};
 
-
-
+struct Node {
+    string orderName;
+    bool isValidate;
+    int orderID;
+    Node *next;
 };
 #endif //COMP335_P_ORDERSLIST_H

@@ -72,6 +72,12 @@ build CMakeFiles/comp335_p.dir/OrdersList.cpp.obj: CXX_COMPILER__comp335_p_Debug
   OBJECT_DIR = CMakeFiles\comp335_p.dir
   OBJECT_FILE_DIR = CMakeFiles\comp335_p.dir
 
+build CMakeFiles/comp335_p.dir/OrdersDriver.cpp.obj: CXX_COMPILER__comp335_p_Debug C$:/Users/admin/CLionProjects/comp345_p/OrdersDriver.cpp || cmake_object_order_depends_target_comp335_p
+  DEP_FILE = CMakeFiles\comp335_p.dir\OrdersDriver.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\comp335_p.dir
+  OBJECT_FILE_DIR = CMakeFiles\comp335_p.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target comp335_p
@@ -80,7 +86,7 @@ build CMakeFiles/comp335_p.dir/OrdersList.cpp.obj: CXX_COMPILER__comp335_p_Debug
 #############################################
 # Link the executable comp335_p.exe
 
-build comp335_p.exe: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/main.cpp.obj CMakeFiles/comp335_p.dir/OrdersList.cpp.obj
+build comp335_p.exe: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/main.cpp.obj CMakeFiles/comp335_p.dir/OrdersList.cpp.obj CMakeFiles/comp335_p.dir/OrdersDriver.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\comp335_p.dir

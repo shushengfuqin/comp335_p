@@ -7,39 +7,40 @@
 
 using namespace std;
 
-struct Node {
-    string orderName;
-    bool isValidate;
-    int orderID;
-    Node *next;
-};
 
-void initNode(struct Node *head, string n, bool isValidate, int orderID) {
-    head->orderName = n;
-    head->isValidate = isValidate;
-    head->orderID = orderID;
-    head->next = NULL;
-}
+/*    struct Node {
+        string orderName;
+        bool isValidate;
+        int orderID;
+        Node *next;
+    };*/
 
-void addNode(struct Node *head, string n, bool isValidate, int orderID) {
-    Node *newNode = new Node;
-    newNode->orderName = n;
-    newNode->isValidate = isValidate;
-    newNode->orderID = orderID;
-    newNode->next = NULL;
-
-    Node *cur = head;
-    while (cur) {
-        if (cur->next == NULL) {
-            cur->next = newNode;
-            return;
-        }
-        cur = cur->next;
+    void OrdersList::initNode(struct Node *head, string n, bool isValidate, int orderID) {
+        head->orderName = n;
+        head->isValidate = isValidate;
+        head->orderID = orderID;
+        head->next = NULL;
     }
-}
+
+    void OrdersList::addNode(struct Node *head, string n, bool isValidate, int orderID) {
+        Node *newNode = new Node;
+        newNode->orderName = n;
+        newNode->isValidate = isValidate;
+        newNode->orderID = orderID;
+        newNode->next = NULL;
+
+        Node *cur = head;
+        while (cur) {
+            if (cur->next == NULL) {
+                cur->next = newNode;
+                return;
+            }
+            cur = cur->next;
+        }
+    }
 
 
-    void insertFront(struct Node **head, string n,bool isValidate,int orderID) {
+    void OrdersList::insertFront(struct Node **head, string n,bool isValidate,int orderID) {
         Node *newNode = new Node;
         newNode->orderName = n;
         newNode->isValidate = isValidate;
@@ -49,108 +50,140 @@ void addNode(struct Node *head, string n, bool isValidate, int orderID) {
     }
 
 
-/*
-      struct Node *searchNode(struct Node *head, string n) {
+      struct Node* OrdersList::searchNode(struct Node *head, int n) {
         Node *cur = head;
         while(cur) {
-            if(cur->orderName == n ) return cur;
+            if(cur->orderID == n ) return cur;
             cur = cur->next;
         }
         cout << "Cannot Find Order " << n << " in list.\n";
     }
-*/
 
 
 
 
 
 
-bool deleteNode(struct Node **head, Node *ptrDel) {
-    Node *cur = *head;
-    if (ptrDel == *head) {
-        *head = cur->next;
-        delete ptrDel;
-        return true;
-    }
-
-    while (cur) {
-        if (cur->next == ptrDel) {
-            cur->next = ptrDel->next;
+    bool OrdersList::deleteNode(struct Node **head, Node *ptrDel) {
+        Node *cur = *head;
+        if (ptrDel == *head) {
+            *head = cur->next;
             delete ptrDel;
             return true;
         }
-        cur = cur->next;
-    }
-    return false;
-}
 
-bool remove(struct Node **head, int orderID) {
-    int index = 0;
-    Node *cur = *head;
-
-
-    while (cur) {
-
-        if (orderID == index) {
-            return deleteNode(head, cur);
+        while (cur) {
+            if (cur->next == ptrDel) {
+                cur->next = ptrDel->next;
+                delete ptrDel;
+                return true;
+            }
+            cur = cur->next;
         }
-        cur = cur->next;
+        return false;
     }
-    return false;
 
-}
+    bool OrdersList::remove(struct Node **head, int orderID) {
+        int index = 0;
+        Node *cur = *head;
 
 
-void deleteLinkedList(struct Node **node) {
-    struct Node *tmpNode;
-    while (*node) {
-        tmpNode = *node;
-        *node = tmpNode->next;
-        delete tmpNode;
-    }
-}
+        while (cur) {
 
-void display(struct Node *head) {
-    Node *list = head;
-    while (list) {
-        cout << list->orderName << " ";
-        list = list->next;
-    }
-    cout << endl;
-    cout << endl;
-}
-
-void move(struct Node **head, Node *n1,int targetPlace ) {
-    int index=0;
-    Node *cur=*head;
-    if(n1==*head){
-        n1=n1->next;
-        return;
-    }
-    while(cur){
-        if(cur->next==n1){
-            cur->next=cur->next->next;
-            break;
+            if (orderID == index) {
+                return deleteNode(head, cur);
+            }
+            cur = cur->next;
+            index++;
         }
-        cur=cur->next;
+        return false;
+
     }
 
-    cur=*head;
-    if(targetPlace==0){
-        n1->next=*head;
-        return;
+
+    void OrdersList::deleteLinkedList(struct Node **node) {
+        struct Node *tmpNode;
+        while (*node) {
+            tmpNode = *node;
+            *node = tmpNode->next;
+            delete tmpNode;
+        }
     }
-    while(index==targetPlace-1){
 
-        index++;
-        cur=cur->next;
+    void OrdersList::display(struct Node *head) {
+        Node *list = head;
+        while (list) {
+            cout << list->orderName << " ";
+            cout << list->isValidate <<" ";
+            cout << list->orderID <<" ";
+            list = list->next;
+        }
+        cout << endl;
+        cout << endl;
     }
-    Node* temp=cur->next;
-    cur->next=n1;
-    n1->next=temp;
+
+    //  这个写的有问题， 输入 target 4 找到第一个
+    struct Node* OrdersList::findPreTargetNode(struct Node *head,int n){
+        int num = 0;
+        Node *cur = head;
+        while(cur) {
+            if(num = n-1 ) return cur;
+            cur = cur->next;
+            num++;
+        }
+        cout << "Cannot Find Node at Target Place" << n << " in list.\n";
+    };
+
+    void OrdersList::move(struct Node **head, int index,int targetPlace ) {
+        Node *cur = *head;
+        Node *n1 = searchNode(*head,index);
+        Node *preTarget = findPreTargetNode(*head,targetPlace);
+        Node *temp;
+
+        if(n1 == *head){
+            n1 = n1->next;
+            return;
+        }
+        while(cur){
+            if(cur->next=n1){
+                temp = n1;
+                cur->next = n1->next;
+                temp->next = preTarget ->next->next;
+                preTarget->next = temp;
+            }
+            cur = cur->next;
+        }
+       /* int index=0;
+        Node *cur=*head;
+        if(n1==*head){
+            n1 = n1->next;
+            cout << "has excuted" <<endl;
+            return;
+        }
+        while(cur){
+            if(cur->next==n1){
+                cur->next=cur->next->next;
+                break;
+            }
+            cur=cur->next;
+        }
+
+        cur=*head;
+        if(targetPlace==0){
+            n1->next=*head;
+            return;
+        }
+        while(index==targetPlace-1){
+
+            index++;
+            cur=cur->next;
+        }
+        Node* temp=cur->next;
+        cout << "X" << endl;
+        cur->next=n1;
+        n1->next=temp;*/
 
 
 
-}
-
+    }
 
