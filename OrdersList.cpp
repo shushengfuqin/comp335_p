@@ -122,7 +122,8 @@ using namespace std;
         cout << endl;
     }
 
-    //  这个写的有问题， 输入 target 4 找到第一个
+    //Todo:
+    //  这个写的有问题， 输入 head, 4   output: Bomb 1 1 Deploy 1 2 Advance 1 3 blockade 1 4
     struct Node* OrdersList::findPreTargetNode(struct Node *head,int n){
         int num = 0;
         Node *cur = head;
@@ -134,6 +135,8 @@ using namespace std;
         cout << "Cannot Find Node at Target Place" << n << " in list.\n";
     };
 
+
+    //Todo:  思路应该没问题，还没尝试
     void OrdersList::move(struct Node **head, int index,int targetPlace ) {
         Node *cur = *head;
         Node *n1 = searchNode(*head,index);
