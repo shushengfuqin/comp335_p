@@ -17,7 +17,11 @@ void Territory::setName(const string &name) {
     _name = name;
 }
 
-Territory::Territory(const string &name) : _name(name) {}
+Territory::Territory(const string &name, const int &id) : _name(name), _id(id) {}
+
+int Territory::getId() const {
+    return _id;
+}
 
 
 // Functions for the Map class
@@ -57,11 +61,14 @@ Map::~Map() {
 }
 
 // Prints out the borders of the given country with that rowIndex (Adjacency list).
-// TODO: Make a territory have an id and a name to lookup the borders from that index.
 void Map::printBorders(int rowIndex) {
-    cout << "Borders of Territory with index of ... " << rowIndex + 1 << endl;
-    cout << rowIndex + 1;
+    int id = rowIndex + 1;
+    cout << "Borders of Territory with id of ... " << id << endl;
     for (auto neighbour: territory[rowIndex]) {
+        if (neighbour.getId() == id) {
+            cout << neighbour.getName();
+            continue;
+        }
         cout << " -> " << neighbour.getName();
     }
     cout << endl << endl;

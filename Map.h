@@ -11,12 +11,15 @@ class Territory {
 public:
     const string &getName() const;
 
+    int getId() const;
+
     void setName(const string &name);
 
-    Territory(const string &name);
+    Territory(const string &name, const int &id);
 
 private:
     string _name;
+    int _id;
 };
 
 class Map {
