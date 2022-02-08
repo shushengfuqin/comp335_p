@@ -90,7 +90,7 @@ int main() {
     map->addTerritory(*t7, 12);
 
     for (int i = 0; i < SIZE; i++) {
-        map->printBorders(i);
+        map->printTerritoryBorders(i);
         cout << "Max size (row " << i << ") = "
              << map->getTerritoryRow(i).max_size() - map->getTerritoryRow(i).size()
              << endl << endl;

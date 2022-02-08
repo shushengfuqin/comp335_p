@@ -11,15 +11,18 @@ class Territory {
 public:
     const string &getName() const;
 
-    int getId() const;
+    int getTerritoryId() const;
+
+    int getContinentId() const;
 
     void setName(const string &name);
 
-    Territory(const string &name, const int &id);
+    Territory(const string &name, const int &territoryId);
 
 private:
     string _name;
-    int _id;
+    int _territoryId;
+    int _continentId;
 };
 
 class Map {
@@ -33,7 +36,7 @@ public:
 
     const vector<Territory> &getTerritoryRow(int rowIndex) const;
 
-    void printBorders(int rowIndex);
+    void printTerritoryBorders(int rowIndex);
 
     virtual ~Map();
 

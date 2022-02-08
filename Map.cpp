@@ -17,10 +17,14 @@ void Territory::setName(const string &name) {
     _name = name;
 }
 
-Territory::Territory(const string &name, const int &id) : _name(name), _id(id) {}
+Territory::Territory(const string &name, const int &territoryId) : _name(name), _territoryId(territoryId) {}
 
-int Territory::getId() const {
-    return _id;
+int Territory::getTerritoryId() const {
+    return _territoryId;
+}
+
+int Territory::getContinentId() const {
+    return _continentId;
 }
 
 
@@ -55,17 +59,14 @@ const vector<Territory> &Map::getTerritoryRow(int rowIndex) const {
 Map::~Map() {
     delete[] territory;
     territory = NULL;
-
-//    delete[] territory;
-//    territory = NULL;
 }
 
 // Prints out the borders of the given country with that rowIndex (Adjacency list).
-void Map::printBorders(int rowIndex) {
-    int id = rowIndex + 1;
-    cout << "Borders of Territory with id of ... " << id << endl;
+void Map::printTerritoryBorders(int rowIndex) {
+    int territoryID = rowIndex + 1;
+    cout << "Borders of Territory with id of ... " << territoryID << endl;
     for (auto neighbour: territory[rowIndex]) {
-        if (neighbour.getId() == id) {
+        if (neighbour.getTerritoryId() == territoryID) {
             cout << neighbour.getName();
             continue;
         }
