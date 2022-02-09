@@ -3,47 +3,44 @@
 //
 
 #include <iostream>
-#include "OrdersList.h"
+#include "Orders.h"
 
 using namespace std;
 
 int main() {
-    OrdersList ordersList;
+
     struct Node *order = new Node;
     struct Node *thisHead = order;
 
-    OrdersList::initNode(order,"Bomb",true,1);
-    OrdersList::display(order);
+    //First initiate the first order of the orderlist
+    Orders::initNode(order, "Bomb", true, 3);
+    Orders::display(order);
+    //Add 5 more orders into the list following the first order
+    Orders::addNode(order, "Deploy", true, 5);
+    Orders::display(order);
 
-    OrdersList::addNode(order,"Deploy",true,2);
-    OrdersList::display(order);
+    Orders::addNode(order, "Advance", true, 0);
+    Orders::display(order);
 
-    OrdersList::addNode(order,"Advance",true,3);
-    OrdersList::display(order);
+    Orders::addNode(order, "Blockade", true, 2);
+    Orders::display(order);
 
-    OrdersList::addNode(order,"blockade",true,4);
-    OrdersList::display(order);
+    Orders::addNode(order, "Airlift", true, 9);
+    Orders::display(order);
+
+    Orders::addNode(order, "Negotiate", true, 6);
+    Orders::display(order);
+
 /*
-    struct Node *cur = order;
-    for(int i = 0; i < 4; i++){
-        cur = cur->next;
-    }
-    OrdersList::move(&thisHead,cur,1);
-    OrdersList::display(order);
 
+    Orders::remove(&order,2);
+    Orders::display(order);
 */
-/*
 
-    OrdersList::remove(&order,1);
-    OrdersList::display(order);*/
 
-    //这个可以用
-    Node *ptrNode = OrdersList::searchNode(order,4);
-    OrdersList::display(ptrNode);
+/*    Node *ptrNode = Orders::searchNode(order, 6);
+    Orders::display(ptrNode);*/
 
-    //Node *ptargetNode = OrdersList::findPreTargetNode(order,3);
-    //OrdersList::display(ptargetNode);
-
-    OrdersList::move(&thisHead,2,2);
-    OrdersList::display(thisHead);
+    Orders::move(&thisHead, 2, 2);
+    Orders::display(thisHead);
 }
