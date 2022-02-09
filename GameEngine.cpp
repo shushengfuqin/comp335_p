@@ -57,6 +57,7 @@ public:
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> x;
+                    continue;
             }
         }
     };
@@ -75,6 +76,7 @@ public:
         cin >> x;
         while (x != 1){
             cout << "Please enter an valid command\n";
+            cin >> x;
         }
         cout << "Moving to the next state\n";
         return nextState;
@@ -129,6 +131,7 @@ public:
         cin >> x;
         while (x != 1){
             cout << "Please enter an valid command\n";
+            cin >> x;
         }
         cout << "Moving to the next state\n";
         return nextState;
