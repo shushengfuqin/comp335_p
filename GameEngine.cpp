@@ -3,7 +3,7 @@
 using namespace std;
 
 enum GameState {
-    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders,win, quit
+    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders, win, quit
 };
 
 class startState{
@@ -14,6 +14,7 @@ public:
         string nextState = "changeState";
         cout << "this is the start state\n";
         cout << "What would you like to do\n";
+        cout << "Please chose action by typing the corresponding number\n";
         cout << "1- loadmap\n";
         int x;
         cin >> x;
@@ -40,21 +41,23 @@ public:
         cout << "Please chose action by typing the corresponding number\n";
         int x;
         cin >> x;
-
-        switch(x){
-            case 1:
-                cout << "map loaded again\n";
-                cout << "What would you like to do\n";
-                cout << "1 - load map\n";
-                cout << "2 - validate map\n";
-                cout << "Please chose action by typing the corresponding number\n";
-                cin >> x;
-            case 2:
-                cout << "Moving to next state\n";
-                return nextState;
-            default:
-                cout << "Please enter a valid input\n";
-                cin >> x;
+        for(;;) {
+            switch (x) {
+                case 1:
+                    cout << "map loaded again\n";
+                    cout << "What would you like to do\n";
+                    cout << "1 - load map\n";
+                    cout << "2 - validate map\n";
+                    cout << "Please chose action by typing the corresponding number\n";
+                    cin >> x;
+                    continue;
+                case 2:
+                    cout << "Moving to next state\n";
+                    return nextState;
+                default:
+                    cout << "Please enter a valid input\n";
+                    cin >> x;
+            }
         }
     };
 };
@@ -91,21 +94,23 @@ public:
         cout << "Please chose action by typing the corresponding number\n";
         int x;
         cin >> x;
-
-        switch(x){
-            case 1:
-                cout << "add player again\n";
-                cout << "What would you like to do\n";
-                cout << "1 - add player\n";
-                cout << "2 - assign countries\n";
-                cout << "Please chose action by typing the corresponding number\n";
-                cin >> x;
-            case 2:
-                cout << "Moving to next state\n";
-                return nextState;
-            default:
-                cout << "Please enter a valid input\n";
-                cin >> x;
+        for(;;){
+            switch(x){
+                case 1:
+                    cout << "add player again\n";
+                    cout << "What would you like to do\n";
+                    cout << "1 - add player\n";
+                    cout << "2 - assign countries\n";
+                    cout << "Please chose action by typing the corresponding number\n";
+                    cin >> x;
+                    continue;
+                case 2:
+                    cout << "Moving to next state\n";
+                    return nextState;
+                default:
+                    cout << "Please enter a valid input\n";
+                    cin >> x;
+            }
         }
     };
 };
@@ -143,21 +148,23 @@ public:
         cout << "Please chose action by typing the corresponding number\n";
         int x;
         cin >> x;
-
-        switch(x){
-            case 1:
-                cout << "issue order again\n";
-                cout << "What would you like to do\n";
-                cout << "1 - issue order\n";
-                cout << "2 - end issue orders\n";
-                cout << "Please chose action by typing the corresponding number\n";
-                cin >> x;
-            case 2:
-                cout << "Moving to next state\n";
-                return nextState;
-            default:
-                cout << "Please enter a valid input\n";
-                cin >> x;
+        for(;;){
+            switch(x){
+                case 1:
+                    cout << "issue order again\n";
+                    cout << "What would you like to do\n";
+                    cout << "1 - issue order\n";
+                    cout << "2 - end issue orders\n";
+                    cout << "Please chose action by typing the corresponding number\n";
+                    cin >> x;
+                    continue;
+                case 2:
+                    cout << "Moving to next state\n";
+                    return nextState;
+                default:
+                    cout << "Please enter a valid input\n";
+                    cin >> x;
+            }
         }
     };
 };
@@ -175,25 +182,26 @@ public:
         cout << "Please chose action by typing the corresponding number\n";
         int x;
         cin >> x;
-
-        switch(x){
-            case 1:
-                cout << "execute order again\n";
-                cout << "What would you like to do\n";
-                cout << "1 - execute order\n";
-                cout << "2 - end execute orders\n";
-                cout << "3 - win\n";
-                cout << "Please chose action by typing the corresponding number\n";
-                cin >> x;
-            case 2:
-                cout << "Moving to assign reinforcement state\n";
-                return "2";
-            case 3:
-                cout << "Moving to win state";
-                return "3";
-            default:
-                cout << "Please enter a valid input\n";
-                cin >> x;
+        for(;;) {
+            switch (x) {
+                case 1:
+                    cout << "execute order again\n";
+                    cout << "What would you like to do\n";
+                    cout << "1 - execute order\n";
+                    cout << "2 - end execute orders\n";
+                    cout << "3 - win\n";
+                    cout << "Please chose action by typing the corresponding number\n";
+                    cin >> x;
+                case 2:
+                    cout << "Moving to assign reinforcement state\n";
+                    return "2";
+                case 3:
+                    cout << "Moving to win state";
+                    return "3";
+                default:
+                    cout << "Please enter a valid input\n";
+                    cin >> x;
+            }
         }
     };
 };
@@ -210,17 +218,18 @@ public:
         cout << "Please chose action by typing the corresponding number\n";
         int x;
         cin >> x;
-
-        switch(x){
-            case 1:
-                cout << "Thank you for playing. See you next time\n";
-                return 1;
-            case 2:
-                cout << "Moving to Start state\n";
-                return 2;
-            default:
-                cout << "Please enter a valid input\n";
-                cin >> x;
+        for(;;) {
+            switch (x) {
+                case 1:
+                    cout << "Thank you for playing. See you next time\n";
+                    return 1;
+                case 2:
+                    cout << "Moving to Start state\n";
+                    return 2;
+                default:
+                    cout << "Please enter a valid input\n";
+                    cin >> x;
+            }
         }
     };
 };
