@@ -100,7 +100,7 @@ void Deck::returnToDeck(Card &newCard) {
 }
 
 void Deck::deleteDeck() {
-    delete cards;
+    delete [] cards;
     cards = nullptr;
 }
 
@@ -137,4 +137,9 @@ Card Hand::removeCardAtIndex(int index) {
     size--;
 
     return removed;
+}
+
+void Hand::deleteHand() {
+    delete [] cards;
+    cards = nullptr;
 }

@@ -30,8 +30,9 @@ int main( ){
         deckA.draw(playerA);
     }
 
-    // Clear deck
+    // Clear deck and hand
     deckA.deleteDeck();
+    playerA.deleteHand();
 
     return 0;
 }

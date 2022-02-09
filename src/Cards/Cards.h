@@ -61,13 +61,13 @@ public:
     int getHandLimit() {return limit;}
     Card removeCardAtIndex(int index);
     Card* getCardAtIndex(int index){return &cards[index];}
-    //Card setCardAtIndex(int index, Card* val){ *cards[index] = val; }
     void outputCards() {
         for(int i = 0; i < size; i++){
             cout << cards[i].toString() << " -- ";
         }
         cout << endl;
     };
+    void deleteHand();
 private:
     int size;
     int limit;
