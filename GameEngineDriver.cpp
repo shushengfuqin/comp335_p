@@ -26,17 +26,35 @@ int main() {
             if (mapvalidatedState::mapvalidatedFunc() == "changeState"){
                 currentState = playeradded;
             }
-            break;
         case playeradded:
-            break;
+            playeraddedState();
+            if (playeraddedState::playeraddedFunc() == "changeState"){
+                currentState = assignreignforcement;
+            }
         case assignreignforcement:
-            break;
+            assignreinforcementState();
+            if (assignreinforcementState::assignreinforcementFunc() == "changeState"){
+                currentState = issueorder;
+            }
         case issueorder:
-            break;
+            issueordersState();
+            if (issueordersState::issueordersFunc() == "changeState"){
+                currentState = executeorders;
+            }
         case executeorders:
-            break;
+            executeordersState();
+            if (executeordersState::executeordersFunc() == "2"){
+                currentState = assignreignforcement;
+            } else if (executeordersState::executeordersFunc() == "3"){
+                currentState = win;
+            }
         case win:
-            break;
+            winState();
+            if (winState::winFunc() == 1){
+                currentState = quit;
+            } else if (winState::winFunc() == 2){
+                currentState = start;
+            }
         case quit:
             break;
         default:
