@@ -11,7 +11,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="update OrdersList.cpp and OrdersList.h  add driver" />
+    <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="add todo">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OrdersDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OrdersList.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/OrdersList.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OrdersList.h" beforeDir="false" afterPath="$PROJECT_DIR$/OrdersList.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,6 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
@@ -61,11 +68,6 @@
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="comp335_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp335_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp335_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -85,7 +87,8 @@
       <workItem from="1643946563304" duration="15738000" />
       <workItem from="1644091382473" duration="1218000" />
       <workItem from="1644187273278" duration="1945000" />
-      <workItem from="1644261107320" duration="11573000" />
+      <workItem from="1644261107320" duration="12582000" />
+      <workItem from="1644356970536" duration="11462000" />
     </task>
     <task id="LOCAL-00001" summary="Create Orderlist files">
       <created>1643947020179</created>
@@ -115,7 +118,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644292553632</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add todo">
+      <created>1644292937101</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644292937101</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +147,7 @@
     <MESSAGE value="update OrdersList.cpp" />
     <MESSAGE value="update OrdersList.cpp and OrdersList.h" />
     <MESSAGE value="update OrdersList.cpp and OrdersList.h  add driver" />
-    <option name="LAST_COMMIT_MESSAGE" value="update OrdersList.cpp and OrdersList.h  add driver" />
+    <MESSAGE value="add todo" />
+    <option name="LAST_COMMIT_MESSAGE" value="add todo" />
   </component>
 </project>

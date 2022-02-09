@@ -10,7 +10,7 @@ using namespace std;
 class OrdersList {
 public:
 
-
+    OrdersList();
     static void initNode(struct Node *head, string n, bool isValidate, int orderID);
     static void addNode(struct Node *head, string n, bool isValidate, int orderID);
     static void insertFront(struct Node **head, string n,bool isValidate,int orderID);
@@ -18,9 +18,10 @@ public:
     static bool remove(struct Node **head, int orderID);
     static void deleteLinkedList(struct Node **node);
     static void display(struct Node *head);
-    static void move(struct Node **head, int index,int targetPlace );
+   /* static void move(struct Node **head, int index,int targetPlace );*/
     static Node* searchNode(struct Node *head, int n);
     static struct Node* findPreTargetNode(struct Node *head,int n);
+    static void move(struct Node **head, int index,int targetPlace );
 };
 
 struct Node {
@@ -28,5 +29,6 @@ struct Node {
     bool isValidate;
     int orderID;
     Node *next;
+
 };
 #endif //COMP335_P_ORDERSLIST_H

@@ -41,6 +41,9 @@ int main() {
     Node *ptrNode = OrdersList::searchNode(order,4);
     OrdersList::display(ptrNode);
 
-    Node *ptargetNode = OrdersList::findPreTargetNode(order,3);
-    OrdersList::display(ptargetNode);
+    //Node *ptargetNode = OrdersList::findPreTargetNode(order,3);
+    //OrdersList::display(ptargetNode);
+
+    OrdersList::move(&thisHead,2,2);
+    OrdersList::display(thisHead);
 }

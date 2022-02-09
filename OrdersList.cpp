@@ -8,12 +8,13 @@
 using namespace std;
 
 
-/*    struct Node {
-        string orderName;
-        bool isValidate;
-        int orderID;
-        Node *next;
-    };*/
+
+
+    OrdersList::OrdersList() {
+        string player;
+        Node *order;
+
+    }
 
     void OrdersList::initNode(struct Node *head, string n, bool isValidate, int orderID) {
         head->orderName = n;
@@ -136,57 +137,77 @@ using namespace std;
     };
 
 
-    //Todo:  思路应该没问题，还没尝试
+/*
     void OrdersList::move(struct Node **head, int index,int targetPlace ) {
         Node *cur = *head;
-        Node *n1 = searchNode(*head,index);
-        Node *preTarget = findPreTargetNode(*head,targetPlace);
+        Node *n1 = searchNode(*head, index);
+        Node *preTarget = findPreTargetNode(*head, targetPlace);
         Node *temp;
 
-        if(n1 == *head){
+        if (n1 == *head) {
             n1 = n1->next;
             return;
         }
-        while(cur){
-            if(cur->next=n1){
+        while (cur) {
+            if (cur->next = n1) {
                 temp = n1;
                 cur->next = n1->next;
-                temp->next = preTarget ->next->next;
+                temp->next = preTarget->next->next;
                 preTarget->next = temp;
             }
             cur = cur->next;
         }
-       /* int index=0;
-        Node *cur=*head;
-        if(n1==*head){
-            n1 = n1->next;
-            cout << "has excuted" <<endl;
-            return;
-        }
-        while(cur){
-            if(cur->next==n1){
-                cur->next=cur->next->next;
-                break;
-            }
-            cur=cur->next;
-        }
 
-        cur=*head;
-        if(targetPlace==0){
-            n1->next=*head;
-            return;
-        }
-        while(index==targetPlace-1){
+    }*/
+    void OrdersList::move( Node **head, int index,int targetPlace){
+        Node* cur=*head;
+        Node *n1 = searchNode(*head, index);
 
-            index++;
-            cur=cur->next;
-        }
-        Node* temp=cur->next;
-        cout << "X" << endl;
-        cur->next=n1;
-        n1->next=temp;*/
+
+       if(n1==*head){
+            *head=cur->next;
+
+       }
+       else{
+           while(cur!=n1){
+
+               if(cur->next==n1)
+               {
+
+                   cur->next=cur->next->next;
+                   break;
+               }
+                cur=cur->next;
+           }
+
+       }
+        display(*head);
+       if(targetPlace==0){
+           n1->next=*head;
+           *head=n1;
+       }
+       else{
+           Node* cur1=*head;
+           for(int i=0;i<targetPlace-1;i++){
+               cur1=cur1->next;
+
+           }
+           if(cur1->next){
+
+               Node* temp=cur1->next;
+               cur1->next=n1;
+               n1->next=temp;
+           }
+           else{
+               cur1->next=n1;
+               n1->next=NULL;
+           }
+
+       }
+        display(*head);
 
 
 
     }
+
 
