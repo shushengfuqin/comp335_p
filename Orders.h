@@ -10,7 +10,7 @@ using namespace std;
 class Orders {
 public:
 
-    Orders();
+
     static void initNode(struct Node *head, string n, bool isValidate, int orderID);
     static void addNode(struct Node *head, string n, bool isValidate, int orderID);
     static void insertFront(struct Node **head, string n,bool isValidate,int orderID);
