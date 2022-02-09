@@ -1,92 +1,81 @@
 #include <iostream>
+
 using namespace std;
 
-class State{
+enum GameState {
+    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders,win, quit
+};
+
+class startState{
 public:
-    virtual void UpdateState() = 0;
-
-    virtual ~State(){
-
-    }
-
+    startState()= default;;
+    ~startState()= default;;
+    static string startFunc(){
+        string nextState = "changeState";
+        cout << "this is the start state\n";
+        cout << "What would you like to do\n";
+        cout << "1- loadmap\n";
+        int x;
+        cin >> x;
+        while (x != 1){
+            cout << "Please enter an valid command\n";
+            cin >> x;
+        }
+        cout << "starting\n";
+        cout << "Moving to the next state\n";
+        return nextState;
+    };
 
 };
 
-class StartState: public State{
+class maploadedState{
 public:
-    void UpdateState() override{
-        cout << "Start State"<<endl;
-    }
+    maploadedState()= default;;
+    ~maploadedState()= default;;
+    static string maploadedFunc(){
+        string nextState = "changeState";
+        cout << "this is the map loaded state\n";
+        cout << "What would you like to do\n";
+        cout << "1 - load map\n";
+        cout << "2 - validate map\n";
+        cout << "Please chose action by typing the corresponding number\n";
+        int x;
+        cin >> x;
+        switch(x){
+            case 1:
+                cout << "map loaded again\n";
+                cout << "What would you like to do\n";
+                cout << "1 - load map\n";
+                cout << "2 - validate map\n";
+                cout << "Please chose action by typing the corresponding number\n";
+                cin >> x;
+            case 2:
+                cout << "Map validated\n";
+                cout << "Moving to next state\n";
+                break;
+            default:
+                cout << "Please enter a valid input\n";
+                cin >> x;
+        }
+    };
 };
 
-class MapLoadedState: public State{
+class mapvalidatedState{
 public:
-    void UpdateState() override{
-        cout << "Map Loaded State"<<endl;
-    }
+    mapvalidatedState()= default;;
+    ~mapvalidatedState()= default;;
+    static string mapvalidatedFunc(){
+        string nextState;
+        cout << "this is the map validated state\n";
+        cout << "What would you like to do\n";
+        cout << "1 - add player\n";
+        int x;
+        cin >> x;
+        while (x != 1){
+            cout << "Please enter an valid command\n";
+        }
+        cout << "map validated\n";
+        cout << "Moving to the next state\n";
+        return nextState;
+    };
 };
-
-class MapValidatedState: public State{
-public:
-    void UpdateState() override{
-        cout << "Map Validated State"<<endl;
-    }
-};
-
-class PlayerAddedState: public State{
-public:
-    void UpdateState() override{
-        cout << "Player Added State"<<endl;
-    }
-};
-
-class AssignReignforcementState: public State{
-public:
-    void UpdateState() override{
-        cout << "Assign Reignforcement State"<<endl;
-    }
-};
-
-class IssueOrdersState: public State{
-public:
-    void UpdateState() override{
-        cout << "Issue Orders State"<<endl;
-    }
-};
-
-class ExecuteOrdersState: public State{
-public:
-    void UpdateState() override{
-        cout << "Execute Orders State"<<endl;
-    }
-};
-
-class WinState: public State{
-public:
-    void UpdateState() override{
-        cout << "Win State"<<endl;
-    }
-};
-
-class StateController{
-private:
-    State* currentState = nullptr;
-
-public:
-    void Init(){
-        currentState = new StartState();
-    }
-
-    void Update(){
-        currentState->UpdateState();
-    }
-
-    void TransitionTo(char c){
-        delete currentState;
-    }
-
-    ~StateController(){
-        delete currentState;
-    }
-};
-
