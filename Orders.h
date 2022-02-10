@@ -11,9 +11,9 @@ class Orders {
 public:
 
 
-    static void initNode(struct Node *head, int n, bool isValidate, int orderID);
-    static void addNode(struct Node *head, string n, bool isValidate, int orderID);
-    static void insertFront(struct Node **head, string n,bool isValidate,int orderID);
+    static void initNode(struct Node *head, int typeNum, int orderID);
+    static void addNode(struct Node *head, int typeNum, int orderId);
+   /* static void insertFront(struct Node **head, string n,bool isValidate,int orderID);*/
     static bool deleteNode(struct Node **head, Node *ptrDel);
     static bool remove(struct Node **head, int targetPlace);
     static void deleteLinkedList(struct Node **node);
@@ -34,7 +34,7 @@ public:
     Bomb();
     ~Bomb();
     string static BombName();
-    bool validate(int i);
+    static bool validate(int i);
     void execute(string i);
 };
 
@@ -44,7 +44,45 @@ public:
     Deploy();
     ~Deploy();
     string static DeployName();
-    bool validate(int i);
+    static bool validate(int i);
     void execute(string i);
 };
+
+class Advance{
+public:
+    Advance();
+    ~Advance();
+    string static AdvanceName();
+    static bool validate(int i);
+    void execute(string i);
+};
+
+class Blockade{
+public:
+    Blockade();
+    ~Blockade();
+    string static BlockadeName();
+    static bool validate(int i);
+    void execute(string i);
+};
+
+class Airlift{
+public:
+    Airlift();
+    ~Airlift();
+    string static AirliftName();
+    static bool validate(int i);
+    void execute(string i);
+};
+
+class Negotiate{
+public:
+    Negotiate();
+    ~Negotiate();
+    string static NegotiateName();
+    static bool validate(int i);
+    void execute(string i);
+};
+
+
 #endif //COMP335_P_ORDERS_H

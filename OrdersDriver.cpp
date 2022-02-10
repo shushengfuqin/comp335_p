@@ -13,34 +13,37 @@ int main() {
     struct Node *thisHead = order;
 
     //First initiate the first order of the orderlist
-    Orders::initNode(order, 1, true, 3);
+
+
+    Orders::initNode(order, 0,3);
     Orders::display(order);
     //Add 5 more orders into the list following the first order
-//    Orders::addNode(order, "Deploy", true, 5);
-//    Orders::display(order);
-//
-//    Orders::addNode(order, "Advance", true, 0);
-//    Orders::display(order);
-//
-//    Orders::addNode(order, "Blockade", true, 2);
-//    Orders::display(order);
-//
-//    Orders::addNode(order, "Airlift", true, 9);
-//    Orders::display(order);
-//
-//    Orders::addNode(order, "Negotiate", true, 6);
-//    Orders::display(order);
+    Orders::addNode(order, 1,  9);
+    Orders::display(order);
 
+    Orders::addNode(order, 2, 5);
+    Orders::display(order);
+
+    Orders::addNode(order, 3, 0);
+    Orders::display(order);
+
+    Orders::addNode(order, 4,  8);
+    Orders::display(order);
+
+    Orders::addNode(order, 5,  7);
+    Orders::display(order);
+
+
+
+
+/*    Orders::remove(&order,2);
+    Orders::display(order);*/
 /*
 
-    Orders::remove(&order,2);
-    Orders::display(order);
+    Node *ptrNode = Orders::searchNode(order, 5);
+    Orders::display(ptrNode);
 */
 
-
-/*    Node *ptrNode = Orders::searchNode(order, 6);
-    Orders::display(ptrNode);*/
-
-    Orders::move(&thisHead, 2, 2);
+    Orders::move(&thisHead, 0, 2);
     Orders::display(thisHead);
 }

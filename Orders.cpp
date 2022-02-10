@@ -10,31 +10,105 @@ using namespace std;
 
 
 
-void Orders::initNode(struct Node *head, int n, bool isValidate, int orderID) {
-    switch(n){
+void Orders::initNode(struct Node *head, int typeNum, int orderId) {
+    switch(typeNum){
         // 0 means the order is bomb
         case 0:
             head->orderName = Bomb::BombName();
+            head->isValidate = Bomb::validate(1);
+            head->orderID = orderId;
+            head->next = NULL;
+
             break;
         case 1: // 1 means the order is deploy
             head->orderName = Deploy::DeployName();
+            head->isValidate = Deploy::validate(1);
+            head->orderID = orderId;
+            head->next = NULL;
+            break;
+        case 2: // 2 means the order is Advance
+            head->orderName = Advance::AdvanceName();
+            head->isValidate = Advance::validate(1);
+            head->orderID = orderId;
+            head->next = NULL;
+            break;
+        case 3: // 3 means the order is Blockade
+            head->orderName = Blockade::BlockadeName();
+            head->isValidate = Blockade::validate(1);
+            head->orderID = orderId;
+            head->next = NULL;
+            break;
+        case 4: // 4 means the order is Airlift
+            head->orderName = Airlift::AirliftName();
+            head->isValidate = Airlift::validate(1);
+            head->orderID = orderId;
+            head->next = NULL;
+            break;
+        case 5: // 5 means the order is Negotiate
+            head->orderName = Negotiate::NegotiateName();
+            head->isValidate = Negotiate::validate(1);
+            head->orderID = orderId;
+            head->next = NULL;
             break;
         default:
             cout << "Invalid Order\n";
     }
-//    head->orderName = n;
+/*    head->orderName = n;
     head->isValidate = isValidate;
-    head->orderID = orderID;
-    head->next = NULL;
+    head->orderID = orderID;*/
+
 
 }
 
-void Orders::addNode(struct Node *head, string n, bool isValidate, int orderID) {
+void Orders::addNode(struct Node *head, int typeNum,int orderId) {
     Node *newNode = new Node;
+    switch(typeNum){
+        // 0 means the order is bomb
+        case 0:
+            newNode->orderName = Bomb::BombName();
+            newNode->isValidate = Bomb::validate(1);
+            newNode->orderID = orderId;
+            newNode->next = NULL;
+            break;
+        case 1: // 1 means the order is deploy
+            newNode->orderName = Deploy::DeployName();
+            newNode->isValidate = Deploy::validate(1);
+            newNode->orderID = orderId;
+            newNode->next = NULL;
+            break;
+        case 2: // 2 means the order is Advance
+            newNode->orderName = Advance::AdvanceName();
+            newNode->isValidate = Advance::validate(1);
+            newNode->orderID = orderId;
+            newNode->next = NULL;
+            break;
+        case 3: // 3 means the order is Blockade
+            newNode->orderName = Blockade::BlockadeName();
+            newNode->isValidate = Blockade::validate(1);
+            newNode->orderID = orderId;
+            newNode->next = NULL;
+            break;
+        case 4: // 4 means the order is Airlift
+            newNode->orderName = Airlift::AirliftName();
+            newNode->isValidate = Airlift::validate(1);
+            newNode->orderID = orderId;
+            newNode->next = NULL;
+            break;
+        case 5: // 5 means the order is Negotiate
+            newNode->orderName = Negotiate::NegotiateName();
+            newNode->isValidate = Negotiate::validate(1);
+            newNode->orderID = orderId;
+            newNode->next = NULL;
+            break;
+        default:
+            cout << "Invalid Order\n";
+    }
+/*
     newNode->orderName = n;
     newNode->isValidate = isValidate;
     newNode->orderID = orderID;
     newNode->next = NULL;
+*/
 
 
     Node *cur = head;
@@ -47,6 +121,7 @@ void Orders::addNode(struct Node *head, string n, bool isValidate, int orderID) 
     }
 }
 
+/*
 
 void Orders::insertFront(struct Node **head, string n, bool isValidate, int orderID) {
     Node *newNode = new Node;
@@ -58,6 +133,7 @@ void Orders::insertFront(struct Node **head, string n, bool isValidate, int orde
 
 }
 
+*/
 
 struct Node *Orders::searchNode(struct Node *head, int n) {
     Node *cur = head;
@@ -243,6 +319,82 @@ bool Deploy::validate(int i){
 }
 
 void Deploy::execute(string i) {
+    if(i == "valide"){
+        cout << "It is validated and going to be executed\n";
+    }
+}
+
+//Advance class
+string Advance::AdvanceName()  {
+    return "Advance";
+}
+bool Advance::validate(int i){
+    if(i == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Advance::execute(string i) {
+    if(i == "valide"){
+        cout << "It is validated and going to be executed\n";
+    }
+}
+
+//Blockade class
+string Blockade::BlockadeName(){
+    return "Blockade";
+}
+bool Blockade::validate(int i){
+    if(i == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Blockade::execute(string i) {
+    if(i == "valide"){
+        cout << "It is validated and going to be executed\n";
+    }
+}
+
+//Airlift class
+string Airlift::AirliftName() {
+    return "Airlift";
+}
+bool Airlift::validate(int i){
+    if(i == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Airlift::execute(string i) {
+    if(i == "valide"){
+        cout << "It is validated and going to be executed\n";
+    }
+}
+
+//Negotiate class
+string Negotiate::NegotiateName() {
+    return "Negotiate";
+}
+bool Negotiate::validate(int i){
+    if(i == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Negotiate::execute(string i) {
     if(i == "valide"){
         cout << "It is validated and going to be executed\n";
     }
