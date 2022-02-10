@@ -21,6 +21,8 @@ Player::Player(){
 //is added to the attack list
 void Player::attackTerritory(Territory *territory){
     playerAttackList->push_back(*territory);
+    //if this terr belongs to someone
+    //then add territory to that player's defend list
 }
 //once some other player want to attack a territory, the territory
 //is added to the defend list
@@ -30,13 +32,7 @@ void Player::defendTerritory(Territory *territory){
 vector<Territory> Player::toAttack() {
     std::cout << '\n'<< "Player's Attack List:"<<'\n';
     for(int i=0; i<playerAttackList->size();++i){
-        playerAttackList->at(i);
-        playerAttackList->operator[](i);
-        playerAttackList->size();
-        vector<Territory> &value=*playerAttackList;
-        value[i];
-
-        cout<<value[i].getName()<<'\n';
+        cout<<playerAttackList->at(i).getName()<<'\n';
     }
 
     return *playerAttackList;
@@ -45,14 +41,9 @@ vector<Territory> Player::toAttack() {
 
 vector<Territory> Player::toDefend() {
     std::cout << '\n'<<"Player's Defend List:"<<'\n';
-    for(int i=0; i<playerDefendList->size();++i){
-        playerDefendList->at(i);
-        playerDefendList->operator[](i);
-        playerDefendList->size();
-        vector<Territory> &value=*playerDefendList;
-        value[i];
 
-        cout<<value[i].getName()<<'\n';
+    for(int i=0; i<playerDefendList->size();++i){
+        cout<<playerDefendList->at(i).getName()<<'\n';
     }
 
     return *playerDefendList;
