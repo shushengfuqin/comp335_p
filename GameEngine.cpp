@@ -2,7 +2,7 @@
 #include "GameEngine.h"
 
 enum GameState {
-    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders, win, quit
+    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders, win
 };
 int userInput;
 int* userInputPtr = &userInput;
@@ -10,7 +10,7 @@ int* userInputPtr = &userInput;
 string nextStateCmd;
 string* nextStateCmdPtr = &nextStateCmd;
 startState::startState() = default;
-startState::~startState() = default;;
+startState::~startState() = default;
 
 /**
  * This method takes the input of the user x
@@ -36,7 +36,7 @@ string startState::startFunc(){
 
 
 maploadedState::maploadedState() = default;
-maploadedState::~maploadedState() = default;;
+maploadedState::~maploadedState() = default;
 string maploadedState::maploadedFunc(){
         cout << "this is the map loaded state\n";
         cout << "What would you like to do\n";
@@ -67,8 +67,8 @@ string maploadedState::maploadedFunc(){
     }
 
 
-mapvalidatedState::mapvalidatedState()= default;;
-mapvalidatedState::~mapvalidatedState()= default;;
+mapvalidatedState::mapvalidatedState()= default;
+mapvalidatedState::~mapvalidatedState()= default;
 string mapvalidatedState::mapvalidatedFunc(){
         string nextState;
         cout << "this is the map validated state\n";
@@ -82,12 +82,12 @@ string mapvalidatedState::mapvalidatedFunc(){
         cout << "Moving to the next state\n";
         *nextStateCmdPtr = "addplayer";
         return *nextStateCmdPtr;
-    };
+    }
 
 
 
-playeraddedState::playeraddedState()= default;;
-playeraddedState::~playeraddedState()= default;;
+playeraddedState::playeraddedState()= default;
+playeraddedState::~playeraddedState()= default;
 string playeraddedState::playeraddedFunc(){
         cout << "this is the player added state\n";
         cout << "What would you like to do\n";
@@ -114,11 +114,11 @@ string playeraddedState::playeraddedFunc(){
                     cin >> *userInputPtr;
             }
         }
-};
+}
 
 
-assignreinforcementState::assignreinforcementState()= default;;
-assignreinforcementState::~assignreinforcementState()= default;;
+assignreinforcementState::assignreinforcementState()= default;
+assignreinforcementState::~assignreinforcementState()= default;
 string assignreinforcementState::assignreinforcementFunc(){
         cout << "this is the assign reinforcement state\n";
         cout << "What would you like to do\n";
@@ -132,12 +132,12 @@ string assignreinforcementState::assignreinforcementFunc(){
         cout << "Moving to the next state\n";
         *nextStateCmdPtr = "issueorder";
         return *nextStateCmdPtr;
-    };
+    }
 
 
 
-issueordersState::issueordersState()= default;;
-issueordersState::~issueordersState()= default;;
+issueordersState::issueordersState()= default;
+issueordersState::~issueordersState()= default;
 string issueordersState::issueordersFunc(){
         cout << "this is the issue order state\n";
         cout << "What would you like to do\n";
@@ -164,12 +164,13 @@ string issueordersState::issueordersFunc(){
                     cin >> *userInputPtr;
             }
         }
-    };
+    }
 
 
 
-executeordersState::executeordersState()= default;;
-executeordersState::~executeordersState()= default;;
+executeordersState::executeordersState()= default;
+executeordersState::~executeordersState()= default;
+
 string executeordersState::executeordersFunc(){
         cout << "this is the execute order state\n";
         cout << "What would you like to do\n";
@@ -192,23 +193,23 @@ string executeordersState::executeordersFunc(){
                 case 2:
                     cout << "Moving to assign reinforcement state\n";
                     *nextStateCmdPtr = "endexecorders";
-                    break;
+                    return *nextStateCmdPtr;
                 case 3:
                     cout << "Moving to win state\n";
                     *nextStateCmdPtr = "win";
-                    break;
+                    return *nextStateCmdPtr;
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> *userInputPtr;
             }
-            return *nextStateCmdPtr;
         }
-    };
+
+    }
 
 
 
-winState::winState()= default;;
-winState::~winState()= default;;
+winState::winState()= default;
+winState::~winState()= default;
 string winState::winFunc(){
         cout << "this is the win state\n";
         cout << "What would you like to do\n";
@@ -232,4 +233,4 @@ string winState::winFunc(){
             }
             return *nextStateCmdPtr;
         }
-    };
+    }

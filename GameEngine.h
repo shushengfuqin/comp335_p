@@ -1,11 +1,10 @@
-#ifndef GameEngine.h
-#define GameEngine.h
-#include <iostream>;
+#ifndef GameEngine
+#define GameEngine
+#include <iostream>
 #include <string>
 #pragma once
 using namespace std;
 
-extern int* userInputptr;
 // State class for the start state
 class startState{
 public:
@@ -79,6 +78,7 @@ public:
     ~executeordersState();
     // Method to run executeordersState including transfer method
     string static executeordersFunc();
+    // Transition method
 };
 
 class winState{
