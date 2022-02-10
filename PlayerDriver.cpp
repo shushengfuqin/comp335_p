@@ -39,6 +39,15 @@ int main(){
     //verify player has hand by adding cards
     player->getHandLimit();
 
+    Territory *territory7= new Territory( "pikachu", 7 );
+    Territory *territory8= new Territory( "eevee", 8 );
+    Territory *territory9= new Territory( "jigglypuff", 9 );
+    player->addTerritory(territory7);
+    player->addTerritory(territory8);
+    player->addTerritory(territory9);
+    player->displayTerritory();
+
+
 
 
 }

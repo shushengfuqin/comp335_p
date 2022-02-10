@@ -18,8 +18,10 @@ public:
     int numDefend;
     vector<Territory> toAttack();
     vector<Territory> toDefend();
+    vector<Territory> displayTerritory();
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
+    void addTerritory(Territory *territory);
     void issueOrders();
     int getHandLimit();
 

@@ -15,7 +15,6 @@ Player::Player(){
     //player owns a defend territory list
     playerAttackList=new vector<Territory>();
 
-
 }
 //once a player want to attack a territory, the territory
 //is added to the attack list
@@ -28,6 +27,9 @@ void Player::attackTerritory(Territory *territory){
 //is added to the defend list
 void Player::defendTerritory(Territory *territory){
     playerDefendList->push_back(*territory);
+}
+void Player::addTerritory(Territory *territory){
+    playerTerritoryList->push_back(*territory);
 }
 vector<Territory> Player::toAttack() {
     std::cout << '\n'<< "Player's Attack List:"<<'\n';
@@ -47,6 +49,16 @@ vector<Territory> Player::toDefend() {
     }
 
     return *playerDefendList;
+}
+
+vector<Territory> Player::displayTerritory() {
+    std::cout << '\n'<<"Player's Territory List:"<<'\n';
+
+    for(int i=0; i<playerTerritoryList->size();++i){
+        cout<<playerTerritoryList->at(i).getName()<<'\n';
+    }
+
+    return *playerTerritoryList;
 }
 
 int Player::getHandLimit(){
