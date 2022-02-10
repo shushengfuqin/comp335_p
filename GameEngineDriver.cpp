@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 
     // Initialize gamestate at state and update upon state change
-    GameState currentState = executeorders;
+    GameState currentState = start;
     GameState* currentStatePtr = &currentState;
 
     // Initializa game play boolean.
@@ -75,8 +75,9 @@ int main() {
                     *playPtr = false;
                     break;
                 }
+                continue;
             default:
-                cout << "Invalid input";
+                cout << "Invalid input\n";
         }
     }
 

@@ -21,8 +21,8 @@ startState::~startState() = default;
 string startState::startFunc(){
         cout << "this is the start state\n";
         cout << "What would you like to do\n";
-        cout << "Please chose action by typing the corresponding number\n";
         cout << "1- loadmap\n";
+        cout << "Please chose action by typing the corresponding number\n";
         cin >> *userInputPtr;
         while (*userInputPtr != 1){
             cout << "Please enter an valid command\n";
