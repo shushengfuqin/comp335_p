@@ -4,16 +4,18 @@
 enum GameState {
     start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders, win
 };
+
+/**
+ * userInput will save the cmd of the user.
+ */
 int userInput;
 int* userInputPtr = &userInput;
 
-string nextStateCmd;
-string* nextStateCmdPtr = &nextStateCmd;
 startState::startState() = default;
 startState::~startState() = default;
 
 /**
- * This method takes the input of the user x
+ * This method takes the input of the user
  * While the user does not chose 1 which is for the command loadmap,
  * The system will keep ask the use to input an valid command.
  * @return the command loadmap
@@ -29,14 +31,21 @@ string startState::startFunc(){
             cin >> *userInputPtr;
         }
         cout << "Moving to the next state\n";
-        *nextStateCmdPtr = "loadmap";
-        return *nextStateCmdPtr;
+        return "loadmap";
 }
 
 
 
 maploadedState::maploadedState() = default;
 maploadedState::~maploadedState() = default;
+
+/**
+ * This method takes the input of the user
+ * using a for loop which allows the user to keep chosing the cmd loadmap.
+ * With the switch case to allow user to break out and return the cmd to switch to the next step
+ * The system will keep ask the use to input an valid command.
+ * @return string "validatemap"
+ */
 string maploadedState::maploadedFunc(){
         cout << "this is the map loaded state\n";
         cout << "What would you like to do\n";
@@ -56,8 +65,7 @@ string maploadedState::maploadedFunc(){
                     continue;
                 case 2:
                     cout << "Moving to next state\n";
-                    *nextStateCmdPtr = "validatemap";
-                    return *nextStateCmdPtr;
+                    return "validatemap";
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> *userInputPtr;
@@ -69,6 +77,13 @@ string maploadedState::maploadedFunc(){
 
 mapvalidatedState::mapvalidatedState()= default;
 mapvalidatedState::~mapvalidatedState()= default;
+
+/**
+ * This method takes the input of the user
+ * While the user does not chose 1 which is for the command addplayer,
+ * The system will keep ask the use to input an valid command.
+ * @return "addplayer"
+ */
 string mapvalidatedState::mapvalidatedFunc(){
         string nextState;
         cout << "this is the map validated state\n";
@@ -80,14 +95,21 @@ string mapvalidatedState::mapvalidatedFunc(){
             cin >> *userInputPtr;
         }
         cout << "Moving to the next state\n";
-        *nextStateCmdPtr = "addplayer";
-        return *nextStateCmdPtr;
+        return "addplayer";
     }
 
 
 
 playeraddedState::playeraddedState()= default;
 playeraddedState::~playeraddedState()= default;
+
+/**
+ * This method takes the input of the user
+ * using a for loop which allows the user to keep chosing the cmd addplayer.
+ * With the switch case to allow user to break out and return the cmd to switch to the next step
+ * The system will keep ask the use to input an valid command.
+ * @return string "assigncountries"
+ */
 string playeraddedState::playeraddedFunc(){
         cout << "this is the player added state\n";
         cout << "What would you like to do\n";
@@ -107,8 +129,7 @@ string playeraddedState::playeraddedFunc(){
                     continue;
                 case 2:
                     cout << "Moving to next state\n";
-                    *nextStateCmdPtr = "assigncountries";
-                    return *nextStateCmdPtr;
+                    return "assigncountries";
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> *userInputPtr;
@@ -119,6 +140,13 @@ string playeraddedState::playeraddedFunc(){
 
 assignreinforcementState::assignreinforcementState()= default;
 assignreinforcementState::~assignreinforcementState()= default;
+
+/**
+ * This method takes the input of the user
+ * While the user does not chose 1 which is for the command addplayer,
+ * The system will keep ask the use to input an valid command.
+ * @return "issueorder"
+ */
 string assignreinforcementState::assignreinforcementFunc(){
         cout << "this is the assign reinforcement state\n";
         cout << "What would you like to do\n";
@@ -130,14 +158,21 @@ string assignreinforcementState::assignreinforcementFunc(){
             cin >> *userInputPtr;
         }
         cout << "Moving to the next state\n";
-        *nextStateCmdPtr = "issueorder";
-        return *nextStateCmdPtr;
+        return "issueorder";
     }
 
 
 
 issueordersState::issueordersState()= default;
 issueordersState::~issueordersState()= default;
+
+/**
+ * This method takes the input of the user
+ * using a for loop which allows the user to keep chosing the cmd issueorder.
+ * With the switch case to allow user to break out and return the cmd to switch to the next step
+ * The system will keep ask the use to input an valid command.
+ * @return string "endissuorders"
+ */
 string issueordersState::issueordersFunc(){
         cout << "this is the issue order state\n";
         cout << "What would you like to do\n";
@@ -157,8 +192,7 @@ string issueordersState::issueordersFunc(){
                     continue;
                 case 2:
                     cout << "Moving to next state\n";
-                    *nextStateCmdPtr = "endissuorders";
-                    return *nextStateCmdPtr;
+                    return "endissuorders";
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> *userInputPtr;
@@ -171,6 +205,13 @@ string issueordersState::issueordersFunc(){
 executeordersState::executeordersState()= default;
 executeordersState::~executeordersState()= default;
 
+/**
+ * This method takes the input of the user
+ * using a for loop which allows the user to keep chosing the cmd execute order.
+ * With the switch case to allow user to break out and return the cmd to switch to the next step
+ * The system will keep ask the use to input an valid command.
+ * @return string "endexecorders" or "win"
+ */
 string executeordersState::executeordersFunc(){
         cout << "this is the execute order state\n";
         cout << "What would you like to do\n";
@@ -192,12 +233,10 @@ string executeordersState::executeordersFunc(){
                     continue;
                 case 2:
                     cout << "Moving to assign reinforcement state\n";
-                    *nextStateCmdPtr = "endexecorders";
-                    return *nextStateCmdPtr;
+                    return "endexecorders";
                 case 3:
                     cout << "Moving to win state\n";
-                    *nextStateCmdPtr = "win";
-                    return *nextStateCmdPtr;
+                    return "win";
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> *userInputPtr;
@@ -210,6 +249,14 @@ string executeordersState::executeordersFunc(){
 
 winState::winState()= default;
 winState::~winState()= default;
+
+/**
+ * This method takes the input of the user
+ * using a for loop which allows the user to keep choosing an invalid cmd
+ * With the switch case to allow user to break out and return the cmd to switch to the next step
+ * The system will keep ask the use to input an valid command.
+ * @return string "end" or "play"
+ */
 string winState::winFunc(){
         cout << "this is the win state\n";
         cout << "What would you like to do\n";
@@ -221,16 +268,14 @@ string winState::winFunc(){
             switch (*userInputPtr) {
                 case 1:
                     cout << "Thank you for playing. See you next time\n";
-                    *nextStateCmdPtr = "end";
-                    break;
+                    return "end";
                 case 2:
                     cout << "Moving to Start state\n";
-                    *nextStateCmdPtr = "play";
-                    break;
+                    return "play";
                 default:
                     cout << "Please enter a valid input\n";
                     cin >> *userInputPtr;
             }
-            return *nextStateCmdPtr;
+
         }
     }
