@@ -11,7 +11,7 @@ class Orders {
 public:
 
 
-    static void initNode(struct Node *head, string n, bool isValidate, int orderID);
+    static void initNode(struct Node *head, int n, bool isValidate, int orderID);
     static void addNode(struct Node *head, string n, bool isValidate, int orderID);
     static void insertFront(struct Node **head, string n,bool isValidate,int orderID);
     static bool deleteNode(struct Node **head, Node *ptrDel);
@@ -27,5 +27,24 @@ struct Node {
     bool isValidate;
     int orderID;
     Node *next;
+};
+
+class Bomb{
+public:
+    Bomb();
+    ~Bomb();
+    string static BombName();
+    bool validate(int i);
+    void execute(string i);
+};
+
+
+class Deploy{
+public:
+    Deploy();
+    ~Deploy();
+    string static DeployName();
+    bool validate(int i);
+    void execute(string i);
 };
 #endif //COMP335_P_ORDERS_H

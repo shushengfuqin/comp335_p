@@ -10,8 +10,19 @@ using namespace std;
 
 
 
-void Orders::initNode(struct Node *head, string n, bool isValidate, int orderID) {
-    head->orderName = n;
+void Orders::initNode(struct Node *head, int n, bool isValidate, int orderID) {
+    switch(n){
+        // 0 means the order is bomb
+        case 0:
+            head->orderName = Bomb::BombName();
+            break;
+        case 1: // 1 means the order is deploy
+            head->orderName = Deploy::DeployName();
+            break;
+        default:
+            cout << "Invalid Order\n";
+    }
+//    head->orderName = n;
     head->isValidate = isValidate;
     head->orderID = orderID;
     head->next = NULL;
@@ -196,7 +207,43 @@ void Orders::move(Node **head, int index, int targetPlace) {
 
 //validate if the order can be executed
 
+// Bomb class
+
+string Bomb::BombName(){
+    return "Bomb";
+}
+bool Bomb::validate(int i){
+    if(i == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
+void Bomb::execute(string i) {
+    if(i == "valide"){
+        cout << "It is validated and going to be executed\n";
+    }
+}
 
 
+// deploy class
 
+string Deploy::DeployName(){
+    return "Deploy";
+}
+bool Deploy::validate(int i){
+    if(i == 1){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
+void Deploy::execute(string i) {
+    if(i == "valide"){
+        cout << "It is validated and going to be executed\n";
+    }
+}
