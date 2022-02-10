@@ -21,13 +21,14 @@ public:
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void issueOrders();
+    int getHandLimit();
 
 
 private:
     Node node;
-    vector<Territory> playerTerritoryList;
-    vector<Territory> playerDefendList;
-    vector<Territory> playerAttackList;
+    vector<Territory>* playerTerritoryList;
+    vector<Territory>* playerDefendList;
+    vector<Territory>* playerAttackList;
     Hand *playerHand;
 
 

@@ -26,7 +26,7 @@ int main(){
     //instantiate new list for player to defend
     Territory *territory4= new Territory( "large", 4 );
     Territory *territory5= new Territory( "ice", 5 );
-    Territory *territory6= new Territory( "coffee", 6 );
+    Territory *territory6= new Territory( "cap", 6 );
 
     //add territories to the player defend list
     player->defendTerritory(territory4);
@@ -35,6 +35,10 @@ int main(){
 
     //player defend actions
     player->toDefend();
+
+    //verify player has hand by adding cards
+    player->getHandLimit();
+
 
 
 }
