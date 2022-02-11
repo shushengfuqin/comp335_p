@@ -39,16 +39,41 @@ int main(){
     //verify player has hand by adding cards
     player->getHandLimit();
 
+
+    //create new territory that should be used to add into the player class
     Territory *territory7= new Territory( "pikachu", 7 );
     Territory *territory8= new Territory( "eevee", 8 );
     Territory *territory9= new Territory( "jigglypuff", 9 );
+
+
+    //add territory belongs to the player
     player->addTerritory(territory7);
     player->addTerritory(territory8);
     player->addTerritory(territory9);
     player->displayTerritory();
 
+
+    //create new orders
     Order* order1=new Order(1);
+
+    //issue new orders
     player->issueOrders(order1);
+
+
+    //create another player using copy constructor
+    Player *player2=player;
+    player2->toAttack();
+
+    //create another player using assignment operator
+    Player *player3;
+    player3=player;
+    player3->toDefend();
+
+    //use the player stream
+    cout<<"player 1 wanna talk: "<<*player<<endl;
+
+
+
 
 
 

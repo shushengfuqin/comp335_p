@@ -14,8 +14,9 @@ using namespace std;
 class Player{
 public:
     Player();
-    int numAttack;
-    int numDefend;
+    Player(const Player &player1);
+    Player& operator=(const Player& player);
+    friend std::ostream& operator<<(ostream &os, const Player& player);
     vector<Territory> toAttack();
     vector<Territory> toDefend();
     vector<Territory> displayTerritory();
@@ -24,7 +25,7 @@ public:
     void addTerritory(Territory *territory);
     void issueOrders(Order* order);
     int getHandLimit();
-    OrderList* orderList;
+
 
 
 private:
@@ -32,6 +33,7 @@ private:
     vector<Territory>* playerDefendList;
     vector<Territory>* playerAttackList;
     Hand *playerHand;
+    OrderList* orderList;
 
 
 
