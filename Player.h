@@ -22,12 +22,12 @@ public:
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void addTerritory(Territory *territory);
-    void issueOrders();
+    void issueOrders(Order* order);
     int getHandLimit();
+    OrderList* orderList;
 
 
 private:
-    Node node;
     vector<Territory>* playerTerritoryList;
     vector<Territory>* playerDefendList;
     vector<Territory>* playerAttackList;

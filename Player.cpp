@@ -14,6 +14,8 @@ Player::Player(){
     playerDefendList=new vector<Territory>();
     //player owns a defend territory list
     playerAttackList=new vector<Territory>();
+    //player owns an order list
+    orderList=new OrderList();
 
 }
 //once a player want to attack a territory, the territory
@@ -67,7 +69,8 @@ int Player::getHandLimit(){
 
 }
 
-void Player::issueOrders() {
+void Player::issueOrders(Order* order) {
+    orderList->add(order);
 
 
 }

@@ -47,6 +47,9 @@ int main(){
     player->addTerritory(territory9);
     player->displayTerritory();
 
+    Order* order1=new Order(1);
+    player->issueOrders(order1);
+
 
 
 
