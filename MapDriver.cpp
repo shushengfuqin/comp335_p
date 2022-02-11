@@ -12,19 +12,19 @@ int main() {
 
     // For now, manually making an example map (Based from the assignment video)
     Map *map = new Map(SIZE); // new map
-    Territory *t1 = new Territory("Canada", 1); // new territories
-    Territory *t2 = new Territory("USA", 2);
-    Territory *t3 = new Territory("Mexico", 3);
-    Territory *t4 = new Territory("Egypt", 4);
-    Territory *t5 = new Territory("South Africa", 5);
-    Territory *t6 = new Territory("USSR", 6);
-    Territory *t7 = new Territory("Austria", 7);
-    Territory *t8 = new Territory("Israel", 8);
-    Territory *t9 = new Territory("Italy", 9);
-    Territory *t10 = new Territory("Spain", 10);
-    Territory *t11 = new Territory("France", 11);
-    Territory *t12 = new Territory("Germany", 12);
-    Territory *t13 = new Territory("Pacific Ocean", 13);
+    Territory *t1 = new Territory("Canada", 1, 1); // new territories
+    Territory *t2 = new Territory("USA", 2, 1);
+    Territory *t3 = new Territory("Mexico", 3, 1);
+    Territory *t4 = new Territory("Egypt", 4, 2);
+    Territory *t5 = new Territory("South Africa", 5, 2);
+    Territory *t6 = new Territory("USSR", 6, 3);
+    Territory *t7 = new Territory("Austria", 7, 3);
+    Territory *t8 = new Territory("Israel", 8, 3);
+    Territory *t9 = new Territory("Italy", 9, 4);
+    Territory *t10 = new Territory("Spain", 10, 4);
+    Territory *t11 = new Territory("France", 11, 4);
+    Territory *t12 = new Territory("Germany", 12, 4);
+    Territory *t13 = new Territory("Pacific Ocean", 13, 4);
 
 //    Territory *territoryList[] = {t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13};
 
@@ -43,7 +43,7 @@ int main() {
     map->addTerritory(*t3, 2);
     map->addTerritory(*t1, 2);
     map->addTerritory(*t2, 2);
-    map->addTerritory(*t13, 2);
+//    map->addTerritory(*t13, 2);
 
     // Adjacent to "4"
     map->addTerritory(*t4, 3);
@@ -96,6 +96,15 @@ int main() {
              << endl << endl;
     }
 
+    map->printTerritoriesByContinentId(4);
+
+    cout << "---Is the map above valid?:---";
+    if (map->validate()) {
+        cout << endl << "---Yes---" << endl;
+    } else {
+        cout << endl << "---No---" << endl;
+    }
+
     delete (map); // delete values of map on heap
     map = NULL; // erase the address of the map.
 
@@ -138,15 +147,24 @@ int main() {
     delete (t13); // delete values of territory13 on heap
     t13 = NULL; // erase the address of the territory13.
 
-    cout << "---Map Loader ---" << endl;
 
-    MapLoader *mapLoader = new MapLoader("../canada/canada.map");
-    cout << mapLoader->getContinents() << endl;
-    cout << mapLoader->getCountries() << endl;
-    cout << mapLoader->getBorders() << endl;
+    // Generate a Map using the map loader
+    cout << endl << "---Map Loader ---" << endl;
 
-    delete (mapLoader);
-    mapLoader = NULL;
+    // Choose from the map in the project folder
+    MapLoader *pMapLoader = new MapLoader("../google/google.map");
+
+    Map* generatedMap = pMapLoader->generateMap();
+
+    for (int i = 0; i < generatedMap->getSize(); ++i) {
+        generatedMap->printTerritoryBorders(i);
+    }
+
+    delete (pMapLoader);
+    pMapLoader = NULL;
+
+    delete (generatedMap);
+    generatedMap = NULL;
 
     return 0;
 }
