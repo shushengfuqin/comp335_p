@@ -24,13 +24,15 @@ Player::~Player(){
     for(int i = 0; i<playerTerritoryList->size();i++){
         delete playerTerritoryList->at(i);
     }
+    delete playerTerritoryList;
     for(int i = 0; i<playerAttackList->size();i++){
         delete playerAttackList->at(i);
     }
+    delete playerAttackList;
     for(int i = 0; i<playerDefendList->size();i++){
         delete playerDefendList->at(i);
     }
-
+    delete playerDefendList;
     delete orderList;
 }
 
