@@ -12,12 +12,14 @@ int main( ){
     cout << "~!" << endl << endl;
     Hand playerA(15);
 
-    cout << "Hello, World!" << std::endl;
+    cout << "DECK: " << deckA << endl;
 
     // Draw cards from deck
     for(int i = 0; i < 15; i++){
         deckA.draw(playerA);
     }
+
+    cout << "HAND: " << playerA << endl;
 
     // Play cards from hand
     for(int i = 0; i < playerA.getHandSize(); i++){
@@ -30,9 +32,22 @@ int main( ){
         deckA.draw(playerA);
     }
 
-    // Clear deck and hand
-    deckA.deleteDeck();
-    playerA.deleteHand();
+    // Some testing
+    cout << endl;
+    Card* c1 = new Card();
+    cout << *c1 << endl;
+    Card* c2 = c1;
+    cout << *c2 << endl;
+
+    cout << endl;
+    cout << deckA << endl;
+    Deck deckB = deckA;
+    cout << deckB << endl;
+
+    cout << endl;
+    cout << playerA << endl;
+    Hand playerB = playerA;
+    cout << playerB;
 
     return 0;
 }

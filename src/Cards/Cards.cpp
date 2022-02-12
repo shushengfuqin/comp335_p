@@ -6,7 +6,6 @@ Card::Card(CardType ct){
 
 Card::Card(){
     int val = rand() % 5 + 1;
-    //cout << "RNG says: " << val << endl;
 
     switch(val){
         case 1: cardType = CardType::bomb; break;
@@ -18,15 +17,12 @@ Card::Card(){
 }
 
 void Card::play(int index, Hand &player, Deck &deck) {
-    //cout << "Played a card of type: " << cardType << " and index: " << index << endl;
-
     // Take played card
     Card usedCard;
-    //cout << "Played a card of type2: " << usedCard.toString() << endl;
-    player.outputCards();
+    cout << "HAND: " << player << endl;
     usedCard = player.removeCardAtIndex(index);    // Remove from hand and shift
-    cout << "Played a card of type: " << usedCard.toString() << endl;
-    player.outputCards();
+    cout << "Played a card of type: " << usedCard << endl;
+    cout << "HAND: " << player << endl;
 
     // Return card to deck
     deck.returnToDeck(usedCard);
@@ -47,6 +43,12 @@ Deck::Deck(){
     front = 0;
     back = 51;
 }
+
+Deck::~Deck() {
+    delete [] cards;
+    cards = nullptr;
+}
+
 
 void Deck::draw(Hand& player) {
     // Player is no longer able to draw a new card
@@ -71,24 +73,14 @@ void Deck::draw(Hand& player) {
     else {
         front++;
     }
-    cout << "Drawing a card => " << topCard->toString() << " from Deck" << endl;
+    cout << "Drawing a card => " << *topCard << " from Deck" << endl;
 
     // Give hand the card
     player.addCard(topCard);
-    //cout << player.getHandSize() << endl << endl;
     size--;
 }
 
 void Deck::returnToDeck(Card &newCard) {
-    //cout << "This card is => " << newCard.toString() << endl;
-    //cout << "Front => " << front << " | Back => " << back << " | Size => " << size <<endl;
-
-    // Are we overfilling the deck (Shouldn't be possible in a normal game)
-    /*if(front == 0 && back == limit - 1){
-        cout << "Error: Card cannot be returned to deck because deck is already full." << endl << endl;
-        return;
-    }*/
-
     // Was the deck just empty?
     if(front == -1)
         front = 0;
@@ -96,12 +88,7 @@ void Deck::returnToDeck(Card &newCard) {
     back++;
     cards[back] = newCard;
     size++;
-    cout << endl << "Adding a card => " << cards[back].toString() << " back to Deck" << endl << endl;
-}
-
-void Deck::deleteDeck() {
-    delete [] cards;
-    cards = nullptr;
+    cout << endl << "Adding a card => " << cards[back] << " back to Deck" << endl << endl;
 }
 
 ///////
@@ -118,10 +105,13 @@ Hand::Hand(){
     cards = new Card[limit];
 }
 
+Hand::~Hand() {
+    delete [] cards;
+    cards = nullptr;
+}
+
 void Hand::addCard(Card* newCard){
-    //cout << "Adding a card => " << newCard << " from Deck" << endl;
     cards[size] = *newCard;
-    //cout << "Adding a card => " << &cards[size] << " from Deck" << endl;
     size++;
 }
 
@@ -132,14 +122,7 @@ Card Hand::removeCardAtIndex(int index) {
         cards[i] = cards[i+1];
     }
 
-    cout << "Removed -> " << removed.toString() << endl;
-
+    cout << "Removed -> " << removed << endl;
     size--;
-
     return removed;
-}
-
-void Hand::deleteHand() {
-    delete [] cards;
-    cards = nullptr;
 }

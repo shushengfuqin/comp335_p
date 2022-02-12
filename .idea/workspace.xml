@@ -10,6 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cards/Cards.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cards/Cards.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.h" afterDir="false" />
@@ -52,11 +53,6 @@
     <property name="cmake.loaded.for.project" value="true" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="comp335_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Project" TARGET_NAME="comp335_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Project" RUN_TARGET_NAME="comp335_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -73,6 +69,8 @@
       <updated>1643749344235</updated>
       <workItem from="1643749348950" duration="659000" />
       <workItem from="1644442289909" duration="144000" />
+      <workItem from="1644624905839" duration="2094000" />
+      <workItem from="1644703684728" duration="112000" />
     </task>
     <servers />
   </component>
