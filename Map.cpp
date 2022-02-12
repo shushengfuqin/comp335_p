@@ -33,6 +33,22 @@ int Territory::getContinentId() const {
     return _continentId;
 }
 
+void Territory::setContinentName(const string &continentName) {
+    _continentName = continentName;
+}
+
+void Territory::setNumArmies(int numArmies) {
+    _numArmies = numArmies;
+}
+
+const string &Territory::getContinentName() const {
+    return _continentName;
+}
+
+int Territory::getNumArmies() const {
+    return _numArmies;
+}
+
 
 // Functions for the Map class
 // Constructor with vector of territories
@@ -81,14 +97,22 @@ void Map::printTerritoryBorders(int rowIndex) {
                  << " "
                  << neighbour.getTerritoryId()
                  << " "
-                 << neighbour.getContinentId();
+                 << neighbour.getContinentId()
+                 << " "
+                 << neighbour.getContinentName()
+                 << " "
+                 << neighbour.getNumArmies();
             continue;
         }
         cout << " -> " << neighbour.getName()
              << " "
              << neighbour.getTerritoryId()
              << " "
-             << neighbour.getContinentId();
+             << neighbour.getContinentId()
+             << " "
+             << neighbour.getContinentName()
+             << " "
+             << neighbour.getNumArmies();
     }
     cout << endl << endl;
 }
@@ -326,6 +350,40 @@ Map *MapLoader::generateMap() {
                 }
             }
         }
+    }
+
+    // Need to set the continent Names and number of continents
+    istringstream issContinents(continents);
+    int continentIndex = 0;
+    for (string lineContinents; getline(issContinents, lineContinents);) {
+        string spaceDelimiter = " ";
+
+        // Vector for all the info about each continent
+        vector<string> continentValues{};
+        size_t pos = 0;
+        while ((pos = lineContinents.find(spaceDelimiter)) != string::npos) {
+            continentValues.push_back(lineContinents.substr(0, pos));
+            lineContinents.erase(0, pos + spaceDelimiter.length());
+        }
+        continentValues.push_back(lineContinents.substr(0, pos));
+        lineContinents.erase(0, pos + spaceDelimiter.length());
+//        cout << continentIndex << ". " << lineContinents << endl;
+        if (continentIndex > 0) {
+            string continentName;
+            int numArmies;
+            cout <<continentIndex << ". " << continentValues[0] << continentValues.size() << endl;
+            for (int i = 0; i < map->getSize(); i++) {
+                for (int j = 0; j < map->getTerritoryRow(i).size(); j++) {
+                    if (map->getTerritory()[i][j].getContinentId() == continentIndex) {
+                        continentName = continentValues[0];
+                        numArmies = stoi(continentValues[1]);
+                        map->getTerritory()[i][j].setContinentName(continentName);
+                        map->getTerritory()[i][j].setNumArmies(numArmies);
+                    }
+                }
+            }
+        }
+        continentIndex++;
     }
 
 

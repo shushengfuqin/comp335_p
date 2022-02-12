@@ -15,9 +15,17 @@ public:
 
     int getContinentId() const;
 
+    const string &getContinentName() const;
+
+    int getNumArmies() const;
+
     void setName(const string &name);
 
     void setContinentId(int continentId);
+
+    void setContinentName(const string &continentName);
+
+    void setNumArmies(int numArmies);
 
     Territory(const string &name, const int &territoryId, const int &continentId);
 
@@ -25,6 +33,8 @@ private:
     string _name;
     int _territoryId;
     int _continentId;
+    string _continentName;
+    int _numArmies;
 public:
 
 };
