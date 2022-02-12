@@ -50,9 +50,9 @@ int main() {
                 assignreinforcementState();
                 *userChoicePtr = assignreinforcementState::assignreinforcementFunc();
                 if (userChoice == "issueorder") {
-                    *currentStatePtr = issueorder;
+                    *currentStatePtr = issueorders;
                 }
-            case issueorder:
+            case issueorders:
                 issueordersState();
                 *userChoicePtr = issueordersState::issueordersFunc();
                 if (userChoice == "endissuorders") {
@@ -72,12 +72,13 @@ int main() {
                 if (userChoice == "play") {
                     *currentStatePtr = start;
                 } else if (userChoice == "end") {
+                    // since the user chose to quit, therefore, change the bool to play false, to close.
                     *playPtr = false;
                     break;
                 }
                 continue;
             default:
-                cout << "Invalid input\n";
+                cout << "Error: Invalid input\n";
         }
     }
 

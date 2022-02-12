@@ -1,9 +1,16 @@
 #include <iostream>
 #include "GameEngine.h"
-
+/**
+ * Why input int instead of string.
+ * The user input and define action is using an switch case statement. It is more clear and easy then if statements.
+ * However, in cpp, the switch case evaluate only int.
+ * It is possible to use enum for the different transition cmd. However the cmd are overlapping with the state.
+ * Which create confusion in the convention.
+ */
 enum GameState {
-    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorder, executeorders, win
+    start, maploaded, mapvalidated, playeradded, assignreignforcement, issueorders, executeorders, win
 };
+
 
 /**
  * userInput will save the cmd of the user.
@@ -20,6 +27,7 @@ startState::~startState() = default;
  * The system will keep ask the use to input an valid command.
  * @return the command loadmap
  */
+
 string startState::startFunc(){
         cout << "this is the start state\n";
         cout << "What would you like to do\n";
@@ -27,7 +35,7 @@ string startState::startFunc(){
         cout << "Please chose action by typing the corresponding number\n";
         cin >> *userInputPtr;
         while (*userInputPtr != 1){
-            cout << "Please enter an valid command\n";
+            cout << "Error: Please enter an valid command\n";
             cin >> *userInputPtr;
         }
         cout << "Moving to the next state\n";
@@ -67,7 +75,7 @@ string maploadedState::maploadedFunc(){
                     cout << "Moving to next state\n";
                     return "validatemap";
                 default:
-                    cout << "Please enter a valid input\n";
+                    cout << "Error: Please enter a valid input\n";
                     cin >> *userInputPtr;
                     continue;
             }
@@ -91,7 +99,7 @@ string mapvalidatedState::mapvalidatedFunc(){
         cout << "1 - add player\n";
         cin >> *userInputPtr;
         while (*userInputPtr != 1){
-            cout << "Please enter an valid command\n";
+            cout << "Error: Please enter an valid command\n";
             cin >> *userInputPtr;
         }
         cout << "Moving to the next state\n";
@@ -131,7 +139,7 @@ string playeraddedState::playeraddedFunc(){
                     cout << "Moving to next state\n";
                     return "assigncountries";
                 default:
-                    cout << "Please enter a valid input\n";
+                    cout << "Error: Please enter a valid input\n";
                     cin >> *userInputPtr;
             }
         }
@@ -154,7 +162,7 @@ string assignreinforcementState::assignreinforcementFunc(){
         cout << "Please chose action by typing the corresponding number\n";
         cin >> *userInputPtr;
         while (*userInputPtr != 1){
-            cout << "Please enter an valid command\n";
+            cout << "Error: Please enter an valid command\n";
             cin >> *userInputPtr;
         }
         cout << "Moving to the next state\n";
@@ -194,7 +202,7 @@ string issueordersState::issueordersFunc(){
                     cout << "Moving to next state\n";
                     return "endissuorders";
                 default:
-                    cout << "Please enter a valid input\n";
+                    cout << "Error: Please enter a valid input\n";
                     cin >> *userInputPtr;
             }
         }
@@ -238,7 +246,7 @@ string executeordersState::executeordersFunc(){
                     cout << "Moving to win state\n";
                     return "win";
                 default:
-                    cout << "Please enter a valid input\n";
+                    cout << "Error: Please enter a valid input\n";
                     cin >> *userInputPtr;
             }
         }
@@ -273,7 +281,7 @@ string winState::winFunc(){
                     cout << "Moving to Start state\n";
                     return "play";
                 default:
-                    cout << "Please enter a valid input\n";
+                    cout << "Error: Please enter a valid input\n";
                     cin >> *userInputPtr;
             }
 
