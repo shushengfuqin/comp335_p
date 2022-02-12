@@ -156,15 +156,17 @@ void Orderslist::remove(Order* order) {
 
 void Orderslist::move(int origin, int targetPosition)
 {
-    if (targetPosition >= 0 && targetPosition < orderlist.size() && targetPosition >= 0 && targetPosition <orderlist.size())
+    //origin and targetPosition are in list
+    if (origin >= 0 && origin < orderlist.size() && targetPosition >= 0 && targetPosition <orderlist.size())
     {
-        orderlist.insert(orderlist.begin() + targetPosition, orderlist.at(targetPosition));
-        orderlist.erase(orderlist.begin() + targetPosition);
+        //insert the order from origin to targetPosition before erase
+        orderlist.insert(orderlist.begin() + targetPosition, orderlist.at(origin));
+        orderlist.erase(orderlist.begin() + origin);
     }
-    else if (targetPosition == orderlist.size()  )
+    else if (targetPosition == orderlist.size()  )//targetPosition at the end of the list
     {
-        orderlist.push_back(orderlist.at(targetPosition));
-        orderlist.erase(orderlist.begin() + targetPosition);
+        orderlist.push_back(orderlist.at(origin));
+        orderlist.erase(orderlist.begin() + origin);
     }
     else {
         cout << "\n the element cannot be move to the target position" << endl;
