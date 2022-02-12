@@ -36,8 +36,6 @@ private:
     Hand *playerHand;
     OrderList* orderList;
 
-
-
 };
 
 #endif //COMP335_P_PLAYER_H

@@ -47,6 +47,7 @@ Player::Player(const Player &player1) {
     orderList = player1.orderList;
 }
 
+
 //Player assignment operator overload
 //it should call the copy constructor of the other classes
 //to avoid copy the pointer
@@ -59,7 +60,7 @@ Player&Player::operator=(const Player& player1) {
 }
 
 
-//Player stream
+//Player stream insertion
 ostream&::operator<<(ostream &os, const Player &player) {
     os<<"Hi I am player"<<endl;
 }
