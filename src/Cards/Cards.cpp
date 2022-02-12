@@ -28,6 +28,24 @@ void Card::play(int index, Hand &player, Deck &deck) {
     deck.returnToDeck(usedCard);
 }
 
+ostream &operator<<(ostream &output, Card &C ) {
+    switch (C.cardType)
+    {
+        case bomb: output << "Bomb"; break;
+        case reinforcement: output << "Reinforcement"; break;
+        case blockade: output << "Blockade"; break;
+        case airlift: output << "AirLift"; break;
+        case diplomacy: output << "Diplomacy"; break;
+        default: output << "[Unknown cardType]"; break;
+    }
+    return output;
+}
+
+Card&Card::operator=(const Card& c)
+{
+    cardType = c.cardType;
+}
+
 ///////
 
 Deck::Deck(int s){
@@ -91,6 +109,26 @@ void Deck::returnToDeck(Card &newCard) {
     cout << endl << "Adding a card => " << cards[back] << " back to Deck" << endl << endl;
 }
 
+ostream &operator<<( ostream &output, const Deck &D ) {
+    for(int i = 0; i < D.size; i++){
+        output << D.cards[i];
+        if(i < D.size-1)
+            output << " --- ";
+    }
+    return output;
+}
+Deck& Deck::operator=(const Deck& d)
+{
+    this->front = d.front;
+    this->back = d.back;
+    this->size = d.size;
+    this->cards = new Card[size];
+
+    for(int i = 0; i < d.size; i++){
+        this->cards[i] = d.cards[i];
+    }
+}
+
 ///////
 
 Hand::Hand(int s){
@@ -125,4 +163,23 @@ Card Hand::removeCardAtIndex(int index) {
     cout << "Removed -> " << removed << endl;
     size--;
     return removed;
+}
+
+ostream &operator<<( ostream &output, const Hand &H ) {
+    for(int i = 0; i < H.size; i++){
+        output << H.cards[i];
+        if(i < H.size-1)
+            output << " --- ";
+    }
+    return output;
+}
+Hand& Hand::operator=(const Hand& h)
+{
+    this->limit = h.limit;
+    this->size = h.size;
+    this->cards = new Card[limit];
+
+    for(int i = 0; i < h.size; i++){
+        this->cards[i] = h.cards[i];
+    }
 }
