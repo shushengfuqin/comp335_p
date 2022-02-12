@@ -5,34 +5,29 @@
 #ifndef COMP335_P_ORDERS_H
 #define COMP335_P_ORDERS_H
 
-#include <string>
+#include <iostream>
+#include <list>
 using namespace std;
-class Orders {
-public:
 
+
+struct Orders
+{
+    int id;
+    string content;
+    string name;
     Orders();
+    Orders(int orderId,string orderName,string orderContent);
     ~Orders();
-    static void initNode(struct Node *head, int typeNum, int orderID);
-    static void addNode(struct Node *head, int typeNum, int orderId);
-   /* static void insertFront(struct Node **head, string n,bool isValidate,int orderID);*/
-    static bool deleteNode(struct Node **head, Node *ptrDel);
-    static bool remove(struct Node **head, int targetPlace);
-    static void deleteLinkedList(struct Node **node);
-    static void display(struct Node *head);
-    static Node* searchNode(struct Node *head, int n);
-    static void move(struct Node **head, int index,int targetPlace );
+
 };
 
-struct Node {
-    string orderName;
-    bool isValidate;
-    int orderID;
-    Node *next;
-};
-
-class Bomb{
+struct Bomb : public Orders {
 public:
-    Bomb();
+    int id;
+    string content = "This is a Bomb Order";
+    string name = "Bomb";
+
+    Bomb( int orderId, string orderName, string orderContent);
     ~Bomb();
     string static BombName();
     static bool validate(int i);
@@ -40,50 +35,91 @@ public:
 };
 
 
-class Deploy{
+struct Deploy : public Orders{
 public:
-    Deploy();
+    int id;
+    string content = "This is a Deploy Order";
+    string name = "Deploy";
+    Deploy( int orderId, string orderName, string orderContent) ;
     ~Deploy();
     string static DeployName();
     static bool validate(int i);
     void execute(string i);
 };
 
-class Advance{
+struct Advance : public Orders{
 public:
-    Advance();
+    int id;
+    string content = "This is an Advance Order";
+    string name = "Advance";
+    Advance( int orderId, string orderName, string orderContent);
     ~Advance();
     string static AdvanceName();
     static bool validate(int i);
     void execute(string i);
 };
 
-class Blockade{
+struct Blockade : public Orders{
 public:
-    Blockade();
+    int id;
+    string content = "This is a Blockade Order";
+    string name = "Blockade";
+    Blockade( int orderId, string orderName, string orderContent);
     ~Blockade();
     string static BlockadeName();
     static bool validate(int i);
     void execute(string i);
 };
 
-class Airlift{
+struct Airlift : public Orders{
 public:
-    Airlift();
+    int id;
+    string content = "This is a Airlift Order";
+    string name = "Airlift";
+    Airlift( int orderId, string orderName, string orderContent) ;
     ~Airlift();
     string static AirliftName();
     static bool validate(int i);
     void execute(string i);
 };
 
-class Negotiate{
+struct Negotiate : public Orders{
 public:
-    Negotiate();
+
+    int id;
+    string content = "This is a Negotiate Order";
+    string name = "Negotiate";
+    Negotiate( int orderId, string orderName, string orderContent) ;
     ~Negotiate();
     string static NegotiateName();
     static bool validate(int i);
     void execute(string i);
 };
+
+
+
+
+
+
+
+class Orderslist {
+
+
+
+
+public:
+    int length;
+    Orderslist(int length);
+    ~Orderslist();
+    list<Orders> orderlist;
+    void addOrder(Orders order);
+    static bool remove(list<Orders> l, int position);
+    void displayList();
+
+/*    static void move();*/
+};
+
+
 
 
 #endif //COMP335_P_ORDERS_H

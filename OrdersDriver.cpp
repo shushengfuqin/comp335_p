@@ -9,41 +9,18 @@ using namespace std;
 
 int main() {
 
-    struct Node *order = new Node;
-    struct Node *thisHead = order;
 
-    //First initiate the first order of the orderlist
-
-
-    Orders::initNode(order, 0,3);
-    Orders::display(order);
-    //Add 5 more orders into the list following the first order
-    Orders::addNode(order, 1,  9);
-    Orders::display(order);
-
-    Orders::addNode(order, 2, 5);
-    Orders::display(order);
-
-    Orders::addNode(order, 3, 0);
-    Orders::display(order);
-
-    Orders::addNode(order, 4,  8);
-    Orders::display(order);
-
-    Orders::addNode(order, 5,  7);
-    Orders::display(order);
+    Bomb bomb1(1,"bomb","bomb1");
+    Deploy deploy1(2,"deploy","deploy1");
+    Advance advance1(3,"advance","advance1");
+    Blockade blockade1(4,"blockade","blockade1");
+    Airlift airlift1(5,"airlift","airlift1");
+    Negotiate negotiate1(6,"negotiate","negotiate1");
 
 
+    Orderslist ol1 = Orderslist(8);
+    ol1.addOrder(bomb1);
+    ol1.displayList();
 
 
-/*    Orders::remove(&order,2);
-    Orders::display(order);*/
-/*
-
-    Node *ptrNode = Orders::searchNode(order, 5);
-    Orders::display(ptrNode);
-*/
-
-    Orders::move(&thisHead, 0, 2);
-    Orders::display(thisHead);
 }
