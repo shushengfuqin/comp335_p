@@ -4,232 +4,170 @@
 
 #include "Orders.h"
 #include <iostream>
-#include <list>
-using std::cout;
-using std::endl;
-using std::list;
+#include <vector>
+
 using namespace std;
 
+//Order Class
+Order::Order() {};
+Order::~Order() {};
 
-Orders::Orders() =default;
-Orders::Orders(int orderId,string orderName,string orderContent) :
-        id(orderId), name(orderName),content(orderContent)
-{
+void Order::validate() {
+    if (true) {
+        valid = true;
+        cout << "this order is valid and ready to be executed" << endl;
+
+    }else {
+        valid = false;
+    }
 }
-Orders::~Orders() = default;
+
+
+void Order::excute() {
+    if (valid) {
+        cout << "the order has been executed" << endl;
+    }else{
+        cout <<"the order is invalid and cannot be executed" <<endl;
+    }
+}
+
+void Order::setID(int i) {
+    id = i;
+}
+
+string Order::getOrderType() {
+    return orders.at(id);
+}
+
+
+
+
+
+//Deploy class
+Deploy::Deploy() {
+    setID(0);
+    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+}
+
+Deploy::~Deploy(){};
+
+
+string* Deploy::getOrderType() {
+    return &type;
+}
+
+//Advance class
+Advance::Advance() {
+    setID(1);
+    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+}
+
+Advance::~Advance() {};
+
+
+string* Advance::getOrderType() {
+    return &type;
+}
 
 
 // Bomb class
 
-Bomb::Bomb(int orderId,string orderName,string orderContent) :
-        id(orderId), name(orderName),content(orderContent)
-{
-}
-Bomb::~Bomb() {};
-
-
-string Bomb::BombName(){
-    return "Bomb";
-}
-bool Bomb::validate(int i){
-    if(i == 1){
-        return true;
-    }
-    else {
-        return false;
-    }
+Bomb::Bomb(){
+    setID(2);
+    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
 
-void Bomb::execute(string i) {
-    if(i == "valide"){
-        cout << "It is validated and going to be executed\n";
-    }
-}
+Bomb::~Bomb(){};
 
 
-// deploy class
-
-Deploy::Deploy(int orderId,string orderName,string orderContent) :
-        id(orderId), name(orderName),content(orderContent)
-{
-}
-Deploy::~Deploy() = default;
-
-
-string Deploy::DeployName(){
-    return "Deploy";
-}
-bool Deploy::validate(int i){
-    if(i == 1){
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-void Deploy::execute(string i) {
-    if(i == "valide"){
-        cout << "It is validated and going to be executed\n";
-    }
-}
-
-//Advance class
-Advance::Advance( int orderId, string orderName, string orderContent) :
-        id(orderId), name(orderName), content(orderContent)
-{
-}
-Advance::~Advance() =default;
-string Advance::AdvanceName()  {
-    return "Advance";
-}
-bool Advance::validate(int i){
-    if(i == 1){
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-void Advance::execute(string i) {
-    if(i == "valide"){
-        cout << "It is validated and going to be executed\n";
-    }
+string* Bomb::getOrderType() {
+    return &type;
 }
 
 //Blockade class
-Blockade::Blockade(int orderId, string orderName, string orderContent):
-id(orderId), name(orderName), content(orderContent)
-{
-
-}
-Blockade::~Blockade() = default;
-string Blockade::BlockadeName(){
-    return "Blockade";
-}
-bool Blockade::validate(int i){
-    if(i == 1){
-        return true;
-    }
-    else {
-        return false;
-    }
+Blockade::Blockade() {
+    setID(3);
+    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
 
-void Blockade::execute(string i) {
-    if(i == "valide"){
-        cout << "It is validated and going to be executed\n";
-    }
+Blockade::~Blockade() {};
+
+
+string* Blockade::getOrderType() {
+    return &type;
 }
 
 //Airlift class
-Airlift::Airlift(int orderId, string orderName, string orderContent):
-id(orderId), name(orderName), content(orderContent)
-{
-}
-Airlift::~Airlift() = default;;
-string Airlift::AirliftName() {
-    return "Airlift";
-}
-bool Airlift::validate(int i){
-    if(i == 1){
-        return true;
-    }
-    else {
-        return false;
-    }
+Airlift::Airlift() {
+    setID(4);
+    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
 
-void Airlift::execute(string i) {
-    if(i == "valide"){
-        cout << "It is validated and going to be executed\n";
-    }
+Airlift::~Airlift() {};
+
+
+string* Airlift::getOrderType() {
+    return &type;
 }
 
 //Negotiate class
-
-Negotiate::Negotiate( int orderId, string orderName, string orderContent) :
-        id(orderId), name(orderName), content(orderContent)
-{
-}
-Negotiate::~Negotiate() = default;;
-string Negotiate::NegotiateName() {
-    return "Negotiate";
-}
-bool Negotiate::validate(int i){
-    if(i == 1){
-        return true;
-    }
-    else {
-        return false;
-    }
+Negotiate::Negotiate() {
+    setID(5);
+    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
 
-void Negotiate::execute(string i) {
-    if(i == "valide"){
-        cout << "It is validated and going to be executed\n";
-    }
-}
+Negotiate::~Negotiate() {};
 
-Orderslist::Orderslist(int length){
-   length=orderlist.size();
 
+string* Negotiate::getOrderType() {
+    return &type;
 }
 
 
-Orderslist::~Orderslist() =default;
 
-void Orderslist::addOrder(Orders order) {
+//implementation of Orderslist
+
+
+Orderslist::Orderslist(){};
+Orderslist::~Orderslist(){};
+
+//add order
+void Orderslist::setOrderList(Order *order) {
     orderlist.push_back(order);
 }
-
-
-void Orderslist::displayList( )
-{
-    list <Orders>::iterator it;
-    for (it = orderlist.begin( ); it != orderlist.end( ); it++) {
-        cout << it->id << "\n";
-      /*  cout << it->name << endl;
-        cout << it->content << endl;*/
-    }
+//get the orderlist
+vector<Order*>* Orderslist::getOrderList() {
+    return &orderlist;
 }
 
-/*
-list<Orders> Orderslist::getList(){
-
-    return Orderslist::orderlist;
-};
-*/
-
-
-
-
-
-bool Orderslist::remove(list<Orders> l, int postion) {
-    cout << "List before deleting first element: ";
-    for (auto itr = l.begin();
-         itr != l.end(); itr++) {
-        cout << itr->id << " "<<itr->name<<endl;
-    }
-    list<Orders>::iterator itr = l.begin();
-    for(int i = 0; i<l.size();i++){
-        int num =0;
-        if(num = postion){
-            l.erase(itr);
-            return true;
+//remove given element from the orderlist
+void Orderslist::remove(Order* order) {
+    for (int i = 0; i < orderlist.size(); i++) {
+        if (order->getOrderType() == orderlist.at(i)->getOrderType()) {
+            orderlist.erase(orderlist.begin() + i);
+            cout << "The order" << order->getOrderType() << "has been removed from the list" << endl;
+            return;
         }
-        num++;
-        itr++;
     }
-    cout << "List after deleting first element: ";
-    for (auto itr = l.begin();
-         itr != l.end(); itr++) {
-        cout << itr->id << " "<<itr->name<<endl;
-    }
-
-
-    return false;
-
-
 }
+
+
+
+
+void Orderslist::move(int origin, int targetPosition)
+{
+    if (targetPosition >= 0 && targetPosition < orderlist.size() && targetPosition >= 0 && targetPosition <orderlist.size())
+    {
+        orderlist.insert(orderlist.begin() + targetPosition, orderlist.at(targetPosition));
+        orderlist.erase(orderlist.begin() + targetPosition);
+    }
+    else if (targetPosition == orderlist.size()  )
+    {
+        orderlist.push_back(orderlist.at(targetPosition));
+        orderlist.erase(orderlist.begin() + targetPosition);
+    }
+    else {
+        cout << "\n the element cannot be move to the target position" << endl;
+    }
+}
+

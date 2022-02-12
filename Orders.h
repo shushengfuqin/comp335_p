@@ -6,94 +6,97 @@
 #define COMP335_P_ORDERS_H
 
 #include <iostream>
-#include <list>
+#include <vector>
 using namespace std;
 
 
-struct Orders
+struct Order
 {
-    int id;
-    string content;
-    string name;
-    Orders();
-    Orders(int orderId,string orderName,string orderContent);
-    ~Orders();
+public:
+    //constructor & destructor
+    Order();
+    ~Order();
 
+    void validate();
+    void excute();
+
+
+    void setID(int i);
+    string getOrderType();
+
+private:
+    int id;
+    bool valid;
+    vector<string> orders = {"deploy","advance","bomb","blockade","airlift","negotiate"};
 };
 
-struct Bomb : public Orders {
+struct Bomb : public Order {
 public:
-    int id;
-    string content = "This is a Bomb Order";
-    string name = "Bomb";
 
-    Bomb( int orderId, string orderName, string orderContent);
+
+    Bomb();
     ~Bomb();
-    string static BombName();
-    static bool validate(int i);
-    void execute(string i);
+    string* getOrderType();
+
+private:
+    string type = {"bomb"};
 };
 
 
-struct Deploy : public Orders{
+struct Deploy : public Order{
 public:
-    int id;
-    string content = "This is a Deploy Order";
-    string name = "Deploy";
-    Deploy( int orderId, string orderName, string orderContent) ;
+
+    Deploy() ;
     ~Deploy();
-    string static DeployName();
-    static bool validate(int i);
-    void execute(string i);
+    string* getOrderType();
+
+private:
+    string type = {"deploy"};
 };
 
-struct Advance : public Orders{
+struct Advance : public Order{
 public:
-    int id;
-    string content = "This is an Advance Order";
-    string name = "Advance";
-    Advance( int orderId, string orderName, string orderContent);
+
+    Advance();
     ~Advance();
-    string static AdvanceName();
-    static bool validate(int i);
-    void execute(string i);
+    string* getOrderType();
+
+private:
+    string type = {"advance"};
 };
 
-struct Blockade : public Orders{
+struct Blockade : public Order{
 public:
-    int id;
-    string content = "This is a Blockade Order";
-    string name = "Blockade";
-    Blockade( int orderId, string orderName, string orderContent);
+
+    Blockade();
     ~Blockade();
-    string static BlockadeName();
-    static bool validate(int i);
-    void execute(string i);
+    string* getOrderType();
+
+private:
+    string type = {"blockade"};
 };
 
-struct Airlift : public Orders{
+struct Airlift : public Order{
 public:
-    int id;
-    string content = "This is a Airlift Order";
-    string name = "Airlift";
-    Airlift( int orderId, string orderName, string orderContent) ;
+
+    Airlift() ;
     ~Airlift();
-    string static AirliftName();
-    static bool validate(int i);
-    void execute(string i);
+    string* getOrderType();
+
+private:
+    string type = {"airlift"};
 };
 
-struct Negotiate : public Orders{
+struct Negotiate : public Order{
 public:
 
-    int id;
-    string content = "This is a Negotiate Order";
-    string name = "Negotiate";
-    Negotiate( int orderId, string orderName, string orderContent) ;
+
+    Negotiate() ;
     ~Negotiate();
-    string static NegotiateName();
-    static bool validate(int i);
-    void execute(string i);
+    string* getOrderType();
+
+private:
+    string type = {"negotiate"};
 };
 
 
@@ -105,18 +108,21 @@ public:
 class Orderslist {
 
 
-
-
 public:
-    int length;
-    Orderslist(int length);
-    ~Orderslist();
-    list<Orders> orderlist;
-    void addOrder(Orders order);
-    static bool remove(list<Orders> l, int position);
-    void displayList();
 
-/*    static void move();*/
+    Orderslist();
+    ~Orderslist();
+
+    //getter setter of the orderlist
+    void setOrderList(Order* order);
+    vector<Order*>* getOrderList();
+
+    //methods to modify the list
+    void remove(Order* order);
+    void move(int origin,int targetPosition);
+
+private:
+    vector<Order*> orderlist;
 };
 
 

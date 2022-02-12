@@ -9,18 +9,50 @@ using namespace std;
 
 int main() {
 
+    //Orders
+    Deploy deploy1;
+    Advance advance1;
+    Bomb bomb1;
+    Blockade blockade1;
+    Airlift airlift1;
+    Negotiate negotiate1;
 
-    Bomb bomb1(1,"bomb","bomb1");
-    Deploy deploy1(2,"deploy","deploy1");
-    Advance advance1(3,"advance","advance1");
-    Blockade blockade1(4,"blockade","blockade1");
-    Airlift airlift1(5,"airlift","airlift1");
-    Negotiate negotiate1(6,"negotiate","negotiate1");
+    //Orderlist
+    Orderslist l1;
+
+    //add orders to the list
+    l1.setOrderList(&deploy1);
+    l1.setOrderList(&advance1);
+    l1.setOrderList(&bomb1);
+    l1.setOrderList(&blockade1);
+    l1.setOrderList(&airlift1);
+    l1.setOrderList(&negotiate1);
+
+    //display the orderlist
+    cout<<"\n"<<"Here is the Current Orderlist:"<<endl;
+    //iterate the entire list
+    for(int i = 0;i <l1.getOrderList()->size();i++){
+        cout<<l1.getOrderList()->at(i)->getOrderType()<<"\n";
+    }
+
+    cout<<"\n"<<"Now, we try to remove the first element deploy out of the list" <<endl;
+    //remove an order from the list
+    l1.remove(&deploy1);
 
 
-    Orderslist ol1 = Orderslist(8);
-    ol1.addOrder(bomb1);
-    ol1.displayList();
+    //display the list
+    cout<<"\n"<<"Here is the Current Orderlist:"<<endl;
+    for(int i = 0;i <l1.getOrderList()->size();i++){
+        cout<<l1.getOrderList()->at(i)->getOrderType()<<"\n";
+    }
 
+    cout<<"\n"<<"Now, we try to move the order at position 1 to position 4" <<endl;
+    //move and order from 1 to 4
+    l1.move(1,4);
 
+    //display the list
+    cout<<"\n"<<"Here is the Current Orderlist:"<<endl;
+    for(int i = 0;i <l1.getOrderList()->size();i++){
+        cout<<l1.getOrderList()->at(i)->getOrderType()<<"\n";
+    }
 }
