@@ -14,12 +14,13 @@ using namespace std;
 class Player{
 public:
     Player();
+    ~Player();
     Player(const Player &player1);
     Player& operator=(const Player& player);
     friend std::ostream& operator<<(ostream &os, const Player& player);
-    vector<Territory> toAttack();
-    vector<Territory> toDefend();
-    vector<Territory> displayTerritory();
+    vector<Territory*>* toAttack();
+    vector<Territory*>* toDefend();
+    vector<Territory*>* displayTerritory();
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void addTerritory(Territory *territory);
@@ -29,9 +30,9 @@ public:
 
 
 private:
-    vector<Territory>* playerTerritoryList;
-    vector<Territory>* playerDefendList;
-    vector<Territory>* playerAttackList;
+    vector<Territory*>* playerTerritoryList;
+    vector<Territory*>* playerDefendList;
+    vector<Territory*>* playerAttackList;
     Hand *playerHand;
     OrderList* orderList;
 
