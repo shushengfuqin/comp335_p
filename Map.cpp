@@ -128,35 +128,7 @@ void Map::printTerritoriesByContinentId(int continentId) {
     }
 }
 
-// Attempts to move across the graph.
-void Map::traverse(int uIndex, bool visited[]) {
-    visited[uIndex] = true;
-    for (int vIndex = 0; vIndex < territory[uIndex].size(); vIndex++) {
-        if (&territory[uIndex][vIndex] != NULL) {
-            if (!visited[vIndex]) {
-                traverse(vIndex, visited);
-            }
-        }
-    }
-}
-
-// Check if it is a Directed Connected Graph
-bool Map::isConnected() {
-    bool *vis = new bool[SIZE];
-    //for all vertex u as start point, check whether all nodes are visible or not
-    for (int u = 0; u < SIZE; u++) {
-        for (int i = 0; i < territory[u].size(); i++)
-            vis[i] = false;    //initialize as no node is visited
-        traverse(u, vis);
-
-        for (int i = 0; i < territory[u].size(); i++) {
-            if (!vis[i])         //if there is a node, not visited by traversal, graph is not connected
-                return false;
-        }
-    }
-    return true;
-}
-
+// Moves through from a starting node to other nodes using Breath first Search
 bool Map::bfs(int startIndex) {
 
     unique_ptr<bool[]> visited(new bool[SIZE]);
@@ -198,16 +170,22 @@ bool Map::bfs(int startIndex) {
 bool Map::validate() {
 
     // TODO: 1) the map is a connected graph
-    if (!bfs(0)) {
-        return false;
+    for (int i = 0; i < SIZE; ++i) {
+        if (!bfs(i)) {
+            return false;
+        }
     }
-//    for (int index = 0; index < SIZE; index++) {
-//        if (territory[index].size() <= 1) {
-//            return false;
-//        }
-//    }
     // TODO: 2) continents are connected subgraphs
     // TODO: 3) each country belongs to one and only one continent
+    for (int i = 0; i < territory->size(); ++i) {
+        for (int j = 0; j < territory[i].size(); ++j) {
+            for (int k = 0; k < territory->size(); k++) {
+                if (territory[k][0].getTerritoryId() == territory[i][j].getTerritoryId() && territory[k][0].getContinentId() != territory[i][j].getContinentId()) {
+                    return false;
+                }
+            }
+        }
+    }
 
     return true;
 }

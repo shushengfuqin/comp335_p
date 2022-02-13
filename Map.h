@@ -58,10 +58,6 @@ public:
 
     void printTerritoriesByContinentId(int continentId);
 
-    bool isConnected();
-
-    void traverse(int uIndex, bool visited[]);
-
     bool validate();
 
     bool bfs(int start);

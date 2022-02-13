@@ -77,7 +77,7 @@ int main() {
 
     // Adjacent to "5"
     map->addTerritory(*t5, 4);
-//    map->addTerritory(*t13, 4);
+    map->addTerritory(*t13, 4);
 
     // Adjacent to "6"
     map->addTerritory(*t6, 5);
