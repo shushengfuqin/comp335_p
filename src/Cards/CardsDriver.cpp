@@ -6,9 +6,9 @@ using namespace std;
 #include "Cards.h"
 class CardsDriver{
 public:
-    CardsDriver();
-    ~CardsDriver();
-    void callCardsDriver( ){
+    CardsDriver(){};
+    ~CardsDriver(){};
+    void callCardsDriver(){
         srand(time(NULL));
         Deck deckA(10);
         Hand playerA(15);

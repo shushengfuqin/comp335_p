@@ -4,7 +4,7 @@
 		"generator" : 
 		{
 			"multiConfig" : false,
-			"name" : "Ninja"
+			"name" : "Unix Makefiles"
 		},
 		"paths" : 
 		{
@@ -26,11 +26,7 @@
 	"objects" : 
 	[
 		{
-<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-24-31-0041.json
-			"jsonFile" : "codemodel-v2-efb01cde8a62abcc98ce.json",
-=======
-			"jsonFile" : "codemodel-v2-10a0962b2917503ba969.json",
->>>>>>> main:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-16-15-0234.json
+			"jsonFile" : "codemodel-v2-6f040c152b0849690fd3.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
@@ -39,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-54a4c4bdad9a1a60dd50.json",
+			"jsonFile" : "cache-v2-be222e3e0f30f2f10967.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -48,11 +44,7 @@
 			}
 		},
 		{
-<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-24-31-0041.json
-			"jsonFile" : "cmakeFiles-v1-ec3779ddcbfe1d0b1c9a.json",
-=======
-			"jsonFile" : "cmakeFiles-v1-7b69131ef4468014378b.json",
->>>>>>> main:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-16-15-0234.json
+			"jsonFile" : "cmakeFiles-v1-f3f901d1c6a7eb8567e6.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -74,7 +66,7 @@
 	{
 		"cache-v2" : 
 		{
-			"jsonFile" : "cache-v2-54a4c4bdad9a1a60dd50.json",
+			"jsonFile" : "cache-v2-be222e3e0f30f2f10967.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -84,11 +76,7 @@
 		},
 		"cmakeFiles-v1" : 
 		{
-<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-24-31-0041.json
-			"jsonFile" : "cmakeFiles-v1-ec3779ddcbfe1d0b1c9a.json",
-=======
-			"jsonFile" : "cmakeFiles-v1-7b69131ef4468014378b.json",
->>>>>>> main:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-16-15-0234.json
+			"jsonFile" : "cmakeFiles-v1-f3f901d1c6a7eb8567e6.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -98,11 +86,7 @@
 		},
 		"codemodel-v2" : 
 		{
-<<<<<<< HEAD:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-24-31-0041.json
-			"jsonFile" : "codemodel-v2-efb01cde8a62abcc98ce.json",
-=======
-			"jsonFile" : "codemodel-v2-10a0962b2917503ba969.json",
->>>>>>> main:cmake-build-debug/.cmake/api/v1/reply/index-2022-02-13T22-16-15-0234.json
+			"jsonFile" : "codemodel-v2-6f040c152b0849690fd3.json",
 			"kind" : "codemodel",
 			"version" : 
 			{
