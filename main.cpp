@@ -1,6 +1,7 @@
 #include <iostream>
+#include "./src/Cards/CardsDriver.cpp"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
     return 0;
 }
