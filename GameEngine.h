@@ -16,6 +16,7 @@ public:
     string static issueordersFunc();
     string static executeordersFunc();
     string static winFunc();
+    void setGameState();
 
 };
 
