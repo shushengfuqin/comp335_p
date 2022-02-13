@@ -34,7 +34,7 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
-    OrderList* orderList;
+    Orderslist* orderList;
 
 };
 

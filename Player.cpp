@@ -15,7 +15,7 @@ Player::Player() {
     //player owns a defend territory list
     playerAttackList = new vector<Territory*>();
     //player owns an order list
-    orderList = new OrderList();
+    orderList = new Orderslist();
 }
 
 //Player destructor
@@ -133,7 +133,7 @@ int Player::getHandLimit() {
 
 void Player::issueOrders(Order *order) {
     //add the order in the order list
-    orderList->add(order);
+    orderList->setOrderList(order);
 
 
 }

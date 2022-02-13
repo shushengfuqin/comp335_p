@@ -11,9 +11,9 @@ int main(){
     Player *player=new Player();
 
     //initialize some new territories.
-    Territory *territory1= new Territory( "big", 1 );
-    Territory *territory2= new Territory( "small", 2 );
-    Territory *territory3= new Territory( "medium", 3 );
+    Territory *territory1= new Territory( "big", 1 ,1);
+    Territory *territory2= new Territory( "small", 2 ,2);
+    Territory *territory3= new Territory( "medium", 3 ,3);
 
     //add territories to the player attack list
     player->attackTerritory(territory1);
@@ -24,9 +24,9 @@ int main(){
     player->toAttack();
 
     //instantiate new list for player to defend
-    Territory *territory4= new Territory( "large", 4 );
-    Territory *territory5= new Territory( "ice", 5 );
-    Territory *territory6= new Territory( "cap", 6 );
+    Territory *territory4= new Territory( "large", 4,4 );
+    Territory *territory5= new Territory( "ice", 5 ,5);
+    Territory *territory6= new Territory( "cap", 6 ,6);
 
     //add territories to the player defend list
     player->defendTerritory(territory4);
@@ -41,9 +41,9 @@ int main(){
 
 
     //create new territory that should be used to add into the player class
-    Territory *territory7= new Territory( "pikachu", 7 );
-    Territory *territory8= new Territory( "eevee", 8 );
-    Territory *territory9= new Territory( "jigglypuff", 9 );
+    Territory *territory7= new Territory( "pikachu", 7,7 );
+    Territory *territory8= new Territory( "eevee", 8 , 8);
+    Territory *territory9= new Territory( "jigglypuff", 9, 9 );
 
 
     //add territory belongs to the player
@@ -54,10 +54,20 @@ int main(){
 
 
     //create new orders
-    Order* order1=new Order(1);
+    Deploy deploy1;
+    Advance advance1;
+    Bomb bomb1;
+    Blockade blockade1;
+    Airlift airlift1;
+    Negotiate negotiate1;
 
     //issue new orders
-    player->issueOrders(order1);
+    player->issueOrders(&deploy1);
+    player->issueOrders(&advance1);
+    player->issueOrders(&bomb1);
+    player->issueOrders(&blockade1);
+    player->issueOrders(&airlift1);
+    player->issueOrders(&negotiate1);
 
 
     //create another player using copy constructor
