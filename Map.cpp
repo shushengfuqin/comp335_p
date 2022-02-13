@@ -12,20 +12,25 @@
 
 // Functions for the Territory class
 const string &Territory::getName() const {
-    return _name;
+    return *_name;
 }
 
 void Territory::setName(const string &name) {
-    _name = name;
+    *_name = name;
 }
 
 void Territory::setContinentId(int continentId) {
     _continentId = continentId;
 }
 
-Territory::Territory(const string &name, const int &territoryId, const int &continentId) : _name(name),
+Territory::Territory(const string &name, const int &territoryId, const int &continentId) :
                                                                                            _territoryId(territoryId),
-                                                                                           _continentId(continentId) {}
+                                                                                           _continentId(continentId) {
+    _name = new string;
+    *_name = name;
+
+    _continentName = new string;
+}
 
 int Territory::getTerritoryId() const {
     return _territoryId;
@@ -36,7 +41,7 @@ int Territory::getContinentId() const {
 }
 
 void Territory::setContinentName(const string &continentName) {
-    _continentName = continentName;
+    *_continentName = continentName;
 }
 
 void Territory::setNumArmies(int numArmies) {
@@ -44,17 +49,23 @@ void Territory::setNumArmies(int numArmies) {
 }
 
 const string &Territory::getContinentName() const {
-    return _continentName;
+    return *_continentName;
 }
 
 int Territory::getNumArmies() const {
     return _numArmies;
 }
 
+//Territory::~Territory() {
+//    delete _name;
+//    _name = NULL;
+//
+//    delete _continentName;
+//    _continentName = NULL;
+//}
+
 
 // Functions for the Map class
-// Constructor with vector of territories
-//Map::Map(const vector<Territory> &territory) : territory(territory) {}
 // Constructor with no vector (Vector is empty)
 Map::Map(const int V) : SIZE(V) {
 //    for (int i = 0; i < V; i++) {
@@ -143,7 +154,7 @@ bool Map::bfs(int startIndex) {
 
         int node = queueTerritoryIds.front();
 
-//        cout << node << " ";
+        cout << node + 1 << " ";
 
         vector<Territory> childList = territory[node];
         childList.erase(childList.cbegin());
@@ -158,7 +169,7 @@ bool Map::bfs(int startIndex) {
         queueTerritoryIds.pop();
     }
 
-//    cout << endl;
+    cout << endl;
 
     for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
         if (visited[i]) {
@@ -197,11 +208,13 @@ bool Map::bfsContinents(int startIndex, int continentId) {
     queueTerritoryIds.push(startIndex);
     visited[startIndex] = false;
 
+    cout << "continent ID (" << continentId << "): ";
+
     while (!queueTerritoryIds.empty()) {
 
         int node = queueTerritoryIds.front();
 
-//        cout << node + 1 << " ";
+        cout << node + 1 << " ";
 
         vector<Territory> childList = territory[node];
         childList.erase(childList.cbegin());
@@ -215,7 +228,7 @@ bool Map::bfsContinents(int startIndex, int continentId) {
 
         queueTerritoryIds.pop();
     }
-//    cout << endl;
+    cout << endl;
 
     for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
         if (visited[i]) {
@@ -269,6 +282,10 @@ vector<Territory> *Map::getTerritory() {
 
 // Functions for the MapLoader
 MapLoader::MapLoader(const string &fileName) {
+    continents = new string;
+    countries = new string;
+    borders = new string;
+
     ifstream inputFileStream(fileName);
 
     string validExtension = ".map";
@@ -305,37 +322,25 @@ MapLoader::MapLoader(const string &fileName) {
 
         // Reading Continents
         if (inContinents && line.length() != 0) {
-            continents += line + "\n";
+            *continents += line + "\n";
         }
         // Reading Countries
         if (inCountries && line.length() != 0) {
-            countries += line + "\n";
+            *countries += line + "\n";
         }
         // Reading Borders
         if (inBorders && line.length() != 0) {
-            borders += line + "\n";
+            *borders += line + "\n";
         }
 
     }
     inputFileStream.close();
 }
 
-const string &MapLoader::getContinents() const {
-    return continents;
-}
-
-const string &MapLoader::getCountries() const {
-    return countries;
-}
-
-const string &MapLoader::getBorders() const {
-    return borders;
-}
-
 // Creates a map object as a graph data structure.
 Map *MapLoader::generateMap() {
-    istringstream issCountry(countries);
-    istringstream issBorder(borders);
+    istringstream issCountry(*countries);
+    istringstream issBorder(*borders);
     // Count the lines in the continents.
     int lineCountryCount = 0;
     int lineBordersCount = 0;
@@ -359,8 +364,8 @@ Map *MapLoader::generateMap() {
     issBorder.str("");
     issCountry.clear();
     issBorder.clear();
-    issCountry.str(countries);
-    issBorder.str(borders);
+    issCountry.str(*countries);
+    issBorder.str(*borders);
 
     string lineBorder;
     string lineCountry;
@@ -443,7 +448,7 @@ Map *MapLoader::generateMap() {
     }
 
     // Need to set the continent Names and number of continents
-    istringstream issContinents(continents);
+    istringstream issContinents(*continents);
     int continentIndex = 0;
     for (string lineContinents; getline(issContinents, lineContinents);) {
         string spaceDelimiter = " ";
@@ -477,6 +482,16 @@ Map *MapLoader::generateMap() {
 
 
     return map;
+}
+
+MapLoader::~MapLoader() {
+    delete (continents);
+    continents = NULL;
+    delete (countries);
+    countries = NULL;
+    delete (borders);
+    borders = NULL;
+
 }
 
 

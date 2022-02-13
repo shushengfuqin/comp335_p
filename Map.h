@@ -29,11 +29,13 @@ public:
 
     Territory(const string &name, const int &territoryId, const int &continentId);
 
+//    virtual ~Territory();
+
 private:
-    string _name;
+    string *_name;
     int _territoryId;
     int _continentId;
-    string _continentName;
+    string *_continentName;
     int _numArmies;
 public:
 
@@ -76,18 +78,14 @@ class MapLoader {
 public:
     MapLoader(const string &fileName);
 
-    const string &getContinents() const;
-
-    const string &getCountries() const;
-
-    const string &getBorders() const;
-
     Map *generateMap();
 
+    virtual ~MapLoader();
+
 private:
-    string continents;
-    string countries;
-    string borders;
+    string *continents;
+    string *countries;
+    string *borders;
 };
 
 #endif //COMP335_P_MAP_H

@@ -52,8 +52,6 @@ int main() {
     t13->setContinentName("Europe");
     t13->setNumArmies(4);
 
-//    Territory *territoryList[] = {t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13};
-
     // Manually assigning their adjacency territories (borders)
     // Adjacent to "1"
     map->addTerritory(*t1, 0);
