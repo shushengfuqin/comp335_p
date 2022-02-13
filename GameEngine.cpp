@@ -8,17 +8,6 @@
  * It is possible to use enum for the different transition cmd. However the cmd are overlapping with the state.
  * Which create confusion in the convention.
  */
-enum GameState
-{
-    start,
-    maploaded,
-    mapvalidated,
-    playeradded,
-    assignreignforcement,
-    issueorders,
-    executeorders,
-    win
-};
 
 /**
  * userInput will save the cmd of the user.

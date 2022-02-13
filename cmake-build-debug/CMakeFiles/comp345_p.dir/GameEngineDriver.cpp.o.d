@@ -222,5 +222,4 @@ CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.o: \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__bsd_locale_defaults.h \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/bitset \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__bit_reference \
-  /Users/gin/CLionProjects/comp345_p/GameEngine.cpp \
   /Users/gin/CLionProjects/comp345_p/GameEngine.h

@@ -9,6 +9,17 @@
 #include <string>
 #pragma once
 using namespace std;
+enum GameState
+{
+    start,
+    maploaded,
+    mapvalidated,
+    playeradded,
+    assignreignforcement,
+    issueorders,
+    executeorders,
+    win
+};
 
 class GameEng{
 public:
