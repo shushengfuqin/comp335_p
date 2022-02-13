@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <vector>
+#include <stack>
+#include <queue>
 #include <fstream>
 #include <sstream>
 #include "Map.h"
@@ -104,7 +106,7 @@ void Map::printTerritoryBorders(int rowIndex) {
                  << neighbour.getNumArmies();
             continue;
         }
-        cout << " -> " << neighbour.getName()
+        cout << " ---> " << neighbour.getName()
              << " "
              << neighbour.getTerritoryId()
              << " "
@@ -155,11 +157,48 @@ bool Map::isConnected() {
     return true;
 }
 
+bool Map::bfs(int startIndex) {
+
+    unique_ptr<bool[]> visited(new bool[SIZE]);
+//    bool * visited = new bool[SIZE];
+
+    queue<int> queueTerritoryIds;
+
+    queueTerritoryIds.push(startIndex);
+    visited[startIndex] = false;
+
+    while (!queueTerritoryIds.empty()) {
+
+        int node = queueTerritoryIds.front();
+
+//        cout << node << " ";
+
+        vector<Territory> childList = territory[node];
+        childList.erase(childList.cbegin());
+
+        for (auto child: childList) {
+            if (visited[child.getTerritoryId() - 1]) {
+                queueTerritoryIds.push(child.getTerritoryId() - 1);
+                visited[child.getTerritoryId() - 1] = false;
+            }
+        }
+
+        queueTerritoryIds.pop();
+    }
+
+    for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
+        if (visited[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 // Validate the map
 bool Map::validate() {
 
     // TODO: 1) the map is a connected graph
-    if (!isConnected()) {
+    if (!bfs(0)) {
         return false;
     }
 //    for (int index = 0; index < SIZE; index++) {
@@ -367,11 +406,10 @@ Map *MapLoader::generateMap() {
         }
         continentValues.push_back(lineContinents.substr(0, pos));
         lineContinents.erase(0, pos + spaceDelimiter.length());
-//        cout << continentIndex << ". " << lineContinents << endl;
-        if (continentIndex > 0) {
+
+        if (continentIndex > 0) { // first line is the name contintents
             string continentName;
             int numArmies;
-            cout <<continentIndex << ". " << continentValues[0] << continentValues.size() << endl;
             for (int i = 0; i < map->getSize(); i++) {
                 for (int j = 0; j < map->getTerritoryRow(i).size(); j++) {
                     if (map->getTerritory()[i][j].getContinentId() == continentIndex) {

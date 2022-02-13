@@ -64,6 +64,8 @@ public:
 
     bool validate();
 
+    bool bfs(int start);
+
     virtual ~Map();
 
 private:

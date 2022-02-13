@@ -13,41 +13,67 @@ int main() {
     // For now, manually making an example map (Based from the assignment video)
     Map *map = new Map(SIZE); // new map
     Territory *t1 = new Territory("Canada", 1, 1); // new territories
+    t1->setContinentName("North-America");
+    t1->setNumArmies(5);
     Territory *t2 = new Territory("USA", 2, 1);
+    t2->setContinentName("North-America");
+    t2->setNumArmies(5);
     Territory *t3 = new Territory("Mexico", 3, 1);
+    t3->setContinentName("North-America");
+    t3->setNumArmies(5);
     Territory *t4 = new Territory("Egypt", 4, 2);
+    t4->setContinentName("Africa");
+    t4->setNumArmies(2);
     Territory *t5 = new Territory("South Africa", 5, 2);
+    t5->setContinentName("Africa");
+    t5->setNumArmies(2);
     Territory *t6 = new Territory("USSR", 6, 3);
+    t6->setContinentName("Asia");
+    t6->setNumArmies(7);
     Territory *t7 = new Territory("Austria", 7, 3);
+    t7->setContinentName("Asia");
+    t7->setNumArmies(7);
     Territory *t8 = new Territory("Israel", 8, 3);
+    t8->setContinentName("Asia");
+    t8->setNumArmies(5);
     Territory *t9 = new Territory("Italy", 9, 4);
+    t9->setContinentName("Europe");
+    t9->setNumArmies(4);
     Territory *t10 = new Territory("Spain", 10, 4);
+    t10->setContinentName("Europe");
+    t10->setNumArmies(4);
     Territory *t11 = new Territory("France", 11, 4);
+    t11->setContinentName("Europe");
+    t11->setNumArmies(4);
     Territory *t12 = new Territory("Germany", 12, 4);
+    t12->setContinentName("Europe");
+    t12->setNumArmies(4);
     Territory *t13 = new Territory("Pacific Ocean", 13, 4);
+    t13->setContinentName("Europe");
+    t13->setNumArmies(4);
 
 //    Territory *territoryList[] = {t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13};
 
     // Manually assigning their adjacency territories (borders)
     // Adjacent to "1"
     map->addTerritory(*t1, 0);
-//    map->addTerritory(*t2, 0); // Push territory to vector
-//    map->addTerritory(*t3, 0);
+    map->addTerritory(*t2, 0); // Push territory to vector
+    map->addTerritory(*t3, 0);
 
     // Adjacent to "2"
     map->addTerritory(*t2, 1);
-//    map->addTerritory(*t1, 1);
-//    map->addTerritory(*t3, 1);
+    map->addTerritory(*t1, 1);
+    map->addTerritory(*t3, 1);
 
     // Adjacent to "3"
     map->addTerritory(*t3, 2);
-//    map->addTerritory(*t1, 2);
-//    map->addTerritory(*t2, 2);
-//    map->addTerritory(*t13, 2);
+    map->addTerritory(*t1, 2);
+    map->addTerritory(*t2, 2);
+    map->addTerritory(*t13, 2);
 
     // Adjacent to "4"
     map->addTerritory(*t4, 3);
-//    map->addTerritory(*t5, 3);
+    map->addTerritory(*t5, 3);
 
     // Adjacent to "5"
     map->addTerritory(*t5, 4);
@@ -55,45 +81,42 @@ int main() {
 
     // Adjacent to "6"
     map->addTerritory(*t6, 5);
-//    map->addTerritory(*t7, 5);
+    map->addTerritory(*t7, 5);
 
     // Adjacent to "7"
     map->addTerritory(*t7, 6);
-//    map->addTerritory(*t13, 6);
-//    map->addTerritory(*t8, 6);
+    map->addTerritory(*t13, 6);
+    map->addTerritory(*t8, 6);
 
     // Adjacent to "8"
     map->addTerritory(*t8, 7);
-//    map->addTerritory(*t6, 7);
+    map->addTerritory(*t6, 7);
 
     // Adjacent to "9"
     map->addTerritory(*t9, 8);
-//    map->addTerritory(*t10, 8);
+    map->addTerritory(*t10, 8);
 
     // Adjacent to "10"
     map->addTerritory(*t10, 9);
-//    map->addTerritory(*t12, 9);
+    map->addTerritory(*t12, 9);
 
     // Adjacent to "11"
     map->addTerritory(*t11, 10);
-//    map->addTerritory(*t13, 10);
+    map->addTerritory(*t13, 10);
 
     // Adjacent to "12"
     map->addTerritory(*t12, 11);
-//    map->addTerritory(*t11, 11);
+    map->addTerritory(*t11, 11);
 
     // Adjacent to "13"
     map->addTerritory(*t13, 12);
 //    map->addTerritory(*t4, 12);
-//    map->addTerritory(*t3, 12);
-//    map->addTerritory(*t9, 12);
-//    map->addTerritory(*t7, 12);
+    map->addTerritory(*t3, 12);
+    map->addTerritory(*t9, 12);
+    map->addTerritory(*t7, 12);
 
     for (int i = 0; i < SIZE; i++) {
         map->printTerritoryBorders(i);
-        cout << "Max size (row " << i << ") = "
-             << map->getTerritoryRow(i).max_size() - map->getTerritoryRow(i).size()
-             << endl << endl;
     }
 
     map->printTerritoriesByContinentId(4);
@@ -154,7 +177,7 @@ int main() {
     // Choose from the map in the project folder
     MapLoader *pMapLoader = new MapLoader("../canada/canada.map");
 
-    Map* generatedMap = pMapLoader->generateMap();
+    Map *generatedMap = pMapLoader->generateMap();
 
     for (int i = 0; i < generatedMap->getSize(); ++i) {
         generatedMap->printTerritoryBorders(i);
