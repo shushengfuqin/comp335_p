@@ -23,17 +23,17 @@ public:
         string userChoice;
         string* userChoicePtr = &userChoice;
 
-        GameEng
+        GameEng ge;
         // while true keep the game playing.
         while(*playPtr) {
             switch (currentState) {
                 case start:
-                    *userChoicePtr = ge1.startFunc();
+                    *userChoicePtr = ge.startFunc();
                     if (userChoice == "loadmap") {
                         *currentStatePtr = maploaded;
                     }
                 case maploaded:
-                    *userChoicePtr = ge2.maploadedFunc();
+                    *userChoicePtr = ge.maploadedFunc();
                     if (userChoice == "validatemap") {
                         *currentStatePtr = mapvalidated;
                     }

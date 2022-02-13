@@ -4,6 +4,7 @@
 
 #ifndef COMP335_P_GAMEENGINE_H
 #define COMP335_P_GAMEENGINE_H
+
 #include <iostream>
 #include <string>
 #pragma once
@@ -13,13 +14,13 @@ class GameEng{
 public:
     GameEng();
     ~GameEng();
-    string static startFunc();
-    string static maploadedFunc();
-    string static mapvalidatedFunc();
-    string static playeraddedFunc();
-    string static assignreinforcementFunc();
-    string static issueordersFunc();
-    string static executeordersFunc();
-    string static winFunc();
+    string startFunc();
+    string maploadedFunc();
+    string mapvalidatedFunc();
+    string playeraddedFunc();
+    string assignreinforcementFunc();
+    string issueordersFunc();
+    string executeordersFunc();
+    string winFunc();
 };
 #endif //COMP335_P_GAMEENGINE_H
