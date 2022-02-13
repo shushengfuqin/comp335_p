@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /Users/gin/CLionProjects/comp345_p/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/comp335_p.dir/all
+all: CMakeFiles/comp345_p.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/comp335_p.dir/clean
+clean: CMakeFiles/comp345_p.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/comp335_p.dir
+# Target rules for target CMakeFiles/comp345_p.dir
 
 # All Build rule for target.
-CMakeFiles/comp335_p.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp335_p.dir/build.make CMakeFiles/comp335_p.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp335_p.dir/build.make CMakeFiles/comp335_p.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target comp335_p"
-.PHONY : CMakeFiles/comp335_p.dir/all
+CMakeFiles/comp345_p.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target comp345_p"
+.PHONY : CMakeFiles/comp345_p.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/comp335_p.dir/rule: cmake_check_build_system
+CMakeFiles/comp345_p.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/comp335_p.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/comp345_p.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/comp335_p.dir/rule
+.PHONY : CMakeFiles/comp345_p.dir/rule
 
 # Convenience name for target.
-comp335_p: CMakeFiles/comp335_p.dir/rule
-.PHONY : comp335_p
+comp345_p: CMakeFiles/comp345_p.dir/rule
+.PHONY : comp345_p
 
 # clean rule for target.
-CMakeFiles/comp335_p.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp335_p.dir/build.make CMakeFiles/comp335_p.dir/clean
-.PHONY : CMakeFiles/comp335_p.dir/clean
+CMakeFiles/comp345_p.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/clean
+.PHONY : CMakeFiles/comp345_p.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

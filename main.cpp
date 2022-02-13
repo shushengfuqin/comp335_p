@@ -26,8 +26,7 @@ int main() {
     cout << "\n";
     if(x == "y"){
         cout << "------------- GAME Engine DRIVER CLASS ----------------\n";
-        GameEngineDriver ge;
-        ge.callGameEngineDriver();
+        GameEngineDriver::callGameEngineDriver();
     }
     return 0;
 }

@@ -7,9 +7,9 @@ using namespace std;
 
 class GameEngineDriver{
 public:
-    GameEngineDriver(){};
-    ~GameEngineDriver(){};
-    void callGameEngineDriver() {
+    GameEngineDriver()= default;;
+    ~GameEngineDriver()= default;;
+    static void callGameEngineDriver() {
 
         // Initialize gamestate at state and update upon state change
         GameState currentState = start;
@@ -23,19 +23,17 @@ public:
         string userChoice;
         string* userChoicePtr = &userChoice;
 
-        //Construct Game Engine
-        GameEngine ge;
-
+        GameEng
         // while true keep the game playing.
         while(*playPtr) {
             switch (currentState) {
                 case start:
-                    *userChoicePtr = ge.startFunc();
+                    *userChoicePtr = ge1.startFunc();
                     if (userChoice == "loadmap") {
                         *currentStatePtr = maploaded;
                     }
                 case maploaded:
-                    *userChoicePtr = ge.maploadedFunc();
+                    *userChoicePtr = ge2.maploadedFunc();
                     if (userChoice == "validatemap") {
                         *currentStatePtr = mapvalidated;
                     }
@@ -80,8 +78,6 @@ public:
                     cout << "Error: Invalid input\n";
             }
         }
-
-        cout << "-------------------------------------";
     }
 };
 
