@@ -64,6 +64,48 @@ build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
 build edit_cache: phony CMakeFiles/edit_cache.util
 
 # =============================================================================
+# Object build statements for EXECUTABLE target comp335_p_cards
+
+
+#############################################
+# Order-only phony target for comp335_p_cards
+
+build cmake_object_order_depends_target_comp335_p_cards: phony || CMakeFiles/comp335_p_cards.dir
+
+build CMakeFiles/comp335_p_cards.dir/src/Cards/CardsDriver.cpp.o: CXX_COMPILER__comp335_p_cards_Debug /Users/gin/CLionProjects/comp345_p/src/Cards/CardsDriver.cpp || cmake_object_order_depends_target_comp335_p_cards
+  DEP_FILE = CMakeFiles/comp335_p_cards.dir/src/Cards/CardsDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp335_p_cards.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp335_p_cards.dir/src/Cards
+  TARGET_COMPILE_PDB = CMakeFiles/comp335_p_cards.dir/
+  TARGET_PDB = comp335_p_cards.pdb
+
+build CMakeFiles/comp335_p_cards.dir/src/Cards/Cards.cpp.o: CXX_COMPILER__comp335_p_cards_Debug /Users/gin/CLionProjects/comp345_p/src/Cards/Cards.cpp || cmake_object_order_depends_target_comp335_p_cards
+  DEP_FILE = CMakeFiles/comp335_p_cards.dir/src/Cards/Cards.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp335_p_cards.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp335_p_cards.dir/src/Cards
+  TARGET_COMPILE_PDB = CMakeFiles/comp335_p_cards.dir/
+  TARGET_PDB = comp335_p_cards.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target comp335_p_cards
+
+
+#############################################
+# Link the executable comp335_p_cards
+
+build comp335_p_cards: CXX_EXECUTABLE_LINKER__comp335_p_cards_Debug CMakeFiles/comp335_p_cards.dir/src/Cards/CardsDriver.cpp.o CMakeFiles/comp335_p_cards.dir/src/Cards/Cards.cpp.o
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
+  OBJECT_DIR = CMakeFiles/comp335_p_cards.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_COMPILE_PDB = CMakeFiles/comp335_p_cards.dir/
+  TARGET_FILE = comp335_p_cards
+  TARGET_PDB = comp335_p_cards.pdb
+
+# =============================================================================
 # Object build statements for EXECUTABLE target comp335_p
 
 
@@ -72,13 +114,33 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_comp335_p: phony || CMakeFiles/comp335_p.dir
 
+<<<<<<< HEAD
 build CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp || cmake_object_order_depends_target_comp335_p
   DEP_FILE = CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o.d
+=======
+build CMakeFiles/comp335_p.dir/main.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/main.cpp || cmake_object_order_depends_target_comp335_p
+  DEP_FILE = CMakeFiles/comp335_p.dir/main.cpp.o.d
+>>>>>>> main
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   OBJECT_FILE_DIR = CMakeFiles/comp335_p.dir
   TARGET_COMPILE_PDB = CMakeFiles/comp335_p.dir/
   TARGET_PDB = comp335_p.pdb
+<<<<<<< HEAD
+=======
+
+build CMakeFiles/comp335_p.dir/Orders.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/Orders.cpp || cmake_object_order_depends_target_comp335_p
+  DEP_FILE = CMakeFiles/comp335_p.dir/Orders.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp335_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp335_p.dir
+
+build CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/OrdersDriver.cpp || cmake_object_order_depends_target_comp335_p
+  DEP_FILE = CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp335_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp335_p.dir
+>>>>>>> main
 
 
 # =============================================================================
@@ -88,7 +150,11 @@ build CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: CXX_COMPILER__comp335_p_D
 #############################################
 # Link the executable comp335_p
 
+<<<<<<< HEAD
 build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o
+=======
+build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/main.cpp.o CMakeFiles/comp335_p.dir/Orders.cpp.o CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o
+>>>>>>> main
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   POST_BUILD = :
@@ -108,7 +174,7 @@ build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir
 #############################################
 # Folder: /Users/gin/CLionProjects/comp345_p/cmake-build-debug
 
-build all: phony comp335_p
+build all: phony comp335_p_cards comp335_p
 
 # =============================================================================
 # Built-in targets
