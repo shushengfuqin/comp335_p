@@ -166,26 +166,107 @@ bool Map::bfs(int startIndex) {
     return true;
 }
 
-// Validate the map
-bool Map::validate() {
+bool Map::bfsContinents(int startIndex, int continentId) {
 
-    // TODO: 1) the map is a connected graph
+    // Set the visited array according to the number of nodes with unique continent ids
+    int continentSize = 0;
+    int offsetSize = 0;
     for (int i = 0; i < SIZE; ++i) {
-        if (!bfs(i)) {
+        if (territory[i][0].getContinentId() < continentId) {
+            offsetSize++;
+            continue;
+        }
+        if (territory[i][0].getContinentId() == continentId) {
+//            offsetSize++;
+            continentSize++;
+        } else {
+            break;
+        }
+    }
+
+    unique_ptr<bool[]> visited(new bool[SIZE]);
+    for (int i = 0; i < sizeof(visited)/ sizeof(visited[0]); ++i) {
+        if (i < offsetSize && i >= (continentSize + offsetSize)) {
+            visited[i] = false;
+        }
+    }
+//    bool * visited = new bool[SIZE];
+
+    queue<int> queueTerritoryIds;
+
+    queueTerritoryIds.push(startIndex);
+    visited[startIndex] = false;
+
+    while (!queueTerritoryIds.empty()) {
+
+        int node = queueTerritoryIds.front();
+
+        cout << node+1 << " ";
+
+        vector<Territory> childList = territory[node];
+        childList.erase(childList.cbegin());
+
+//        for (auto child : childList) {
+//            if (child.getContinentId() != continentId) {
+//                childList.erase();
+//            }
+//        }
+
+        for (auto child: childList) {
+//            if (child.getContinentId() != continentId) {
+//                continue;
+//            }
+            if (visited[child.getTerritoryId() - 1] && child.getContinentId() == continentId) {
+                queueTerritoryIds.push(child.getTerritoryId() - 1);
+                visited[child.getTerritoryId() - 1] = false;
+            }
+        }
+
+        queueTerritoryIds.pop();
+    }
+    cout << endl;
+
+    for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
+        if (visited[i]) {
             return false;
         }
     }
+    return true;
+}
+
+// Validate the map
+bool Map::validate() {
+
+    // 1) the map is a connected graph
+    for (int i = 0; i < SIZE; ++i) {
+        if (!bfs(i)) {
+            cout << "Fails: Map is not a connected Graph." << endl;
+            return false;
+        }
+    }
+    cout << "Passes: Map is a connected Graph." << endl;
+
     // TODO: 2) continents are connected subgraphs
-    // TODO: 3) each country belongs to one and only one continent
+    for (int i = 0; i < SIZE; ++i) {
+        if (!bfsContinents(i, territory[i][0].getContinentId())) {
+            cout << "Fails: Continents are not connected subgraphs." << endl;
+            return false;
+        }
+    }
+    cout << "Passes: Continents are connected subgraphs." << endl;
+    // 3) each country belongs to one and only one continent
     for (int i = 0; i < territory->size(); ++i) {
         for (int j = 0; j < territory[i].size(); ++j) {
             for (int k = 0; k < territory->size(); k++) {
-                if (territory[k][0].getTerritoryId() == territory[i][j].getTerritoryId() && territory[k][0].getContinentId() != territory[i][j].getContinentId()) {
+                if (territory[k][0].getTerritoryId() == territory[i][j].getTerritoryId() &&
+                    territory[k][0].getContinentId() != territory[i][j].getContinentId()) {
+                    cout << "Fails: A country has more than one continent." << endl;
                     return false;
                 }
             }
         }
     }
+    cout << "Passes: Each country belongs to one continent." << endl;
 
     return true;
 }

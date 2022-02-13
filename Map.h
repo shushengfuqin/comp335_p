@@ -62,6 +62,8 @@ public:
 
     bool bfs(int start);
 
+    bool bfsContinents(int start, int continentId);
+
     virtual ~Map();
 
 private:

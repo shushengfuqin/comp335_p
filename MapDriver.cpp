@@ -110,7 +110,7 @@ int main() {
 
     // Adjacent to "13"
     map->addTerritory(*t13, 12);
-//    map->addTerritory(*t4, 12);
+    map->addTerritory(*t4, 12);
     map->addTerritory(*t3, 12);
     map->addTerritory(*t9, 12);
     map->addTerritory(*t7, 12);
@@ -175,7 +175,7 @@ int main() {
     cout << endl << "---Map Loader ---" << endl;
 
     // Choose from the map in the project folder
-    MapLoader *pMapLoader = new MapLoader("../canada/canada.map");
+    MapLoader *pMapLoader = new MapLoader("../solar/solar.map");
 
     Map *generatedMap = pMapLoader->generateMap();
 
