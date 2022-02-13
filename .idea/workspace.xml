@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/comp345_p.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/comp345_p.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cards/Cards.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Cards/Cards.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cards/CardsDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/CardsDriver.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

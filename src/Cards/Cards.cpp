@@ -16,6 +16,10 @@ Card::Card(){
     }
 }
 
+Card::Card(const Card& c) {
+    cardType = c.cardType;
+}
+
 void Card::play(int index, Hand &player, Deck &deck) {
     // Take played card
     Card usedCard;
@@ -44,6 +48,7 @@ ostream &operator<<(ostream &output, Card &C ) {
 Card&Card::operator=(const Card& c)
 {
     cardType = c.cardType;
+    return *this;
 }
 
 ///////
@@ -62,11 +67,22 @@ Deck::Deck(){
     back = 51;
 }
 
+Deck::Deck(const Deck& d)
+{
+    this->front = d.front;
+    this->back = d.back;
+    this->size = d.size;
+    this->cards = new Card[size];
+
+    for(int i = 0; i < d.size; i++){
+        this->cards[i] = d.cards[i];
+    }
+}
+
 Deck::~Deck() {
     delete [] cards;
     cards = nullptr;
 }
-
 
 void Deck::draw(Hand& player) {
     // Player is no longer able to draw a new card
@@ -96,6 +112,8 @@ void Deck::draw(Hand& player) {
     // Give hand the card
     player.addCard(topCard);
     size--;
+
+    cout << "DECK: " << *this << endl << endl;
 }
 
 void Deck::returnToDeck(Card &newCard) {
@@ -106,17 +124,20 @@ void Deck::returnToDeck(Card &newCard) {
     back++;
     cards[back] = newCard;
     size++;
-    cout << endl << "Adding a card => " << cards[back] << " back to Deck" << endl << endl;
+    cout << endl << "Adding a card => " << cards[back] << " back to Deck" << endl;
+    cout << "DECK: " << *this << endl << endl;
 }
 
 ostream &operator<<( ostream &output, const Deck &D ) {
-    for(int i = 0; i < D.size; i++){
+    int limit = D.front + D.size;
+    for(int i = D.front; i < limit; i++){
         output << D.cards[i];
-        if(i < D.size-1)
+        if(i < limit-1)
             output << " --- ";
     }
     return output;
 }
+
 Deck& Deck::operator=(const Deck& d)
 {
     this->front = d.front;
@@ -124,9 +145,12 @@ Deck& Deck::operator=(const Deck& d)
     this->size = d.size;
     this->cards = new Card[size];
 
-    for(int i = 0; i < d.size; i++){
+    int limit = d.front + d.size;
+
+    for(int i = d.front; i < limit; i++){
         this->cards[i] = d.cards[i];
     }
+    return *this;
 }
 
 ///////
@@ -141,6 +165,17 @@ Hand::Hand(){
     limit = 12;
     size = 0;
     cards = new Card[limit];
+}
+
+Hand::Hand(const Hand& h)
+{
+    this->limit = h.limit;
+    this->size = h.size;
+    this->cards = new Card[limit];
+
+    for(int i = 0; i < h.size; i++){
+        this->cards[i] = h.cards[i];
+    }
 }
 
 Hand::~Hand() {
@@ -182,4 +217,5 @@ Hand& Hand::operator=(const Hand& h)
     for(int i = 0; i < h.size; i++){
         this->cards[i] = h.cards[i];
     }
+    return *this;
 }

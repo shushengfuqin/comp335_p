@@ -8,8 +8,6 @@ using namespace std;
 int main( ){
     srand(time(NULL));
     Deck deckA(10);
-    //deckA.deleteDeck();
-    cout << "~!" << endl << endl;
     Hand playerA(15);
 
     cout << "DECK: " << deckA << endl;
@@ -36,17 +34,20 @@ int main( ){
     cout << endl;
     Card* c1 = new Card();
     cout << *c1 << endl;
-    Card* c2 = c1;
+    Card* c2;
+    c2 = c1;
     cout << *c2 << endl;
 
     cout << endl;
     cout << deckA << endl;
-    Deck deckB = deckA;
+    Deck deckB;
+    deckB = deckA;
     cout << deckB << endl;
 
     cout << endl;
     cout << playerA << endl;
-    Hand playerB = playerA;
+    Hand playerB;
+    playerB = playerA;
     cout << playerB;
 
     return 0;

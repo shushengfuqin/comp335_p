@@ -16,6 +16,8 @@ public:
     Card(CardType ct);
     // Constructor that initializes the card to a random card type
     Card( );
+    // Copy Constructor
+    Card(const Card& c);
     void play(int index, Hand& player, Deck& deck);
     friend ostream &operator<<(ostream &output, Card &C );
     Card& operator=(const Card& c);
@@ -29,6 +31,8 @@ public:
     Deck(int deckSize);
     // Constructor that initializes the deck with the set size of 52
     Deck( );
+    // Copy Constructor
+    Deck(const Deck& d);
     // Destructor
     ~Deck( );
     void draw(Hand& player);
@@ -48,6 +52,8 @@ public:
     Hand(int handSize);
     // Constructor that initializes the hand with the set size of 12
     Hand( );
+    // Copy Constructor
+    Hand(const Hand& h);
     // Destructor
     ~Hand( );
     void addCard(Card* newCard);
