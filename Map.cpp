@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <queue>
 #include <fstream>
 #include <sstream>
@@ -56,23 +55,43 @@ int Territory::getNumArmies() const {
     return _numArmies;
 }
 
-//Territory::~Territory() {
-//    delete _name;
-//    _name = NULL;
-//
-//    delete _continentName;
-//    _continentName = NULL;
-//}
-
+// Territory copy constructor
+Territory::Territory(const Territory &t1) {
+    _name = t1._name;
+    _territoryId = t1._territoryId;
+    _continentName = t1._continentName;
+    _continentId = t1._continentId;
+    _numArmies = t1._numArmies;
+}
 
 // Functions for the Map class
 // Constructor with no vector (Vector is empty)
 Map::Map(const int V) : SIZE(V) {
-//    for (int i = 0; i < V; i++) {
-//        territory.push_back(vector<Territory>());
-//    }
     territory = new vector<Territory>[V];
 }
+
+// Map copy constructor
+// it should call the copy constructor of the other classes
+// to avoid copy the pointer
+Map::Map(const Map &map1) {
+    SIZE = map1.SIZE;
+    territory = map1.territory;
+}
+
+
+// Map assignment operator overload
+// it should call the copy constructor of the other classes
+// to avoid copy the pointer
+//Map&Map::operator=(const Map& map1) {
+//    SIZE = map1.SIZE;
+//    territory = map1.territory;
+//}
+
+
+//Map stream insertion
+//ostream&::operator<<(ostream &os, const Map &map) {
+//    os<<"Hi I am a Map"<<endl;
+//}
 
 const int Map::getSize() const {
     return SIZE;
@@ -337,6 +356,14 @@ MapLoader::MapLoader(const string &fileName) {
     inputFileStream.close();
 }
 
+
+// Copy constructor
+MapLoader::MapLoader(const MapLoader &mapLoader1) {
+    continents = mapLoader1.continents;
+    countries = mapLoader1.countries;
+    borders = mapLoader1.borders;
+}
+
 // Creates a map object as a graph data structure.
 Map *MapLoader::generateMap() {
     istringstream issCountry(*countries);
@@ -493,6 +520,3 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
-
-
-

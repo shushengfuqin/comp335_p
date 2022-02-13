@@ -29,7 +29,11 @@ public:
 
     Territory(const string &name, const int &territoryId, const int &continentId);
 
-//    virtual ~Territory();
+    Territory(const Territory &t1);
+
+//    Territory& operator=(const Territory& t1);
+//
+//    friend std::ostream& operator<<(ostream &os, const Territory& territory);
 
 private:
     string *_name;
@@ -45,6 +49,12 @@ class Map {
 public:
 //    Map(const vector<Territory> &territory);
     Map(const int V);
+
+    Map(const Map &map1);
+
+//    Map& operator=(const Map& map1);
+//
+//    friend std::ostream& operator<<(ostream &os, const Map& map);
 
     const int getSize() const;
 
@@ -77,6 +87,12 @@ private:
 class MapLoader {
 public:
     MapLoader(const string &fileName);
+
+    MapLoader(const MapLoader &mapLoader1);
+
+//    MapLoader& operator=(const MapLoader& mapLoader1);
+//
+//    friend std::ostream& operator<<(ostream &os, const MapLoader& mapLoader1);
 
     Map *generateMap();
 
