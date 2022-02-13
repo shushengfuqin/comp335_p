@@ -12,6 +12,33 @@ using namespace std;
 Order::Order() {};
 Order::~Order() {};
 
+//copy constructor
+Order::Order(const Order& copiedO) {
+    this->orders = *new vector<string>(copiedO.orders);
+    this->id = *new int(copiedO.id);
+    this->valid = *new bool (copiedO.valid);
+}
+//assignment operator
+Order& Order::operator = (const Order&O){};
+
+//stream insert operator
+ostream & operator << (ostream &out, const Order &o)
+{
+    out <<"id: "<< o.id;
+    out <<"validation: "<< o.valid<< endl;
+    return out;
+}
+
+istream & operator >> (istream &in,  Order &o)
+{
+    cout << "Enter id ";
+    in >> o.id;
+    cout << "Enter Imaginary Part ";
+    in >> o.valid;
+    return in;
+}
+
+
 void Order::validate() {
     if (true) {
         valid = true;
@@ -41,8 +68,6 @@ string Order::getOrderType() {
 
 
 
-
-
 //Deploy class
 Deploy::Deploy() {
     setID(0);
@@ -51,6 +76,12 @@ Deploy::Deploy() {
 
 Deploy::~Deploy(){};
 
+//copy constructor
+Deploy::Deploy(const Deploy& copiedDe) {
+    this->type = *new string (copiedDe.type);
+}
+//assignment operator
+Deploy& Deploy::operator = (const Deploy&Deo){};
 
 string* Deploy::getOrderType() {
     return &type;
@@ -64,6 +95,13 @@ Advance::Advance() {
 
 Advance::~Advance() {};
 
+
+//copy constructor
+Advance::Advance(const Advance& copiedAd) {
+    this->type = *new string (copiedAd.type);
+}
+//assignment operator
+Advance& Advance::operator = (const Advance&Ao){};
 
 string* Advance::getOrderType() {
     return &type;
@@ -79,6 +117,12 @@ Bomb::Bomb(){
 
 Bomb::~Bomb(){};
 
+//copy constructor
+Bomb::Bomb(const Bomb& copiedBo) {
+    this->type = *new string (copiedBo.type);
+}
+//assignment operator
+Bomb& Bomb::operator = (const Bomb&Bo){};
 
 string* Bomb::getOrderType() {
     return &type;
@@ -92,6 +136,12 @@ Blockade::Blockade() {
 
 Blockade::~Blockade() {};
 
+//copy constructor
+Blockade::Blockade(const Blockade& copiedBl) {
+    this->type = *new string (copiedBl.type);
+}
+//assignment operator
+Blockade& Blockade::operator = (const Blockade&Blo){};
 
 string* Blockade::getOrderType() {
     return &type;
@@ -105,6 +155,12 @@ Airlift::Airlift() {
 
 Airlift::~Airlift() {};
 
+//copy constructor
+Airlift::Airlift(const Airlift& copiedAir){
+    this->type = *new string (copiedAir.type);
+}
+//assignment operator
+Airlift& Airlift::operator = (const Airlift&Airo){};
 
 string* Airlift::getOrderType() {
     return &type;
@@ -118,6 +174,12 @@ Negotiate::Negotiate() {
 
 Negotiate::~Negotiate() {};
 
+//copy constructor
+Negotiate::Negotiate(const Negotiate& copiedNe){
+    this->type = *new string (copiedNe.type);
+}
+//assignment operator
+Negotiate& Negotiate::operator = (const Negotiate&Neo){};
 
 string* Negotiate::getOrderType() {
     return &type;
@@ -127,9 +189,28 @@ string* Negotiate::getOrderType() {
 
 //implementation of Orderslist
 
-
 Orderslist::Orderslist(){};
 Orderslist::~Orderslist(){};
+
+//copy constructor
+Orderslist::Orderslist(const Orderslist& copiedOl) {
+    this->orderlist = *new vector<Order*>(copiedOl.orderlist);
+}
+
+//assignment operator
+Orderslist& Orderslist::operator = (const Orderslist&Ol){};
+
+
+//stream insert operator
+ ostream & operator << (ostream &out, const Orderslist &o)
+{
+
+}
+
+istream & operator >> (istream &in,  Orderslist &o)
+{
+
+}
 
 //add order
 void Orderslist::setOrderList(Order *order) {
@@ -172,4 +253,5 @@ void Orderslist::move(int origin, int targetPosition)
         cout << "\n the element cannot be move to the target position" << endl;
     }
 }
+
 

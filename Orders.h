@@ -16,7 +16,10 @@ public:
     //constructor & destructor
     Order();
     ~Order();
-
+    Order(const Order& copiedO);
+    Order& operator = (const Order &O);
+    friend ostream & operator <<(ostream &out, const Order &o);
+    friend istream & operator >> (istream &in,  Order &o);
     void validate();
     void excute();
 
@@ -36,6 +39,8 @@ public:
 
     Bomb();
     ~Bomb();
+    Bomb(const Bomb& copiedBo);
+    Bomb& operator = (const Bomb &Bo);
     string* getOrderType();
 
 private:
@@ -48,6 +53,8 @@ public:
 
     Deploy() ;
     ~Deploy();
+    Deploy(const Deploy& copiedDe);
+    Deploy& operator = (const Deploy &Do);
     string* getOrderType();
 
 private:
@@ -59,6 +66,8 @@ public:
 
     Advance();
     ~Advance();
+     Advance(const Advance& copiedAd);
+    Advance& operator = (const Advance &Ao);
     string* getOrderType();
 
 private:
@@ -70,6 +79,8 @@ public:
 
     Blockade();
     ~Blockade();
+    Blockade(const Blockade& copiedBl);
+    Blockade& operator = (const Blockade &Blo);
     string* getOrderType();
 
 private:
@@ -81,6 +92,8 @@ public:
 
     Airlift() ;
     ~Airlift();
+    Airlift(const Airlift& copoedAir);
+    Airlift& operator = (const Airlift &Airo);
     string* getOrderType();
 
 private:
@@ -93,6 +106,8 @@ public:
 
     Negotiate() ;
     ~Negotiate();
+    Negotiate(const Negotiate& copiedNe);
+    Negotiate& operator = (const Negotiate &Neo);
     string* getOrderType();
 
 private:
@@ -112,7 +127,10 @@ public:
 
     Orderslist();
     ~Orderslist();
-
+    Orderslist(const Orderslist& copiedOl);
+    Orderslist& operator = (const Orderslist &Ol);
+    friend ostream & operator <<(ostream &out, const Orderslist &ol);
+    friend istream & operator >> (istream &in,  Orderslist &ol);
     //getter setter of the orderlist
     void setOrderList(Order* order);
     vector<Order*>* getOrderList();

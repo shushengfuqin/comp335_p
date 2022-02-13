@@ -17,6 +17,11 @@ int main() {
     Airlift airlift1;
     Negotiate negotiate1;
 
+    //test the valid and execute from orders
+    cout<<"\n"<<"Here we try to valid and excute the order: deploy1: "<<endl;
+    deploy1.validate();
+    deploy1.excute();
+
     //Orderlist
     Orderslist l1;
 
