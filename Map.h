@@ -15,20 +15,38 @@ public:
 
     int getContinentId() const;
 
+    const string &getContinentName() const;
+
+    int getNumArmies() const;
+
     void setName(const string &name);
 
-    Territory(const string &name, const int &territoryId);
+    void setContinentId(int continentId);
+
+    void setContinentName(const string &continentName);
+
+    void setNumArmies(int numArmies);
+
+    Territory(const string &name, const int &territoryId, const int &continentId);
 
 private:
     string _name;
     int _territoryId;
     int _continentId;
+    string _continentName;
+    int _numArmies;
+public:
+
 };
 
 class Map {
 public:
 //    Map(const vector<Territory> &territory);
     Map(const int V);
+
+    const int getSize() const;
+
+    vector<Territory> *getTerritory();
 
     void setTerritoryVector(const vector<Territory> &territory, int rowIndex);
 
@@ -38,11 +56,20 @@ public:
 
     void printTerritoryBorders(int rowIndex);
 
+    void printTerritoriesByContinentId(int continentId);
+
+    bool validate();
+
+    bool bfs(int start);
+
+    bool bfsContinents(int start, int continentId);
+
     virtual ~Map();
 
 private:
-//    const int _V;
+    int SIZE;
     vector<Territory> *territory;
+
 };
 
 class MapLoader {
@@ -54,6 +81,8 @@ public:
     const string &getCountries() const;
 
     const string &getBorders() const;
+
+    Map *generateMap();
 
 private:
     string continents;
