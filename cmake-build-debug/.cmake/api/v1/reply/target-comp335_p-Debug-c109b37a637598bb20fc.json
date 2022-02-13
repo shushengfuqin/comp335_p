@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "comp335_p.exe"
-		},
-		{
-			"path" : "comp335_p.pdb"
+			"path" : "comp335_p"
 		}
 	],
 	"backtrace" : 1,
@@ -38,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk"
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -73,16 +70,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "comp335_p",
-	"nameOnDisk" : "comp335_p.exe",
+	"nameOnDisk" : "comp335_p",
 	"paths" : 
 	{
 		"build" : ".",
