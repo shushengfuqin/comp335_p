@@ -77,6 +77,8 @@ int main() {
 
     // Adjacent to "5"
     map->addTerritory(*t5, 4);
+//    DEBUG: Comment and Uncomment this adjacent node to check connectivity of sub-graphs
+//    map->addTerritory(*t4, 4);
     map->addTerritory(*t13, 4);
 
     // Adjacent to "6"
@@ -121,7 +123,7 @@ int main() {
 
     map->printTerritoriesByContinentId(4);
 
-    cout << "---Is the map above valid?:---";
+    cout << "---Is the map above valid?:---" << endl;
     if (map->validate()) {
         cout << endl << "---Yes---" << endl;
     } else {
@@ -175,7 +177,7 @@ int main() {
     cout << endl << "---Map Loader ---" << endl;
 
     // Choose from the map in the project folder
-    MapLoader *pMapLoader = new MapLoader("../solar/solar.map");
+    MapLoader *pMapLoader = new MapLoader("../canada/canada.map");
 
     Map *generatedMap = pMapLoader->generateMap();
 
@@ -183,7 +185,7 @@ int main() {
         generatedMap->printTerritoryBorders(i);
     }
 
-    cout << "---Is the generated map valid?:---";
+    cout << "---Is the generated map valid?:---" << endl;
     if (generatedMap->validate()) {
         cout << endl << "---Yes---" << endl;
     } else {

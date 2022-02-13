@@ -158,6 +158,8 @@ bool Map::bfs(int startIndex) {
         queueTerritoryIds.pop();
     }
 
+//    cout << endl;
+
     for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
         if (visited[i]) {
             return false;
@@ -177,7 +179,6 @@ bool Map::bfsContinents(int startIndex, int continentId) {
             continue;
         }
         if (territory[i][0].getContinentId() == continentId) {
-//            offsetSize++;
             continentSize++;
         } else {
             break;
@@ -185,12 +186,11 @@ bool Map::bfsContinents(int startIndex, int continentId) {
     }
 
     unique_ptr<bool[]> visited(new bool[SIZE]);
-    for (int i = 0; i < sizeof(visited)/ sizeof(visited[0]); ++i) {
-        if (i < offsetSize && i >= (continentSize + offsetSize)) {
+    for (int i = 0; i < sizeof(visited) / sizeof(visited[0]); ++i) {
+        if (i < offsetSize || i >= (continentSize + offsetSize)) {
             visited[i] = false;
         }
     }
-//    bool * visited = new bool[SIZE];
 
     queue<int> queueTerritoryIds;
 
@@ -201,21 +201,12 @@ bool Map::bfsContinents(int startIndex, int continentId) {
 
         int node = queueTerritoryIds.front();
 
-        cout << node+1 << " ";
+//        cout << node + 1 << " ";
 
         vector<Territory> childList = territory[node];
         childList.erase(childList.cbegin());
 
-//        for (auto child : childList) {
-//            if (child.getContinentId() != continentId) {
-//                childList.erase();
-//            }
-//        }
-
         for (auto child: childList) {
-//            if (child.getContinentId() != continentId) {
-//                continue;
-//            }
             if (visited[child.getTerritoryId() - 1] && child.getContinentId() == continentId) {
                 queueTerritoryIds.push(child.getTerritoryId() - 1);
                 visited[child.getTerritoryId() - 1] = false;
@@ -224,7 +215,7 @@ bool Map::bfsContinents(int startIndex, int continentId) {
 
         queueTerritoryIds.pop();
     }
-    cout << endl;
+//    cout << endl;
 
     for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
         if (visited[i]) {
@@ -246,7 +237,7 @@ bool Map::validate() {
     }
     cout << "Passes: Map is a connected Graph." << endl;
 
-    // TODO: 2) continents are connected subgraphs
+    // 2) continents are connected subgraphs
     for (int i = 0; i < SIZE; ++i) {
         if (!bfsContinents(i, territory[i][0].getContinentId())) {
             cout << "Fails: Continents are not connected subgraphs." << endl;
@@ -254,6 +245,7 @@ bool Map::validate() {
         }
     }
     cout << "Passes: Continents are connected subgraphs." << endl;
+
     // 3) each country belongs to one and only one continent
     for (int i = 0; i < territory->size(); ++i) {
         for (int j = 0; j < territory[i].size(); ++j) {
