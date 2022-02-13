@@ -19,56 +19,52 @@ int main() {
     // Initialize var for keeping user's choice
     string userChoice;
     string* userChoicePtr = &userChoice;
+
+    //Construct Game Engine
+    GameEngine ge;
+
     // while true keep the game playing.
     while(*playPtr) {
         switch (currentState) {
             case start:
-                startState();
-                *userChoicePtr = startState::startFunc();
+                *userChoicePtr = ge.startFunc();
                 if (userChoice == "loadmap") {
                     *currentStatePtr = maploaded;
                 }
             case maploaded:
-                maploadedState();
-                *userChoicePtr = maploadedState::maploadedFunc();
+                *userChoicePtr = ge.maploadedFunc();
                 if (userChoice == "validatemap") {
                     *currentStatePtr = mapvalidated;
                 }
             case mapvalidated:
-                mapvalidatedState();
-                *userChoicePtr = mapvalidatedState::mapvalidatedFunc();
+                *userChoicePtr = ge.mapvalidatedFunc();
                 if (userChoice == "addplayer") {
                     *currentStatePtr = playeradded;
                 }
             case playeradded:
-                playeraddedState();
-                *userChoicePtr = playeraddedState::playeraddedFunc();
+                *userChoicePtr = ge.playeraddedFunc();
                 if (userChoice == "assigncountries") {
                     *currentStatePtr = assignreignforcement;
                 }
             case assignreignforcement:
-                assignreinforcementState();
-                *userChoicePtr = assignreinforcementState::assignreinforcementFunc();
+                *userChoicePtr = ge.assignreinforcementFunc();
                 if (userChoice == "issueorder") {
                     *currentStatePtr = issueorders;
                 }
             case issueorders:
-                issueordersState();
-                *userChoicePtr = issueordersState::issueordersFunc();
+                *userChoicePtr = ge.issueordersFunc();
                 if (userChoice == "endissuorders") {
                     *currentStatePtr = executeorders;
                 }
             case executeorders:
-                executeordersState();
-                *userChoicePtr = executeordersState::executeordersFunc();
+                *userChoicePtr = ge.executeordersFunc();
                 if (userChoice == "endexecorders") {
                     *currentStatePtr = assignreignforcement;
                 } else if (userChoice == "win") {
                     *currentStatePtr = win;
                 }
             case win:
-                winState();
-                *userChoicePtr = winState::winFunc();
+                *userChoicePtr = ge.winFunc();
                 if (userChoice == "play") {
                     *currentStatePtr = start;
                 } else if (userChoice == "end") {

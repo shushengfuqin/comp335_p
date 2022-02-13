@@ -18,8 +18,11 @@ enum GameState {
 int userInput;
 int* userInputPtr = &userInput;
 
-startState::startState() = default;
-startState::~startState() = default;
+
+
+GameEngine::GameEngine()= default;
+GameEngine::~GameEngine()= default;
+
 
 /**
  * This method takes the input of the user
@@ -28,11 +31,11 @@ startState::~startState() = default;
  * @return the command loadmap
  */
 
-string startState::startFunc(){
+string GameEngine::startFunc(){
         cout << "this is the start state\n";
         cout << "What would you like to do\n";
-        cout << "1- loadmap\n";
-        cout << "Please chose action by typing the corresponding number\n";
+        cout << "1 - loadmap\n";
+        cout << "Please chose action by typing the corresponding command\n";
         cin >> *userInputPtr;
         while (*userInputPtr != 1){
             cout << "Error: Please enter an valid command\n";
@@ -42,11 +45,6 @@ string startState::startFunc(){
         return "loadmap";
 }
 
-
-
-maploadedState::maploadedState() = default;
-maploadedState::~maploadedState() = default;
-
 /**
  * This method takes the input of the user
  * using a for loop which allows the user to keep chosing the cmd loadmap.
@@ -54,37 +52,33 @@ maploadedState::~maploadedState() = default;
  * The system will keep ask the use to input an valid command.
  * @return string "validatemap"
  */
-string maploadedState::maploadedFunc(){
-        cout << "this is the map loaded state\n";
-        cout << "What would you like to do\n";
-        cout << "1 - load map\n";
-        cout << "2 - validate map\n";
-        cout << "Please chose action by typing the corresponding number\n";
-        cin >> *userInputPtr;
-        for(;;) {
-            switch (*userInputPtr) {
-                case 1:
-                    cout << "map loaded again\n";
-                    cout << "What would you like to do\n";
-                    cout << "1 - load map\n";
-                    cout << "2 - validate map\n";
-                    cout << "Please chose action by typing the corresponding number\n";
-                    cin >> *userInputPtr;
-                    continue;
-                case 2:
-                    cout << "Moving to next state\n";
-                    return "validatemap";
-                default:
-                    cout << "Error: Please enter a valid input\n";
-                    cin >> *userInputPtr;
-                    continue;
-            }
+string GameEngine::maploadedFunc(){
+    cout << "this is the map loaded state\n";
+    cout << "What would you like to do\n";
+    cout << "1 - load map\n";
+    cout << "2 - validate map\n";
+    cout << "Please chose action by typing the corresponding number\n";
+    cin >> *userInputPtr;
+    for(;;) {
+        switch (*userInputPtr) {
+            case 1:
+                cout << "map loaded again\n";
+                cout << "What would you like to do\n";
+                cout << "1 - load map\n";
+                cout << "2 - validate map\n";
+                cout << "Please chose action by typing the corresponding number\n";
+                cin >> *userInputPtr;
+                continue;
+            case 2:
+                cout << "Moving to next state\n";
+                return "validatemap";
+            default:
+                cout << "Error: Please enter a valid input\n";
+                cin >> *userInputPtr;
+                continue;
         }
     }
-
-
-mapvalidatedState::mapvalidatedState()= default;
-mapvalidatedState::~mapvalidatedState()= default;
+}
 
 /**
  * This method takes the input of the user
@@ -92,7 +86,7 @@ mapvalidatedState::~mapvalidatedState()= default;
  * The system will keep ask the use to input an valid command.
  * @return "addplayer"
  */
-string mapvalidatedState::mapvalidatedFunc(){
+string GameEngine::mapvalidatedFunc(){
         string nextState;
         cout << "this is the map validated state\n";
         cout << "What would you like to do\n";
@@ -106,11 +100,6 @@ string mapvalidatedState::mapvalidatedFunc(){
         return "addplayer";
     }
 
-
-
-playeraddedState::playeraddedState()= default;
-playeraddedState::~playeraddedState()= default;
-
 /**
  * This method takes the input of the user
  * using a for loop which allows the user to keep chosing the cmd addplayer.
@@ -118,7 +107,7 @@ playeraddedState::~playeraddedState()= default;
  * The system will keep ask the use to input an valid command.
  * @return string "assigncountries"
  */
-string playeraddedState::playeraddedFunc(){
+string GameEngine::playeraddedFunc(){
         cout << "this is the player added state\n";
         cout << "What would you like to do\n";
         cout << "1 - add player\n";
@@ -145,17 +134,13 @@ string playeraddedState::playeraddedFunc(){
         }
 }
 
-
-assignreinforcementState::assignreinforcementState()= default;
-assignreinforcementState::~assignreinforcementState()= default;
-
 /**
  * This method takes the input of the user
  * While the user does not chose 1 which is for the command addplayer,
  * The system will keep ask the use to input an valid command.
  * @return "issueorder"
  */
-string assignreinforcementState::assignreinforcementFunc(){
+string GameEngine::assignreinforcementFunc(){
         cout << "this is the assign reinforcement state\n";
         cout << "What would you like to do\n";
         cout << "1 - issue order\n";
@@ -169,11 +154,6 @@ string assignreinforcementState::assignreinforcementFunc(){
         return "issueorder";
     }
 
-
-
-issueordersState::issueordersState()= default;
-issueordersState::~issueordersState()= default;
-
 /**
  * This method takes the input of the user
  * using a for loop which allows the user to keep chosing the cmd issueorder.
@@ -181,7 +161,7 @@ issueordersState::~issueordersState()= default;
  * The system will keep ask the use to input an valid command.
  * @return string "endissuorders"
  */
-string issueordersState::issueordersFunc(){
+string GameEngine::issueordersFunc(){
         cout << "this is the issue order state\n";
         cout << "What would you like to do\n";
         cout << "1 - issue order\n";
@@ -208,11 +188,6 @@ string issueordersState::issueordersFunc(){
         }
     }
 
-
-
-executeordersState::executeordersState()= default;
-executeordersState::~executeordersState()= default;
-
 /**
  * This method takes the input of the user
  * using a for loop which allows the user to keep chosing the cmd execute order.
@@ -220,7 +195,7 @@ executeordersState::~executeordersState()= default;
  * The system will keep ask the use to input an valid command.
  * @return string "endexecorders" or "win"
  */
-string executeordersState::executeordersFunc(){
+string GameEngine::executeordersFunc(){
         cout << "this is the execute order state\n";
         cout << "What would you like to do\n";
         cout << "1 - execute order\n";
@@ -255,9 +230,6 @@ string executeordersState::executeordersFunc(){
 
 
 
-winState::winState()= default;
-winState::~winState()= default;
-
 /**
  * This method takes the input of the user
  * using a for loop which allows the user to keep choosing an invalid cmd
@@ -265,7 +237,7 @@ winState::~winState()= default;
  * The system will keep ask the use to input an valid command.
  * @return string "end" or "play"
  */
-string winState::winFunc(){
+string GameEngine::winFunc(){
         cout << "this is the win state\n";
         cout << "What would you like to do\n";
         cout << "1 - end\n";
