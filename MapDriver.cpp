@@ -193,8 +193,8 @@ int main() {
     delete (pMapLoader);
     pMapLoader = NULL;
 
-    delete (generatedMap);
-    generatedMap = NULL;
+//    delete (generatedMap);
+//    generatedMap = NULL;
 
     return 0;
 }

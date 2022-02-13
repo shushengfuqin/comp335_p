@@ -64,6 +64,15 @@ Territory::Territory(const Territory &t1) {
     _numArmies = t1._numArmies;
 }
 
+// Territory Assignment Operator
+//Territory&Territory::operator=(const Territory& t1) {
+//    _name = t1._name;
+//    _territoryId = t1._territoryId;
+//    _continentName = t1._continentName;
+//    _continentId = t1._continentId;
+//    _numArmies = t1._numArmies;
+//}
+
 // Functions for the Map class
 // Constructor with no vector (Vector is empty)
 Map::Map(const int V) : SIZE(V) {
@@ -385,6 +394,7 @@ Map *MapLoader::generateMap() {
     }
 
     Map *map = new Map(lineBordersCount - 1); // -1 so as to not count the last line (\n)
+    this->map = map;
 
     // Clear and reset the StringStreams
     issCountry.str("");
@@ -512,6 +522,8 @@ Map *MapLoader::generateMap() {
 }
 
 MapLoader::~MapLoader() {
+    delete (map);
+    map = NULL;
     delete (continents);
     continents = NULL;
     delete (countries);

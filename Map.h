@@ -99,6 +99,7 @@ public:
     virtual ~MapLoader();
 
 private:
+    Map *map;
     string *continents;
     string *countries;
     string *borders;
