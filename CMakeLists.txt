@@ -3,4 +3,5 @@ project(comp335_p)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(comp335_p main.cpp Orders.cpp Orders.h OrdersDriver.cpp)
+add_executable(comp335_p main.cpp)
+
