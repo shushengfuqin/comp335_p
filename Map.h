@@ -27,13 +27,21 @@ public:
 
     void setNumArmies(int numArmies);
 
-    Territory(const string &name, const int &territoryId, const int &continentId);
+    Territory(const string name, const int territoryId, const int continentId);
+
+    Territory(const Territory &t1);
+
+    Territory& operator=(const Territory& t1);
+
+    friend std::ostream& operator<<(ostream &os, const Territory& territory);
+
+//    virtual ~Territory();
 
 private:
-    string _name;
+    string *_name;
     int _territoryId;
     int _continentId;
-    string _continentName;
+    string *_continentName;
     int _numArmies;
 public:
 
@@ -43,6 +51,12 @@ class Map {
 public:
 //    Map(const vector<Territory> &territory);
     Map(const int V);
+
+    Map(const Map &map1);
+
+    Map& operator=(const Map& map1);
+//
+    friend std::ostream& operator<<(ostream &os, const Map& map);
 
     const int getSize() const;
 
@@ -76,18 +90,21 @@ class MapLoader {
 public:
     MapLoader(const string &fileName);
 
-    const string &getContinents() const;
+    MapLoader(const MapLoader &mapLoader1);
 
-    const string &getCountries() const;
-
-    const string &getBorders() const;
+    MapLoader& operator=(const MapLoader& mapLoader1);
+//
+    friend std::ostream& operator<<(ostream &os, const MapLoader& mapLoader1);
 
     Map *generateMap();
 
+    virtual ~MapLoader();
+
 private:
-    string continents;
-    string countries;
-    string borders;
+    Map *map;
+    string *continents;
+    string *countries;
+    string *borders;
 };
 
 #endif //COMP335_P_MAP_H

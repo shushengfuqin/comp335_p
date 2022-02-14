@@ -52,11 +52,12 @@ Player::Player(const Player &player1) {
 //it should call the copy constructor of the other classes
 //to avoid copy the pointer
 Player&Player::operator=(const Player& player1) {
-    playerHand = player1.playerHand;
-    playerTerritoryList = player1.playerTerritoryList;
-    playerDefendList = player1.playerDefendList;
-    playerAttackList = player1.playerAttackList;
-    orderList = player1.orderList;
+    this->playerHand = player1.playerHand;
+    this->playerTerritoryList = player1.playerTerritoryList;
+    this->playerDefendList = player1.playerDefendList;
+    this->playerAttackList = player1.playerAttackList;
+    this->orderList = player1.orderList;
+    return *this;
 }
 
 

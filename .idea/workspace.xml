@@ -11,15 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="update using real classes">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cards.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Cards.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cards.h" beforeDir="false" afterPath="$PROJECT_DIR$/Cards.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Orders.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/Orders.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Player.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/comp335_p" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/comp335_p" afterDir="false" />
     </list>

@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <vector>
-#include <stack>
 #include <queue>
 #include <fstream>
 #include <sstream>
@@ -12,20 +11,25 @@
 
 // Functions for the Territory class
 const string &Territory::getName() const {
-    return _name;
+    return *_name;
 }
 
 void Territory::setName(const string &name) {
-    _name = name;
+    *_name = name;
 }
 
 void Territory::setContinentId(int continentId) {
     _continentId = continentId;
 }
 
-Territory::Territory(const string &name, const int &territoryId, const int &continentId) : _name(name),
-                                                                                           _territoryId(territoryId),
-                                                                                           _continentId(continentId) {}
+Territory::Territory(const string name, const int territoryId, const int continentId) :
+        _territoryId(territoryId),
+        _continentId(continentId) {
+    _name = new string;
+    *_name = name;
+
+    _continentName = new string;
+}
 
 int Territory::getTerritoryId() const {
     return _territoryId;
@@ -36,7 +40,7 @@ int Territory::getContinentId() const {
 }
 
 void Territory::setContinentName(const string &continentName) {
-    _continentName = continentName;
+    *_continentName = continentName;
 }
 
 void Territory::setNumArmies(int numArmies) {
@@ -44,23 +48,72 @@ void Territory::setNumArmies(int numArmies) {
 }
 
 const string &Territory::getContinentName() const {
-    return _continentName;
+    return *_continentName;
 }
 
 int Territory::getNumArmies() const {
     return _numArmies;
 }
 
+// Territory copy constructor
+Territory::Territory(const Territory &t1) {
+    _name = t1._name;
+    _territoryId = t1._territoryId;
+    _continentName = t1._continentName;
+    _continentId = t1._continentId;
+    _numArmies = t1._numArmies;
+}
+
+//Territory::~Territory() {
+//    delete _name;
+//    delete _continentName;
+//}
+
+// Territory Assignment Operator
+Territory&Territory::operator=(const Territory& t1) {
+    this->_name = t1._name;
+    this->_territoryId = t1._territoryId;
+    this->_continentName = t1._continentName;
+    this->_continentId = t1._continentId;
+    this->_numArmies = t1._numArmies;
+    return *this;
+}
+
+//Territory stream insertion
+ostream&::operator<<(ostream &os, const Territory &territory) {
+    os<<"Hi I am a Territory"<<endl;
+    return os;
+}
 
 // Functions for the Map class
-// Constructor with vector of territories
-//Map::Map(const vector<Territory> &territory) : territory(territory) {}
 // Constructor with no vector (Vector is empty)
 Map::Map(const int V) : SIZE(V) {
-//    for (int i = 0; i < V; i++) {
-//        territory.push_back(vector<Territory>());
-//    }
     territory = new vector<Territory>[V];
+}
+
+// Map copy constructor
+// it should call the copy constructor of the other classes
+// to avoid copy the pointer
+Map::Map(const Map &map1) {
+    SIZE = map1.SIZE;
+    territory = map1.territory;
+}
+
+
+// Map assignment operator overload
+// it should call the copy constructor of the other classes
+// to avoid copy the pointer
+Map&Map::operator=(const Map& map1) {
+    SIZE = map1.SIZE;
+    territory = map1.territory;
+    return *this;
+}
+
+
+//Map stream insertion
+ostream&::operator<<(ostream &os, const Map &map) {
+    os<<"Hi I am a Map"<<endl;
+    return os;
 }
 
 const int Map::getSize() const {
@@ -143,7 +196,7 @@ bool Map::bfs(int startIndex) {
 
         int node = queueTerritoryIds.front();
 
-//        cout << node << " ";
+        cout << node + 1 << " ";
 
         vector<Territory> childList = territory[node];
         childList.erase(childList.cbegin());
@@ -158,7 +211,7 @@ bool Map::bfs(int startIndex) {
         queueTerritoryIds.pop();
     }
 
-//    cout << endl;
+    cout << endl;
 
     for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
         if (visited[i]) {
@@ -197,11 +250,13 @@ bool Map::bfsContinents(int startIndex, int continentId) {
     queueTerritoryIds.push(startIndex);
     visited[startIndex] = false;
 
+    cout << "continent ID (" << continentId << "): ";
+
     while (!queueTerritoryIds.empty()) {
 
         int node = queueTerritoryIds.front();
 
-//        cout << node + 1 << " ";
+        cout << node + 1 << " ";
 
         vector<Territory> childList = territory[node];
         childList.erase(childList.cbegin());
@@ -215,7 +270,7 @@ bool Map::bfsContinents(int startIndex, int continentId) {
 
         queueTerritoryIds.pop();
     }
-//    cout << endl;
+    cout << endl;
 
     for (int i = 0; i < (sizeof(visited) / sizeof(visited[0])); ++i) {
         if (visited[i]) {
@@ -269,6 +324,10 @@ vector<Territory> *Map::getTerritory() {
 
 // Functions for the MapLoader
 MapLoader::MapLoader(const string &fileName) {
+    continents = new string;
+    countries = new string;
+    borders = new string;
+
     ifstream inputFileStream(fileName);
 
     string validExtension = ".map";
@@ -305,37 +364,33 @@ MapLoader::MapLoader(const string &fileName) {
 
         // Reading Continents
         if (inContinents && line.length() != 0) {
-            continents += line + "\n";
+            *continents += line + "\n";
         }
         // Reading Countries
         if (inCountries && line.length() != 0) {
-            countries += line + "\n";
+            *countries += line + "\n";
         }
         // Reading Borders
         if (inBorders && line.length() != 0) {
-            borders += line + "\n";
+            *borders += line + "\n";
         }
 
     }
     inputFileStream.close();
 }
 
-const string &MapLoader::getContinents() const {
-    return continents;
-}
 
-const string &MapLoader::getCountries() const {
-    return countries;
-}
-
-const string &MapLoader::getBorders() const {
-    return borders;
+// Copy constructor
+MapLoader::MapLoader(const MapLoader &mapLoader1) {
+    continents = mapLoader1.continents;
+    countries = mapLoader1.countries;
+    borders = mapLoader1.borders;
 }
 
 // Creates a map object as a graph data structure.
 Map *MapLoader::generateMap() {
-    istringstream issCountry(countries);
-    istringstream issBorder(borders);
+    istringstream issCountry(*countries);
+    istringstream issBorder(*borders);
     // Count the lines in the continents.
     int lineCountryCount = 0;
     int lineBordersCount = 0;
@@ -353,14 +408,15 @@ Map *MapLoader::generateMap() {
     }
 
     Map *map = new Map(lineBordersCount - 1); // -1 so as to not count the last line (\n)
+    this->map = map;
 
     // Clear and reset the StringStreams
     issCountry.str("");
     issBorder.str("");
     issCountry.clear();
     issBorder.clear();
-    issCountry.str(countries);
-    issBorder.str(borders);
+    issCountry.str(*countries);
+    issBorder.str(*borders);
 
     string lineBorder;
     string lineCountry;
@@ -443,7 +499,7 @@ Map *MapLoader::generateMap() {
     }
 
     // Need to set the continent Names and number of continents
-    istringstream issContinents(continents);
+    istringstream issContinents(*continents);
     int continentIndex = 0;
     for (string lineContinents; getline(issContinents, lineContinents);) {
         string spaceDelimiter = " ";
@@ -477,4 +533,30 @@ Map *MapLoader::generateMap() {
 
 
     return map;
+}
+
+MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
+    map = mapLoader1.map;
+    continents = mapLoader1.continents;
+    countries = mapLoader1.countries;
+    borders = mapLoader1.borders;
+    return *this;
+}
+
+ostream&::operator<<(ostream &os, const MapLoader &mapLoader1) {
+    os<<"Hi I am a MapLoader"<<endl;
+    return os;
+}
+
+
+MapLoader::~MapLoader() {
+    delete (map);
+    map = NULL;
+    delete (continents);
+    continents = NULL;
+    delete (countries);
+    countries = NULL;
+    delete (borders);
+    borders = NULL;
+
 }
