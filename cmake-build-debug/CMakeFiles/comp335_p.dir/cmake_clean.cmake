@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/comp335_p.dir/GameEngine.cpp.o"
+  "CMakeFiles/comp335_p.dir/GameEngine.cpp.o.d"
+  "CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o"
+  "CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o.d"
   "CMakeFiles/comp335_p.dir/Orders.cpp.o"
   "CMakeFiles/comp335_p.dir/Orders.cpp.o.d"
   "CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o"

@@ -1,4 +1,4 @@
-CMakeFiles/comp335_p.dir/main.cpp.o: \
+CMakeFiles/comp345_p.dir/main.cpp.o: \
   /Users/gin/CLionProjects/comp345_p/main.cpp \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__config \
@@ -229,5 +229,4 @@ CMakeFiles/comp335_p.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/vector \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__split_buffer \
   /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp \
-  /Users/gin/CLionProjects/comp345_p/GameEngine.cpp \
   /Users/gin/CLionProjects/comp345_p/GameEngine.h

@@ -1,5 +1,6 @@
-CMakeFiles/comp335_p.dir/main.cpp.o: \
-  /Users/gin/CLionProjects/comp345_p/main.cpp \
+CMakeFiles/comp345_p.dir/GameEngine.cpp.o: \
+  /Users/gin/CLionProjects/comp345_p/GameEngine.cpp \
+  /Users/gin/CLionProjects/comp345_p/GameEngine.h \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__config \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/pthread.h \
@@ -221,13 +222,4 @@ CMakeFiles/comp335_p.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__bsd_locale_defaults.h \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/bitset \
-  /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__bit_reference \
-  /Users/gin/CLionProjects/comp345_p/./src/Cards/CardsDriver.cpp \
-  /Users/gin/CLionProjects/comp345_p/./src/Cards/Cards.h \
-  /Users/gin/CLionProjects/comp345_p/OrdersDriver.cpp \
-  /Users/gin/CLionProjects/comp345_p/Orders.h \
-  /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/vector \
-  /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__split_buffer \
-  /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp \
-  /Users/gin/CLionProjects/comp345_p/GameEngine.cpp \
-  /Users/gin/CLionProjects/comp345_p/GameEngine.h
+  /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__bit_reference

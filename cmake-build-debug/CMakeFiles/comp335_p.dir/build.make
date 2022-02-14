@@ -139,13 +139,43 @@ CMakeFiles/comp335_p.dir/src/Cards/Cards.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comp335_p.dir/src/Cards/Cards.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/gin/CLionProjects/comp345_p/src/Cards/Cards.cpp -o CMakeFiles/comp335_p.dir/src/Cards/Cards.cpp.s
 
+CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: CMakeFiles/comp335_p.dir/flags.make
+CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: ../GameEngineDriver.cpp
+CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: CMakeFiles/comp335_p.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o -MF CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o.d -o CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o -c /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp
+
+CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp > CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.i
+
+CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp -o CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.s
+
+CMakeFiles/comp335_p.dir/GameEngine.cpp.o: CMakeFiles/comp335_p.dir/flags.make
+CMakeFiles/comp335_p.dir/GameEngine.cpp.o: ../GameEngine.cpp
+CMakeFiles/comp335_p.dir/GameEngine.cpp.o: CMakeFiles/comp335_p.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/comp335_p.dir/GameEngine.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/comp335_p.dir/GameEngine.cpp.o -MF CMakeFiles/comp335_p.dir/GameEngine.cpp.o.d -o CMakeFiles/comp335_p.dir/GameEngine.cpp.o -c /Users/gin/CLionProjects/comp345_p/GameEngine.cpp
+
+CMakeFiles/comp335_p.dir/GameEngine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/comp335_p.dir/GameEngine.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/gin/CLionProjects/comp345_p/GameEngine.cpp > CMakeFiles/comp335_p.dir/GameEngine.cpp.i
+
+CMakeFiles/comp335_p.dir/GameEngine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/comp335_p.dir/GameEngine.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/gin/CLionProjects/comp345_p/GameEngine.cpp -o CMakeFiles/comp335_p.dir/GameEngine.cpp.s
+
 # Object files for target comp335_p
 comp335_p_OBJECTS = \
 "CMakeFiles/comp335_p.dir/main.cpp.o" \
 "CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o" \
 "CMakeFiles/comp335_p.dir/Orders.cpp.o" \
 "CMakeFiles/comp335_p.dir/src/Cards/CardsDriver.cpp.o" \
-"CMakeFiles/comp335_p.dir/src/Cards/Cards.cpp.o"
+"CMakeFiles/comp335_p.dir/src/Cards/Cards.cpp.o" \
+"CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o" \
+"CMakeFiles/comp335_p.dir/GameEngine.cpp.o"
 
 # External object files for target comp335_p
 comp335_p_EXTERNAL_OBJECTS =
@@ -155,9 +185,11 @@ comp335_p: CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o
 comp335_p: CMakeFiles/comp335_p.dir/Orders.cpp.o
 comp335_p: CMakeFiles/comp335_p.dir/src/Cards/CardsDriver.cpp.o
 comp335_p: CMakeFiles/comp335_p.dir/src/Cards/Cards.cpp.o
+comp335_p: CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o
+comp335_p: CMakeFiles/comp335_p.dir/GameEngine.cpp.o
 comp335_p: CMakeFiles/comp335_p.dir/build.make
 comp335_p: CMakeFiles/comp335_p.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable comp335_p"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable comp335_p"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/comp335_p.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -114,13 +114,20 @@ build comp335_p_cards: CXX_EXECUTABLE_LINKER__comp335_p_cards_Debug CMakeFiles/c
 
 build cmake_object_order_depends_target_comp335_p: phony || CMakeFiles/comp335_p.dir
 
+<<<<<<< HEAD
+build CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp || cmake_object_order_depends_target_comp335_p
+  DEP_FILE = CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o.d
+=======
 build CMakeFiles/comp335_p.dir/main.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/main.cpp || cmake_object_order_depends_target_comp335_p
   DEP_FILE = CMakeFiles/comp335_p.dir/main.cpp.o.d
+>>>>>>> main
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   OBJECT_FILE_DIR = CMakeFiles/comp335_p.dir
   TARGET_COMPILE_PDB = CMakeFiles/comp335_p.dir/
   TARGET_PDB = comp335_p.pdb
+<<<<<<< HEAD
+=======
 
 build CMakeFiles/comp335_p.dir/Orders.cpp.o: CXX_COMPILER__comp335_p_Debug /Users/gin/CLionProjects/comp345_p/Orders.cpp || cmake_object_order_depends_target_comp335_p
   DEP_FILE = CMakeFiles/comp335_p.dir/Orders.cpp.o.d
@@ -133,6 +140,7 @@ build CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o: CXX_COMPILER__comp335_p_Debug
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -std=gnu++14
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   OBJECT_FILE_DIR = CMakeFiles/comp335_p.dir
+>>>>>>> main
 
 
 # =============================================================================
@@ -142,7 +150,11 @@ build CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o: CXX_COMPILER__comp335_p_Debug
 #############################################
 # Link the executable comp335_p
 
+<<<<<<< HEAD
+build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o
+=======
 build comp335_p: CXX_EXECUTABLE_LINKER__comp335_p_Debug CMakeFiles/comp335_p.dir/main.cpp.o CMakeFiles/comp335_p.dir/Orders.cpp.o CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o
+>>>>>>> main
   FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk
   OBJECT_DIR = CMakeFiles/comp335_p.dir
   POST_BUILD = :

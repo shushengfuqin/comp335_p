@@ -3,5 +3,6 @@ project(comp335_p)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(comp335_p main.cpp OrdersDriver.cpp Orders.cpp Orders.h src/Cards/CardsDriver.cpp src/Cards/Cards.cpp src/Cards/Cards.h)
+add_executable(comp345_p main.cpp Orders.cpp Orders.h OrdersDriver.cpp src/Cards/Cards.h src/Cards/Cards.cpp src/Cards/CardsDriver.cpp  GameEngine.cpp GameEngineDriver.cpp GameEngine.h)
+
 

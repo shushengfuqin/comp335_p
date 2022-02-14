@@ -3,8 +3,11 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
       <config projectName="comp335_p" targetName="comp335_p_cards" />
 =======
+>>>>>>> main
 >>>>>>> main
       <config projectName="comp335_p" targetName="comp335_p" />
     </generated>
@@ -15,6 +18,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+=======
     <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="add copy constructor, assignment operator, and stream insertion operator for each classes and add tests for validate() and execute() in driver">
 <<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
@@ -67,6 +77,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/comp335_p" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/comp335_p" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
 >>>>>>> main
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +90,8 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
 =======
@@ -87,6 +100,7 @@
         <entry key="$PROJECT_DIR$" value="OrderList" />
       </map>
     </option>
+>>>>>>> main
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -97,6 +111,9 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+<<<<<<< HEAD
+=======
+>>>>>>> main
 >>>>>>> main
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -108,11 +125,15 @@
   </component>
   <component name="ProjectId" id="24WbYu948P25vv0xynC1F9S4DzD" />
 <<<<<<< HEAD
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+=======
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
 =======
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+>>>>>>> main
 >>>>>>> main
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -127,6 +148,11 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager">
+=======
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/ENGR243/lectures/COMP345.lab05" />
     <property name="settings.editor.selected.configurable" value="CPPToolchains" />
     <property name="structure.view.defaults.are.configured" value="true" />
@@ -137,6 +163,7 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
+>>>>>>> main
     <configuration name="comp335_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp335_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp335_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -283,6 +310,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1643749344235</updated>
+<<<<<<< HEAD
+      <workItem from="1643749348950" duration="5594000" />
+      <workItem from="1644079962699" duration="1173000" />
+      <workItem from="1644098131706" duration="59000" />
+      <workItem from="1644099001700" duration="607000" />
+      <workItem from="1644286692638" duration="358000" />
+      <workItem from="1644375195379" duration="3421000" />
+      <workItem from="1644445987842" duration="877000" />
+      <workItem from="1644598026126" duration="2490000" />
+      <workItem from="1644717721905" duration="1216000" />
+      <workItem from="1644719129689" duration="2000" />
+=======
       <workItem from="1643749348950" duration="659000" />
 <<<<<<< HEAD
       <workItem from="1644442289909" duration="144000" />
@@ -299,6 +338,7 @@
       <workItem from="1644516365557" duration="3118000" />
       <workItem from="1644695539285" duration="9185000" />
       <workItem from="1644783767960" duration="1735000" />
+>>>>>>> main
     </task>
     <task id="LOCAL-00001" summary="Create Orderlist files">
       <created>1643947020179</created>
