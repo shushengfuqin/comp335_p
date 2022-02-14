@@ -1,0 +1,3 @@
+/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/gin/CLionProjects/comp345_p/cmake-build-debug/CMakeFiles/comp345_p.dir

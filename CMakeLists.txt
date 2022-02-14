@@ -3,6 +3,4 @@ project(comp335_p)
 
 set(CMAKE_CXX_STANDARD 14)
 
-#add_executable(comp335_p main.cpp)
-
-add_executable(comp335_p Map.cpp Map.h MapDriver.cpp)
+add_executable(comp345_p main.cpp Orders.cpp Orders.h OrdersDriver.cpp src/Cards/Cards.h src/Cards/Cards.cpp src/Cards/CardsDriver.cpp  GameEngine.cpp GameEngineDriver.cpp GameEngine.h Map.cpp Map.h MapDriver.cpp)

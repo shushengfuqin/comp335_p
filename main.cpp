@@ -1,6 +1,48 @@
 #include <iostream>
+#include <string>
+#include "./src/Cards/CardsDriver.cpp"
+#include "OrdersDriver.cpp"
+#include "GameEngineDriver.cpp"
+#include "MapDriver.cpp"
+
+using namespace std;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    string x;
+
+    cout << "------------- ORDER DRIVER CLASS ----------------\n";
+    OrdersDriver od;
+    od.callOrdersDriver();
+    cout << "Going to the next one please enter Y\n";
+    cin >> x;
+    cout << "\n";
+
+
+    if(x == "y"){
+        cout << "------------- CARDS DRIVER CLASS ----------------\n";
+        CardsDriver cd;
+        cd.callCardsDriver();
+    }
+
+    cout << "\n";
+    cout << "Going to the next one please enter Y\n";
+    cin >> x;
+
+    cout << "\n";
+    if(x == "y"){
+        cout << "------------- GAME ENGINE DRIVER CLASS ----------------\n";
+        GameEngineDriver::callGameEngineDriver();
+    }
+
+    cout << "\n";
+    cout << "Going to the next one please enter Y\n";
+    cin >> x;
+
+    cout << "\n";
+    if(x == "y"){
+        cout << "------------- MAP DRIVER CLASS ----------------\n";
+        MapDriver md;
+        md.callMapDriver();
+    }
     return 0;
 }
