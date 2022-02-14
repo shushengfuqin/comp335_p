@@ -133,6 +133,8 @@ int Player::getHandLimit() {
     cout << '\n' << "Hand Limit for this player: " << '\n'<<endl;
     cout << playerHand->getHandLimit() << '\n'<<endl;
 
+    return playerHand->getHandLimit();
+
 }
 
 void Player::issueOrders(Order *order) {
