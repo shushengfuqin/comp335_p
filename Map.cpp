@@ -64,24 +64,26 @@ Territory::Territory(const Territory &t1) {
     _numArmies = t1._numArmies;
 }
 
-Territory::~Territory() {
+//Territory::~Territory() {
 //    delete _name;
 //    delete _continentName;
-}
+//}
 
 // Territory Assignment Operator
-//Territory&Territory::operator=(const Territory& t1) {
-//    _name = t1._name;
-//    _territoryId = t1._territoryId;
-//    _continentName = t1._continentName;
-//    _continentId = t1._continentId;
-//    _numArmies = t1._numArmies;
-//}
+Territory&Territory::operator=(const Territory& t1) {
+    this->_name = t1._name;
+    this->_territoryId = t1._territoryId;
+    this->_continentName = t1._continentName;
+    this->_continentId = t1._continentId;
+    this->_numArmies = t1._numArmies;
+    return *this;
+}
 
 //Territory stream insertion
-//ostream&::operator<<(ostream &os, const Territory &territory) {
-//    os<<"Hi I am a Territory"<<endl;
-//}
+ostream&::operator<<(ostream &os, const Territory &territory) {
+    os<<"Hi I am a Territory"<<endl;
+    return os;
+}
 
 // Functions for the Map class
 // Constructor with no vector (Vector is empty)
@@ -101,16 +103,18 @@ Map::Map(const Map &map1) {
 // Map assignment operator overload
 // it should call the copy constructor of the other classes
 // to avoid copy the pointer
-//Map&Map::operator=(const Map& map1) {
-//    SIZE = map1.SIZE;
-//    territory = map1.territory;
-//}
+Map&Map::operator=(const Map& map1) {
+    SIZE = map1.SIZE;
+    territory = map1.territory;
+    return *this;
+}
 
 
 //Map stream insertion
-//ostream&::operator<<(ostream &os, const Map &map) {
-//    os<<"Hi I am a Map"<<endl;
-//}
+ostream&::operator<<(ostream &os, const Map &map) {
+    os<<"Hi I am a Map"<<endl;
+    return os;
+}
 
 const int Map::getSize() const {
     return SIZE;
@@ -530,6 +534,20 @@ Map *MapLoader::generateMap() {
 
     return map;
 }
+
+MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
+    map = mapLoader1.map;
+    continents = mapLoader1.continents;
+    countries = mapLoader1.countries;
+    borders = mapLoader1.borders;
+    return *this;
+}
+
+ostream&::operator<<(ostream &os, const MapLoader &mapLoader1) {
+    os<<"Hi I am a MapLoader"<<endl;
+    return os;
+}
+
 
 MapLoader::~MapLoader() {
     delete (map);
