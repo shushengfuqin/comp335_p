@@ -89,6 +89,15 @@
 		<Unit filename="/Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp">
 			<Option target="comp345_p"/>
 		</Unit>
+		<Unit filename="/Users/gin/CLionProjects/comp345_p/Map.cpp">
+			<Option target="comp345_p"/>
+		</Unit>
+		<Unit filename="/Users/gin/CLionProjects/comp345_p/Map.h">
+			<Option target="comp345_p"/>
+		</Unit>
+		<Unit filename="/Users/gin/CLionProjects/comp345_p/MapDriver.cpp">
+			<Option target="comp345_p"/>
+		</Unit>
 		<Unit filename="/Users/gin/CLionProjects/comp345_p/Orders.cpp">
 			<Option target="comp345_p"/>
 		</Unit>

@@ -3,6 +3,7 @@
 #include "./src/Cards/CardsDriver.cpp"
 #include "OrdersDriver.cpp"
 #include "GameEngineDriver.cpp"
+#include "MapDriver.cpp"
 
 using namespace std;
 
@@ -15,6 +16,8 @@ int main() {
     cout << "Going to the next one please enter Y\n";
     cin >> x;
     cout << "\n";
+
+
     if(x == "y"){
         cout << "------------- CARDS DRIVER CLASS ----------------\n";
         CardsDriver cd;
@@ -24,10 +27,22 @@ int main() {
     cout << "\n";
     cout << "Going to the next one please enter Y\n";
     cin >> x;
+
     cout << "\n";
     if(x == "y"){
-        cout << "------------- GAME Engine DRIVER CLASS ----------------\n";
+        cout << "------------- GAME ENGINE DRIVER CLASS ----------------\n";
         GameEngineDriver::callGameEngineDriver();
+    }
+
+    cout << "\n";
+    cout << "Going to the next one please enter Y\n";
+    cin >> x;
+
+    cout << "\n";
+    if(x == "y"){
+        cout << "------------- MAP DRIVER CLASS ----------------\n";
+        MapDriver md;
+        md.callMapDriver();
     }
     return 0;
 }

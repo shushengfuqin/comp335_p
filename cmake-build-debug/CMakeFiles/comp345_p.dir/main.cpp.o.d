@@ -229,4 +229,6 @@ CMakeFiles/comp345_p.dir/main.cpp.o: \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/vector \
   /Library/Developer/CommandLineTools/usr/bin/../include/c++/v1/__split_buffer \
   /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp \
-  /Users/gin/CLionProjects/comp345_p/GameEngine.h
+  /Users/gin/CLionProjects/comp345_p/GameEngine.h \
+  /Users/gin/CLionProjects/comp345_p/MapDriver.cpp \
+  /Users/gin/CLionProjects/comp345_p/Map.h

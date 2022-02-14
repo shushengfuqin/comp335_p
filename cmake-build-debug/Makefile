@@ -177,6 +177,54 @@ GameEngineDriver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.s
 .PHONY : GameEngineDriver.cpp.s
 
+Map.o: Map.cpp.o
+.PHONY : Map.o
+
+# target to build an object file
+Map.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/Map.cpp.o
+.PHONY : Map.cpp.o
+
+Map.i: Map.cpp.i
+.PHONY : Map.i
+
+# target to preprocess a source file
+Map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/Map.cpp.i
+.PHONY : Map.cpp.i
+
+Map.s: Map.cpp.s
+.PHONY : Map.s
+
+# target to generate assembly for a file
+Map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/Map.cpp.s
+.PHONY : Map.cpp.s
+
+MapDriver.o: MapDriver.cpp.o
+.PHONY : MapDriver.o
+
+# target to build an object file
+MapDriver.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/MapDriver.cpp.o
+.PHONY : MapDriver.cpp.o
+
+MapDriver.i: MapDriver.cpp.i
+.PHONY : MapDriver.i
+
+# target to preprocess a source file
+MapDriver.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/MapDriver.cpp.i
+.PHONY : MapDriver.cpp.i
+
+MapDriver.s: MapDriver.cpp.s
+.PHONY : MapDriver.s
+
+# target to generate assembly for a file
+MapDriver.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/comp345_p.dir/build.make CMakeFiles/comp345_p.dir/MapDriver.cpp.s
+.PHONY : MapDriver.cpp.s
+
 Orders.o: Orders.cpp.o
 .PHONY : Orders.o
 
@@ -312,6 +360,12 @@ help:
 	@echo "... GameEngineDriver.o"
 	@echo "... GameEngineDriver.i"
 	@echo "... GameEngineDriver.s"
+	@echo "... Map.o"
+	@echo "... Map.i"
+	@echo "... Map.s"
+	@echo "... MapDriver.o"
+	@echo "... MapDriver.i"
+	@echo "... MapDriver.s"
 	@echo "... Orders.o"
 	@echo "... Orders.i"
 	@echo "... Orders.s"
