@@ -19,7 +19,9 @@ Order::Order(const Order& copiedO) {
     this->valid = *new bool (copiedO.valid);
 }
 //assignment operator
-Order& Order::operator = (const Order&O){};
+Order& Order::operator = (const Order&O){
+    return *this;
+};
 
 //stream insert operator
 ostream & operator << (ostream &out, const Order &o)
@@ -81,7 +83,9 @@ Deploy::Deploy(const Deploy& copiedDe) {
     this->type = *new string (copiedDe.type);
 }
 //assignment operator
-Deploy& Deploy::operator = (const Deploy&Deo){};
+Deploy& Deploy::operator = (const Deploy&Deo){
+    return *this;
+};
 
 string* Deploy::getOrderType() {
     return &type;
@@ -101,7 +105,9 @@ Advance::Advance(const Advance& copiedAd) {
     this->type = *new string (copiedAd.type);
 }
 //assignment operator
-Advance& Advance::operator = (const Advance&Ao){};
+Advance& Advance::operator = (const Advance&Ao){
+    return *this;
+};
 
 string* Advance::getOrderType() {
     return &type;
@@ -122,7 +128,9 @@ Bomb::Bomb(const Bomb& copiedBo) {
     this->type = *new string (copiedBo.type);
 }
 //assignment operator
-Bomb& Bomb::operator = (const Bomb&Bo){};
+Bomb& Bomb::operator = (const Bomb&Bo){
+    return *this;
+};
 
 string* Bomb::getOrderType() {
     return &type;
@@ -141,7 +149,9 @@ Blockade::Blockade(const Blockade& copiedBl) {
     this->type = *new string (copiedBl.type);
 }
 //assignment operator
-Blockade& Blockade::operator = (const Blockade&Blo){};
+Blockade& Blockade::operator = (const Blockade&Blo){
+    return *this;
+};
 
 string* Blockade::getOrderType() {
     return &type;
@@ -160,7 +170,9 @@ Airlift::Airlift(const Airlift& copiedAir){
     this->type = *new string (copiedAir.type);
 }
 //assignment operator
-Airlift& Airlift::operator = (const Airlift&Airo){};
+Airlift& Airlift::operator = (const Airlift&Airo){
+    return *this;
+};
 
 string* Airlift::getOrderType() {
     return &type;
@@ -179,7 +191,9 @@ Negotiate::Negotiate(const Negotiate& copiedNe){
     this->type = *new string (copiedNe.type);
 }
 //assignment operator
-Negotiate& Negotiate::operator = (const Negotiate&Neo){};
+Negotiate& Negotiate::operator = (const Negotiate&Neo){
+    return *this;
+};
 
 string* Negotiate::getOrderType() {
     return &type;
@@ -198,18 +212,20 @@ Orderslist::Orderslist(const Orderslist& copiedOl) {
 }
 
 //assignment operator
-Orderslist& Orderslist::operator = (const Orderslist&Ol){};
+Orderslist& Orderslist::operator = (const Orderslist&Ol){
+    return *this;
+};
 
 
 //stream insert operator
  ostream & operator << (ostream &out, const Orderslist &o)
 {
-
+    return out;
 }
 
 istream & operator >> (istream &in,  Orderslist &o)
 {
-
+    return in;
 }
 
 //add order

@@ -1,17 +1,11 @@
 # ninja log v5
-<<<<<<< HEAD
-1163	1238	1644534866792128815	comp335_p	97dd14b847f5bb6c
-2	1163	1644534866707933598	CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o	b1846cc0ffd77de9
-2	1574	1644692010231101397	CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o	5d81c458dc282ba2
-2	1266	1644718531800079152	CMakeFiles/comp335_p.dir/GameEngineDriver.cpp.o	5d81c458dc282ba2
-1266	1386	1644718531927142063	comp335_p	97dd14b847f5bb6c
-=======
-558	901	6664226302842085	comp335_p.exe	c4f17f8d89c46b14
-1	3681	1644790541072685933	CMakeFiles/comp335_p.dir/Orders.cpp.o	190bad1c4271e904
-192	2824	1644790575212510798	build.ninja	660048ad122e9d0
-3681	3811	1644790541215568280	comp335_p	3bb1513ec68936a4
-3	3144	1644790540538686542	CMakeFiles/comp335_p.dir/OrdersDriver.cpp.o	97c17ecd4044c841
-1	3140	1644790540536593616	CMakeFiles/comp335_p.dir/main.cpp.o	f250b48627ebcecd
-2	874	1644790676220387130	CMakeFiles/comp335_p.dir/main.cpp.o	f250b48627ebcecd
-874	953	1644790676301667284	comp335_p	3bb1513ec68936a4
->>>>>>> main
+20	732	6665052527451660	CMakeFiles/comp345_p.dir/src/Cards/CardsDriver.cpp.obj	7b8cb6faa4b709fc
+16	747	6665052527641679	CMakeFiles/comp345_p.dir/GameEngine.cpp.obj	f68fecd91e7b4419
+25	748	6665052527631657	CMakeFiles/comp345_p.dir/MapDriver.cpp.obj	4856cd7535d40cd
+5	754	6665052527671665	CMakeFiles/comp345_p.dir/main.cpp.obj	ce0ee3c2ba7f7921
+31	759	6665052527811663	CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.obj	aa3616d296b3fff0
+8	779	6665052528031645	CMakeFiles/comp345_p.dir/OrdersDriver.cpp.obj	637532239eb4686b
+13	780	6665052528031645	CMakeFiles/comp345_p.dir/src/Cards/Cards.cpp.obj	67a2d7ba86fbbe
+39	924	6665052529481654	CMakeFiles/comp345_p.dir/Map.cpp.obj	e73751f34b136dde
+1	552	6665054163488030	CMakeFiles/comp345_p.dir/Orders.cpp.obj	38016737fa04beb4
+554	1139	6665054168924953	comp345_p.exe	bfc2603455449eab
