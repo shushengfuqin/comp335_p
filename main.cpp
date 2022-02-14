@@ -12,7 +12,6 @@ int main() {
     cout << "------------- ORDER DRIVER CLASS ----------------\n";
     OrdersDriver od;
     od.callOrdersDriver();
-
     cout << "Going to the next one please enter Y\n";
     cin >> x;
     cout << "\n";
@@ -22,6 +21,7 @@ int main() {
         cd.callCardsDriver();
     }
 
+    cout << "\n";
     cout << "Going to the next one please enter Y\n";
     cin >> x;
     cout << "\n";

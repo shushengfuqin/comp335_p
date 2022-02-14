@@ -451,7 +451,6 @@ CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.o
  /Library/Developer/CommandLineTools/usr/include/c++/v1/__bsd_locale_defaults.h
  /Library/Developer/CommandLineTools/usr/include/c++/v1/bitset
  /Library/Developer/CommandLineTools/usr/include/c++/v1/__bit_reference
- /Users/gin/CLionProjects/comp345_p/GameEngine.cpp
  /Users/gin/CLionProjects/comp345_p/GameEngine.h
 
 CMakeFiles/comp345_p.dir/Orders.cpp.o
@@ -1141,7 +1140,6 @@ CMakeFiles/comp345_p.dir/main.cpp.o
  /Library/Developer/CommandLineTools/usr/include/c++/v1/vector
  /Library/Developer/CommandLineTools/usr/include/c++/v1/__split_buffer
  /Users/gin/CLionProjects/comp345_p/GameEngineDriver.cpp
- /Users/gin/CLionProjects/comp345_p/GameEngine.cpp
  /Users/gin/CLionProjects/comp345_p/GameEngine.h
 
 CMakeFiles/comp345_p.dir/src/Cards/Cards.cpp.o
