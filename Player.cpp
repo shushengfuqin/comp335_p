@@ -64,6 +64,7 @@ Player&Player::operator=(const Player& player1) {
 //Player stream insertion
 ostream&::operator<<(ostream &os, const Player &player) {
     os<<"Hi I am player"<<endl;
+    return os;
 }
 
 

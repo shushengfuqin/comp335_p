@@ -4,7 +4,7 @@
 #include "OrdersDriver.cpp"
 #include "GameEngineDriver.cpp"
 #include "MapDriver.cpp"
-
+#include "PlayerDriver.cpp"
 using namespace std;
 
 int main() {
@@ -43,6 +43,16 @@ int main() {
         cout << "------------- MAP DRIVER CLASS ----------------\n";
         MapDriver md;
         md.callMapDriver();
+    }
+
+    cout << "\n";
+    cout << "Going to the next one please enter Y\n";
+    cin >> x;
+    cout << "\n";
+    if(x == "y"){
+        cout << "------------- PLAYER DRIVER CLASS ----------------\n";
+        PlayerDriver playerDriver;
+        playerDriver.callPlayerDriver();
     }
     return 0;
 }

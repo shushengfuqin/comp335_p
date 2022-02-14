@@ -32,14 +32,37 @@ CONFIGURATION = Debug
 #############################################
 # Include rules file.
 
-include CMakeFiles\rules.ninja
+include CMakeFiles/rules.ninja
 
 # =============================================================================
 
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\cmake-build-debug\
+cmake_ninja_workdir = /Users/YanYiHeng/CLionProjects/comp345/cmake-build-debug/
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/YanYiHeng/CLionProjects/comp345/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/YanYiHeng/CLionProjects/comp345 -B/Users/YanYiHeng/CLionProjects/comp345/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/YanYiHeng/CLionProjects/comp345/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
+
 # =============================================================================
 # Object build statements for EXECUTABLE target comp345_p
 
@@ -47,70 +70,73 @@ cmake_ninja_workdir = D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\cma
 #############################################
 # Order-only phony target for comp345_p
 
-build cmake_object_order_depends_target_comp345_p: phony || CMakeFiles\comp345_p.dir
+build cmake_object_order_depends_target_comp345_p: phony || CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\main.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\main.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/main.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/main.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/main.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\Orders.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\Orders.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/Orders.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/Orders.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/Orders.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\OrdersDriver.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\OrdersDriver.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/OrdersDriver.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/OrdersDriver.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/OrdersDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\src\Cards\Cards.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\src\Cards\Cards.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir\src\Cards
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/src/Cards/Cards.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/src/Cards/Cards.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/src/Cards/Cards.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir/src/Cards
 
-build CMakeFiles\comp345_p.dir\src\Cards\CardsDriver.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\src\Cards\CardsDriver.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir\src\Cards
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/src/Cards/CardsDriver.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/src/Cards/CardsDriver.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/src/Cards/CardsDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir/src/Cards
 
-build CMakeFiles\comp345_p.dir\GameEngine.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\GameEngine.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/GameEngine.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/GameEngine.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/GameEngine.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\GameEngineDriver.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\GameEngineDriver.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/GameEngineDriver.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\Map.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\Map.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/Map.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/Map.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/Map.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
-build CMakeFiles\comp345_p.dir\MapDriver.cpp.obj: CXX_COMPILER__comp345_p_Debug D$:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\MapDriver.cpp || cmake_object_order_depends_target_comp345_p
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd -std:c++14
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  OBJECT_FILE_DIR = CMakeFiles\comp345_p.dir
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_PDB = comp345_p.pdb
+build CMakeFiles/comp345_p.dir/MapDriver.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/MapDriver.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/MapDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
+
+build CMakeFiles/comp345_p.dir/Player.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/Player.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/Player.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
+
+build CMakeFiles/comp345_p.dir/PlayerDriver.cpp.o: CXX_COMPILER__comp345_p_Debug /Users/YanYiHeng/CLionProjects/comp345/PlayerDriver.cpp || cmake_object_order_depends_target_comp345_p
+  DEP_FILE = CMakeFiles/comp345_p.dir/PlayerDriver.cpp.o.d
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15 -std=gnu++14
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  OBJECT_FILE_DIR = CMakeFiles/comp345_p.dir
 
 
 # =============================================================================
@@ -118,47 +144,18 @@ build CMakeFiles\comp345_p.dir\MapDriver.cpp.obj: CXX_COMPILER__comp345_p_Debug 
 
 
 #############################################
-# Link the executable comp345_p.exe
+# Link the executable comp345_p
 
-build comp345_p.exe: CXX_EXECUTABLE_LINKER__comp345_p_Debug CMakeFiles\comp345_p.dir\main.cpp.obj CMakeFiles\comp345_p.dir\Orders.cpp.obj CMakeFiles\comp345_p.dir\OrdersDriver.cpp.obj CMakeFiles\comp345_p.dir\src\Cards\Cards.cpp.obj CMakeFiles\comp345_p.dir\src\Cards\CardsDriver.cpp.obj CMakeFiles\comp345_p.dir\GameEngine.cpp.obj CMakeFiles\comp345_p.dir\GameEngineDriver.cpp.obj CMakeFiles\comp345_p.dir\Map.cpp.obj CMakeFiles\comp345_p.dir\MapDriver.cpp.obj
-  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
-  LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\comp345_p.dir
-  POST_BUILD = cd .
-  PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\comp345_p.dir\
-  TARGET_FILE = comp345_p.exe
-  TARGET_IMPLIB = comp345_p.lib
-  TARGET_PDB = comp345_p.pdb
-
-
-#############################################
-# Utility command for edit_cache
-
-build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\cmake-build-debug && "D:\Program Files\JetBrains\CLion 2021.3.2\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build edit_cache: phony CMakeFiles\edit_cache.util
-
-
-#############################################
-# Utility command for rebuild_cache
-
-build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D D:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\cmake-build-debug && "D:\Program Files\JetBrains\CLion 2021.3.2\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SD:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p -BD:\UNIVERSITY\WINTER2022\COMP345\Project\p2\comp345_p\cmake-build-debug"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build rebuild_cache: phony CMakeFiles\rebuild_cache.util
+build comp345_p: CXX_EXECUTABLE_LINKER__comp345_p_Debug CMakeFiles/comp345_p.dir/main.cpp.o CMakeFiles/comp345_p.dir/Orders.cpp.o CMakeFiles/comp345_p.dir/OrdersDriver.cpp.o CMakeFiles/comp345_p.dir/src/Cards/Cards.cpp.o CMakeFiles/comp345_p.dir/src/Cards/CardsDriver.cpp.o CMakeFiles/comp345_p.dir/GameEngine.cpp.o CMakeFiles/comp345_p.dir/GameEngineDriver.cpp.o CMakeFiles/comp345_p.dir/Map.cpp.o CMakeFiles/comp345_p.dir/MapDriver.cpp.o CMakeFiles/comp345_p.dir/Player.cpp.o CMakeFiles/comp345_p.dir/PlayerDriver.cpp.o
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -mmacosx-version-min=10.15
+  OBJECT_DIR = CMakeFiles/comp345_p.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = comp345_p
+  TARGET_PDB = comp345_p.dbg
 
 # =============================================================================
 # Target aliases.
-
-build comp345_p: phony comp345_p.exe
 
 # =============================================================================
 # Folder targets.
@@ -166,9 +163,9 @@ build comp345_p: phony comp345_p.exe
 # =============================================================================
 
 #############################################
-# Folder: D:/UNIVERSITY/WINTER2022/COMP345/Project/p2/comp345_p/cmake-build-debug
+# Folder: /Users/YanYiHeng/CLionProjects/comp345/cmake-build-debug
 
-build all: phony comp345_p.exe
+build all: phony comp345_p
 
 # =============================================================================
 # Built-in targets
@@ -177,14 +174,14 @@ build all: phony comp345_p.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ..\CMakeLists.txt CMakeCache.txt CMakeFiles\3.21.1\CMakeCCompiler.cmake CMakeFiles\3.21.1\CMakeCXXCompiler.cmake CMakeFiles\3.21.1\CMakeRCCompiler.cmake CMakeFiles\3.21.1\CMakeSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeRCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ..\CMakeLists.txt CMakeCache.txt CMakeFiles\3.21.1\CMakeCCompiler.cmake CMakeFiles\3.21.1\CMakeCXXCompiler.cmake CMakeFiles\3.21.1\CMakeRCCompiler.cmake CMakeFiles\3.21.1\CMakeSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeCXXInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeGenericSystem.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeRCInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\Windows.cmake D$:\Program$ Files\JetBrains\CLion$ 2021.3.2\bin\cmake\win\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake: phony
+build ../CMakeLists.txt /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.21/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
 
 
 #############################################
