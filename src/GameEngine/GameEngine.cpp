@@ -209,7 +209,7 @@ string GameEng::executeordersFunc()
     cout << "this is the execute order state\n";
     cout << "What would you like to do\n";
     cout << "1 - execute order\n";
-    cout << "2 - end execute order orders\n";
+    cout << "2 - end execute order\n";
     cout << "3 - win\n";
     cout << "Please chose action by typing the corresponding number\n";
     cin >> userInput;

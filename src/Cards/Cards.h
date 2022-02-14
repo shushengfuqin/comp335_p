@@ -4,6 +4,7 @@
 #include <iostream>
 using namespace std;
 
+// finite collection of warzone cards
 enum CardType { bomb = 1, reinforcement = 2, blockade = 3, airlift = 4, diplomacy = 5 };
 
 class Card;

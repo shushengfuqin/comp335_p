@@ -29,46 +29,53 @@ public:
             switch (currentState) {
                 case start:
                     *userChoicePtr = ge.startFunc();
-                    if (userChoice == "loadmap") {
+                    if (*userChoicePtr == "loadmap") {
                         *currentStatePtr = maploaded;
                     }
+                    continue;
                 case maploaded:
                     *userChoicePtr = ge.maploadedFunc();
-                    if (userChoice == "validatemap") {
+                    if (*userChoicePtr == "validatemap") {
                         *currentStatePtr = mapvalidated;
                     }
+                    continue;
                 case mapvalidated:
                     *userChoicePtr = ge.mapvalidatedFunc();
-                    if (userChoice == "addplayer") {
+                    if (*userChoicePtr == "addplayer") {
                         *currentStatePtr = playeradded;
                     }
+                    continue;
                 case playeradded:
                     *userChoicePtr = ge.playeraddedFunc();
-                    if (userChoice == "assigncountries") {
+                    if (*userChoicePtr == "assigncountries") {
                         *currentStatePtr = assignreignforcement;
                     }
+                    continue;
                 case assignreignforcement:
                     *userChoicePtr = ge.assignreinforcementFunc();
-                    if (userChoice == "issueorder") {
+                    if (*userChoicePtr == "issueorder") {
                         *currentStatePtr = issueorders;
                     }
+                    continue;
                 case issueorders:
                     *userChoicePtr = ge.issueordersFunc();
-                    if (userChoice == "endissuorders") {
+                    if (*userChoicePtr == "endissuorders") {
                         *currentStatePtr = executeorders;
                     }
+                    continue;
                 case executeorders:
                     *userChoicePtr = ge.executeordersFunc();
-                    if (userChoice == "endexecorders") {
+                    if (*userChoicePtr == "endexecorders") {
                         *currentStatePtr = assignreignforcement;
-                    } else if (userChoice == "win") {
+                    } else if (*userChoicePtr == "win") {
                         *currentStatePtr = win;
                     }
+                    continue;
                 case win:
                     *userChoicePtr = ge.winFunc();
-                    if (userChoice == "play") {
+                    if (*userChoicePtr == "play") {
                         *currentStatePtr = start;
-                    } else if (userChoice == "end") {
+                    } else if (*userChoicePtr == "end") {
                         // since the user chose to quit, therefore, change the bool to play false, to close.
                         *playPtr = false;
                         break;

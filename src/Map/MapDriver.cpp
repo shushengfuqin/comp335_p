@@ -177,7 +177,7 @@ public:
         // Generate a Map using the map loader
         cout << endl << "---Map Loader ---" << endl;
 
-        // Choose from the map in the project folder
+        // Choose from the map in the project folder. Possible to load other by changing the src fileName.
         MapLoader *pMapLoader = new MapLoader("../canada/canada.map");
 
         Map *generatedMap = pMapLoader->generateMap();
@@ -195,9 +195,6 @@ public:
 
         delete (pMapLoader);
         pMapLoader = NULL;
-
-//    delete (generatedMap);
-//    generatedMap = NULL;
 
         return 0;
     }
