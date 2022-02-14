@@ -11,28 +11,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameEngineDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngineDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MapDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/MapDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayerDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="commit test">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,8 +81,16 @@
       <workItem from="1644802027059" duration="5000" />
       <workItem from="1644804088756" duration="70000" />
       <workItem from="1644804352791" duration="441000" />
-      <workItem from="1644824018857" duration="1028000" />
+      <workItem from="1644824018857" duration="1366000" />
     </task>
+    <task id="LOCAL-00001" summary="commit test">
+      <created>1644825291142</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644825291142</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,5 +106,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit test" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit test" />
   </component>
 </project>
