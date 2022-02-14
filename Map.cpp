@@ -22,9 +22,9 @@ void Territory::setContinentId(int continentId) {
     _continentId = continentId;
 }
 
-Territory::Territory(const string &name, const int &territoryId, const int &continentId) :
-                                                                                           _territoryId(territoryId),
-                                                                                           _continentId(continentId) {
+Territory::Territory(const string name, const int territoryId, const int continentId) :
+        _territoryId(territoryId),
+        _continentId(continentId) {
     _name = new string;
     *_name = name;
 
@@ -64,6 +64,11 @@ Territory::Territory(const Territory &t1) {
     _numArmies = t1._numArmies;
 }
 
+Territory::~Territory() {
+//    delete _name;
+//    delete _continentName;
+}
+
 // Territory Assignment Operator
 //Territory&Territory::operator=(const Territory& t1) {
 //    _name = t1._name;
@@ -71,6 +76,11 @@ Territory::Territory(const Territory &t1) {
 //    _continentName = t1._continentName;
 //    _continentId = t1._continentId;
 //    _numArmies = t1._numArmies;
+//}
+
+//Territory stream insertion
+//ostream&::operator<<(ostream &os, const Territory &territory) {
+//    os<<"Hi I am a Territory"<<endl;
 //}
 
 // Functions for the Map class

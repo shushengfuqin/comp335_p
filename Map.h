@@ -27,13 +27,15 @@ public:
 
     void setNumArmies(int numArmies);
 
-    Territory(const string &name, const int &territoryId, const int &continentId);
+    Territory(const string name, const int territoryId, const int continentId);
 
     Territory(const Territory &t1);
 
 //    Territory& operator=(const Territory& t1);
 //
 //    friend std::ostream& operator<<(ostream &os, const Territory& territory);
+
+    virtual ~Territory();
 
 private:
     string *_name;
