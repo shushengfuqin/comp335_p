@@ -5,9 +5,9 @@
 #ifndef COMP335_P_PLAYER_H
 #define COMP335_P_PLAYER_H
 #include <istream>
-#include "Map.h"
-#include "src/Cards/Cards.h"
-#include "Orders.h"
+#include "../Map/Map.h"
+#include "../Cards/Cards.h"
+#include "../Order/Orders.h"
 #include "vector"
 using namespace std;
 

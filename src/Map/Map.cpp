@@ -7,6 +7,7 @@
 #include <queue>
 #include <fstream>
 #include <sstream>
+#include <memory>
 #include "Map.h"
 
 // Functions for the Territory class
@@ -80,7 +81,7 @@ Territory&Territory::operator=(const Territory& t1) {
 }
 
 //Territory stream insertion
-ostream&::operator<<(ostream &os, const Territory &territory) {
+std::ostream &operator<<(ostream &os, const Territory &territory) {
     os<<"Hi I am a Territory"<<endl;
     return os;
 }
@@ -111,7 +112,7 @@ Map&Map::operator=(const Map& map1) {
 
 
 //Map stream insertion
-ostream&::operator<<(ostream &os, const Map &map) {
+std::ostream &operator<<(ostream &os, const Map &map) {
     os<<"Hi I am a Map"<<endl;
     return os;
 }
@@ -543,7 +544,7 @@ MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
     return *this;
 }
 
-ostream&::operator<<(ostream &os, const MapLoader &mapLoader1) {
+std::ostream &operator<<(ostream &os, const MapLoader &mapLoader1) {
     os<<"Hi I am a MapLoader"<<endl;
     return os;
 }
@@ -560,3 +561,4 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
+

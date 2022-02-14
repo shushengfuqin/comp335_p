@@ -4,7 +4,7 @@
 
 #ifndef COMP335_P_MAP_H
 #define COMP335_P_MAP_H
-
+#include <vector>
 using namespace std;
 
 class Territory {
@@ -93,7 +93,7 @@ public:
     MapLoader(const MapLoader &mapLoader1);
 
     MapLoader& operator=(const MapLoader& mapLoader1);
-//
+
     friend std::ostream& operator<<(ostream &os, const MapLoader& mapLoader1);
 
     Map *generateMap();

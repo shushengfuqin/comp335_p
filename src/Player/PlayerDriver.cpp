@@ -8,8 +8,8 @@ using namespace std;
 
 class PlayerDriver{
 public:
-    PlayerDriver(){};
-    ~PlayerDriver(){};
+    PlayerDriver()= default;;
+    ~PlayerDriver()= default;;
     void callPlayerDriver(){
         //initialize the player
         Player *player=new Player();

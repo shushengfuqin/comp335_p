@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 #include "./src/Cards/CardsDriver.cpp"
-#include "OrdersDriver.cpp"
-#include "GameEngineDriver.cpp"
-#include "MapDriver.cpp"
-#include "PlayerDriver.cpp"
+#include "src/Order/OrdersDriver.cpp"
+#include "src/GameEngine/GameEngineDriver.cpp"
+#include "src/Map/MapDriver.cpp"
+#include "src/Player/PlayerDriver.cpp"
 using namespace std;
 
 int main() {
