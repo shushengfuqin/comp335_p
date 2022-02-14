@@ -202,7 +202,7 @@ Orderslist& Orderslist::operator = (const Orderslist&Ol){};
 
 
 //stream insert operator
-ostream & operator << (ostream &out, const Orderslist &o)
+ ostream & operator << (ostream &out, const Orderslist &o)
 {
 
 }
@@ -253,3 +253,5 @@ void Orderslist::move(int origin, int targetPosition)
         cout << "\n the element cannot be move to the target position" << endl;
     }
 }
+
+

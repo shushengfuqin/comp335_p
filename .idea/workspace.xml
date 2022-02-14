@@ -2,6 +2,13 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <config projectName="comp335_p" targetName="comp335_p_cards" />
+=======
+>>>>>>> main
+>>>>>>> main
       <config projectName="comp335_p" targetName="comp335_p" />
     </generated>
   </component>
@@ -11,11 +18,66 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Player.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/GameEngine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+=======
+    <list default="true" id="14d435eb-22bc-487c-9ad5-73db3aa152ad" name="Changes" comment="add copy constructor, assignment operator, and stream insertion operator for each classes and add tests for validate() and execute() in driver">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-b0a8f5e29a8b2b1e523f.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-f2cd8a1727ab7f1c6ef4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-b85231d83fd6efd4590a.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2022-02-01T21-13-53-0668.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/comp335_p.dir/main.cpp.o" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-e775c4cc1ce4af464362.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/directory-.-Debug-d0094a50bb2071803777.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-comp335_p-Debug-93a6745d875f395237bf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/toolchains-v1-65c2bcdac4206dddf8d9.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeRCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CMakeSystem.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdC/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.21.1/CompilerIdCXX/a.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/comp335_p.dir/Orders.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/comp335_p.dir/OrdersDriver.cpp.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/comp335_p.dir/main.cpp.obj" beforeDir="false" />
+>>>>>>> main
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cards/CardsDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/CardsDriver.cpp" afterDir="false" />
+=======
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/comp335_p" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/comp335_p" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+>>>>>>> main
+>>>>>>> main
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,11 +89,18 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+=======
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="OrderlistV2" />
+        <entry key="$PROJECT_DIR$" value="OrderList" />
       </map>
     </option>
+>>>>>>> main
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -42,6 +111,10 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+<<<<<<< HEAD
+=======
+>>>>>>> main
+>>>>>>> main
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -51,7 +124,17 @@
     <option name="minorVersion" value="3.3" />
   </component>
   <component name="ProjectId" id="24WbYu948P25vv0xynC1F9S4DzD" />
+<<<<<<< HEAD
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+=======
+<<<<<<< HEAD
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+=======
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+>>>>>>> main
+>>>>>>> main
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -60,24 +143,164 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+<<<<<<< HEAD
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
+=======
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/ENGR243/lectures/COMP345.lab05" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+    <property name="structure.view.defaults.are.configured" value="true" />
+  </component>
+  <component name="RunManager" selected="CMake Application.comp335_p">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
+>>>>>>> main
     <configuration name="comp335_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp335_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp335_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="comp335_p_cards" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp335_p_cards" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp335_p_cards">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Autodetect">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Twisted Trial">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="comp345_p" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.comp335_p" />
+      <item itemvalue="CMake Application.comp335_p_cards" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -87,80 +310,136 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1643749344235</updated>
+<<<<<<< HEAD
+      <workItem from="1643749348950" duration="5594000" />
+      <workItem from="1644079962699" duration="1173000" />
+      <workItem from="1644098131706" duration="59000" />
+      <workItem from="1644099001700" duration="607000" />
+      <workItem from="1644286692638" duration="358000" />
+      <workItem from="1644375195379" duration="3421000" />
+      <workItem from="1644445987842" duration="877000" />
+      <workItem from="1644598026126" duration="2490000" />
+      <workItem from="1644717721905" duration="1216000" />
+      <workItem from="1644719129689" duration="2000" />
+=======
       <workItem from="1643749348950" duration="659000" />
-      <workItem from="1644361228980" duration="640000" />
-      <workItem from="1644361948866" duration="28000" />
-      <workItem from="1644361986932" duration="523000" />
-      <workItem from="1644362522056" duration="22200000" />
-      <workItem from="1644516037744" duration="1888000" />
-      <workItem from="1644535911475" duration="3682000" />
-      <workItem from="1644541287369" duration="2576000" />
-      <workItem from="1644618863358" duration="8488000" />
+<<<<<<< HEAD
+      <workItem from="1644442289909" duration="144000" />
+      <workItem from="1644624905839" duration="2094000" />
+      <workItem from="1644703684728" duration="112000" />
+=======
+      <workItem from="1643944031119" duration="1071000" />
+      <workItem from="1643946563304" duration="15738000" />
+      <workItem from="1644091382473" duration="1218000" />
+      <workItem from="1644187273278" duration="1945000" />
+      <workItem from="1644261107320" duration="12582000" />
+      <workItem from="1644356970536" duration="12332000" />
+      <workItem from="1644433954485" duration="5721000" />
+      <workItem from="1644516365557" duration="3118000" />
+      <workItem from="1644695539285" duration="9185000" />
+      <workItem from="1644783767960" duration="1735000" />
+>>>>>>> main
     </task>
-    <task id="LOCAL-00001" summary="firstTry on player class">
-      <created>1644445191049</created>
+    <task id="LOCAL-00001" summary="Create Orderlist files">
+      <created>1643947020179</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1644445191049</updated>
+      <updated>1643947020179</updated>
     </task>
-    <task id="LOCAL-00002" summary="now the territory name can be showed">
-      <created>1644445985321</created>
+    <task id="LOCAL-00002" summary="update OrdersList.cpp">
+      <created>1643953277384</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1644445985321</updated>
+      <updated>1643953277384</updated>
     </task>
-    <task id="LOCAL-00003" summary="updated vector as pointer type">
-      <created>1644455676888</created>
+    <task id="LOCAL-00003" summary="update OrdersList.cpp and OrdersList.h">
+      <created>1644032219068</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1644455676888</updated>
+      <updated>1644032219068</updated>
     </task>
-    <task id="LOCAL-00004" summary="updated pointer for loop">
-      <created>1644459116329</created>
+    <task id="LOCAL-00004" summary="update OrdersList.cpp and OrdersList.h  add driver">
+      <created>1644292553632</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1644459116330</updated>
+      <updated>1644292553632</updated>
     </task>
-    <task id="LOCAL-00005" summary="add display player list method">
-      <created>1644460000155</created>
+    <task id="LOCAL-00005" summary="add todo">
+      <created>1644292937101</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1644460000155</updated>
+      <updated>1644292937101</updated>
     </task>
-    <task id="LOCAL-00006" summary="arbitrary order class added, player class down">
-      <created>1644539722423</created>
+    <task id="LOCAL-00006" summary="update methods    add constructor">
+      <created>1644379500327</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1644539722423</updated>
+      <updated>1644379500327</updated>
     </task>
-    <task id="LOCAL-00007" summary="copy constructor, assignment operator, and stream insertion added.">
-      <created>1644622993679</created>
+    <task id="LOCAL-00007" summary="renamed classes  update classes">
+      <created>1644455563529</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1644622993679</updated>
+      <updated>1644455563529</updated>
+>>>>>>> main
     </task>
-    <task id="LOCAL-00008" summary="add destructor fixed pointer">
-      <created>1644625120023</created>
+    <task id="LOCAL-00008" summary="add struct for each type of orders and update methods">
+      <created>1644521701922</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1644625120023</updated>
+      <updated>1644521701922</updated>
     </task>
-    <task id="LOCAL-00009" summary="update using real classes">
-      <created>1644776418027</created>
+    <task id="LOCAL-00009" summary="add constructor">
+      <created>1644522698457</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1644776418027</updated>
+      <updated>1644522698457</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="v2">
+      <created>1644641870964</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1644641870964</updated>
+    </task>
+    <task id="LOCAL-00011" summary="v2">
+      <created>1644650808276</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1644650808276</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix">
+      <created>1644696085234</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1644696085234</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix">
+      <created>1644696179140</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1644696179140</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add copy constructor, assignment operator, and stream insertion operator for each classes and add tests for validate() and execute() in driver">
+      <created>1644719518779</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1644719518779</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,19 +457,18 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="firstTry on player class" />
-    <MESSAGE value="now the territory name can be showed" />
-    <MESSAGE value="updated vector as pointer type" />
-    <MESSAGE value="updated pointer for loop" />
-    <MESSAGE value="add display player list method" />
-    <MESSAGE value="arbitrary order class added, player class down" />
-    <MESSAGE value="copy constructor, assignment operator, and stream insertion added." />
-    <MESSAGE value="add destructor fixed pointer" />
-    <MESSAGE value="update using real classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="update using real classes" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+    <MESSAGE value="Create Orderlist files" />
+    <MESSAGE value="update OrdersList.cpp" />
+    <MESSAGE value="update OrdersList.cpp and OrdersList.h" />
+    <MESSAGE value="update OrdersList.cpp and OrdersList.h  add driver" />
+    <MESSAGE value="add todo" />
+    <MESSAGE value="update methods    add constructor" />
+    <MESSAGE value="renamed classes  update classes" />
+    <MESSAGE value="add struct for each type of orders and update methods" />
+    <MESSAGE value="add constructor" />
+    <MESSAGE value="v2" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="add copy constructor, assignment operator, and stream insertion operator for each classes and add tests for validate() and execute() in driver" />
+    <option name="LAST_COMMIT_MESSAGE" value="add copy constructor, assignment operator, and stream insertion operator for each classes and add tests for validate() and execute() in driver" />
   </component>
 </project>

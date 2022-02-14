@@ -2,7 +2,8 @@
 // Created by admin on 2022/2/3.
 //
 
-
+#ifndef COMP335_P_ORDERS_H
+#define COMP335_P_ORDERS_H
 
 #include <iostream>
 #include <vector>
@@ -65,7 +66,7 @@ public:
 
     Advance();
     ~Advance();
-    Advance(const Advance& copiedAd);
+     Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
     string* getOrderType();
 
@@ -141,3 +142,8 @@ public:
 private:
     vector<Order*> orderlist;
 };
+
+
+
+
+#endif //COMP335_P_ORDERS_H
