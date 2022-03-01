@@ -11,6 +11,7 @@
 #include "vector"
 using namespace std;
 
+
 class Player{
 public:
     Player();
@@ -24,9 +25,12 @@ public:
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void addTerritory(Territory *territory);
-    void issueOrders(Order* order);
+  /*  void issueOrders(Order* order);*/
     int getHandLimit();
 
+
+    //writen by yuxin
+    int getNumofArmy();
 
 
 private:
@@ -34,7 +38,11 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
-    Orderslist* orderList;
+    Orderslist *orderList;
+
+
+    //writen by yuxin
+    int army;
 
 };
 

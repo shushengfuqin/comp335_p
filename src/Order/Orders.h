@@ -7,23 +7,28 @@
 
 #include <iostream>
 #include <vector>
-using namespace std;
+#include "../Map/Map.h"
+#include "../Player/Player.h"
 
+using namespace std;
+class Player;
+class Territory;
+//class Orderslist;
 
 struct Order
 {
 public:
     //constructor & destructor
     Order();
+    Order(Player* player);
     ~Order();
     Order(const Order& copiedO);
     Order& operator = (const Order &O);
     friend ostream & operator <<(ostream &out, const Order &o);
     friend istream & operator >> (istream &in,  Order &o);
-    void validate();
+    bool validate();
     void excute();
-
-
+    Player *player;
     void setID(int i);
     string getOrderType();
 
@@ -31,6 +36,7 @@ private:
     int id;
     bool valid;
     vector<string> orders = {"deploy","advance","bomb","blockade","airlift","negotiate"};
+
 };
 
 struct Bomb : public Order {
@@ -50,15 +56,19 @@ private:
 
 struct Deploy : public Order{
 public:
-
-    Deploy() ;
+    Deploy();
+    Deploy(Player* player);
     ~Deploy();
     Deploy(const Deploy& copiedDe);
     Deploy& operator = (const Deploy &Do);
     string* getOrderType();
+    void excute();
 
 private:
     string type = {"deploy"};
+    Territory* territory;
+
+
 };
 
 struct Advance : public Order{
@@ -121,8 +131,6 @@ private:
 
 
 class Orderslist {
-
-
 public:
 
     Orderslist();

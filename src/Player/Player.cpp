@@ -18,6 +18,7 @@ Player::Player() {
     playerAttackList = new vector<Territory*>();
     //player owns an order list
     orderList = new Orderslist();
+
 }
 
 //Player destructor
@@ -137,9 +138,16 @@ int Player::getHandLimit() {
 
 }
 
-void Player::issueOrders(Order *order) {
+/*void Player::issueOrders(Order *order) {
     //add the order in the order list
     orderList->setOrderList(order);
 
 
-}
+}*/
+
+
+
+//writen by yuxin
+int Player::getNumofArmy(){
+    return army;
+};

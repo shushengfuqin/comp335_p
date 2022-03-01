@@ -6,10 +6,18 @@
 #include <iostream>
 #include <vector>
 
+
+
+
 using namespace std;
 
+
 //Order Class
-Order::Order() {};
+Order::Order(){};
+Order::Order(Player* player) {
+    this->player = player;
+}
+
 Order::~Order() {};
 
 //copy constructor
@@ -41,7 +49,7 @@ istream & operator >> (istream &in,  Order &o)
 }
 
 
-void Order::validate() {
+bool Order::validate() {
     if (true) {
         valid = true;
         cout << "this order is valid and ready to be executed" << endl;
@@ -49,11 +57,12 @@ void Order::validate() {
     }else {
         valid = false;
     }
+    return valid;
 }
 
 
 void Order::excute() {
-    if (valid) {
+    if (validate()) {
         cout << "the order has been executed" << endl;
     }else{
         cout <<"the order is invalid and cannot be executed" <<endl;
@@ -71,7 +80,8 @@ string Order::getOrderType() {
 
 
 //Deploy class
-Deploy::Deploy() {
+Deploy::Deploy(Player *player) {
+    this->player = player;
     setID(0);
     cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
@@ -90,6 +100,19 @@ Deploy& Deploy::operator = (const Deploy&Deo){
 string* Deploy::getOrderType() {
     return &type;
 }
+
+void Deploy::excute() {
+
+    if(validate()){
+        int army= player->getNumofArmy();
+        territory->setNumArmies(territory->getNumArmies()+army);
+        cout<<army<<"armies has been deployed to the territory"<<territory<<endl;
+    } else{
+        cout<<"this order cannot be excuted"<<endl;
+    }
+
+}
+
 
 //Advance class
 Advance::Advance() {
@@ -112,7 +135,11 @@ Advance& Advance::operator = (const Advance&Ao){
 string* Advance::getOrderType() {
     return &type;
 }
+/*
+void Advance::excute() {
 
+}
+*/
 
 // Bomb class
 

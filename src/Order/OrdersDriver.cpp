@@ -7,15 +7,14 @@
 
 using namespace std;
 
-class OrdersDriver {
+class main {
 
-public:
-    OrdersDriver(){};
-    ~OrdersDriver(){};
+
+    Player player1;
 
     void callOrdersDriver() {
         //Orders
-        Deploy deploy1;
+        Deploy *deploy1 = new Deploy;
         Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
@@ -24,14 +23,15 @@ public:
 
         //test the valid and execute from orders
         cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
-        deploy1.validate();
-        deploy1.excute();
+
+        deploy1->excute();
 
         //Orderlist
         Orderslist l1;
 
+
         //add orders to the list
-        l1.setOrderList(&deploy1);
+        l1.setOrderList(deploy1);
         l1.setOrderList(&advance1);
         l1.setOrderList(&bomb1);
         l1.setOrderList(&blockade1);
@@ -47,7 +47,7 @@ public:
 
         cout << "\n" << "Now, we try to remove the first element deploy out of the list" << endl;
         //remove an order from the list
-        l1.remove(&deploy1);
+        l1.remove(deploy1);
 
 
         //display the list
@@ -66,5 +66,6 @@ public:
             cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
         }
     }
+
 
 };
