@@ -86,8 +86,22 @@ void Player::defendTerritory(Territory *territory) {
 
 //assignment a territory to the player class
 void Player::addTerritory(Territory *territory) {
+    //check if the territory already in the
     //add territory to the list
     playerTerritoryList->push_back(territory);
+}
+
+//add an assignment to remove territories
+void Player::removeTerritory(vector<Territory*>* territoryList,Territory *territory) {
+    //remove the territory from the list
+
+    territoryList->erase(std::remove(territoryList->begin(),territoryList->end(),territory),territoryList->end());
+
+    for (int i = 0; i < territoryList->size(); ++i) {
+        cout << territoryList->at(i)->getName() << '\n'<<endl;
+    }
+
+cout<<"im removing without problem"<<endl;
 }
 
 //the player attack action, returns a list of territories being attacked
@@ -143,3 +157,22 @@ void Player::issueOrders(Order *order) {
 
 
 }
+
+//getTerritoryList
+vector<Territory*>* Player::getTerritoryList() {
+
+    return playerTerritoryList;
+}
+
+//getAttackList
+vector<Territory*>* Player::getAttackList() {
+
+    return playerAttackList;
+}
+
+//getDefendList
+vector<Territory*>* Player::getDefendList() {
+
+    return playerDefendList;
+}
+

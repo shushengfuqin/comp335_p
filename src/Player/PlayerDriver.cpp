@@ -86,6 +86,9 @@ public:
         //use the player stream
         cout<<"player 1 wanna talk: "<<*player<<endl;
 
+        cout<<"here is the new test"<<endl;
+        player->removeTerritory(player->getTerritoryList(),territory7);
+
 
 
 
