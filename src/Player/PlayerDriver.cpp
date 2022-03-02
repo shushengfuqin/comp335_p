@@ -22,10 +22,12 @@ public:
         //add territories to the player attack list
         player->attackTerritory(territory1);
         player->attackTerritory(territory2);
+        player->attackTerritory(territory2);
         player->attackTerritory(territory3);
 
         //player attack action
         player->toAttack();
+        player->displayTerritory(player->getAttackList());
 
         //instantiate new list for player to defend
         Territory *territory4= new Territory( "large", 4,4 );
@@ -35,10 +37,12 @@ public:
         //add territories to the player defend list
         player->defendTerritory(territory4);
         player->defendTerritory(territory5);
+        player->defendTerritory(territory5);
         player->defendTerritory(territory6);
 
         //player defend actions
         player->toDefend();
+        player->displayTerritory(player->getDefendList());
 
         //verify player has hand by adding cards
         player->getHandLimit();
@@ -54,7 +58,7 @@ public:
         player->addTerritory(territory7);
         player->addTerritory(territory8);
         player->addTerritory(territory9);
-        player->displayTerritory();
+        player->displayTerritory(player->getTerritoryList());
 
 
         //create new orders
@@ -87,7 +91,16 @@ public:
         cout<<"player 1 wanna talk: "<<*player<<endl;
 
         cout<<"here is the new test"<<endl;
-        player->removeTerritory(player->getTerritoryList(),territory7);
+        player->removeTerritory(territory7);
+        player->displayTerritory(player->getTerritoryList());
+
+        player->cancelAttack(territory1);
+        player->cancelAttack(territory1);
+        player->displayTerritory(player->getAttackList());
+
+        player->cancelDefend(territory4);
+        player->cancelDefend(territory4);
+        player->displayTerritory(player->getDefendList());
 
 
 
