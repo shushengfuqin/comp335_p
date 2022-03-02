@@ -78,6 +78,10 @@ public:
 
     bool bfsContinents(int start, int continentId);
 
+    int getNumOfTerritoriesInContinent(int id);
+
+    int getLastContinentId();
+
     virtual ~Map();
 
 private:

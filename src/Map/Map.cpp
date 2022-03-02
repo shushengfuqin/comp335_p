@@ -71,7 +71,7 @@ Territory::Territory(const Territory &t1) {
 //}
 
 // Territory Assignment Operator
-Territory&Territory::operator=(const Territory& t1) {
+Territory &Territory::operator=(const Territory &t1) {
     this->_name = t1._name;
     this->_territoryId = t1._territoryId;
     this->_continentName = t1._continentName;
@@ -82,7 +82,7 @@ Territory&Territory::operator=(const Territory& t1) {
 
 //Territory stream insertion
 std::ostream &operator<<(ostream &os, const Territory &territory) {
-    os<<"Hi I am a Territory"<<endl;
+    os << "Hi I am a Territory" << endl;
     return os;
 }
 
@@ -104,7 +104,7 @@ Map::Map(const Map &map1) {
 // Map assignment operator overload
 // it should call the copy constructor of the other classes
 // to avoid copy the pointer
-Map&Map::operator=(const Map& map1) {
+Map &Map::operator=(const Map &map1) {
     SIZE = map1.SIZE;
     territory = map1.territory;
     return *this;
@@ -113,7 +113,7 @@ Map&Map::operator=(const Map& map1) {
 
 //Map stream insertion
 std::ostream &operator<<(ostream &os, const Map &map) {
-    os<<"Hi I am a Map"<<endl;
+    os << "Hi I am a Map" << endl;
     return os;
 }
 
@@ -321,6 +321,21 @@ bool Map::validate() {
 
 vector<Territory> *Map::getTerritory() {
     return territory;
+}
+
+int Map::getNumOfTerritoriesInContinent(int id) {
+    int numOfTerritories = 0;
+    for (int index = 0; index < SIZE; ++index) {
+        if (territory[index][0].getContinentId() == id) {
+            numOfTerritories++;
+        }
+    }
+    return numOfTerritories;
+}
+
+int Map::getLastContinentId() {
+    Territory lastTerritory = territory[SIZE-1][0];
+    return lastTerritory.getContinentId();
 }
 
 // Functions for the MapLoader
@@ -536,7 +551,7 @@ Map *MapLoader::generateMap() {
     return map;
 }
 
-MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
+MapLoader &MapLoader::operator=(const MapLoader &mapLoader1) {
     map = mapLoader1.map;
     continents = mapLoader1.continents;
     countries = mapLoader1.countries;
@@ -545,7 +560,7 @@ MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
 }
 
 std::ostream &operator<<(ostream &os, const MapLoader &mapLoader1) {
-    os<<"Hi I am a MapLoader"<<endl;
+    os << "Hi I am a MapLoader" << endl;
     return os;
 }
 

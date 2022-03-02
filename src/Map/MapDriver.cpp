@@ -131,6 +131,9 @@ public:
             cout << endl << "---No---" << endl;
         }
 
+        cout << "_____" << map->getNumOfTerritoriesInContinent(1) << "_____" << endl;
+        cout << "_____" << map->getLastContinentId() << "_____" << endl;
+
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.
 
