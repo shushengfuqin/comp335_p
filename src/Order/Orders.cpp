@@ -208,6 +208,7 @@ Orderslist::~Orderslist(){};
 
 //copy constructor
 Orderslist::Orderslist(const Orderslist& copiedOl) {
+
     this->orderlist = *new vector<Order*>(copiedOl.orderlist);
 }
 

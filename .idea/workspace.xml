@@ -11,9 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="put the main back">
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="update the removing feature and update the get army number method.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" afterDir="false" />
@@ -123,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646177139948</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update the removing feature and update the get army number method.">
+      <created>1646180420216</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646180420216</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +151,7 @@
     <MESSAGE value="commit test" />
     <MESSAGE value="added the remove territory method and the army parameter in the player object" />
     <MESSAGE value="put the main back" />
-    <option name="LAST_COMMIT_MESSAGE" value="put the main back" />
+    <MESSAGE value="update the removing feature and update the get army number method." />
+    <option name="LAST_COMMIT_MESSAGE" value="update the removing feature and update the get army number method." />
   </component>
 </project>

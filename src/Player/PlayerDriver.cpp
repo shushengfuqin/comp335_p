@@ -13,6 +13,7 @@ public:
     void callPlayerDriver(){
         //initialize the player
         Player *player=new Player();
+        player->setPlayerId(1);
 
         //initialize some new territories.
         Territory *territory1= new Territory( "big", 1 ,1);
@@ -79,13 +80,15 @@ public:
 
 
         //create another player using copy constructor
-        Player *player2=player;
-        player2->toAttack();
+//        Player *player2=player;
+//        player2->setPlayerId(2);
+//        player2->toAttack();
 
         //create another player using assignment operator
-        Player *player3;
-        player3=player;
-        player3->toDefend();
+//        Player *player3;
+//        player3=player;
+//        player3->setPlayerId(3);
+//        player3->toDefend();
 
         //use the player stream
         cout<<"player 1 wanna talk: "<<*player<<endl;
@@ -103,7 +106,27 @@ public:
         player->displayTerritory(player->getDefendList());
 
 
+        //create a new player
+        Player *player4=new Player();
+        player4->setPlayerId(4);
+        //create new territory that should be used to add into the player class
+        Territory *territory10= new Territory( "new territory 10", 10,7 );
+        Territory *territory11= new Territory( "new territory 11", 11 , 8);
+        Territory *territory12= new Territory( "new territory 12", 12, 9 );
 
+
+        //add territory belongs to the player
+        player4->addTerritory(territory10);
+        player4->addTerritory(territory11);
+        player4->addTerritory(territory12);
+        player4->displayTerritory(player4->getTerritoryList());
+
+        player->switchTerritories(territory8, player,player4);
+        player->displayTerritory(player->getTerritoryList());
+        player4->displayTerritory(player4->getTerritoryList());
+
+
+        cout<<player->getPlayerNumOfTerritoriesInContinent(9)<<endl;
 
 
 

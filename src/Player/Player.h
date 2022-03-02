@@ -31,13 +31,16 @@ public:
     void removeTerritory(Territory *territory);
     void cancelAttack(Territory *territory);
     void cancelDefend(Territory *territory);
-
+    void switchTerritories(Territory *territory,Player *player1, Player *player2);
     void issueOrders(Order* order);
     int getHandLimit();
-    int getArmyNum();
-    int addArmyNum(int number);
-    int removeArmyNum(int number);
-    int updateArmyNum(int continentBonus);
+    void setPlayerId(int id);
+    int getPlayerId();
+    int getPlayerNumOfTerritoriesInContinent(int id);
+//    int getArmyNum();
+//    int addArmyNum(int number);
+//    int removeArmyNum(int number);
+//    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
 
 
@@ -49,6 +52,7 @@ private:
     Hand *playerHand;
     Orderslist* orderList;
     int armyNum;
+    int playerId;
 
 };
 
