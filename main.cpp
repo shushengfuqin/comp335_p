@@ -5,15 +5,22 @@
 #include "src/GameEngine/GameEngineDriver.cpp"
 #include "src/Map/MapDriver.cpp"
 #include "src/Player/PlayerDriver.cpp"
+#include "src/CommandProcessing/CommandProcessingDriver.cpp"
 using namespace std;
 
 int main() {
+
+    CommandProcessingDriver cpd;
+    cpd.callCommandProcessingDriver();
+
+    exit(0);
+
+
     string x;
 
     cout << "------------- ORDER DRIVER CLASS ----------------\n";
     OrdersDriver od;
     od.callOrdersDriver();
-    cout << "\n";
     cout << "Going to the next one please enter Y\n";
     cin >> x;
     cout << "\n";

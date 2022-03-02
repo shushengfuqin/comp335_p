@@ -7,6 +7,9 @@
 
 #include <iostream>
 #include <string>
+#include <list>
+#include "../CommandProcessing/CommandProcessing.h"
+
 #pragma once
 using namespace std;
 enum GameState
@@ -21,6 +24,9 @@ enum GameState
     win
 };
 
+class GameEng;
+class CommandProcessing;
+
 class GameEng{
 public:
     GameEng();
@@ -33,5 +39,7 @@ public:
     string issueordersFunc();
     string executeordersFunc();
     string winFunc();
+    CommandProcessing cmdProc;
 };
+
 #endif //COMP335_P_GAMEENGINE_H
