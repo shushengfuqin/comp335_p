@@ -44,16 +44,16 @@ void Territory::setContinentName(const string &continentName) {
     *_continentName = continentName;
 }
 
-void Territory::setNumArmies(int numArmies) {
-    _numArmies = numArmies;
+void Territory::setArmyBonusValue(int numArmies) {
+    _armyBonusValue = numArmies;
 }
 
 const string &Territory::getContinentName() const {
     return *_continentName;
 }
 
-int Territory::getNumArmies() const {
-    return _numArmies;
+int Territory::getArmyBonusValue() const {
+    return _armyBonusValue;
 }
 
 // Territory copy constructor
@@ -62,7 +62,7 @@ Territory::Territory(const Territory &t1) {
     _territoryId = t1._territoryId;
     _continentName = t1._continentName;
     _continentId = t1._continentId;
-    _numArmies = t1._numArmies;
+    _armyBonusValue = t1._armyBonusValue;
 }
 
 //Territory::~Territory() {
@@ -76,7 +76,7 @@ Territory &Territory::operator=(const Territory &t1) {
     this->_territoryId = t1._territoryId;
     this->_continentName = t1._continentName;
     this->_continentId = t1._continentId;
-    this->_numArmies = t1._numArmies;
+    this->_armyBonusValue = t1._armyBonusValue;
     return *this;
 }
 
@@ -157,7 +157,7 @@ void Map::printTerritoryBorders(int rowIndex) {
                  << " "
                  << neighbour.getContinentName()
                  << " "
-                 << neighbour.getNumArmies();
+                 << neighbour.getArmyBonusValue();
             continue;
         }
         cout << " ---> " << neighbour.getName()
@@ -168,7 +168,7 @@ void Map::printTerritoryBorders(int rowIndex) {
              << " "
              << neighbour.getContinentName()
              << " "
-             << neighbour.getNumArmies();
+             << neighbour.getArmyBonusValue();
     }
     cout << endl << endl;
 }
@@ -336,6 +336,15 @@ int Map::getNumOfTerritoriesInContinent(int id) {
 int Map::getLastContinentId() {
     Territory lastTerritory = territory[SIZE-1][0];
     return lastTerritory.getContinentId();
+}
+
+int Map::getArmyContinentBonus(int continentId) {
+    for (int index = 0; index < SIZE; ++index) {
+        if (territory[index][0].getContinentId() == continentId) {
+            return territory[index][0].getArmyBonusValue();
+        }
+    }
+    return 0;
 }
 
 // Functions for the MapLoader
@@ -539,7 +548,7 @@ Map *MapLoader::generateMap() {
                         continentName = continentValues[0];
                         numArmies = stoi(continentValues[1]);
                         map->getTerritory()[i][j].setContinentName(continentName);
-                        map->getTerritory()[i][j].setNumArmies(numArmies);
+                        map->getTerritory()[i][j].setArmyBonusValue(numArmies);
                     }
                 }
             }
