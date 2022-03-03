@@ -9,20 +9,10 @@
 #include <string>
 #include <list>
 #include "../CommandProcessing/CommandProcessing.h"
+#include "GameState.h"
 
 #pragma once
 using namespace std;
-enum GameState
-{
-    start,
-    maploaded,
-    mapvalidated,
-    playeradded,
-    assignreignforcement,
-    issueorders,
-    executeorders,
-    win
-};
 
 class GameEng;
 class CommandProcessing;
@@ -39,7 +29,11 @@ public:
     string issueordersFunc();
     string executeordersFunc();
     string winFunc();
-    CommandProcessing cmdProc;
+    void setState(GameState gs){ currentState = gs; }
+    GameState getState() { return currentState; }
+    CommandProcessing *cmdProc;
+    GameState currentState;
+
 };
 
 #endif //COMP335_P_GAMEENGINE_H

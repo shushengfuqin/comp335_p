@@ -1,7 +1,3 @@
-//
-// Created by Scrib on 2022-03-01.
-//
-
 #include "CommandProcessing.h"
 #include <iostream>
 #include <regex>
@@ -15,47 +11,43 @@ Command::Command(string cmd){
 
 /////////////////
 
+void CommandProcessing::getCommand() {
+    string cmd = readCommand();
+    saveCommand(cmd);
+}
+
 string CommandProcessing::readCommand() {
     string cmd;
-    cin >> cmd;
+    cout << "Please enter a command: \n";
+    getline(cin, cmd);
     return cmd;
 }
 
 void CommandProcessing::saveCommand(string cmd) {
     Command c(cmd);
-    //Command* c = new Command(cmd);
-    lc->push_front(c);
+    // Save effect
+    c.saveEffect(cmd);
+    lc->push_back(c);
 }
 
-bool CommandProcessing::validate(GameState gs, Command cmd) {
-    string c = cmd.getCommand();
-    regex loadRegex ("(loadmap )(.*)");
-    regex playerRegex("(addplayer )(.*)");
+// If valid, returns the passing command
+string CommandProcessing::validate(GameState gs) {
+    string c = lc->back().getCommand();
 
-    // Loadmap is not usable
-    if(regex_match (c, loadRegex) && (gs == GameState::start || gs == GameState::maploaded))
-        return false;
+    regex loadRegex ("loadmap\\s.+");
+    regex playerRegex("addplayer\\s.+");
 
-    // Validatemap is not usable
-    if(c == "validatemap" && gs == GameState::maploaded)
-        return false;
+    // Loadmap, Validatemap, Addplayer, Gamestart, Replay, or Quit are usable
+    if((regex_match (c, loadRegex) && (gs == GameState::start || gs == GameState::maploaded)) ||
+        (c == "validatemap" && gs == GameState::maploaded) ||
+        (regex_match (c, playerRegex) && (gs == GameState::mapvalidated || gs == GameState::playeradded)) ||
+        (c == "gamestart" && gs == GameState::playeradded) ||
+        (c == "replay" && gs == GameState::win) ||
+        (c == "quit" && gs == GameState::win)
+    )
+        return c;
 
-    // Addplayer is not usable
-    if(regex_match (c, playerRegex) && (gs == GameState::mapvalidated || gs == GameState::maploaded))
-        return false;
-
-    // Gamestart is not usable
-    if(c == "gamestart" && gs == GameState::playeradded)
-        return false;
-
-    // Replay is not usable
-    if(c == "replay" && gs == GameState::win)
-        return false;
-
-    // Quit is not usable
-    if(c == "quit" && gs == GameState::win)
-        return false;
-
-    // Command is usable
-    return true;
+    // Command is not usable
+    lc->back().saveEffect("Error: Invalid input.");
+    return lc->back().getEffect();
 }

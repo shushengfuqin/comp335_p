@@ -5,10 +5,12 @@
 #include <string>
 #include <list>
 #include "../GameEngine/GameEngine.h"
+#include "../GameEngine/GameState.h"
 
 #pragma once
 using namespace std;
 
+class GameEng;
 class CommandProcessing;
 class Command;
 
@@ -16,13 +18,13 @@ class CommandProcessing{
 public:
     CommandProcessing() = default;
     ~CommandProcessing() = default;
-    Command getCommand();
+    void getCommand();
+    string validate(GameState gs);
 protected:
     string readCommand();
     void saveCommand(string cmd);
 private:
-    bool validate(GameState gs, Command cmd);
-    list<Command> *lc;
+    list<Command> *lc = new list<Command>();
 };
 
 class Command {
@@ -30,7 +32,8 @@ public:
     Command() = default;
     Command(string cmd);
     ~Command() = default;
-    void saveEffect(string fx) {effect = fx;};
+    void saveEffect(string e) {effect = e;}
+    string getEffect() {return effect;}
     string getCommand() {return command;}
 private:
     string command;

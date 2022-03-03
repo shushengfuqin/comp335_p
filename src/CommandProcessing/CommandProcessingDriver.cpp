@@ -3,7 +3,8 @@
 #include <string>
 
 #include "../GameEngine/GameEngine.h"
-#include "CommandProcessing.h"
+#include "../GameEngine/GameState.h"
+
 using namespace std;
 
 class CommandProcessingDriver{
@@ -13,8 +14,8 @@ public:
     static void callCommandProcessingDriver() {
 
         // Initialize gamestate at state and update upon state change
-        GameState currentState = start;
-        GameState* currentStatePtr = &currentState;
+        //GameState currentState = start;
+        //GameState* currentStatePtr = &currentState;
 
         // Initializa game play boolean.
         bool play = true;
@@ -25,52 +26,53 @@ public:
         string* userChoicePtr = &userChoice;
 
         GameEng ge;
-        CommandProcessing cp;
+        ge.setState(start);
+
         // while true keep the game playing.
         while(*playPtr) {
-            switch (currentState) {
+            switch (ge.getState()) {
                 case start:
                     *userChoicePtr = ge.startFunc();
                     if (userChoice == "loadmap") {
-                        *currentStatePtr = maploaded;
+                        ge.setState(maploaded);
                     }
                 case maploaded:
                     *userChoicePtr = ge.maploadedFunc();
                     if (userChoice == "validatemap") {
-                        *currentStatePtr = mapvalidated;
+                        ge.setState(mapvalidated);
                     }
                 case mapvalidated:
                     *userChoicePtr = ge.mapvalidatedFunc();
                     if (userChoice == "addplayer") {
-                        *currentStatePtr = playeradded;
+                        ge.setState(playeradded);
                     }
                 case playeradded:
                     *userChoicePtr = ge.playeraddedFunc();
-                    if (userChoice == "assigncountries") {
-                        *currentStatePtr = assignreignforcement;
+                    if (userChoice == "gamestart") {
+                        ge.setState(assignreignforcement);
                     }
                 case assignreignforcement:
                     *userChoicePtr = ge.assignreinforcementFunc();
                     if (userChoice == "issueorder") {
-                        *currentStatePtr = issueorders;
+                        ge.setState(issueorders);
                     }
                 case issueorders:
                     *userChoicePtr = ge.issueordersFunc();
                     if (userChoice == "endissuorders") {
-                        *currentStatePtr = executeorders;
+                        ge.setState(executeorders);
                     }
                 case executeorders:
                     *userChoicePtr = ge.executeordersFunc();
                     if (userChoice == "endexecorders") {
-                        *currentStatePtr = assignreignforcement;
+                        ge.setState(assignreignforcement);
                     } else if (userChoice == "win") {
-                        *currentStatePtr = win;
+                        ge.setState(win);
                     }
                 case win:
                     *userChoicePtr = ge.winFunc();
-                    if (userChoice == "play") {
-                        *currentStatePtr = start;
-                    } else if (userChoice == "end") {
+                    if (userChoice == "replay") {
+                        ge.setState(start);
+                    } else if (userChoice == "quit") {
                         // since the user chose to quit, therefore, change the bool to play false, to close.
                         *playPtr = false;
                         break;
