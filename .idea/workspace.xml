@@ -12,12 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="commit test">
+      <change afterPath="$PROJECT_DIR$/src/Observer/LoggingObserver.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Observer/LoggingObserver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cards/Cards.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngineDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngineDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/MapDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/MapDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +85,7 @@
       <workItem from="1644804088756" duration="70000" />
       <workItem from="1644804352791" duration="441000" />
       <workItem from="1644824018857" duration="1366000" />
+      <workItem from="1646273132999" duration="2166000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
