@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <list>
+#include <vector>
 #include <fstream>
 #include "LoggingObserver.h"
 
@@ -13,19 +13,45 @@ void Subject::Attach(Observer *obs) {
     _observers->push_back(obs);
 }
 
-void Subject::Detach(Observer *obs) {
-    _observers->remove(obs);
+void Subject::Detach (Observer* obs)
+{
+    int count = _observers->size();
+    int i;
+
+    for (i = 0; i < count; i++) {
+        if(_observers[i] == obs)
+            break;
+    }
+    if(i < count)
+        _observers->erase(_observers->begin() + i);
+
+}
+Subject::Subject() = default;
+
+void Subject::Notify ()
+{
+    int count = _observers->size();
+
+    for (int i = 0; i < count; i++)
+        (_observers[i]).Update(this);
 }
 
-//void Subject::Notify(ILoggable) {
-//    ListIterator<Observer*> i(_observers);
-//}
+void LogObserver::writeToFile(string s) {
+    cout << "hello";
+    ofstream myfile;
+    myfile.open ("example.txt");
+    myfile << s;
+    myfile.close();
+}
 
 LogObserver::LogObserver() = default;
 
-void LogObserver::writeToFile(string s) {
-    ofstream myfile;
-    myfile.open ("example.txt");
-    myfile << "Writing this to a file.\n";
-    myfile.close();
-}
+LogObserver::~LogObserver() = default;
+
+ILoggable::ILoggable() = default;
+
+ILoggable::~ILoggable() = default;
+
+Observer::Observer() = default;
+
+Observer::~Observer() = default;

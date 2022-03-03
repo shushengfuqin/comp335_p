@@ -1,4 +1,5 @@
 #include "GameEngine.h"
+#include "../Observer/LoggingObserver.h"
 #include <iostream>
 
 /**
@@ -270,3 +271,11 @@ string GameEng::winFunc()
         }
     }
 }
+
+string GameEng::stringToLog(){
+    string s = "this is the gameEng";
+    return s;
+}
+
+
+

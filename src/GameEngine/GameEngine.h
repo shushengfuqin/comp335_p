@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include "../Observer/LoggingObserver.h"
 #pragma once
 using namespace std;
 enum GameState
@@ -21,7 +22,7 @@ enum GameState
     win
 };
 
-class GameEng{
+class GameEng:ILoggable,Subject{
 public:
     GameEng();
     ~GameEng();
@@ -33,5 +34,7 @@ public:
     string issueordersFunc();
     string executeordersFunc();
     string winFunc();
+    string stringToLog() override;
+    void Notify(ILoggable) ;
 };
 #endif //COMP335_P_GAMEENGINE_H

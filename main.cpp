@@ -5,6 +5,7 @@
 #include "src/GameEngine/GameEngineDriver.cpp"
 #include "src/Map/MapDriver.cpp"
 #include "src/Player/PlayerDriver.cpp"
+#include "src/Observer/LoggingObserver.h"
 using namespace std;
 
 int main() {
@@ -55,5 +56,9 @@ int main() {
         PlayerDriver playerDriver;
         playerDriver.callPlayerDriver();
     }
+
+    LogObserver lod;
+    LogObserver::writeToFile("this");
+
     return 0;
 }

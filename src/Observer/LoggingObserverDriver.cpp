@@ -8,6 +8,7 @@
 using namespace std;
 
 int LoggingObserverDriver(){
+    LoggingObserverDriver();
     LogObserver lo;
 
     lo.writeToFile("this");
