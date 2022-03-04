@@ -25,7 +25,9 @@ public:
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void addTerritory(Territory *territory);
-  /*  void issueOrders(Order* order);*/
+/*
+    void issueOrders(Order* order);
+*/
     int getHandLimit();
 
 
@@ -38,11 +40,12 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
-    Orderslist *orderList;
+/*    Orderslist *orderList;
+*//*    vector<Order*> *orderList;*/
 
 
     //writen by yuxin
-    int army;
+    int army = 3;
 
 };
 

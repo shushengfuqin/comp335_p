@@ -17,7 +17,8 @@ Player::Player() {
     //player owns a defend territory list
     playerAttackList = new vector<Territory*>();
     //player owns an order list
-    orderList = new Orderslist();
+/*    orderList = new  Orderslist();*/
+
 
 }
 
@@ -36,7 +37,7 @@ Player::~Player(){
         delete playerDefendList->at(i);
     }
     delete playerDefendList;
-    delete orderList;
+/*    delete orderList;*/
 }
 
 //Player copy constructor
@@ -47,7 +48,7 @@ Player::Player(const Player &player1) {
     playerTerritoryList = player1.playerTerritoryList;
     playerDefendList = player1.playerDefendList;
     playerAttackList = player1.playerAttackList;
-    orderList = player1.orderList;
+/*    orderList = player1.orderList;*/
 }
 
 
@@ -59,7 +60,7 @@ Player&Player::operator=(const Player& player1) {
     this->playerTerritoryList = player1.playerTerritoryList;
     this->playerDefendList = player1.playerDefendList;
     this->playerAttackList = player1.playerAttackList;
-    this->orderList = player1.orderList;
+  /*  this->orderList = player1.orderList;*/
     return *this;
 }
 
@@ -140,8 +141,8 @@ int Player::getHandLimit() {
 
 /*void Player::issueOrders(Order *order) {
     //add the order in the order list
-    orderList->setOrderList(order);
 
+    orderList->setOrderList(order);
 
 }*/
 

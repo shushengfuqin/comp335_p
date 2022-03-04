@@ -7,24 +7,25 @@
 
 using namespace std;
 
-class main {
+int main() {
 
 
-    Player player1;
-
-    void callOrdersDriver() {
+         Player *player1;
+         Territory *territory1;
+  /*  void callOrdersDriver() {*/
         //Orders
         Deploy *deploy1 = new Deploy;
-        Advance advance1;
+
+    /*    Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
         Airlift airlift1;
-        Negotiate negotiate1;
+        Negotiate negotiate1;*/
 
         //test the valid and execute from orders
-        cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
+       // cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
 
-        deploy1->excute();
+   deploy1->execute();
 
         //Orderlist
         Orderslist l1;
@@ -32,7 +33,7 @@ class main {
 
         //add orders to the list
         l1.setOrderList(deploy1);
-        l1.setOrderList(&advance1);
+       /* l1.setOrderList(&advance1);
         l1.setOrderList(&bomb1);
         l1.setOrderList(&blockade1);
         l1.setOrderList(&airlift1);
@@ -64,8 +65,8 @@ class main {
         cout << "\n" << "Here is the Current Orderlist:" << endl;
         for (int i = 0; i < l1.getOrderList()->size(); i++) {
             cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
-        }
-    }
+        }*/
+ /*   }*/
 
-
-};
+ return 0;
+}
