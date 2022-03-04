@@ -19,8 +19,17 @@ regex playerRegex("addplayer\\s.+");
 
 
 GameEng::GameEng() {
-    cmdProc = new CommandProcessing();
+    cmdProc = new CommandProcessor();
 }
+
+GameEng::GameEng(CommandProcessor * cp) {
+    cmdProc = cp;
+}
+
+GameEng::GameEng(FileLineReader *flr) {
+    cmdProc = new FileCommandProcessorAdapter(flr);
+}
+
 GameEng::~GameEng() = default;
 
 /**

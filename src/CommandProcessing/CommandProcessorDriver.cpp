@@ -7,11 +7,11 @@
 
 using namespace std;
 
-class CommandProcessingDriver{
+class CommandProcessorDriver{
 public:
-    CommandProcessingDriver()= default;
-    ~CommandProcessingDriver()= default;
-    static void callCommandProcessingDriver() {
+    CommandProcessorDriver()= default;
+    ~CommandProcessorDriver()= default;
+    static void callCommandProcessorDriver(bool readFromFile, string filename) {
 
         // Initialize gamestate at state and update upon state change
         //GameState currentState = start;
@@ -25,7 +25,19 @@ public:
         string userChoice;
         string* userChoicePtr = &userChoice;
 
-        GameEng ge;
+        CommandProcessor * cp;
+
+        if(readFromFile){
+            //filename = "C:\\Users\\Scrib\\Documents\\GitHub\\comp345_p\\src\\CommandProcessing\\commands.txt";
+            FileLineReader * flr = new FileLineReader(filename);
+            cp = new FileCommandProcessorAdapter(flr);
+        }
+        else
+            cp = new CommandProcessor();
+
+        GameEng * gameState = new GameEng(cp);
+        GameEng ge = *gameState;
+
         ge.setState(start);
 
         // while true keep the game playing.
@@ -46,7 +58,7 @@ public:
                     if (userChoice == "addplayer") {
                         ge.setState(playeradded);
                     }
-                case playeradded:
+                /*case playeradded:
                     *userChoicePtr = ge.playeraddedFunc();
                     if (userChoice == "gamestart") {
                         ge.setState(assignreignforcement);
@@ -66,6 +78,11 @@ public:
                     if (userChoice == "endexecorders") {
                         ge.setState(assignreignforcement);
                     } else if (userChoice == "win") {
+                        ge.setState(win);
+                    }*/
+                case playeradded:
+                    *userChoicePtr = ge.playeraddedFunc();
+                    if (userChoice == "assigncountries") {
                         ge.setState(win);
                     }
                 case win:

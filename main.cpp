@@ -5,13 +5,17 @@
 #include "src/GameEngine/GameEngineDriver.cpp"
 #include "src/Map/MapDriver.cpp"
 #include "src/Player/PlayerDriver.cpp"
-#include "src/CommandProcessing/CommandProcessingDriver.cpp"
+#include "src/CommandProcessing/CommandProcessorDriver.cpp"
 using namespace std;
 
-int main() {
-
-    CommandProcessingDriver cpd;
-    cpd.callCommandProcessingDriver();
+int main(int argc, char *argv[]) {
+    CommandProcessorDriver cpd;
+    // file
+    if(argc > 1 && argv[1] == "-file")
+        cpd.callCommandProcessorDriver(true, argv[2]);
+    // console (default)
+    else
+        cpd.callCommandProcessorDriver(false, "");
 
     exit(0);
 

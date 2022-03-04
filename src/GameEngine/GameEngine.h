@@ -8,18 +8,22 @@
 #include <iostream>
 #include <string>
 #include <list>
-#include "../CommandProcessing/CommandProcessing.h"
+#include "../CommandProcessing/CommandProcessor.h"
 #include "GameState.h"
 
 #pragma once
 using namespace std;
 
 class GameEng;
-class CommandProcessing;
+class CommandProcessor;
+class FileLineReader;
+class FileCommandProcessorAdapter;
 
 class GameEng{
 public:
     GameEng();
+    GameEng(CommandProcessor *cp);
+    GameEng(FileLineReader *flr);
     ~GameEng();
     string startFunc();
     string maploadedFunc();
@@ -31,9 +35,8 @@ public:
     string winFunc();
     void setState(GameState gs){ currentState = gs; }
     GameState getState() { return currentState; }
-    CommandProcessing *cmdProc;
+    CommandProcessor *cmdProc;
     GameState currentState;
-
 };
 
 #endif //COMP335_P_GAMEENGINE_H
