@@ -52,9 +52,10 @@ void Order::validate() {
 }
 
 
-void Order::excute() {
+void Order::execute() {
     if (valid) {
         cout << "the order has been executed" << endl;
+        Notify(this);
     }else{
         cout <<"the order is invalid and cannot be executed" <<endl;
     }
@@ -231,6 +232,7 @@ istream & operator >> (istream &in,  Orderslist &o)
 //add order
 void Orderslist::setOrderList(Order *order) {
     orderlist.push_back(order);
+    Notify(this);
 }
 //get the orderlist
 vector<Order*>* Orderslist::getOrderList() {
@@ -268,6 +270,63 @@ void Orderslist::move(int origin, int targetPosition)
     else {
         cout << "\n the element cannot be move to the target position" << endl;
     }
+}
+
+
+string Order::stringToLog() {
+     return this->getOrderType();
+ }
+
+ string Orderslist::stringToLog() {
+     return orderlist.back()->getOrderType() + " order added to order list.";
+ }
+
+ string Bomb::stringToLog() {
+     return "Order Bomb";
+ }
+
+string Deploy::stringToLog() {
+    return "Order deploy";
+}
+
+string Advance::stringToLog() {
+    return "Order advance";
+}
+
+string Blockade::stringToLog() {
+    return "Order Blockade";
+}
+
+string Airlift::stringToLog() {
+    return "Order Blockade";
+}
+
+string Negotiate::stringToLog() {
+    return "Order Negotiate";
+}
+
+void Bomb::execute() {
+    Notify(this);
+ }
+
+void Deploy::execute() {
+    Notify(this);
+}
+
+void Advance::execute() {
+    Notify(this);
+}
+
+void Blockade::execute() {
+    Notify(this);
+}
+
+void Airlift::execute() {
+    Notify(this);
+}
+
+void Negotiate::execute() {
+    Notify(this);
 }
 
 

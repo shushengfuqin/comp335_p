@@ -15,17 +15,24 @@ public:
 
     void callOrdersDriver() {
         //Orders
+        LogObserver* logObserver = new LogObserver();
         Deploy deploy1;
         Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
         Airlift airlift1;
         Negotiate negotiate1;
+        deploy1.Attach(logObserver);
+        advance1.Attach(logObserver);
+        bomb1.Attach(logObserver);
+        blockade1.Attach(logObserver);
+        airlift1.Attach(logObserver);
+        negotiate1.Attach(logObserver);
 
         //test the valid and execute from orders
         cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
         deploy1.validate();
-        deploy1.excute();
+        deploy1.execute();
 
         //Orderlist
         Orderslist l1;
@@ -65,6 +72,13 @@ public:
         for (int i = 0; i < l1.getOrderList()->size(); i++) {
             cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
         }
+
+        deploy1.Detach(logObserver);
+        advance1.Detach(logObserver);
+        bomb1.Detach(logObserver);
+        blockade1.Detach(logObserver);
+        airlift1.Detach(logObserver);
+        negotiate1.Detach(logObserver);
     }
 
 };

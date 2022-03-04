@@ -7,10 +7,11 @@
 
 #include <iostream>
 #include <vector>
+#include "../Observer/LoggingObserver.h"
 using namespace std;
 
 
-struct Order
+struct Order : public ILoggable,public Subject
 {
 public:
     //constructor & destructor
@@ -21,7 +22,8 @@ public:
     friend ostream & operator <<(ostream &out, const Order &o);
     friend istream & operator >> (istream &in,  Order &o);
     void validate();
-    void excute();
+    void execute();
+    string stringToLog();
 
 
     void setID(int i);
@@ -41,7 +43,9 @@ public:
     ~Bomb();
     Bomb(const Bomb& copiedBo);
     Bomb& operator = (const Bomb &Bo);
+    void execute();
     string* getOrderType();
+    string stringToLog();
 
 private:
     string type = {"bomb"};
@@ -55,7 +59,9 @@ public:
     ~Deploy();
     Deploy(const Deploy& copiedDe);
     Deploy& operator = (const Deploy &Do);
+    void execute();
     string* getOrderType();
+    string stringToLog();
 
 private:
     string type = {"deploy"};
@@ -68,7 +74,9 @@ public:
     ~Advance();
      Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
+    void execute();
     string* getOrderType();
+    string stringToLog();
 
 private:
     string type = {"advance"};
@@ -81,7 +89,9 @@ public:
     ~Blockade();
     Blockade(const Blockade& copiedBl);
     Blockade& operator = (const Blockade &Blo);
+    void execute();
     string* getOrderType();
+    string stringToLog();
 
 private:
     string type = {"blockade"};
@@ -94,7 +104,9 @@ public:
     ~Airlift();
     Airlift(const Airlift& copoedAir);
     Airlift& operator = (const Airlift &Airo);
+    void execute();
     string* getOrderType();
+    string stringToLog();
 
 private:
     string type = {"airlift"};
@@ -108,7 +120,9 @@ public:
     ~Negotiate();
     Negotiate(const Negotiate& copiedNe);
     Negotiate& operator = (const Negotiate &Neo);
+    void execute();
     string* getOrderType();
+    string stringToLog();
 
 private:
     string type = {"negotiate"};
@@ -120,7 +134,7 @@ private:
 
 
 
-class Orderslist {
+class Orderslist:public ILoggable,public Subject{
 
 
 public:
@@ -138,6 +152,8 @@ public:
     //methods to modify the list
     void remove(Order* order);
     void move(int origin,int targetPosition);
+
+    string stringToLog();
 
 private:
     vector<Order*> orderlist;

@@ -24,6 +24,8 @@ public:
         string* userChoicePtr = &userChoice;
 
         GameEng ge;
+        auto* logObserver = new LogObserver();
+        ge.Attach(logObserver);
         // while true keep the game playing.
         while(*playPtr) {
             switch (currentState) {

@@ -15,8 +15,10 @@
  */
 int userInput;
 
-GameEng::GameEng() = default;
-GameEng::~GameEng() = default;
+GameEng::GameEng(){
+}
+GameEng::~GameEng(){
+};
 
 /**
  * This method takes the input of the user
@@ -32,6 +34,7 @@ string GameEng::startFunc()
     cout << "1 - loadmap\n";
     cout << "Please chose action by typing the corresponding command\n";
     cin >> userInput;
+    Notify(this);
     while (userInput != 1)
     {
         cout << "Error: Please enter an valid command\n";
@@ -57,6 +60,7 @@ string GameEng::maploadedFunc()
     cout << "Please chose action by typing the corresponding number\n";
 
     cin >> userInput;
+    Notify(this);
     for (;;)
     {
         switch (userInput)
@@ -93,6 +97,7 @@ string GameEng::mapvalidatedFunc()
     cout << "What would you like to do\n";
     cout << "1 - add player\n";
     cin >> userInput;
+    Notify(this);
     while (userInput != 1)
     {
         cout << "Error: Please enter an valid command\n";
@@ -117,6 +122,7 @@ string GameEng::playeraddedFunc()
     cout << "2 - assign countries\n";
     cout << "Please chose action by typing the corresponding number\n";
     cin >> userInput;
+    Notify(this);
     for (;;)
     {
         switch (userInput)
@@ -152,6 +158,7 @@ string GameEng::assignreinforcementFunc()
     cout << "1 - issue order\n";
     cout << "Please chose action by typing the corresponding number\n";
     cin >> userInput;
+    Notify(this);
     while (userInput != 1)
     {
         cout << "Error: Please enter an valid command\n";
@@ -176,6 +183,7 @@ string GameEng::issueordersFunc()
     cout << "2 - end issue orders\n";
     cout << "Please chose action by typing the corresponding number\n";
     cin >> userInput;
+    Notify(this);
     for (;;)
     {
         switch (userInput)
@@ -214,6 +222,7 @@ string GameEng::executeordersFunc()
     cout << "3 - win\n";
     cout << "Please chose action by typing the corresponding number\n";
     cin >> userInput;
+    Notify(this);
     for (;;)
     {
         switch (userInput)
@@ -255,6 +264,7 @@ string GameEng::winFunc()
     cout << "2 - play again\n";
     cout << "Please chose action by typing the corresponding number\n";
     cin >> userInput;
+    Notify(this);
     for (;;)
     {
         switch (userInput)
@@ -273,9 +283,10 @@ string GameEng::winFunc()
 }
 
 string GameEng::stringToLog(){
-    string s = "this is the gameEng";
-    return s;
+    return ("The game engine is issuing the :" + to_string(userInput));
+
 }
+
 
 
 

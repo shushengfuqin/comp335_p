@@ -10,7 +10,6 @@ using namespace std;
 
 int main() {
     string x;
-
     cout << "------------- ORDER DRIVER CLASS ----------------\n";
     OrdersDriver od;
     od.callOrdersDriver();
@@ -56,9 +55,6 @@ int main() {
         PlayerDriver playerDriver;
         playerDriver.callPlayerDriver();
     }
-
-    LogObserver lod;
-    LogObserver::writeToFile("this");
 
     return 0;
 }

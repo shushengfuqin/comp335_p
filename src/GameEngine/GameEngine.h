@@ -22,7 +22,7 @@ enum GameState
     win
 };
 
-class GameEng:ILoggable,Subject{
+class GameEng:public ILoggable,public Subject{
 public:
     GameEng();
     ~GameEng();
@@ -35,6 +35,5 @@ public:
     string executeordersFunc();
     string winFunc();
     string stringToLog() override;
-    void Notify(ILoggable) ;
 };
 #endif //COMP335_P_GAMEENGINE_H
