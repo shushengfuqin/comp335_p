@@ -11,6 +11,7 @@
 #include "vector"
 using namespace std;
 
+
 class Player{
 public:
     Player();
@@ -28,6 +29,7 @@ public:
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void addTerritory(Territory *territory);
+
     void removeTerritory(Territory *territory);
     void cancelAttack(Territory *territory);
     void cancelDefend(Territory *territory);
@@ -53,9 +55,11 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
+
     Orderslist* orderList;
     int armyNum;
     int playerId;
+
 
 
 };

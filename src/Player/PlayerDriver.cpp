@@ -72,12 +72,14 @@ public:
         Negotiate negotiate1;
 
         //issue new orders
+/*
         player->issueOrders(&deploy1);
         player->issueOrders(&advance1);
         player->issueOrders(&bomb1);
         player->issueOrders(&blockade1);
         player->issueOrders(&airlift1);
         player->issueOrders(&negotiate1);
+*/
 
 
         //create another player using copy constructor

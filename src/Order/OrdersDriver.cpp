@@ -7,32 +7,33 @@
 
 using namespace std;
 
-class OrdersDriver {
+int main() {
 
-public:
-    OrdersDriver(){};
-    ~OrdersDriver(){};
 
-    void callOrdersDriver() {
+         Player *player1;
+         Territory *territory1;
+  /*  void callOrdersDriver() {*/
         //Orders
-        Deploy deploy1;
-        Advance advance1;
+        Deploy *deploy1 = new Deploy;
+
+    /*    Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
         Airlift airlift1;
-        Negotiate negotiate1;
+        Negotiate negotiate1;*/
 
         //test the valid and execute from orders
-        cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
-        deploy1.validate();
-        deploy1.excute();
+       // cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
+
+   deploy1->execute();
 
         //Orderlist
         Orderslist l1;
 
+
         //add orders to the list
-        l1.setOrderList(&deploy1);
-        l1.setOrderList(&advance1);
+        l1.setOrderList(deploy1);
+       /* l1.setOrderList(&advance1);
         l1.setOrderList(&bomb1);
         l1.setOrderList(&blockade1);
         l1.setOrderList(&airlift1);
@@ -47,7 +48,7 @@ public:
 
         cout << "\n" << "Now, we try to remove the first element deploy out of the list" << endl;
         //remove an order from the list
-        l1.remove(&deploy1);
+        l1.remove(deploy1);
 
 
         //display the list
@@ -64,7 +65,8 @@ public:
         cout << "\n" << "Here is the Current Orderlist:" << endl;
         for (int i = 0; i < l1.getOrderList()->size(); i++) {
             cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
-        }
-    }
+        }*/
+ /*   }*/
 
-};
+ return 0;
+}

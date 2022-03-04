@@ -20,7 +20,6 @@ Player::Player() {
     orderList = new Orderslist();
     int playerId=0;
     armyNum = 50;
-
 }
 
 //Player destructor
@@ -39,7 +38,6 @@ Player::~Player(){
     }
     delete playerDefendList;
     delete orderList;
-
 }
 
 //Player copy constructor
@@ -89,6 +87,7 @@ Player&Player::operator=(const Player& player1) {
     }
 
     this->playerId = player1.playerId;
+
     return *this;
 }
 
@@ -247,10 +246,12 @@ int Player::getHandLimit() {
 
 void Player::issueOrders(Order *order) {
     //add the order in the order list
+
     orderList->setOrderList(order);
 
-
 }
+
+
 
 //getTerritoryList
 vector<Territory*>* Player::getTerritoryList() {
