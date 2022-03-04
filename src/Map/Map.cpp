@@ -44,16 +44,16 @@ void Territory::setContinentName(const string &continentName) {
     *_continentName = continentName;
 }
 
-void Territory::setNumArmies(int numArmies) {
-    _numArmies = numArmies;
+void Territory::setArmyBonusValue(int numArmies) {
+    _armyBonusValue = numArmies;
 }
 
 const string &Territory::getContinentName() const {
     return *_continentName;
 }
 
-int Territory::getNumArmies() const {
-    return _numArmies;
+int Territory::getArmyBonusValue() const {
+    return _armyBonusValue;
 }
 
 // Territory copy constructor
@@ -62,7 +62,7 @@ Territory::Territory(const Territory &t1) {
     _territoryId = t1._territoryId;
     _continentName = t1._continentName;
     _continentId = t1._continentId;
-    _numArmies = t1._numArmies;
+    _armyBonusValue = t1._armyBonusValue;
 }
 
 //Territory::~Territory() {
@@ -71,18 +71,18 @@ Territory::Territory(const Territory &t1) {
 //}
 
 // Territory Assignment Operator
-Territory&Territory::operator=(const Territory& t1) {
+Territory &Territory::operator=(const Territory &t1) {
     this->_name = t1._name;
     this->_territoryId = t1._territoryId;
     this->_continentName = t1._continentName;
     this->_continentId = t1._continentId;
-    this->_numArmies = t1._numArmies;
+    this->_armyBonusValue = t1._armyBonusValue;
     return *this;
 }
 
 //Territory stream insertion
 std::ostream &operator<<(ostream &os, const Territory &territory) {
-    os<<"Hi I am a Territory"<<endl;
+    os << "Hi I am a Territory" << endl;
     return os;
 }
 
@@ -104,7 +104,7 @@ Map::Map(const Map &map1) {
 // Map assignment operator overload
 // it should call the copy constructor of the other classes
 // to avoid copy the pointer
-Map&Map::operator=(const Map& map1) {
+Map &Map::operator=(const Map &map1) {
     SIZE = map1.SIZE;
     territory = map1.territory;
     return *this;
@@ -113,7 +113,7 @@ Map&Map::operator=(const Map& map1) {
 
 //Map stream insertion
 std::ostream &operator<<(ostream &os, const Map &map) {
-    os<<"Hi I am a Map"<<endl;
+    os << "Hi I am a Map" << endl;
     return os;
 }
 
@@ -157,7 +157,7 @@ void Map::printTerritoryBorders(int rowIndex) {
                  << " "
                  << neighbour.getContinentName()
                  << " "
-                 << neighbour.getNumArmies();
+                 << neighbour.getArmyBonusValue();
             continue;
         }
         cout << " ---> " << neighbour.getName()
@@ -168,7 +168,7 @@ void Map::printTerritoryBorders(int rowIndex) {
              << " "
              << neighbour.getContinentName()
              << " "
-             << neighbour.getNumArmies();
+             << neighbour.getArmyBonusValue();
     }
     cout << endl << endl;
 }
@@ -321,6 +321,30 @@ bool Map::validate() {
 
 vector<Territory> *Map::getTerritory() {
     return territory;
+}
+
+int Map::getNumOfTerritoriesInContinent(int id) {
+    int numOfTerritories = 0;
+    for (int index = 0; index < SIZE; ++index) {
+        if (territory[index][0].getContinentId() == id) {
+            numOfTerritories++;
+        }
+    }
+    return numOfTerritories;
+}
+
+int Map::getLastContinentId() {
+    Territory lastTerritory = territory[SIZE-1][0];
+    return lastTerritory.getContinentId();
+}
+
+int Map::getArmyContinentBonus(int continentId) {
+    for (int index = 0; index < SIZE; ++index) {
+        if (territory[index][0].getContinentId() == continentId) {
+            return territory[index][0].getArmyBonusValue();
+        }
+    }
+    return 0;
 }
 
 // Functions for the MapLoader
@@ -524,7 +548,7 @@ Map *MapLoader::generateMap() {
                         continentName = continentValues[0];
                         numArmies = stoi(continentValues[1]);
                         map->getTerritory()[i][j].setContinentName(continentName);
-                        map->getTerritory()[i][j].setNumArmies(numArmies);
+                        map->getTerritory()[i][j].setArmyBonusValue(numArmies);
                     }
                 }
             }
@@ -536,7 +560,7 @@ Map *MapLoader::generateMap() {
     return map;
 }
 
-MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
+MapLoader &MapLoader::operator=(const MapLoader &mapLoader1) {
     map = mapLoader1.map;
     continents = mapLoader1.continents;
     countries = mapLoader1.countries;
@@ -545,7 +569,7 @@ MapLoader&MapLoader::operator=(const MapLoader& mapLoader1) {
 }
 
 std::ostream &operator<<(ostream &os, const MapLoader &mapLoader1) {
-    os<<"Hi I am a MapLoader"<<endl;
+    os << "Hi I am a MapLoader" << endl;
     return os;
 }
 
@@ -561,4 +585,3 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
-

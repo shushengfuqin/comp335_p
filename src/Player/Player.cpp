@@ -268,15 +268,15 @@ int Player::getPlayerId(){
     return playerId;
 }
 
-//int Player::getArmyNum() {
-//    return armyNum;
-//}
-//
-//int Player::addArmyNum(int number) {
-//    armyNum+=number;
-//    return armyNum;
-//}
-//
+int Player::getArmyNum() {
+    return armyNum;
+}
+
+int Player::addArmyNum(int number) {
+    armyNum+=number;
+    return armyNum;
+}
+
 //int Player::removeArmyNum(int number) {
 //    armyNum-=number;
 //    return armyNum;
@@ -305,4 +305,30 @@ int Player::getPlayerNumOfTerritoriesInContinent(int id) {
     return numOfTerritories;
 
 }
+
+
+void Player::calculateBonus(Map *map) {
+    int continentNum=map->getLastContinentId();
+    for(int i=1;i<=continentNum;i++){
+        int x= this->getPlayerNumOfTerritoriesInContinent(continentNum);
+        int y=map->getNumOfTerritoriesInContinent(continentNum);
+
+        if(x==y){
+            cout<<"player have one complete continent: "<<endl;
+            armyNum+=map->getArmyContinentBonus(continentNum);
+        }
+    }
+
+}
+
+void Player::calculateArmy(Map *map){
+    armyNum+=playerTerritoryList->size()/3;
+    this->calculateBonus(map);
+    if(armyNum<3){
+        armyNum=3;
+    }
+
+}
+
+
 
