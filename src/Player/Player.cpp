@@ -19,6 +19,7 @@ Player::Player() {
     //player owns an order list
     orderList = new Orderslist();
     int playerId=0;
+    armyNum = 50;
 
 }
 
@@ -308,14 +309,16 @@ int Player::getPlayerNumOfTerritoriesInContinent(int id) {
 
 
 void Player::calculateBonus(Map *map) {
+    cout << "Init" << endl;
     int continentNum=map->getLastContinentId();
     for(int i=1;i<=continentNum;i++){
-        int x= this->getPlayerNumOfTerritoriesInContinent(continentNum);
-        int y=map->getNumOfTerritoriesInContinent(continentNum);
+        cout << "for loop " << i << endl;
+        int x= this->getPlayerNumOfTerritoriesInContinent(i);
+        int y=map->getNumOfTerritoriesInContinent(i);
 
         if(x==y){
             cout<<"player have one complete continent: "<<endl;
-            armyNum+=map->getArmyContinentBonus(continentNum);
+            armyNum+=map->getArmyContinentBonus(i);
         }
     }
 
@@ -327,6 +330,7 @@ void Player::calculateArmy(Map *map){
     if(armyNum<3){
         armyNum=3;
     }
+    cout << "Army Value is ..." << armyNum <<endl;
 
 }
 

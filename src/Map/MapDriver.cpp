@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "Map.h"
+#include "../Player/Player.h"
 
 const int SIZE = 13;
 class MapDriver{
@@ -134,6 +135,24 @@ public:
         cout << "_____" << map->getNumOfTerritoriesInContinent(1) << "_____" << endl;
         cout << "_____" << map->getLastContinentId() << "_____" << endl;
         cout << "_____" << map->getArmyContinentBonus(1)<< "_____" << endl;
+
+        // Army value with 1 territory
+        Player* player = new Player();
+        player->addTerritory(t1);
+        player->displayTerritory(player->getTerritoryList());
+        player->calculateArmy(map);
+
+        // Army value with 3 territory differet continents
+        player->addTerritory(t2);
+        player->addTerritory(t4);
+        player->displayTerritory(player->getTerritoryList());
+        player->calculateArmy(map);
+
+        // Army value with territory completing contintent
+        player->addTerritory(t3);
+        player->displayTerritory(player->getTerritoryList());
+        player->calculateArmy(map);
+
 
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.
