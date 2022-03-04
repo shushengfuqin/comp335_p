@@ -62,6 +62,7 @@ public:
         player->displayTerritory(player->getTerritoryList());
 
 
+
         //create new orders
         Deploy deploy1;
         Advance advance1;
@@ -130,6 +131,10 @@ public:
 
 
 
+        player->displayTerritory(player->getTerritoryList());
+        player->containsTerritory(territory1);
+        player->containsTerritory(territory2);
+        player->containsTerritory(territory9);
 
     }
 };

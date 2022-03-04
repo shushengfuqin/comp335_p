@@ -182,6 +182,17 @@ void Player::cancelAttack(Territory *territory) {
 
 }
 
+bool Player::containsTerritory(Territory *territory) {
+    if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory) ) {
+        cout<<"player has this territory"<<endl;
+        return true;
+    }
+    else {
+        cout<<"player does not have this territory"<<endl;
+       return true;
+    }
+}
+
 //cancel the defend
 void Player::cancelDefend(Territory *territory) {
     //validating if the territory already in the list
