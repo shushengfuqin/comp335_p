@@ -17,7 +17,7 @@ public:
 
     const string &getContinentName() const;
 
-    int getNumArmies() const;
+    int getArmyBonusValue() const;
 
     void setName(const string &name);
 
@@ -25,7 +25,7 @@ public:
 
     void setContinentName(const string &continentName);
 
-    void setNumArmies(int numArmies);
+    void setArmyBonusValue(int numArmies);
 
     Territory(const string name, const int territoryId, const int continentId);
 
@@ -42,7 +42,7 @@ private:
     int _territoryId;
     int _continentId;
     string *_continentName;
-    int _numArmies;
+    int _armyBonusValue;
 public:
 
 };
@@ -77,6 +77,12 @@ public:
     bool bfs(int start);
 
     bool bfsContinents(int start, int continentId);
+
+    int getNumOfTerritoriesInContinent(int id);
+
+    int getLastContinentId();
+
+    int getArmyContinentBonus(int continentId);
 
     virtual ~Map();
 

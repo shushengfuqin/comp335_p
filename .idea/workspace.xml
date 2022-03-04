@@ -13,11 +13,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +46,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -108,7 +111,35 @@
       <option name="project" value="LOCAL" />
       <updated>1644825291142</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added the remove territory method and the army parameter in the player object">
+      <created>1646176974053</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646176974053</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added the remove territory method and the army parameter in the player object">
+      <created>1646177008978</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646177008978</updated>
+    </task>
+    <task id="LOCAL-00004" summary="put the main back">
+      <created>1646177139948</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646177139948</updated>
+    </task>
+    <task id="LOCAL-00005" summary="update the removing feature and update the get army number method.">
+      <created>1646180420216</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646180420216</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,7 +158,22 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit test" />
-    <MESSAGE value="create new branch  edit orders" />
-    <option name="LAST_COMMIT_MESSAGE" value="create new branch  edit orders" />
+
+    <MESSAGE value="added the remove territory method and the army parameter in the player object" />
+    <MESSAGE value="put the main back" />
+    <MESSAGE value="update the removing feature and update the get army number method." />
+    <option name="LAST_COMMIT_MESSAGE" value="update the removing feature and update the get army number method." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Map/MapDriver.cpp</url>
+          <line>150</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+
   </component>
 </project>
