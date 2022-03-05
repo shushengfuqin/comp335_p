@@ -30,7 +30,21 @@ Territory::Territory(const string name, const int territoryId, const int contine
     *_name = name;
 
     _continentName = new string;
+    belongToPlayer=-1;
 }
+
+void Territory::setPlayer(int playerId) {
+    belongToPlayer=playerId;
+}
+
+int Territory::getPlayer() const{
+    return belongToPlayer;
+}
+
+void Territory::neutralState() {
+    belongToPlayer=-1;
+}
+
 
 int Territory::getTerritoryId() const {
     return _territoryId;

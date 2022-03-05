@@ -86,6 +86,7 @@ Player&Player::operator=(const Player& player1) {
         this->orderList->setOrderList(player1.orderList->getOrderList()->at(i));
     }
 
+
     this->playerId = player1.playerId;
 
     return *this;
