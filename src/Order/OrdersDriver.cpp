@@ -10,13 +10,35 @@ using namespace std;
 int main() {
 
 
-         Player *player1;
-         Territory *territory1;
+         Player *player1=new Player();
+         player1->setPlayerId(1);
+         Player* player2 = new Player();
+         player2->setPlayerId(2);
+
+         Territory* territory1= new Territory( "big", 1 ,1);
+         Territory* territory2= new Territory( "small", 2 ,2);
+         Territory* territory3= new Territory( "medium", 3 ,3);
+         player1->addTerritory(territory1);
+         player1->addTerritory(territory2);
+         player2->addTerritory(territory3);
+
+
+         territory1->setArmyBonusValue(5);
+         territory2->setArmyBonusValue(3);
+         territory3->setArmyBonusValue(8);
+
 /*    void callOrdersDriver() {*/
         //Orders
+        cout<<"creating deploy order"<<endl;
         Deploy *deploy1 = new Deploy (player1,territory1,3);
+        cout<<"validate deploy"<<endl;
+        deploy1->validate();
+        deploy1->execute();
 
-        Advance advance1;
+        Advance* advance1 = new Advance(player1,territory1,territory2,5);
+        advance1->validate();
+
+       /* Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
         Airlift airlift1;
@@ -66,7 +88,7 @@ int main() {
         for (int i = 0; i < l1.getOrderList()->size(); i++) {
             cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
         }
- /*   }*/
-
+ *//*   }*//*
+*/
  return 0;
 }

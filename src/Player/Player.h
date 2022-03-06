@@ -11,6 +11,8 @@
 #include "vector"
 using namespace std;
 
+struct Order;
+class Orderslist;
 
 class Player{
 public:
@@ -55,7 +57,6 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
-
     Orderslist* orderList;
     int armyNum;
     int playerId;

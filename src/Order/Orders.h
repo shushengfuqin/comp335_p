@@ -15,6 +15,7 @@ class Player;
 class Territory;
 class Map;
 
+
 struct Order
 {
 public:
@@ -33,7 +34,7 @@ public:
 
     void setID(int i);
 
-    virtual string getOrderType();
+     string getOrderType();
 
     Map* map;
     Player *player;

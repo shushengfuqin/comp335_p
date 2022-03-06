@@ -92,6 +92,7 @@ Deploy::Deploy(Player *player,Territory* targetTerritory,unsigned int armies) : 
     this->player = player;
     this->targetTerritory = targetTerritory;
     this->armies = armies;
+    cout<<"The order"<<" "<<type<<" is been placed"<<" with issuer "<<player->getPlayerId()<<" with target territory "<<targetTerritory->getName()<<" with number of armies "<<armies<<endl;
 
 }
 
@@ -134,7 +135,7 @@ void Deploy::execute() {
     if(validate()){
         player->removeArmyNum(armies);
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()+armies);
-        cout<<armies<<"armies has been deployed to the territory"<<targetTerritory<<endl;
+        cout<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<endl;
     } else{
         cout<<"deploy cannot be executed"<<endl;
     }
