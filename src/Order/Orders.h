@@ -14,6 +14,9 @@ using namespace std;
 class Player;
 class Territory;
 class Map;
+class Card;
+class Deck;
+class Hand;
 
 
 struct Order

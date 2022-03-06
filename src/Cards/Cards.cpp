@@ -219,3 +219,14 @@ Hand& Hand::operator=(const Hand& h)
     }
     return *this;
 }
+
+Card Hand::getCardByType(CardType ct){
+    Card foundCard;
+    for(int i = 0; i < size; i++){
+        if(cards[i].getCardType() == ct){
+            foundCard = removeCardAtIndex(i);
+            break;
+        }
+    }
+    return foundCard;
+}
