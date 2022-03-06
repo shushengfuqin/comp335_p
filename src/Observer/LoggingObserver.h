@@ -26,7 +26,7 @@ public:
     void Attach(Observer *obs);
 
 private:
-    list<Observer *> *_observers;
+    list<Observer *> _observers;
 };
 
 class Observer{
@@ -51,7 +51,8 @@ public:
     ~LogObserver();
     void Update(ILoggable* il) override;
 
-    Subject *_subject{};
+protected:
+    Subject* _subjects;
 };
 
 #endif //COMP335_P_LOGGINGOBSERVER_H

@@ -35,7 +35,6 @@ void CommandProcessor::saveCommand(string cmd) {
     // Save effect
     c.saveEffect(cmd);
     lc->push_back(c);
-    cout << "it's me";
     Notify(this);
 }
 

@@ -8,42 +8,40 @@ using namespace std;
 
 
 Subject::Subject() {
-    _observers = new list<Observer*>();
+    new LogObserver(this);
 }
 
-Subject::~Subject(){
-    delete _observers;
-}
+Subject::~Subject() {}
 
 void Subject::Attach(Observer *obs){
-    _observers->push_back(obs);
+    _observers.push_back(obs);
 }
 
 void Subject::Detach(Observer *obs) {
-    _observers->remove(obs);
+    _observers.remove(obs);
 }
 
 void Subject::Notify(ILoggable *il) {
-    for(Observer* o: *_observers){
+    for(Observer* o: _observers){
         o->Update(il);
     }
 }
 
-// Observer class methods
+// Observer
 
-Observer::Observer() = default;;
-Observer::~Observer() = default;;
-
+Observer::Observer() {}
+Observer::~Observer() {}
 // LogObserver class methods
 
 LogObserver::LogObserver() = default;
 
-LogObserver::LogObserver(Subject* s): _subject(s){
-    _subject->Attach(this);
+LogObserver::LogObserver(Subject* s){
+    _subjects = s;
+    _subjects->Attach(this);
 }
 
 LogObserver::~LogObserver(){
-    _subject->Detach(this);
+    _subjects->Detach(this);
 }
 
 void LogObserver::Update(ILoggable *il) {
