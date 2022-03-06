@@ -37,6 +37,7 @@ public:
     GameState getState() { return currentState; }
     CommandProcessor *cmdProc;
     GameState currentState;
+    string cmdInput;
 };
 
 #endif //COMP335_P_GAMEENGINE_H
