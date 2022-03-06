@@ -14,6 +14,8 @@ public:
     void callPlayerDriver(){
         //initialize the player
         Player *player=new Player();
+
+        // TODO:: NEUTRAL PLAYER DOUBLE CHECK WITH TEACHER
         player->setPlayerId(1);
 
         //initialize some new territories.
