@@ -12,59 +12,60 @@ int main(int argc, char *argv[]) {
 
 
     string x;
-    cout << "------------- ORDER DRIVER CLASS ----------------\n";
-    OrdersDriver od;
-    od.callOrdersDriver();
-    cout << "Going to the next one please enter Y\n";
-    cin >> x;
-    cout << "\n";
-
-
-    if(x == "y"){
-        cout << "------------- CARDS DRIVER CLASS ----------------\n";
-        CardsDriver cd;
-        cd.callCardsDriver();
-    }
-
-    cout << "\n";
-    cout << "Going to the next one please enter Y\n";
-    cin >> x;
-
-    cout << "\n";
-    if(x == "y"){
-        cout << "------------- GAME ENGINE DRIVER CLASS ----------------\n";
-        CommandProcessorDriver cpd;
-        // file
-        if(argc > 1 && argv[1] == "-file")
-            cpd.callCommandProcessorDriver(true, argv[2]);
-            // console (default)
-        else
-            cpd.callCommandProcessorDriver(false, "");
-
-    }
-
-    cout << "\n";
-    cout << "Going to the next one please enter Y\n";
-    cin >> x;
-
-    cout << "\n";
-    if(x == "y"){
-        cout << "------------- MAP DRIVER CLASS ----------------\n";
-        MapDriver md;
-        md.callMapDriver();
-    }
+    cout << "------------- MAP DRIVER CLASS ----------------\n";
+    MapDriver md;
+    md.callMapDriver();
 
     cout << "\n";
     cout << "Going to the next one please enter Y\n";
     cin >> x;
     cout << "\n";
-    if(x == "y"){
+
+    if(x == "y") {
         cout << "------------- PLAYER DRIVER CLASS ----------------\n";
         PlayerDriver playerDriver;
         playerDriver.callPlayerDriver();
     }
-
-    exit(0);
-    return 0;
+    cout << "b\n";
+//    cout << "Going to the next one please enter Y\n";
+//    cin >> x;
+//    cout << "\n";
+//
+//    if(x == "y"){
+//        cout << "------------- CARDS DRIVER CLASS ----------------\n";
+//        CardsDriver cd;
+//        cd.callCardsDriver();
+//    }
+//
+//    cout << "Going to the next one please enter Y\n";
+//    cin >> x;
+//    cout << "\n";
+//
+//    if(x == "y"){
+//        cout << "------------- GAME ENGINE DRIVER CLASS ----------------\n";
+//        CommandProcessorDriver cpd;
+//        // file
+//        if(argc > 1 && argv[1] == "-file")
+//            cpd.callCommandProcessorDriver(true, argv[2]);
+//            // console (default)
+//        else
+//            cpd.callCommandProcessorDriver(false, "");
+//
+//    }
+//
+//    cout << "\n";
+//    cout << "Going to the next one please enter Y\n";
+//    cin >> x;
+//
+//    if(x == "y") {
+//        cout << "------------- ORDER DRIVER CLASS ----------------\n";
+//        OrdersDriver od;
+//        od.callOrdersDriver();
+//        cout << "Going to the next one please enter Y\n";
+//        cin >> x;
+//        cout << "\n";
+//    }
+//    cout << "\n";
+exit(0);
 }
 

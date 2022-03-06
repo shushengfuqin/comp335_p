@@ -14,7 +14,7 @@ public:
     ~CommandProcessorDriver()= default;
     static void callCommandProcessorDriver(bool readFromFile, string filename) {
 
-        auto* logObserver = new LogObserver();
+        LogObserver* logObserver = new LogObserver();
         // Initialize gamestate at state and update upon state change
         //GameState currentState = start;
         //GameState* currentStatePtr = &currentState;

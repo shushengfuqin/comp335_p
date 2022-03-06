@@ -1,8 +1,6 @@
 #include "CommandProcessor.h"
 #include <iostream>
-#include <fstream>
 #include <regex>
-#include "../Observer/LoggingObserver.h"
 
 /////////////////
 

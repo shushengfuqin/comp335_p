@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Orders.h"
+#include "../Map/Map.h"
 
 using namespace std;
 
@@ -14,10 +15,43 @@ public:
     ~OrdersDriver(){};
 
     void callOrdersDriver() {
+
+         // creation of map object
+         const int SIZE = 13;
+        Map *map = new Map(SIZE); // new map
+
+         Player *player1=new Player();
+         player1->setPlayerId(1);
+         Player* player2 = new Player();
+         player2->setPlayerId(2);
+
+         Territory* territory1= new Territory( "big", 1 ,1);
+         Territory* territory2= new Territory( "small", 2 ,2);
+         Territory* territory3= new Territory( "medium", 3 ,3);
+         player1->addTerritory(territory1);
+         player1->addTerritory(territory2);
+         player2->addTerritory(territory3);
+
+
+         territory1->setArmyBonusValue(5);
+         territory2->setArmyBonusValue(3);
+         territory3->setArmyBonusValue(8);
+
+/*    void callOrdersDriver() {*/
         //Orders
         LogObserver* logObserver = new LogObserver();
-        Deploy deploy1;
-        Advance advance1;
+        cout<<"creating deploy order"<<endl;
+        Deploy *deploy1 = new Deploy (player1,territory1,3);
+        cout<<"validate deploy"<<endl;
+        deploy1->Attach(logObserver);
+        deploy1->validate();
+        deploy1->execute();
+
+        Advance* advance1 = new Advance(player1,territory1,territory2,5);
+        advance1->Attach(logObserver);
+        advance1->validate();
+
+       /* Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
         Airlift airlift1;
@@ -28,8 +62,12 @@ public:
         blockade1.Attach(logObserver);
         airlift1.Attach(logObserver);
         negotiate1.Attach(logObserver);
+        Negotiate negotiate1;
 
         //test the valid and execute from orders
+       // cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
+
+      deploy1->execute();
         cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
         deploy1.validate();
         deploy1.execute();
@@ -39,6 +77,8 @@ public:
 
         //add orders to the list
         l1.setOrderList(&deploy1);
+        l1.setOrderList(&advance1);
+        l1.setOrderList(deploy1);
         l1.setOrderList(&advance1);
         l1.setOrderList(&bomb1);
         l1.setOrderList(&blockade1);
@@ -82,3 +122,7 @@ public:
     }
 
 };
+        }
+ *//*   }*//*
+*/
+}};

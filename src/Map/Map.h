@@ -5,6 +5,7 @@
 #ifndef COMP335_P_MAP_H
 #define COMP335_P_MAP_H
 #include <vector>
+#pragma once
 using namespace std;
 
 class Territory {
@@ -41,7 +42,8 @@ public:
 
     friend std::ostream& operator<<(ostream &os, const Territory& territory);
 
-//    virtual ~Territory();
+
+    virtual ~Territory();
 
 private:
     string *_name;
@@ -92,6 +94,8 @@ public:
     int getArmyContinentBonus(int continentId);
 
     virtual ~Map();
+
+    bool isAdjacentTerritory(Territory* source, Territory* target);
 
 private:
     int SIZE;

@@ -2,6 +2,7 @@
 // Created by Mia Yan on 8/2/2022.
 //
 #include <ostream>
+#include <algorithm>
 #include "Player.h"
 
 using namespace std;
@@ -291,11 +292,11 @@ int Player::addArmyNum(int number) {
     return armyNum;
 }
 
-//int Player::removeArmyNum(int number) {
-//    armyNum-=number;
-//    return armyNum;
-//}
-//
+int Player::removeArmyNum(int number) {
+   armyNum-=number;
+   return armyNum;
+}
+
 //int Player::updateArmyNum(int continentBonus) {
 //    //need to update the code
 //    return armyNum;

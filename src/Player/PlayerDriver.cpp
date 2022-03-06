@@ -11,17 +11,17 @@ class PlayerDriver{
 public:
     PlayerDriver()= default;;
     ~PlayerDriver()= default;;
-    void callPlayerDriver(){
+    static void callPlayerDriver(){
         //initialize the player
-        Player *player=new Player();
+        auto *player=new Player();
 
         // TODO:: NEUTRAL PLAYER DOUBLE CHECK WITH TEACHER
         player->setPlayerId(1);
 
         //initialize some new territories.
-        Territory *territory1= new Territory( "big", 1 ,1);
-        Territory *territory2= new Territory( "small", 2 ,2);
-        Territory *territory3= new Territory( "medium", 3 ,3);
+        auto *territory1= new Territory( "big", 1 ,1);
+        auto *territory2= new Territory( "small", 2 ,2);
+        auto *territory3= new Territory( "medium", 3 ,3);
 
         //add territories to the player attack list
         player->attackTerritory(territory1);
@@ -34,9 +34,9 @@ public:
         player->displayTerritory(player->getAttackList());
 
         //instantiate new list for player to defend
-        Territory *territory4= new Territory( "large", 4,4 );
-        Territory *territory5= new Territory( "ice", 5 ,5);
-        Territory *territory6= new Territory( "cap", 6 ,6);
+        auto *territory4= new Territory( "large", 4,4 );
+        auto *territory5= new Territory( "ice", 5 ,5);
+        auto *territory6= new Territory( "cap", 6 ,6);
 
         //add territories to the player defend list
         player->defendTerritory(territory4);
@@ -53,9 +53,9 @@ public:
 
 
         //create new territory that should be used to add into the player class
-        Territory *territory7= new Territory( "pikachu", 7,7 );
-        Territory *territory8= new Territory( "eevee", 8 , 8);
-        Territory *territory9= new Territory( "jigglypuff", 9, 9 );
+        auto *territory7= new Territory( "pikachu", 7,7 );
+        auto *territory8= new Territory( "eevee", 8 , 8);
+        auto *territory9= new Territory( "jigglypuff", 9, 9 );
 
 
         //add territory belongs to the player
@@ -113,12 +113,12 @@ public:
 
 
         //create a new player
-        Player *player4=new Player();
+        auto *player4=new Player();
         player4->setPlayerId(4);
         //create new territory that should be used to add into the player class
-        Territory *territory10= new Territory( "new territory 10", 10,7 );
-        Territory *territory11= new Territory( "new territory 11", 11 , 8);
-        Territory *territory12= new Territory( "new territory 12", 12, 9 );
+        auto *territory10= new Territory( "new territory 10", 10,7 );
+        auto *territory11= new Territory( "new territory 11", 11 , 8);
+        auto *territory12= new Territory( "new territory 12", 12, 9 );
 
 
         //add territory belongs to the player
@@ -145,5 +145,7 @@ public:
         cout<<territory1->getPlayer()<<endl;
         territory1->neutralState();
         cout<<territory1->getPlayer()<<endl;
+        cout << "a\n";
+
     }
 };

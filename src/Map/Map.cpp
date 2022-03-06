@@ -46,6 +46,7 @@ void Territory::neutralState() {
 }
 
 
+
 int Territory::getTerritoryId() const {
     return _territoryId;
 }
@@ -99,6 +100,8 @@ std::ostream &operator<<(ostream &os, const Territory &territory) {
     os << "Hi I am a Territory" << endl;
     return os;
 }
+
+Territory::~Territory() = default;
 
 // Functions for the Map class
 // Constructor with no vector (Vector is empty)
@@ -361,6 +364,19 @@ int Map::getArmyContinentBonus(int continentId) {
     return 0;
 }
 
+bool Map::isAdjacentTerritory(Territory* source, Territory* target) {
+    for (int i = 0; i < SIZE; ++i) {
+        if (territory[i][0].getTerritoryId() == source->getTerritoryId()) {
+            for (auto adjTerritory : territory[i]) {
+                if (adjTerritory.getTerritoryId() == target->getTerritoryId()) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
 // Functions for the MapLoader
 MapLoader::MapLoader(const string &fileName) {
     continents = new string;
@@ -599,3 +615,4 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
+

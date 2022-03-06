@@ -11,6 +11,8 @@
 #include "vector"
 using namespace std;
 
+struct Order;
+class Orderslist;
 
 class Player{
 public:
@@ -46,6 +48,7 @@ public:
     bool containsTerritory(Territory *territory);
 
 //    int removeArmyNum(int number);
+    int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
 
@@ -56,7 +59,6 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
-
     Orderslist* orderList;
     int armyNum;
     int playerId;
