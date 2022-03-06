@@ -10,16 +10,6 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    CommandProcessorDriver cpd;
-    // file
-    if(argc > 1 && argv[1] == "-file")
-        cpd.callCommandProcessorDriver(true, argv[2]);
-    // console (default)
-    else
-        cpd.callCommandProcessorDriver(false, "");
-
-    exit(0);
-
 
     string x;
 
@@ -44,7 +34,13 @@ int main(int argc, char *argv[]) {
     cout << "\n";
     if(x == "y"){
         cout << "------------- GAME ENGINE DRIVER CLASS ----------------\n";
-        GameEngineDriver::callGameEngineDriver();
+        CommandProcessorDriver cpd;
+        // file
+        if(argc > 1 && argv[1] == "-file")
+            cpd.callCommandProcessorDriver(true, argv[2]);
+            // console (default)
+        else
+            cpd.callCommandProcessorDriver(false, "");
     }
 
     cout << "\n";
@@ -67,6 +63,7 @@ int main(int argc, char *argv[]) {
         PlayerDriver playerDriver;
         playerDriver.callPlayerDriver();
     }
+    cout << "Done";
     return 0;
 }
 

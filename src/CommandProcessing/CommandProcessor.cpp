@@ -9,7 +9,13 @@ Command::Command(string cmd){
     command = cmd;
 }
 
-
+void Command::saveEffect(string e) {
+    Notify(this);
+    effect = e;
+}
+string Command::stringToLog() {
+    return "Command stringToLog";
+}
 /////////////////
 
 void CommandProcessor::getCommand() {
@@ -29,6 +35,8 @@ void CommandProcessor::saveCommand(string cmd) {
     // Save effect
     c.saveEffect(cmd);
     lc->push_back(c);
+    cout << "it's me";
+    Notify(this);
 }
 
 // If valid, returns the passing command
@@ -62,7 +70,9 @@ string CommandProcessor::validate(GameState gs) {
 
     return c;
 }
-
+string CommandProcessor::stringToLog() {
+    return "CommandProcessor stringToLog";
+}
 //////////////
 
 string FileCommandProcessorAdapter::readCommand() {
