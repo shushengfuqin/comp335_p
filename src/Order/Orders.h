@@ -66,7 +66,7 @@ public:
 
     Advance();
     ~Advance();
-     Advance(const Advance& copiedAd);
+    Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
     string* getOrderType();
 
