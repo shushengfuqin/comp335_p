@@ -44,7 +44,7 @@ public:
     int getArmyNum();
     int addArmyNum(int number);
     bool containsTerritory(Territory *territory);
-//    int removeArmyNum(int number);
+    int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
 

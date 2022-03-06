@@ -138,5 +138,9 @@ public:
         player->containsTerritory(territory2);
         player->containsTerritory(territory9);
 
+        territory1->setPlayer(1);
+        cout<<territory1->getPlayer()<<endl;
+        territory1->neutralState();
+        cout<<territory1->getPlayer()<<endl;
     }
 };

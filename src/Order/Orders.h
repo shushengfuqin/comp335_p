@@ -13,7 +13,7 @@
 using namespace std;
 class Player;
 class Territory;
-
+class Map;
 
 struct Order
 {
@@ -35,7 +35,7 @@ public:
 
     virtual string getOrderType();
 
-
+    Map* map;
     Player *player;
     const Player* getOrderIssuer();
     void setOrderIssuer(Player *issuer);
@@ -111,6 +111,7 @@ struct Blockade : public Order{
 public:
 
     Blockade();
+    Blockade(Player* player, Territory* targetTerritory);
     ~Blockade();
     Blockade(const Blockade& copiedBl);
     Blockade& operator = (const Blockade &Blo);
@@ -120,6 +121,7 @@ public:
 
 private:
     string type = {"blockade"};
+    Territory* targetTerritory;
 };
 
 struct Airlift : public Order{
@@ -146,6 +148,7 @@ public:
 
 
     Negotiate() ;
+    Negotiate(Player* player,Player* targetPlayer);
     ~Negotiate();
     Negotiate(const Negotiate& copiedNe);
     Negotiate& operator = (const Negotiate &Neo);
@@ -154,6 +157,7 @@ public:
     virtual void execute();
 
 private:
+    Player* targetPlayer;
     string type = {"negotiate"};
 };
 

@@ -35,6 +35,12 @@ public:
 
     friend std::ostream& operator<<(ostream &os, const Territory& territory);
 
+    void setPlayer(int playerId);
+
+    void neutralState();
+
+    int getPlayer() const;
+
 //    virtual ~Territory();
 
 private:
@@ -43,6 +49,7 @@ private:
     int _continentId;
     string *_continentName;
     int _armyBonusValue;
+    int belongToPlayer;
 public:
 
 };
@@ -85,6 +92,8 @@ public:
     int getArmyContinentBonus(int continentId);
 
     virtual ~Map();
+
+    bool isAdjacentTerritory(Territory* source, Territory* target);
 
 private:
     int SIZE;

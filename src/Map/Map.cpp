@@ -30,7 +30,22 @@ Territory::Territory(const string name, const int territoryId, const int contine
     *_name = name;
 
     _continentName = new string;
+    belongToPlayer=-1;
 }
+
+void Territory::setPlayer(int playerId) {
+    belongToPlayer=playerId;
+}
+
+int Territory::getPlayer() const{
+    return belongToPlayer;
+}
+
+void Territory::neutralState() {
+    belongToPlayer=-1;
+}
+
+
 
 int Territory::getTerritoryId() const {
     return _territoryId;
@@ -347,6 +362,19 @@ int Map::getArmyContinentBonus(int continentId) {
     return 0;
 }
 
+bool Map::isAdjacentTerritory(Territory* source, Territory* target) {
+    for (int i = 0; i < SIZE; ++i) {
+        if (territory[i][0].getTerritoryId() == source->getTerritoryId()) {
+            for (auto adjTerritory : territory[i]) {
+                if (adjTerritory.getTerritoryId() == target->getTerritoryId()) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
 // Functions for the MapLoader
 MapLoader::MapLoader(const string &fileName) {
     continents = new string;
@@ -585,3 +613,4 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
+

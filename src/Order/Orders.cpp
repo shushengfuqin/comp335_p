@@ -121,8 +121,8 @@ string* Deploy::getOrderType() {
 }
 
 bool Deploy::validate() {
-    //Todo: targetTerritory.getPlayer() = getOrderIssuer()
-    if(targetTerritory->getNumArmies()>0){
+
+    if( targetTerritory->getArmyBonusValue()>0 && player->containsTerritory(targetTerritory)){
         cout<<"Deploy is valid and can be executed"<<endl;
         return true;
     }
@@ -135,7 +135,8 @@ bool Deploy::validate() {
 void Deploy::execute() {
 
     if(validate()){
-        targetTerritory->setNumArmies(targetTerritory->getNumArmies()+armies);
+        player->removeArmyNum(armies);
+        targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()+armies);
         cout<<armies<<"armies has been deployed to the territory"<<targetTerritory<<endl;
     } else{
         cout<<"deploy cannot be executed"<<endl;
@@ -187,32 +188,36 @@ string* Advance::getOrderType() {
 }
 
 bool Advance::validate() {
-    //Todo: fromTerritories. getPlayer = getOrderIssuer(), two territories are adjacent
-    if (fromTerritory->getNumArmies()>3) //just put it here
+    if (player->containsTerritory(fromTerritory)&& map->isAdjacentTerritory(fromTerritory, toTerritory))
         return true;
     return false;
 }
 void Advance::execute() {
     if(validate()){
-        //Todo: fromTerritories.getPlayer = toTerritories.getPlayer
-        if(fromTerritory->getNumArmies()>0)//Todo:this need to be fixed
+        if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
             {
-            fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
-            toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
-            cout<<"Advance"<<armies<<"armies from "<<fromTerritory->getName()<<"to "<<toTerritory->getName()<<endl;
+            fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
+            toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
+            cout<<"Advance is executed: Advance"<<armies<<"armies from "<<fromTerritory->getName()<<"to "<<toTerritory->getName()<<endl;
         }
         else{
-            while(toTerritory->getNumArmies()>0 || fromTerritory->getNumArmies()>0){
+            while(toTerritory->getArmyBonusValue()>0 || fromTerritory->getArmyBonusValue()>0){
                 srand(time(NULL));
-                if(rand() % 10 < 6)
-                    toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
-                else if(rand() % 10 < 7)
-                    fromTerritory->setNumArmies(fromTerritory->getNumArmies()-1);
+                if(rand() % 10 < 6){
+                    toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()-1);
+                    cout<<"Advance is executed: Each attacking army unit involved has 60% chances of killing one defending army. \n";
+                }
+                else if(rand() % 10 < 7){
+                    fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-1);
                     armies--;
+                    cout<<"Advance is executed: each defending army unit has 70% chances of killing one attacking army unit. \n";
+                }
+
             }
-            if(toTerritory->getNumArmies()==0){
-                //Todo: toTerritory.setPlayer(fromTerritory.getPlayer)
-                toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
+            if(toTerritory->getArmyBonusValue()==0){
+                toTerritory->setPlayer(player->getPlayerId());
+                player->addTerritory(toTerritory);
+                toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
                 //Todo:A player receives a card
             }
         }
@@ -262,31 +267,78 @@ string* Bomb::getOrderType() {
 }
 
 bool Bomb::validate() {
-
-
+    if(player->containsTerritory(targetTerritory)){
+        cout<<"the player cannot issue bomb order on own territories"<<endl;
+        return false;
+    } else
+        return true;
 }
-void Bomb::execute() {}
+void Bomb::execute() {
+    //Todo:: if the Bomb card is creating
+    if(validate()){
+        targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()/2);
+        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n";
+    } else
+        cout<<" Bomb cannot be executed "<<endl;
+}
+
 
 //Blockade class
-Blockade::Blockade() {
+Blockade::Blockade() : Order() {
     setID(3);
     cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
+Blockade::Blockade(Player* player, Territory* targetTerritory) : Order(player){
+    this->targetTerritory = targetTerritory;
+    this->player = player;
+}
 
-Blockade::~Blockade() {};
 
 //copy constructor
 Blockade::Blockade(const Blockade& copiedBl) {
     this->type = *new string (copiedBl.type);
+    this->player = copiedBl.player;
+    this->targetTerritory = copiedBl.targetTerritory;
 }
+
+Blockade::~Blockade() {
+    delete this->targetTerritory;
+    delete this;
+};
+
 //assignment operator
 Blockade& Blockade::operator = (const Blockade&Blo){
+    Order::operator=(Blo);
+    player = Blo.player;
+    targetTerritory = Blo.targetTerritory;
     return *this;
 };
 
 string* Blockade::getOrderType() {
     return &type;
 }
+
+bool Blockade::validate() {
+    if(player->containsTerritory(targetTerritory))
+        return true;
+    else
+        cout<<"this territory is not belongs to the order issuer, the blockade is invalid"<<endl;
+        return false;
+
+
+}
+
+void Blockade::execute() {
+    //Todo: if the blockade card is creating
+    if(validate()){
+        targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()*2);
+        targetTerritory->neutralState();
+        cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n";
+    } else
+        cout<<"Blockade cannot be executed"<<endl;
+}
+
+
 
 //Airlift class
 Airlift::Airlift() :Order(){
@@ -326,16 +378,18 @@ string* Airlift::getOrderType() {
 }
 
 bool Airlift::validate() {
-    //Todo: fromTerritory.getPlayer == getOrderIssuer() && toTerritory.getPlayer == getOrderIssuer()
-    return true;
-    //else  return false
+    if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)){
+        return true;
+    } else
+        cout<<"The airlift order is invalid";
+        return false;
 }
 
 void Airlift::execute() {
         //Todo::if the playing the airlift card
         if(validate()){
-            fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
-            toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
+            fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
+            toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
         }
         else
             cout<<"No airlift card is creating or airlift order is invalid"<<endl;
@@ -343,19 +397,32 @@ void Airlift::execute() {
 
 
 //Negotiate class
-Negotiate::Negotiate() {
+Negotiate::Negotiate() :Order(){
     setID(5);
     cout<<"The order"<<" "<<type<<" is been placed"<<endl;
 }
 
-Negotiate::~Negotiate() {};
+Negotiate::Negotiate(Player* player,Player* targetPlayer) : Order(player){
+    this->player = player;
+    this->targetPlayer = targetPlayer;
+}
+Negotiate::~Negotiate() {
+    delete this->player;
+    delete this->targetPlayer;
+    delete this;
+};
 
 //copy constructor
 Negotiate::Negotiate(const Negotiate& copiedNe){
     this->type = *new string (copiedNe.type);
+    this->player = copiedNe.player;
+    this->targetPlayer = copiedNe.targetPlayer;
 }
 //assignment operator
 Negotiate& Negotiate::operator = (const Negotiate&Neo){
+    Order::operator=(Neo);
+    player = Neo.player;
+    targetPlayer = Neo.targetPlayer;
     return *this;
 };
 
@@ -363,7 +430,24 @@ string* Negotiate::getOrderType() {
     return &type;
 }
 
+bool Negotiate::validate() {
+    if(targetPlayer = player){
+        cout<<"Target player cannot be the Negotiate Issuer"<<endl;
+        return false;
+    }
+    else
+        return true;
+}
 
+void Negotiate::execute() {
+    //Todo:player creating diplomacy card
+    if(validate()){
+    //Todo: what should be considered as attack?
+     cout<<"The Negotiate has been excuted by player "<<player->getPlayerId()<<"targeting to player "<<targetPlayer->getPlayerId()<<"No attack can be executed between them"<<endl;
+    }
+    else
+        cout<<"The Negotiate order cannot be executed"<<endl;
+}
 
 //implementation of Orderslist
 
