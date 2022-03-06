@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "Map.h"
+#include "../Player/Player.h"
 
 const int SIZE = 13;
 class MapDriver{
@@ -17,43 +18,43 @@ public:
         Map *map = new Map(SIZE); // new map
         Territory *t1 = new Territory("Canada", 1, 1); // new territories
         t1->setContinentName("North-America");
-        t1->setNumArmies(5);
+        t1->setArmyBonusValue(5);
         Territory *t2 = new Territory("USA", 2, 1);
         t2->setContinentName("North-America");
-        t2->setNumArmies(5);
+        t2->setArmyBonusValue(5);
         Territory *t3 = new Territory("Mexico", 3, 1);
         t3->setContinentName("North-America");
-        t3->setNumArmies(5);
+        t3->setArmyBonusValue(5);
         Territory *t4 = new Territory("Egypt", 4, 2);
         t4->setContinentName("Africa");
-        t4->setNumArmies(2);
+        t4->setArmyBonusValue(2);
         Territory *t5 = new Territory("South Africa", 5, 2);
         t5->setContinentName("Africa");
-        t5->setNumArmies(2);
+        t5->setArmyBonusValue(2);
         Territory *t6 = new Territory("USSR", 6, 3);
         t6->setContinentName("Asia");
-        t6->setNumArmies(7);
+        t6->setArmyBonusValue(7);
         Territory *t7 = new Territory("Austria", 7, 3);
         t7->setContinentName("Asia");
-        t7->setNumArmies(7);
+        t7->setArmyBonusValue(7);
         Territory *t8 = new Territory("Israel", 8, 3);
         t8->setContinentName("Asia");
-        t8->setNumArmies(5);
+        t8->setArmyBonusValue(5);
         Territory *t9 = new Territory("Italy", 9, 4);
         t9->setContinentName("Europe");
-        t9->setNumArmies(4);
+        t9->setArmyBonusValue(4);
         Territory *t10 = new Territory("Spain", 10, 4);
         t10->setContinentName("Europe");
-        t10->setNumArmies(4);
+        t10->setArmyBonusValue(4);
         Territory *t11 = new Territory("France", 11, 4);
         t11->setContinentName("Europe");
-        t11->setNumArmies(4);
+        t11->setArmyBonusValue(4);
         Territory *t12 = new Territory("Germany", 12, 4);
         t12->setContinentName("Europe");
-        t12->setNumArmies(4);
+        t12->setArmyBonusValue(4);
         Territory *t13 = new Territory("Pacific Ocean", 13, 4);
         t13->setContinentName("Europe");
-        t13->setNumArmies(4);
+        t13->setArmyBonusValue(4);
 
         // Manually assigning their adjacency territories (borders)
         // Adjacent to "1"
@@ -130,6 +131,28 @@ public:
         } else {
             cout << endl << "---No---" << endl;
         }
+
+        cout << "_____" << map->getNumOfTerritoriesInContinent(1) << "_____" << endl;
+        cout << "_____" << map->getLastContinentId() << "_____" << endl;
+        cout << "_____" << map->getArmyContinentBonus(1)<< "_____" << endl;
+
+        // Army value with 1 territory
+        Player* player = new Player();
+        player->addTerritory(t1);
+        player->displayTerritory(player->getTerritoryList());
+        player->calculateArmy(map);
+
+        // Army value with 3 territory differet continents
+        player->addTerritory(t2);
+        player->addTerritory(t4);
+        player->displayTerritory(player->getTerritoryList());
+        player->calculateArmy(map);
+
+        // Army value with territory completing contintent
+        player->addTerritory(t3);
+        player->displayTerritory(player->getTerritoryList());
+        player->calculateArmy(map);
+
 
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.
