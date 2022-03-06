@@ -12,27 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
-      <change afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CommandProcessing/commands.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameEngine/GameState.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameEngine/GameState.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngineDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngineDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/MapDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/MapDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

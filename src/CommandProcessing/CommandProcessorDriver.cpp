@@ -27,7 +27,7 @@ public:
         string userChoice;
         string* userChoicePtr = &userChoice;
 
-        CommandProcessor * cp;
+        CommandProcessor *cp;
         cp->Attach(logObserver);
         if(readFromFile){
             //filename = "C:\\Users\\Scrib\\Documents\\GitHub\\comp345_p\\src\\CommandProcessing\\commands.txt";
