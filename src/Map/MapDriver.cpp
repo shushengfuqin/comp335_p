@@ -153,6 +153,15 @@ public:
         player->displayTerritory(player->getTerritoryList());
         player->calculateArmy(map);
 
+        // Adjacent Territories
+        bool adj = map->isAdjacentTerritory(t1, t2);
+        cout << "Is t1 adjacent to t2: ";
+        if (adj) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+
 
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.

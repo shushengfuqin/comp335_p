@@ -91,6 +91,8 @@ public:
 
     int getArmyContinentBonus(int continentId);
 
+    bool isAdjacentTerritory(Territory* source, Territory* target);
+
     virtual ~Map();
 
 private:
