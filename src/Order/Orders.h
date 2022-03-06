@@ -27,9 +27,9 @@ public:
     friend ostream & operator <<(ostream &out, const Order &o);
     friend istream & operator >> (istream &in,  Order &o);
 
-    virtual bool validate();
+    virtual bool validate() = 0 ;
 
-    virtual void execute();
+    virtual void execute() = 0;
 
     void setID(int i);
 
@@ -61,7 +61,7 @@ public:
 private:
     string type = {"deploy"};
     Territory* targetTerritory;
-    unsigned int armies
+    unsigned int armies;
 
 
 };

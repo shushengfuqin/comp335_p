@@ -50,14 +50,11 @@ istream & operator >> (istream &in,  Order &o)
 
 
 bool Order::validate() {
-    if (true) {
-        valid = true;
-        cout << "this order is valid and ready to be executed" << endl;
-
-    }else {
-        valid = false;
-    }
-    return valid;
+        if(valid){
+            cout << "this order is valid and ready to be executed" << endl;
+            return true;
+        } else
+            return false;
 }
 
 
