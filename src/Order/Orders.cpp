@@ -209,6 +209,7 @@ Orderslist::~Orderslist(){};
 
 //copy constructor
 Orderslist::Orderslist(const Orderslist& copiedOl) {
+
     this->orderlist = *new vector<Order*>(copiedOl.orderlist);
 }
 
@@ -219,7 +220,7 @@ Orderslist& Orderslist::operator = (const Orderslist&Ol){
 
 
 //stream insert operator
- ostream & operator << (ostream &out, const Orderslist &o)
+ostream & operator << (ostream &out, const Orderslist &o)
 {
     return out;
 }

@@ -8,23 +8,23 @@
 #include <iostream>
 #include <string>
 #include "../Observer/LoggingObserver.h"
+#include <list>
+#include "../CommandProcessing/CommandProcessor.h"
+#include "GameState.h"
+
 #pragma once
 using namespace std;
-enum GameState
-{
-    start,
-    maploaded,
-    mapvalidated,
-    playeradded,
-    assignreignforcement,
-    issueorders,
-    executeorders,
-    win
-};
+
+class GameEng;
+class CommandProcessor;
+class FileLineReader;
+class FileCommandProcessorAdapter;
 
 class GameEng:public ILoggable,public Subject{
 public:
     GameEng();
+    GameEng(CommandProcessor *cp);
+    GameEng(FileLineReader *flr);
     ~GameEng();
     string startFunc();
     string maploadedFunc();
@@ -34,6 +34,12 @@ public:
     string issueordersFunc();
     string executeordersFunc();
     string winFunc();
+    void setState(GameState gs){ currentState = gs; }
+    GameState getState() { return currentState; }
+    CommandProcessor *cmdProc;
+    GameState currentState;
+    string cmdInput;
     string stringToLog() override;
 };
+
 #endif //COMP335_P_GAMEENGINE_H

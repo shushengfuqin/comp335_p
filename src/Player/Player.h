@@ -11,6 +11,7 @@
 #include "vector"
 using namespace std;
 
+
 class Player{
 public:
     Player();
@@ -20,12 +21,33 @@ public:
     friend std::ostream& operator<<(ostream &os, const Player& player);
     vector<Territory*>* toAttack();
     vector<Territory*>* toDefend();
-    vector<Territory*>* displayTerritory();
+    vector<Territory*>* getTerritoryList();
+    vector<Territory*>* getAttackList();
+    vector<Territory*>* getDefendList();
+
+    void displayTerritory(vector<Territory*>*);
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
     void addTerritory(Territory *territory);
+
+    void removeTerritory(Territory *territory);
+    void cancelAttack(Territory *territory);
+    void cancelDefend(Territory *territory);
+    void calculateArmy(Map *map);
+    void switchTerritories(Territory *territory,Player *player1, Player *player2);
     void issueOrders(Order* order);
     int getHandLimit();
+    void setPlayerId(int id);
+    int getPlayerId();
+    void calculateBonus(Map *map);
+    int getPlayerNumOfTerritoriesInContinent(int id);
+    int getArmyNum();
+    int addArmyNum(int number);
+    bool containsTerritory(Territory *territory);
+
+//    int removeArmyNum(int number);
+//    int updateArmyNum(int continentBonus);
+//    bool isTerritorySame(Territory *territory1, Territory *territory2);
 
 
 
@@ -34,7 +56,12 @@ private:
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
+
     Orderslist* orderList;
+    int armyNum;
+    int playerId;
+
+
 
 };
 
