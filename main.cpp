@@ -6,15 +6,26 @@
 #include "src/GameEngine/GameEngineDriver.cpp"
 #include "src/Map/MapDriver.cpp"
 #include "src/Player/PlayerDriver.cpp"
+#include "src/CommandProcessing/CommandProcessorDriver.cpp"
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
+    CommandProcessorDriver cpd;
+    // file
+    if(argc > 1 && argv[1] == "-file")
+        cpd.callCommandProcessorDriver(true, argv[2]);
+    // console (default)
+    else
+        cpd.callCommandProcessorDriver(false, "");
+
+    exit(0);
+
+
     string x;
 
     cout << "------------- ORDER DRIVER CLASS ----------------\n";
     OrdersDriver od;
     od.callOrdersDriver();
-    cout << "\n";
     cout << "Going to the next one please enter Y\n";
     cin >> x;
     cout << "\n";
