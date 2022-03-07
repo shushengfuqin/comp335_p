@@ -25,7 +25,9 @@ public:
         string userChoice;
         string* userChoicePtr = &userChoice;
 
-        CommandProcessor * cp;
+        // Initialize logObserver
+        LogObserver* logObserver = new LogObserver();
+        CommandProcessor* cp = new CommandProcessor();
 
         if(readFromFile){
             //filename = "C:\\Users\\Scrib\\Documents\\GitHub\\comp345_p\\src\\CommandProcessing\\commands.txt";
@@ -35,9 +37,10 @@ public:
         else
             cp = new CommandProcessor();
 
-        GameEng * gameState = new GameEng(cp);
+        cp->Attach(logObserver);
+        GameEng* gameState = new GameEng(cp);
         GameEng ge = *gameState;
-
+        ge.Attach(logObserver);
         ge.setState(start);
 
         // while true keep the game playing.

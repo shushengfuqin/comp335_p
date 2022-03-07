@@ -10,6 +10,7 @@
 #include <list>
 #include "../CommandProcessing/CommandProcessor.h"
 #include "GameState.h"
+#include "../Observer/LoggingObserver.h"
 
 #pragma once
 using namespace std;
@@ -19,7 +20,7 @@ class CommandProcessor;
 class FileLineReader;
 class FileCommandProcessorAdapter;
 
-class GameEng{
+class GameEng:public ILoggable, public Subject{
 public:
     GameEng();
     GameEng(CommandProcessor *cp);
@@ -38,6 +39,7 @@ public:
     CommandProcessor *cmdProc;
     GameState currentState;
     string cmdInput;
+    string stringToLog() override;
 };
 
 #endif //COMP335_P_GAMEENGINE_H
