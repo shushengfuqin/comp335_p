@@ -8,19 +8,19 @@
 using namespace std;
 
 //Player constructor
-Player::Player() {
-    //player owns a hand
-    playerHand = new Hand();
-    //player owns a territory list
-    playerTerritoryList = new vector<Territory*>;
-    //player owns an attack territory list
-    playerDefendList = new vector<Territory*>();
-    //player owns a defend territory list
-    playerAttackList = new vector<Territory*>();
-    //player owns an order list
-    orderList = new Orderslist();
-    int playerId=0;
-    armyNum = 50;
+    Player::Player() {
+        //player owns a hand
+        playerHand = new Hand();
+        //player owns a territory list
+        playerTerritoryList = new vector<Territory*>;
+        //player owns a defend territory list
+        playerDefendList = new vector<Territory*>();
+        //player owns an attack territory list
+        playerAttackList = new vector<Territory*>();
+        //player owns an order list
+        orderList = new Orderslist();
+        int playerId=0;
+        armyNum = 50;
 }
 
 //Player destructor
@@ -86,6 +86,7 @@ Player&Player::operator=(const Player& player1) {
     for(int i =0;i<player1.orderList->getOrderList()->size();i++){
         this->orderList->setOrderList(player1.orderList->getOrderList()->at(i));
     }
+
 
     this->playerId = player1.playerId;
 

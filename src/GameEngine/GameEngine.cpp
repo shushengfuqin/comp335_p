@@ -1,5 +1,6 @@
 #include "GameEngine.h"
 #include <iostream>
+#include <regex>
 
 /**
  * Why input int instead of string.
@@ -13,8 +14,22 @@
  * userInput will save the cmd of the user.
  */
 int userInput;
+regex loadRegex ("loadmap\\s.+");
+regex playerRegex("addplayer\\s.+");
 
-GameEng::GameEng() = default;
+
+GameEng::GameEng() {
+    cmdProc = new CommandProcessor();
+}
+
+GameEng::GameEng(CommandProcessor * cp) {
+    cmdProc = cp;
+}
+
+GameEng::GameEng(FileLineReader *flr) {
+    cmdProc = new FileCommandProcessorAdapter(flr);
+}
+
 GameEng::~GameEng() = default;
 
 /**
@@ -27,16 +42,15 @@ GameEng::~GameEng() = default;
 string GameEng::startFunc()
 {
     cout << "this is the start state\n";
-    cout << "What would you like to do\n";
-    cout << "1 - loadmap\n";
-    cout << "Please chose action by typing the corresponding command\n";
-    cin >> userInput;
-    while (userInput != 1)
+    cout << "1 - loadmap <mapfile>\n";
+    cmdProc->getCommand();
+    while (!regex_match (cmdProc->validate(getState()), loadRegex))
     {
         cout << "Error: Please enter an valid command\n";
-        cin >> userInput;
+        cmdProc->getCommand();
     }
     cout << "Moving to the next state\n";
+    Notify(this);
     return "loadmap";
 }
 
@@ -50,30 +64,31 @@ string GameEng::startFunc()
 string GameEng::maploadedFunc()
 {
     cout << "this is the map loaded state\n";
-    cout << "What would you like to do\n";
-    cout << "1 - load map\n";
-    cout << "2 - validate map\n";
-    cout << "Please chose action by typing the corresponding number\n";
+    cout << "1 - loadmap <mapfile>\n";
+    cout << "2 - validatemap\n";
+    cmdProc->getCommand();
 
-    cin >> userInput;
     for (;;)
     {
-        switch (userInput)
-        {
-        case 1:
+        string cmdInput = cmdProc->validate(getState());
+
+        if(regex_match (cmdInput, loadRegex)){
             cout << "map loaded again\n";
-            cout << "What would you like to do\n";
-            cout << "1 - load map\n";
-            cout << "2 - validate map\n";
-            cout << "Please chose action by typing the corresponding number\n";
-            cin >> userInput;
+            cout << "1 - loadmap <mapfile>\n";
+            cout << "2 - validatemap\n";
+            cmdProc->getCommand();
+            Notify(this);
             continue;
-        case 2:
+        }
+        else if(cmdInput == "validatemap"){
             cout << "Moving to next state\n";
+            Notify(this);
             return "validatemap";
-        default:
+        }
+        else{
             cout << "Error: Please enter a valid input\n";
-            cin >> userInput;
+            cmdProc->getCommand();
+            Notify(this);
             continue;
         }
     }
@@ -89,15 +104,15 @@ string GameEng::mapvalidatedFunc()
 {
     string nextState;
     cout << "this is the map validated state\n";
-    cout << "What would you like to do\n";
-    cout << "1 - add player\n";
-    cin >> userInput;
-    while (userInput != 1)
+    cout << "1 - addplayer <playername> \n";
+    cmdProc->getCommand();
+    while (!regex_match (cmdProc->validate(getState()), playerRegex))
     {
         cout << "Error: Please enter an valid command\n";
-        cin >> userInput;
+        cmdProc->getCommand();
     }
     cout << "Moving to the next state\n";
+    Notify(this);
     return "addplayer";
 }
 
@@ -111,29 +126,31 @@ string GameEng::mapvalidatedFunc()
 string GameEng::playeraddedFunc()
 {
     cout << "this is the player added state\n";
-    cout << "What would you like to do\n";
-    cout << "1 - add player\n";
-    cout << "2 - assign countries\n";
-    cout << "Please chose action by typing the corresponding number\n";
-    cin >> userInput;
+    cout << "1 - addplayer <playername> \n";
+    cout << "2 - gamestart\n";
+    cmdProc->getCommand();
     for (;;)
     {
-        switch (userInput)
-        {
-        case 1:
+        string cmdInput = cmdProc->validate(getState());
+
+        if(regex_match (cmdInput, playerRegex)){
             cout << "add player again\n";
-            cout << "What would you like to do\n";
-            cout << "1 - add player\n";
-            cout << "2 - assign countries\n";
-            cout << "Please chose action by typing the corresponding number\n";
-            cin >> userInput;
+            cout << "1 - addplayer <playername>\n";
+            cout << "2 - gamestart\n";
+            cmdProc->getCommand();
+            Notify(this);
             continue;
-        case 2:
+        }
+        else if(cmdInput == "gamestart"){
             cout << "Moving to next state\n";
+            Notify(this);
             return "assigncountries";
-        default:
+        }
+        else{
             cout << "Error: Please enter a valid input\n";
-            cin >> userInput;
+            cmdProc->getCommand();
+            Notify(this);
+            continue;
         }
     }
 }
@@ -249,24 +266,33 @@ string GameEng::executeordersFunc()
 string GameEng::winFunc()
 {
     cout << "this is the win state\n";
-    cout << "What would you like to do\n";
-    cout << "1 - end\n";
-    cout << "2 - play again\n";
-    cout << "Please chose action by typing the corresponding number\n";
-    cin >> userInput;
+    cout << "1 - replay\n";
+    cout << "2 - quit\n";
+    cmdProc->getCommand();
     for (;;)
     {
-        switch (userInput)
-        {
-        case 1:
+        string cmdInput = cmdProc->validate(getState());
+
+        if(cmdInput == "replay"){
+            cout << "Moving to next state\n";
+            Notify(this);
+            return "replay";
+        }
+        else if(cmdInput == "quit"){
             cout << "Thank you for playing. See you next time\n";
-            return "end";
-        case 2:
-            cout << "Moving to Start state\n";
-            return "play";
-        default:
+            Notify(this);
+            return "quit";
+        }
+        else{
             cout << "Error: Please enter a valid input\n";
-            cin >> userInput;
+            cmdProc->getCommand();
+            Notify(this);
+            continue;
         }
     }
+
+}
+
+string GameEng::stringToLog() {
+    return "Game Engine user enter: ";
 }

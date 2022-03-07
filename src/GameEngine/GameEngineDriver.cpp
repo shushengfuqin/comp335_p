@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+#include "GameState.h"
 #include "GameEngine.h"
 using namespace std;
 

@@ -27,6 +27,12 @@ public:
 
     void setArmyBonusValue(int numArmies);
 
+    void setPlayer(int playerId);
+
+    void neutralState();
+
+    int getPlayer() const;
+
     Territory(const string name, const int territoryId, const int continentId);
 
     Territory(const Territory &t1);
