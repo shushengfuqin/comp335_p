@@ -34,6 +34,7 @@ public:
     string issueordersFunc();
     string executeordersFunc();
     string winFunc();
+    void startUpPhase();
     void setState(GameState gs){ currentState = gs; }
     GameState getState() { return currentState; }
     CommandProcessor *cmdProc;

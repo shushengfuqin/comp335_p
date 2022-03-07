@@ -49,8 +49,12 @@ string GameEng::startFunc()
         cout << "Error: Please enter an valid command\n";
         cmdProc->getCommand();
     }
+
+    // *** LOAD MAP HERE ***
+
     cout << "Moving to the next state\n";
     Notify(this);
+
     return "loadmap";
 }
 
@@ -83,6 +87,9 @@ string GameEng::maploadedFunc()
         else if(cmdInput == "validatemap"){
             cout << "Moving to next state\n";
             Notify(this);
+
+            // *** VALIDATE MAP HERE ***
+
             return "validatemap";
         }
         else{
@@ -113,6 +120,9 @@ string GameEng::mapvalidatedFunc()
     }
     cout << "Moving to the next state\n";
     Notify(this);
+
+    // *** ADD PLAYER HERE ***
+
     return "addplayer";
 }
 
@@ -139,11 +149,17 @@ string GameEng::playeraddedFunc()
             cout << "2 - gamestart\n";
             cmdProc->getCommand();
             Notify(this);
+
+            // *** ADD PLAYER HERE ***
+
             continue;
         }
         else if(cmdInput == "gamestart"){
             cout << "Moving to next state\n";
             Notify(this);
+
+            // *** START GAME HERE ***
+
             return "assigncountries";
         }
         else{
@@ -290,6 +306,34 @@ string GameEng::winFunc()
             continue;
         }
     }
+
+}
+
+void GameEng::startUpPhase() {
+    // Continue until start up phase is complete
+    while(getState() != win && getState() != assignreignforcement){
+        switch (getState()) {
+            case start:
+                if (startFunc() == "loadmap") {
+                    setState(maploaded);
+                }
+            case maploaded:
+                if (maploadedFunc() == "validatemap") {
+                    setState(mapvalidated);
+                }
+            case mapvalidated:
+                if (mapvalidatedFunc() == "addplayer") {
+                    setState(playeradded);
+                }
+            case playeradded:
+                if (playeraddedFunc() == "assigncountries") {
+                    setState(win);
+                }
+            default:
+                break;
+        }
+    }
+
 
 }
 

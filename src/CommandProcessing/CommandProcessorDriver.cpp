@@ -47,6 +47,8 @@ public:
         while(*playPtr) {
             switch (ge.getState()) {
                 case start:
+                    ge.startUpPhase();
+                /*case start:
                     *userChoicePtr = ge.startFunc();
                     if (userChoice == "loadmap") {
                         ge.setState(maploaded);
@@ -61,7 +63,12 @@ public:
                     if (userChoice == "addplayer") {
                         ge.setState(playeradded);
                     }
-                /*case playeradded:
+                case playeradded:
+                    *userChoicePtr = ge.playeraddedFunc();
+                    if (userChoice == "assigncountries") {
+                        ge.setState(win);
+                    }
+                case playeradded:
                     *userChoicePtr = ge.playeraddedFunc();
                     if (userChoice == "gamestart") {
                         ge.setState(assignreignforcement);
@@ -82,12 +89,8 @@ public:
                         ge.setState(assignreignforcement);
                     } else if (userChoice == "win") {
                         ge.setState(win);
-                    }*/
-                case playeradded:
-                    *userChoicePtr = ge.playeraddedFunc();
-                    if (userChoice == "assigncountries") {
-                        ge.setState(win);
                     }
+                */
                 case win:
                     *userChoicePtr = ge.winFunc();
                     if (userChoice == "replay") {

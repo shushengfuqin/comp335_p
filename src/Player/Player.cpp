@@ -2,6 +2,7 @@
 // Created by Mia Yan on 8/2/2022.
 //
 #include <ostream>
+#include <algorithm>
 #include "Player.h"
 
 using namespace std;
