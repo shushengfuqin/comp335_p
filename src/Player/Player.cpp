@@ -205,7 +205,7 @@ void Player::cancelDefend(Territory *territory) {
     }
     else {
 
-        std::cout<<"The player "<<playerId<<" did not need to defend the following territory, so the remove failed: "<<territory->getName()<<""<<endl;
+        std::cout<<"The player "<<playerId<<" did not need to defend the following territory, so the remove failed: "<<territory->getName()<<endl;
     }
 
 
