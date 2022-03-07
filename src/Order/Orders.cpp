@@ -51,7 +51,7 @@ istream & operator >> (istream &in,  Order &o)
 
 bool Order::validate() {
         if(valid){
-            cout << "this order is valid and ready to be executed" << endl;
+            cout << "this order is valid and ready to be executed\n" << endl;
             return true;
         } else
             return false;
@@ -60,9 +60,9 @@ bool Order::validate() {
 
 void Order::execute() {
     if (validate()) {
-        cout << "the order has been executed" << endl;
+        cout << "the order has been executed\n" << endl;
     }else{
-        cout <<"the order is invalid and cannot be executed" <<endl;
+        cout <<"the order is invalid and cannot be executed\n" <<endl;
     }
 }
 
@@ -86,13 +86,13 @@ void Order::setOrderIssuer(Player *issuer) {
 //Deploy class
 Deploy::Deploy() : Order() {
     setID(0);
-    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+    cout<<"The order"<<" "<<type<<" is been placed\n"<<endl;
 };
 Deploy::Deploy(Player *player,Territory* targetTerritory,unsigned int armies) : Order(player){
     this->player = player;
     this->targetTerritory = targetTerritory;
     this->armies = armies;
-    cout<<"The order"<<" "<<type<<" is been placed"<<" with issuer "<<player->getPlayerId()<<" with target territory "<<targetTerritory->getName()<<" with number of armies "<<armies<<endl;
+    cout<<"The order"<<" "<<type<<" is been placed"<<" with issuer "<<player->getPlayerId()<<" with target territory "<<targetTerritory->getName()<<" with number of armies "<<armies<<"\n"<<endl;
 
 }
 
@@ -121,11 +121,11 @@ string* Deploy::getOrderType() {
 bool Deploy::validate() {
 
     if( targetTerritory->getArmyBonusValue()>0 && player->containsTerritory(targetTerritory)){
-        cout<<"Deploy is valid and can be executed"<<endl;
+        cout<<"Deploy is valid and can be executed\n"<<endl;
         return true;
     }
     else {
-        cout<<"Deploy is invalid"<<endl;
+        cout<<"Deploy is invalid\n"<<endl;
         return false;
     }
 }
@@ -135,9 +135,9 @@ void Deploy::execute() {
     if(validate()){
         player->removeArmyNum(armies);
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()+armies);
-        cout<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<endl;
+        cout<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<"\n"<<endl;
     } else{
-        cout<<"deploy cannot be executed"<<endl;
+        cout<<"deploy cannot be executed\n"<<endl;
     }
 }
 
@@ -147,14 +147,14 @@ void Deploy::execute() {
 //Advance class
 Advance::Advance() :Order() {
     setID(1);
-    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+    cout<<"The order"<<" "<<type<<" is been placed\n"<<endl;
 }
 
 Advance::Advance(Player* player, Territory* fromTerritory,Territory* toTerritory,unsigned int armies) : Order(player){
     this->fromTerritory = fromTerritory;
     this->toTerritory = toTerritory;
     this->armies = armies;
-
+    cout<<"The order advance is been placed with issuer "<<player->getPlayerId()<<" from Territory "<<fromTerritory->getName()<<" to Territory "<<toTerritory->getName()<<"with number of armies "<<armies<<"\n"<<endl;
 }
 //copy constructor
 Advance::Advance(const Advance& copiedAd) {
@@ -186,8 +186,10 @@ string* Advance::getOrderType() {
 }
 
 bool Advance::validate() {
-    if (player->containsTerritory(fromTerritory)&& map->isAdjacentTerritory(fromTerritory, toTerritory))
+    if (player->containsTerritory(fromTerritory))// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
+       cout<<"Advance is valid and can be executed.\n"<<endl;
         return true;
+        cout<<"advance is invalid\n"<<endl;
     return false;
 }
 void Advance::execute() {
@@ -196,7 +198,7 @@ void Advance::execute() {
             {
             fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
             toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
-            cout<<"Advance is executed: Advance"<<armies<<"armies from "<<fromTerritory->getName()<<"to "<<toTerritory->getName()<<endl;
+            cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
         }
         else{
             while(toTerritory->getArmyBonusValue()>0 || fromTerritory->getArmyBonusValue()>0){
@@ -221,7 +223,7 @@ void Advance::execute() {
         }
     }
     else
-        cout<<" advance cannot be executed"<<endl;
+        cout<<" advance cannot be executed\n"<<endl;
 }
 
 
@@ -235,6 +237,7 @@ Bomb::Bomb() :Order(){
 Bomb::Bomb(Player* player,Territory* targetTerritory) :Order(player){
     this->player = player;
     this->targetTerritory = targetTerritory;
+    cout<<"The order Bomb is been placed with issuer "<<player->getPlayerId()<<" targeting to the territory "<<targetTerritory->getName()<<"\n"<<endl;
 
 }
 
@@ -265,19 +268,21 @@ string* Bomb::getOrderType() {
 }
 
 bool Bomb::validate() {
-    if(player->containsTerritory(targetTerritory)){
-        cout<<"the player cannot issue bomb order on own territories"<<endl;
-        return false;
-    } else
+    if(!player->containsTerritory(targetTerritory)){
+        cout<<"Bomb is valid and can be executed. \n"<<endl;
         return true;
+    } else
+        cout<<"the player cannot issue bomb order on own territories.\n"<<endl;
+        return false;
+
 }
 void Bomb::execute() {
     //Todo:: if the Bomb card is creating
     if(validate()){
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()/2);
-        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n";
+        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
     } else
-        cout<<" Bomb cannot be executed "<<endl;
+        cout<<" Bomb cannot be executed "<<"\n"<<endl;
 }
 
 
@@ -289,6 +294,7 @@ Blockade::Blockade() : Order() {
 Blockade::Blockade(Player* player, Territory* targetTerritory) : Order(player){
     this->targetTerritory = targetTerritory;
     this->player = player;
+    cout<<"The order Blockade is been placed with issuer "<<player->getPlayerId()<<" targeting to the territory "<<targetTerritory->getName()<<"\n"<<endl;
 }
 
 
@@ -317,8 +323,10 @@ string* Blockade::getOrderType() {
 }
 
 bool Blockade::validate() {
-    if(player->containsTerritory(targetTerritory))
+    if(player->containsTerritory(targetTerritory)){
+        cout<<"blockade is valid and can be executed.\n"<<endl;
         return true;
+    }
     else
         cout<<"this territory is not belongs to the order issuer, the blockade is invalid"<<endl;
         return false;
@@ -331,7 +339,7 @@ void Blockade::execute() {
     if(validate()){
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()*2);
         targetTerritory->neutralState();
-        cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n";
+        cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
     } else
         cout<<"Blockade cannot be executed"<<endl;
 }
@@ -347,6 +355,7 @@ Airlift::Airlift(Player* player,Territory* fromTerritory,Territory* toTerritory,
     this->fromTerritory = fromTerritory;
     this->toTerritory = toTerritory;
     this->armies = armies;
+    cout<<"The order Blockade is been placed with issuer "<<player->getPlayerId()<<" from territory "<<fromTerritory->getName()<<" to territory "<<toTerritory->getName()<<"\n"<<endl;
 }
 
 //copy constructor
@@ -377,6 +386,7 @@ string* Airlift::getOrderType() {
 
 bool Airlift::validate() {
     if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)){
+        cout<<"airlift is valid and can be executed\n"<<endl;
         return true;
     } else
         cout<<"The airlift order is invalid";
@@ -388,6 +398,7 @@ void Airlift::execute() {
         if(validate()){
             fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
             toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
+            cout<<"Airlift is executed: The player has moved "<<armies<<" armies from the source territory "<<fromTerritory->getName()<<" to the target territory "<<toTerritory->getName()<<"\n"<<endl;
         }
         else
             cout<<"No airlift card is creating or airlift order is invalid"<<endl;
@@ -403,6 +414,7 @@ Negotiate::Negotiate() :Order(){
 Negotiate::Negotiate(Player* player,Player* targetPlayer) : Order(player){
     this->player = player;
     this->targetPlayer = targetPlayer;
+    cout<<"The order Negotiate is been placed by player "<<player->getPlayerId()<<" to target player "<<targetPlayer->getPlayerId()<<"\n"<<endl;
 }
 Negotiate::~Negotiate() {
     delete this->player;
@@ -429,22 +441,24 @@ string* Negotiate::getOrderType() {
 }
 
 bool Negotiate::validate() {
-    if(targetPlayer = player){
-        cout<<"Target player cannot be the Negotiate Issuer"<<endl;
+    if(targetPlayer->getPlayerId() == player->getPlayerId()){
+        cout<<"Target player cannot be the Negotiate Issuer\n"<<endl;
         return false;
     }
-    else
+    else{
+        cout<<"negotiate is valid and can be executed\n"<<endl;
         return true;
+    }
 }
 
 void Negotiate::execute() {
     //Todo:player creating diplomacy card
     if(validate()){
     //Todo: what should be considered as attack?
-     cout<<"The Negotiate has been excuted by player "<<player->getPlayerId()<<"targeting to player "<<targetPlayer->getPlayerId()<<"No attack can be executed between them"<<endl;
+     cout<<"The Negotiate has been executed by player "<<player->getPlayerId()<<"targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
     }
     else
-        cout<<"The Negotiate order cannot be executed"<<endl;
+        cout<<"The Negotiate order cannot be executed\n"<<endl;
 }
 
 //implementation of Orderslist

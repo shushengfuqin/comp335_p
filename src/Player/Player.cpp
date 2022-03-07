@@ -184,12 +184,12 @@ void Player::cancelAttack(Territory *territory) {
 
 bool Player::containsTerritory(Territory *territory) {
     if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory) ) {
-        cout<<"player has this territory"<<endl;
+        //cout<<"player has this territory"<<endl;
         return true;
     }
     else {
         cout<<"player does not have this territory"<<endl;
-       return true;
+       return false;
     }
 }
 
@@ -205,7 +205,7 @@ void Player::cancelDefend(Territory *territory) {
     }
     else {
 
-        std::cout<<"The player "<<playerId<<" did not need to defend the following territory, so the remove failed: "<<territory->getName()<<endl;
+        std::cout<<"The player "<<playerId<<" did not need to defend the following territory, so the remove failed: "<<territory->getName()<<""<<endl;
     }
 
 

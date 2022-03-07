@@ -216,6 +216,16 @@ public:
             cout << endl << "---No---" << endl;
         }
 
+
+        // Adjacent Territories
+        bool adj = map->isAdjacentTerritory(t1, t7);
+        cout << "Is t1 adjacent to t2: ";
+        if (adj) {
+            cout << "Yes" << endl;
+        } else {
+            cout << "No" << endl;
+        }
+
         delete (pMapLoader);
         pMapLoader = NULL;
 
