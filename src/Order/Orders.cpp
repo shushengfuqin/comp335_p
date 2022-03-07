@@ -455,7 +455,7 @@ void Negotiate::execute() {
     //Todo:player creating diplomacy card
     if(validate()){
     //Todo: what should be considered as attack?
-     cout<<"The Negotiate has been executed by player "<<player->getPlayerId()<<"targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
+     cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
     }
     else
         cout<<"The Negotiate order cannot be executed\n"<<endl;
