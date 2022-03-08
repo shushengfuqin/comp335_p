@@ -20,14 +20,17 @@ regex playerRegex("addplayer\\s.+");
 
 GameEng::GameEng() {
     cmdProc = new CommandProcessor();
+    playerList = new vector<Player*>();
 }
 
 GameEng::GameEng(CommandProcessor * cp) {
     cmdProc = cp;
+    playerList = new vector<Player*>();
 }
 
 GameEng::GameEng(FileLineReader *flr) {
     cmdProc = new FileCommandProcessorAdapter(flr);
+    playerList = new vector<Player*>();
 }
 
 GameEng::~GameEng() = default;
@@ -44,18 +47,36 @@ string GameEng::startFunc()
     cout << "this is the start state\n";
     cout << "1 - loadmap <mapfile>\n";
     cmdProc->getCommand();
-    while (!regex_match (cmdProc->validate(getState()), loadRegex))
+    for (;;)
     {
-        cout << "Error: Please enter an valid command\n";
-        cmdProc->getCommand();
+        string cmdInput = cmdProc->validate(getState());
+
+        if(regex_match (cmdInput, loadRegex)) {
+            string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
+            LoadMap(mapName);
+
+            cout << "Moving to the next state\n";
+            Notify(this);
+
+            return "loadmap";
+        }
+        else{
+            cout << "Error: Please enter an valid command\n";
+            cmdProc->getCommand();
+            continue;
+        }
     }
 
-    // *** LOAD MAP HERE ***
+}
 
-    cout << "Moving to the next state\n";
-    Notify(this);
+//
+void GameEng::LoadMap(string name){
+    pMapLoader = new MapLoader("../canada/"+name+".map");
+    generatedMap = pMapLoader->generateMap();
 
-    return "loadmap";
+    for (int i = 0; i < generatedMap->getSize(); ++i) {
+        generatedMap->printTerritoryBorders(i);
+    }
 }
 
 /**
@@ -77,6 +98,10 @@ string GameEng::maploadedFunc()
         string cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, loadRegex)){
+            // *** LOAD MAP HERE ***
+            string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
+            LoadMap(mapName);
+
             cout << "map loaded again\n";
             cout << "1 - loadmap <mapfile>\n";
             cout << "2 - validatemap\n";
@@ -85,10 +110,16 @@ string GameEng::maploadedFunc()
             continue;
         }
         else if(cmdInput == "validatemap"){
-            cout << "Moving to next state\n";
-            Notify(this);
-
             // *** VALIDATE MAP HERE ***
+            if (generatedMap->validate()) {
+                cout << endl << "---MAP GENERATION VALID---" << endl;
+            } else {
+                cout << endl << "---MAP GENERATION INVALID---" << endl;
+                return "invalidmap";
+            }
+
+            cout << "Moving to next state\n";
+            //Notify(this);
 
             return "validatemap";
         }
@@ -113,17 +144,29 @@ string GameEng::mapvalidatedFunc()
     cout << "this is the map validated state\n";
     cout << "1 - addplayer <playername> \n";
     cmdProc->getCommand();
-    while (!regex_match (cmdProc->validate(getState()), playerRegex))
-    {
-        cout << "Error: Please enter an valid command\n";
-        cmdProc->getCommand();
+
+    for (;;) {
+        string cmdInput = cmdProc->validate(getState());
+
+        if(regex_match (cmdInput, playerRegex)){
+            // *** ADD PLAYER HERE ***
+            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
+            Player *player = new Player(playerName);
+            player->setPlayerId(++playerCount);
+            playerList->push_back(player);
+            cout << "Added player: " << playerName << endl;
+
+            cout << "Moving to the next state\n";
+            Notify(this);
+            return "addplayer";
+        }
+        else{
+            cout << "Error: Please enter an valid command\n";
+            cmdProc->getCommand();
+            Notify(this);
+            continue;
+        }
     }
-    cout << "Moving to the next state\n";
-    Notify(this);
-
-    // *** ADD PLAYER HERE ***
-
-    return "addplayer";
 }
 
 /**
@@ -144,14 +187,15 @@ string GameEng::playeraddedFunc()
         string cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, playerRegex)){
-            cout << "add player again\n";
-            cout << "1 - addplayer <playername>\n";
-            cout << "2 - gamestart\n";
+            // *** ADD PLAYER HERE ***
+            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
+            Player *player = new Player(playerName);
+            player->setPlayerId(++playerCount);
+            playerList->push_back(player);
+            cout << "Added player: " << playerName << endl;
+
             cmdProc->getCommand();
             Notify(this);
-
-            // *** ADD PLAYER HERE ***
-
             continue;
         }
         else if(cmdInput == "gamestart"){
@@ -310,6 +354,9 @@ string GameEng::winFunc()
 }
 
 void GameEng::startUpPhase() {
+    // Clear player list
+    playerList->clear();
+
     // Continue until start up phase is complete
     while(getState() != win && getState() != assignreignforcement){
         switch (getState()) {
@@ -334,6 +381,9 @@ void GameEng::startUpPhase() {
         }
     }
 
+    // Clean up
+    delete (pMapLoader);
+    pMapLoader = NULL;
 
 }
 

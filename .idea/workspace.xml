@@ -13,10 +13,10 @@
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="commit test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +104,7 @@
       <workItem from="1646276611776" duration="6571000" />
       <workItem from="1646353849067" duration="3809000" />
       <workItem from="1646527915810" duration="4000" />
-      <workItem from="1646671793829" duration="4174000" />
+      <workItem from="1646671793829" duration="11542000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
@@ -165,16 +165,5 @@
     <MESSAGE value="update the removing feature and update the get army number method." />
     <MESSAGE value="adding setter and getter for the territory, to assign the territory to some player by id." />
     <option name="LAST_COMMIT_MESSAGE" value="adding setter and getter for the territory, to assign the territory to some player by id." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Map/MapDriver.cpp</url>
-          <line>150</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

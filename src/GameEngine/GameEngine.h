@@ -11,6 +11,8 @@
 #include "../CommandProcessing/CommandProcessor.h"
 #include "GameState.h"
 #include "../Observer/LoggingObserver.h"
+#include "../Map/Map.h"
+#include "../Player//Player.h"
 
 #pragma once
 using namespace std;
@@ -34,13 +36,20 @@ public:
     string issueordersFunc();
     string executeordersFunc();
     string winFunc();
-    void startUpPhase();
     void setState(GameState gs){ currentState = gs; }
     GameState getState() { return currentState; }
     CommandProcessor *cmdProc;
     GameState currentState;
     string cmdInput;
     string stringToLog() override;
+    void startUpPhase();
+
+    MapLoader *pMapLoader;
+    Map *generatedMap;
+    void LoadMap(string name);
+
+    vector<Player*>* playerList;
+    int playerCount = 0;
 };
 
 #endif //COMP335_P_GAMEENGINE_H
