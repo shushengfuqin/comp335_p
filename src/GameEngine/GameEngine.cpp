@@ -50,7 +50,6 @@ string GameEng::startFunc()
         cmdProc->getCommand();
     }
     cout << "Moving to the next state\n";
-    Notify(this);
     return "loadmap";
 }
 
@@ -77,18 +76,15 @@ string GameEng::maploadedFunc()
             cout << "1 - loadmap <mapfile>\n";
             cout << "2 - validatemap\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
         else if(cmdInput == "validatemap"){
             cout << "Moving to next state\n";
-            Notify(this);
             return "validatemap";
         }
         else{
             cout << "Error: Please enter a valid input\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
     }
@@ -112,7 +108,6 @@ string GameEng::mapvalidatedFunc()
         cmdProc->getCommand();
     }
     cout << "Moving to the next state\n";
-    Notify(this);
     return "addplayer";
 }
 
@@ -138,18 +133,15 @@ string GameEng::playeraddedFunc()
             cout << "1 - addplayer <playername>\n";
             cout << "2 - gamestart\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
         else if(cmdInput == "gamestart"){
             cout << "Moving to next state\n";
-            Notify(this);
             return "assigncountries";
         }
         else{
             cout << "Error: Please enter a valid input\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
     }
@@ -275,24 +267,25 @@ string GameEng::winFunc()
 
         if(cmdInput == "replay"){
             cout << "Moving to next state\n";
-            Notify(this);
             return "replay";
         }
         else if(cmdInput == "quit"){
             cout << "Thank you for playing. See you next time\n";
-            Notify(this);
             return "quit";
         }
         else{
             cout << "Error: Please enter a valid input\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
     }
+}
 
+void GameEng::Transition(){
+    Notify(this);
 }
 
 string GameEng::stringToLog() {
-    return "Game Engine user enter: ";
+    string toReturn = ("Game Engine user enter: " + cmdProc->validate(getState()));
+    return toReturn;
 }

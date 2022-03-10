@@ -30,6 +30,7 @@ public:
 private:
     string command;
     string effect;
+
 };
 
 
@@ -43,15 +44,16 @@ public:
     string stringToLog() override;
 protected:
     virtual string readCommand();
-    void saveCommand(string cmd);
+    void saveCommand(const string& cmd);
 private:
     list<Command> *lc = new list<Command>();
+    string savedEff;
 };
 
 // ADAPTEE
 class FileLineReader {
 public:
-    FileLineReader(string filename);
+    FileLineReader(const string& filename);
     ~FileLineReader() = default;
     string readLineFromFile();
 private:
