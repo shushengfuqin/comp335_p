@@ -14,7 +14,7 @@ void Command::saveEffect(string e) {
     effect = e;
 }
 string Command::stringToLog() {
-    return "Command stringToLog";
+    return "Command stringToLog: " + effect ;
 }
 /////////////////
 
