@@ -37,7 +37,6 @@ public:
         else
             cp = new CommandProcessor();
 
-        cp->Attach(logObserver);
         auto* gameState = new GameEng(cp);
         GameEng ge = *gameState;
 

@@ -25,7 +25,7 @@ public:
     ~Command() = default;
     void saveEffect(string e);
     string getEffect() {return effect;}
-    string getCommand() {return command;}
+    string getCommandText() {return command;}
     string stringToLog() override;
 private:
     string command;
@@ -43,11 +43,12 @@ public:
     string validate(GameState gs);
     string stringToLog() override;
 protected:
+
+
+private:
     virtual string readCommand();
     void saveCommand(const string& cmd);
-private:
     list<Command> *lc = new list<Command>();
-    string savedEff;
 };
 
 // ADAPTEE

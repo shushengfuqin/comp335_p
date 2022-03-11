@@ -31,16 +31,15 @@ string CommandProcessor::readCommand() {
 }
 
 void CommandProcessor::saveCommand(const string& cmd) {
-//    Command c(cmd);
-    savedEff = cmd;
+    Command c(cmd);
     // Save effect
-    lc->push_back(cmd);
+    lc->push_back(c);
     Notify(this);
 }
 
 // If valid, returns the passing command
 string CommandProcessor::validate(GameState gs) {
-    string c = lc->back().getCommand();
+    string c = lc->back().getCommandText();
 
     regex loadRegex ("loadmap\\s.+");
     regex playerRegex("addplayer\\s.+");
@@ -66,11 +65,10 @@ string CommandProcessor::validate(GameState gs) {
     // Command is not usable
     else
         lc->back().saveEffect("Error: Invalid input.");
-
     return c;
 }
 string CommandProcessor::stringToLog() {
-    return "CommandProcessor stringToLog: " + savedEff;
+    return "CommandProcessor stringToLog: " + lc->back().getCommandText();
 }
 //////////////
 
