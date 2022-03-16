@@ -40,6 +40,9 @@ public:
     GameState currentState;
     string cmdInput;
     string stringToLog() override;
+    void Transition();
+private:
+    string userCmd;
 };
 
 #endif //COMP335_P_GAMEENGINE_H
