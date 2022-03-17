@@ -41,6 +41,7 @@ Player::~Player(){
     delete orderList;
 }
 
+
 //Player copy constructor
 //it should call the copy constructor of the other classes
 //to avoid copy the pointer
@@ -348,5 +349,30 @@ void Player::calculateArmy(Map *map){
 
 }
 
+bool Player::containsOrder(string orderType) {
+       vector<Order*> *listOfOrders = orderList->getOrderList();
+        auto iter = listOfOrders->begin();
+       for(;iter!=  listOfOrders->end(); iter++){
+           if((*iter)->getOrderType() == orderType){
+               cout<<"the list contains the order"<<endl;
+               return true;
+           }
 
+       }
+    return false;
+}
+
+/*
+void Player::printOrder()
+{
+
+        vector<Order*> *listOfOrders = orderList->getOrderList();
+    vector<Order*>::iterator it = listOfOrders->begin();
+    for (; it != listOfOrders->end(); it++)
+    {
+        cout << (*it)->getOrderType() << " ";
+    }
+    cout << endl;
+}
+*/
 

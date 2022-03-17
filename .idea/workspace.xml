@@ -11,14 +11,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="merge main to this branch and fix errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/MapDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/MapDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cards/Cards.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cards/Cards.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,11 +86,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="comp345_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp345_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp345_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -113,6 +109,15 @@
       <workItem from="1646167228009" duration="7776000" />
       <workItem from="1646276611776" duration="6571000" />
       <workItem from="1646353849067" duration="3809000" />
+      <workItem from="1646692288019" duration="6249000" />
+      <workItem from="1646767534607" duration="668000" />
+      <workItem from="1646780263691" duration="11566000" />
+      <workItem from="1646859964777" duration="23000" />
+      <workItem from="1646862708553" duration="619000" />
+      <workItem from="1646948619369" duration="885000" />
+      <workItem from="1647381689416" duration="5561000" />
+      <workItem from="1647458635611" duration="593000" />
+      <workItem from="1647479941029" duration="432000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
@@ -149,11 +154,28 @@
       <option name="project" value="LOCAL" />
       <updated>1646180420216</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="merge main to this branch and fix errors">
+      <created>1646631365509</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646631365509</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -171,15 +193,16 @@
     <MESSAGE value="added the remove territory method and the army parameter in the player object" />
     <MESSAGE value="put the main back" />
     <MESSAGE value="update the removing feature and update the get army number method." />
-    <option name="LAST_COMMIT_MESSAGE" value="update the removing feature and update the get army number method." />
+    <MESSAGE value="merge main to this branch and fix errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge main to this branch and fix errors" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Map/MapDriver.cpp</url>
-          <line>150</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/src/Order/OrdersDriver.cpp</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

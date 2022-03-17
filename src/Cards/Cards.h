@@ -67,7 +67,7 @@ public:
     Card* getCardAtIndex(int index){return &cards[index];}
     friend ostream &operator<<( ostream &output, const Hand &H );
     Hand& operator=(const Hand& h);
-    Card getCardByType(CardType ct);
+    bool getCardByType(CardType ct);
 
 private:
     int size;

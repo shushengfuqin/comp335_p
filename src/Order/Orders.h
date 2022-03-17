@@ -1,5 +1,5 @@
 //
-// Created by admin on 2022/2/3.
+// Created by yuxin wang on 2022/2/3.
 //
 
 #ifndef COMP335_P_ORDERS_H
@@ -9,6 +9,7 @@
 #include <vector>
 #include "../Map/Map.h"
 #include "../Player/Player.h"
+#include "../Cards/Cards.h"
 
 using namespace std;
 class Player;
@@ -37,10 +38,12 @@ public:
 
     void setID(int i);
 
-     string getOrderType();
+   string getOrderType();
 
     Map* map;
     Player *player;
+
+
     const Player* getOrderIssuer();
     void setOrderIssuer(Player *issuer);
 private:
@@ -59,7 +62,7 @@ public:
     Deploy(const Deploy& copiedDe);
     Deploy& operator = (const Deploy &Do);
     string* getOrderType();
-   virtual bool validate();
+    virtual bool validate();
     virtual void execute();
 
 private:
@@ -81,11 +84,12 @@ public:
     string* getOrderType();
     virtual bool validate();
     virtual void execute();
-
+    void setIsExecutable(bool isExecutable);
 
 private:
     Territory* targetTerritory;
     string type = {"bomb"};
+    bool canExecute = true;
 };
 
 
@@ -103,12 +107,15 @@ public:
     string* getOrderType();
     virtual bool validate();
     virtual void execute();
+    void setIsExecutable(bool isExecutable);
 
 private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
     string type = {"advance"};
+    bool canExecute = true;
+    Card *card = new Card();
 };
 
 struct Blockade : public Order{
@@ -187,9 +194,11 @@ public:
     //methods to modify the list
     void remove(Order* order);
     void move(int origin,int targetPosition);
-
+    void printOrderlist();
 private:
     vector<Order*> orderlist;
+
+
 };
 
 

@@ -10,12 +10,26 @@ using namespace std;
 int main() {
 
 
+
+
     Player *player1=new Player();
     player1->setPlayerId(1);
     Player* player2 = new Player();
     player2->setPlayerId(2);
     const int SIZE=13;
     Map *map = new Map(SIZE);
+
+    Card *bombCard = new Card( bomb);
+    Card *airliftCard = new Card(airlift);
+    Card *blockadeCard = new Card(blockade);
+    Card *diplomacyCard = new Card(diplomacy);
+
+    player1->getHand()->addCard(bombCard);
+    player2->getHand()->addCard(airliftCard);
+    player1->getHand()->addCard(blockadeCard);
+    player1->getHand()->addCard(diplomacyCard);
+
+
 
 
     Territory* territory1= new Territory( "big", 1 ,1);
@@ -42,6 +56,13 @@ int main() {
     map->addTerritory(*territory2, 0);
     map->addTerritory(*territory3, 0);
     map->addTerritory(*territory4, 0);
+
+    //verify player has hand by adding cards
+    player1->getHandLimit();
+
+
+
+
     // Adjacent Territories
 /*    bool adj = map->isAdjacentTerritory(territory1, territory2);
     cout << "Is t1 adjacent to t2: ";
@@ -93,6 +114,27 @@ int main() {
     cout<<"execute airlift---------"<<endl;
     airlift1->execute();
 
+
+
+
+    player1->issueOrders(deploy1);
+    player1->issueOrders(advance1);
+    player1->issueOrders(bomb1);
+    player1->issueOrders(blockade1);
+    player2->issueOrders(airlift1);
+
+    Orderslist ol;
+
+    ol.setOrderList(bomb1);
+/*    ol.setOrderList(blockade1);
+    ol.setOrderList(airlift1);
+    ol.setOrderList(advance1);
+    ol.setOrderList(deploy1);*/
+
+
+
+
+
     cout<<"creating airlift order---------"<<endl;
     Negotiate *negotiate1 = new Negotiate(player1,player2);
 
@@ -101,6 +143,16 @@ int main() {
     cout<<"execute negotiate--------"<<endl;
     negotiate1->execute();
 
+    player1->issueOrders(negotiate1);
+
+
+
+
+
+  /*  cout << "\n" << "Here is the Current Orderlist:" << endl;
+    for (int i = 0; i < ol.getOrderList()->size(); i++) {
+        cout << ol.getOrderList()->at(i)->getOrderType() << "\n";
+    }*/
     /* Advance advance1;
     Bomb bomb1;
     Blockade blockade1;
@@ -142,5 +194,33 @@ int main() {
     }
 *//*   }*//*
 */
+
+/*
+    if( player1->containsOrder("blockade")){
+        cout<<"true"<<endl;
+    } else{
+        cout<<"false"<<endl;
+    }
+*/
+
+ /*   player1->printOrder();*/
+   // ol->printOrderlist();
+    delete (map); // delete values of map on heap
+    map = NULL; // erase the address of the map.
+
+    delete (territory1); // delete values of territory1 on heap
+    territory2 = NULL; // erase the address of the territory1.
+
+    delete (territory2); // delete values of territory2 on heap
+    territory2 = NULL; // erase the address of the territory2.
+
+    delete (territory3); // delete values of territory3 on heap
+    territory3 = NULL; // erase the address of the territory3.
+
+    delete (territory4); // delete values of territory4 on heap
+    territory4 = NULL; // erase the address of the territory4.
+
+
+
     return 0;
 }

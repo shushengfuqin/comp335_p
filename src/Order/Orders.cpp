@@ -7,9 +7,9 @@
 #include <vector>
 
 
-
-
 using namespace std;
+
+
 
 
 //Order Class
@@ -218,12 +218,16 @@ void Advance::execute() {
                 toTerritory->setPlayer(player->getPlayerId());
                 player->addTerritory(toTerritory);
                 toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
-                //Todo:A player receives a card
+                player->getHand()->addCard(card);
             }
         }
     }
     else
         cout<<" advance cannot be executed\n"<<endl;
+}
+
+void Advance::setIsExecutable(bool isExecutable) {
+   canExecute = isExecutable;
 }
 
 
@@ -277,12 +281,15 @@ bool Bomb::validate() {
 
 }
 void Bomb::execute() {
-    //Todo:: if the Bomb card is creating
-    if(validate()){
+    if(validate()&&player->getHand()->getCardByType(bomb)){
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()/2);
         cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
     } else
         cout<<" Bomb cannot be executed "<<"\n"<<endl;
+}
+
+void Bomb::setIsExecutable(bool isExecutable) {
+    canExecute = isExecutable;
 }
 
 
@@ -335,8 +342,7 @@ bool Blockade::validate() {
 }
 
 void Blockade::execute() {
-    //Todo: if the blockade card is creating
-    if(validate()){
+    if(validate()&&player->getHand()->getCardByType(blockade)){
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()*2);
         targetTerritory->neutralState();
         cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
@@ -394,8 +400,7 @@ bool Airlift::validate() {
 }
 
 void Airlift::execute() {
-        //Todo::if the playing the airlift card
-        if(validate()){
+        if(validate()&&player->getHand()->getCardByType(airlift)){
             fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
             toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
             cout<<"Airlift is executed: The player has moved "<<armies<<" armies from the source territory "<<fromTerritory->getName()<<" to the target territory "<<toTerritory->getName()<<"\n"<<endl;
@@ -452,8 +457,7 @@ bool Negotiate::validate() {
 }
 
 void Negotiate::execute() {
-    //Todo:player creating diplomacy card
-    if(validate()){
+    if(validate()&&player->getHand()->getCardByType(diplomacy)){
     //Todo: what should be considered as attack?
      cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
     }
@@ -530,5 +534,15 @@ void Orderslist::move(int origin, int targetPosition)
         cout << "\n the element cannot be move to the target position" << endl;
     }
 }
+
+/*void Orderslist::printOrderlist(){
+    vector<Order*>::iterator it = orderlist.begin();
+    for (; it != orderlist.end(); it++)
+    {
+        cout << (*it)->getOrderType() << " ";
+    }
+    cout << endl;
+
+ }*/
 
 
