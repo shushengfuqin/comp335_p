@@ -1,20 +1,20 @@
 #include "CommandProcessor.h"
 #include <iostream>
-#include <fstream>
 #include <regex>
+#include <utility>
 
 /////////////////
 
 Command::Command(string cmd){
-    command = cmd;
+    command = std::move(cmd);
 }
 
 void Command::saveEffect(string e) {
+    effect = std::move(e);
     Notify(this);
-    effect = e;
 }
 string Command::stringToLog() {
-    return "Command stringToLog";
+    return "Command stringToLog: " + effect ;
 }
 /////////////////
 
@@ -30,17 +30,16 @@ string CommandProcessor::readCommand() {
     return cmd;
 }
 
-void CommandProcessor::saveCommand(string cmd) {
+void CommandProcessor::saveCommand(const string& cmd) {
     Command c(cmd);
     // Save effect
-    c.saveEffect(cmd);
     lc->push_back(c);
     Notify(this);
 }
 
 // If valid, returns the passing command
 string CommandProcessor::validate(GameState gs) {
-    string c = lc->back().getCommand();
+    string c = lc->back().getCommandText();
 
     regex loadRegex ("loadmap\\s.+");
     regex playerRegex("addplayer\\s.+");
@@ -66,11 +65,10 @@ string CommandProcessor::validate(GameState gs) {
     // Command is not usable
     else
         lc->back().saveEffect("Error: Invalid input.");
-
     return c;
 }
 string CommandProcessor::stringToLog() {
-    return "CommandProcessor stringToLog";
+    return "CommandProcessor stringToLog: " + lc->back().getCommandText();
 }
 //////////////
 
@@ -80,7 +78,7 @@ string FileCommandProcessorAdapter::readCommand() {
 
 //////////////
 
-FileLineReader::FileLineReader(string filename) {
+FileLineReader::FileLineReader(const string& filename) {
     inputFileStream.open(filename,  ios::in);
     if(!inputFileStream.is_open()){
         cout << "File does not exist or cannot be opened.\n";

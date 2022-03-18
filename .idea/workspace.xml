@@ -13,10 +13,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer/LoggingObserver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/LoggingObserver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Observer/LoggingObserver.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Observer/LoggingObserver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +105,7 @@
       <workItem from="1646276611776" duration="6571000" />
       <workItem from="1646353849067" duration="3809000" />
       <workItem from="1646527915810" duration="4000" />
+      <workItem from="1646957253755" duration="4303000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
@@ -174,9 +176,14 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp</url>
-          <line>12</line>
-          <option name="timeStamp" value="22" />
+          <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
+          <line>46</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
+          <line>45</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
