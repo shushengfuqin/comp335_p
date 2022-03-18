@@ -11,14 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
-    </list>
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
