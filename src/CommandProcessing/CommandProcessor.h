@@ -25,11 +25,12 @@ public:
     ~Command() = default;
     void saveEffect(string e);
     string getEffect() {return effect;}
-    string getCommand() {return command;}
+    string getCommandText() {return command;}
     string stringToLog() override;
 private:
     string command;
     string effect;
+
 };
 
 
@@ -42,16 +43,18 @@ public:
     string validate(GameState gs);
     string stringToLog() override;
 protected:
-    virtual string readCommand();
-    void saveCommand(string cmd);
+
+
 private:
+    virtual string readCommand();
+    void saveCommand(const string& cmd);
     list<Command> *lc = new list<Command>();
 };
 
 // ADAPTEE
 class FileLineReader {
 public:
-    FileLineReader(string filename);
+    FileLineReader(const string& filename);
     ~FileLineReader() = default;
     string readLineFromFile();
 private:
