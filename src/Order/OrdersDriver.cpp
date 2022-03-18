@@ -126,12 +126,10 @@ int main() {
     Orderslist ol;
 
     ol.setOrderList(bomb1);
-/*    ol.setOrderList(blockade1);
+    ol.setOrderList(blockade1);
     ol.setOrderList(airlift1);
     ol.setOrderList(advance1);
-    ol.setOrderList(deploy1);*/
-
-
+    ol.setOrderList(deploy1);
 
 
 
@@ -143,9 +141,8 @@ int main() {
     cout<<"execute negotiate--------"<<endl;
     negotiate1->execute();
 
+
     player1->issueOrders(negotiate1);
-
-
 
 
 
@@ -195,13 +192,7 @@ int main() {
 *//*   }*//*
 */
 
-/*
-    if( player1->containsOrder("blockade")){
-        cout<<"true"<<endl;
-    } else{
-        cout<<"false"<<endl;
-    }
-*/
+
 
  /*   player1->printOrder();*/
    // ol->printOrderlist();

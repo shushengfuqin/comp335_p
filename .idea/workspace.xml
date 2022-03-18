@@ -11,15 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="merge main to this branch and fix errors">
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="finish some TODOs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cards/Cards.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cards/Cards.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cards/Cards.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +113,8 @@
       <workItem from="1646948619369" duration="885000" />
       <workItem from="1647381689416" duration="5561000" />
       <workItem from="1647458635611" duration="593000" />
-      <workItem from="1647479941029" duration="432000" />
+      <workItem from="1647479941029" duration="2587000" />
+      <workItem from="1647544324299" duration="6264000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
@@ -161,7 +158,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646631365509</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finish some TODOs">
+      <created>1647480577166</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647480577166</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,7 +198,8 @@
     <MESSAGE value="put the main back" />
     <MESSAGE value="update the removing feature and update the get army number method." />
     <MESSAGE value="merge main to this branch and fix errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge main to this branch and fix errors" />
+    <MESSAGE value="finish some TODOs" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish some TODOs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

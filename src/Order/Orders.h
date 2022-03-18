@@ -42,14 +42,15 @@ public:
 
     Map* map;
     Player *player;
-
-
+    bool getAttackable(){return attackable;};
+    void setAttackable(bool isAttackable){attackable = isAttackable; };
     const Player* getOrderIssuer();
     void setOrderIssuer(Player *issuer);
 private:
     int id;
     bool valid;
     vector<string> orders = {"deploy","advance","bomb","blockade","airlift","negotiate"};
+    bool attackable = true;
 
 };
 
@@ -61,12 +62,10 @@ public:
     ~Deploy();
     Deploy(const Deploy& copiedDe);
     Deploy& operator = (const Deploy &Do);
-    string* getOrderType();
     virtual bool validate();
     virtual void execute();
 
 private:
-    string type = {"deploy"};
     Territory* targetTerritory;
     unsigned int armies;
 
@@ -81,14 +80,12 @@ public:
     ~Bomb();
     Bomb(const Bomb& copiedBo);
     Bomb& operator = (const Bomb &Bo);
-    string* getOrderType();
     virtual bool validate();
     virtual void execute();
     void setIsExecutable(bool isExecutable);
 
 private:
     Territory* targetTerritory;
-    string type = {"bomb"};
     bool canExecute = true;
 };
 
@@ -104,7 +101,6 @@ public:
     ~Advance();
      Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
-    string* getOrderType();
     virtual bool validate();
     virtual void execute();
     void setIsExecutable(bool isExecutable);
@@ -113,7 +109,6 @@ private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
-    string type = {"advance"};
     bool canExecute = true;
     Card *card = new Card();
 };
@@ -126,12 +121,10 @@ public:
     ~Blockade();
     Blockade(const Blockade& copiedBl);
     Blockade& operator = (const Blockade &Blo);
-    string* getOrderType();
     virtual bool validate();
     virtual void execute();
 
 private:
-    string type = {"blockade"};
     Territory* targetTerritory;
 };
 
@@ -143,7 +136,6 @@ public:
     ~Airlift();
     Airlift(const Airlift& copoedAir);
     Airlift& operator = (const Airlift &Airo);
-    string* getOrderType();
     virtual bool validate();
     virtual void execute();
 
@@ -151,7 +143,7 @@ private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
-    string type = {"airlift"};
+
 };
 
 struct Negotiate : public Order{
@@ -163,13 +155,12 @@ public:
     ~Negotiate();
     Negotiate(const Negotiate& copiedNe);
     Negotiate& operator = (const Negotiate &Neo);
-    string* getOrderType();
     virtual bool validate();
     virtual void execute();
 
 private:
     Player* targetPlayer;
-    string type = {"negotiate"};
+
 };
 
 
@@ -194,7 +185,6 @@ public:
     //methods to modify the list
     void remove(Order* order);
     void move(int origin,int targetPosition);
-    void printOrderlist();
 private:
     vector<Order*> orderlist;
 

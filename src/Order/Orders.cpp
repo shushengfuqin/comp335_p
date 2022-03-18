@@ -72,6 +72,7 @@ void Order::setID(int i) {
 
 string Order::getOrderType() {
     return orders.at(id);
+
 }
 
 const Player *Order::getOrderIssuer() {
@@ -86,13 +87,14 @@ void Order::setOrderIssuer(Player *issuer) {
 //Deploy class
 Deploy::Deploy() : Order() {
     setID(0);
-    cout<<"The order"<<" "<<type<<" is been placed\n"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed\n"<<endl;
 };
 Deploy::Deploy(Player *player,Territory* targetTerritory,unsigned int armies) : Order(player){
+    setID(0);
     this->player = player;
     this->targetTerritory = targetTerritory;
     this->armies = armies;
-    cout<<"The order"<<" "<<type<<" is been placed"<<" with issuer "<<player->getPlayerId()<<" with target territory "<<targetTerritory->getName()<<" with number of armies "<<armies<<"\n"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed"<<" with issuer "<<player->getPlayerId()<<" with target territory "<<targetTerritory->getName()<<" with number of armies "<<armies<<"\n"<<endl;
 
 }
 
@@ -100,7 +102,7 @@ Deploy::~Deploy(){};
 
 //copy constructor
 Deploy::Deploy(const Deploy& copiedDe) {
-    this->type = *new string (copiedDe.type);
+/*    this->type = *new string (copiedDe.type);*/
     this->player = copiedDe.player;
     this->targetTerritory = copiedDe.targetTerritory;
     this->armies = copiedDe.armies;
@@ -114,9 +116,7 @@ Deploy& Deploy::operator = (const Deploy&Deo){
     return *this;
 };
 
-string* Deploy::getOrderType() {
-    return &type;
-}
+
 
 bool Deploy::validate() {
 
@@ -147,10 +147,11 @@ void Deploy::execute() {
 //Advance class
 Advance::Advance() :Order() {
     setID(1);
-    cout<<"The order"<<" "<<type<<" is been placed\n"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed\n"<<endl;
 }
 
 Advance::Advance(Player* player, Territory* fromTerritory,Territory* toTerritory,unsigned int armies) : Order(player){
+    setID(1);
     this->fromTerritory = fromTerritory;
     this->toTerritory = toTerritory;
     this->armies = armies;
@@ -158,7 +159,7 @@ Advance::Advance(Player* player, Territory* fromTerritory,Territory* toTerritory
 }
 //copy constructor
 Advance::Advance(const Advance& copiedAd) {
-    this->type = *new string (copiedAd.type);
+ /*   this->type = *new string (copiedAd.type);*/
     this->fromTerritory = copiedAd.fromTerritory;
     this->toTerritory= copiedAd.toTerritory;
     this->armies = copiedAd.armies;
@@ -181,9 +182,6 @@ Advance& Advance::operator = (const Advance&Ao){
     return *this;
 };
 
-string* Advance::getOrderType() {
-    return &type;
-}
 
 bool Advance::validate() {
     if (player->containsTerritory(fromTerritory))// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
@@ -201,25 +199,27 @@ void Advance::execute() {
             cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
         }
         else{
-            while(toTerritory->getArmyBonusValue()>0 || fromTerritory->getArmyBonusValue()>0){
-                srand(time(NULL));
-                if(rand() % 10 < 6){
-                    toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()-1);
-                    cout<<"Advance is executed: Each attacking army unit involved has 60% chances of killing one defending army. \n";
+            if(getAttackable()){
+                while(toTerritory->getArmyBonusValue()>0 || fromTerritory->getArmyBonusValue()>0){
+                    srand(time(NULL));
+                    if(rand() % 10 < 6){
+                        toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()-1);
+                        cout<<"Advance is executed: Each attacking army unit involved has 60% chances of killing one defending army. \n";
+                    }
+                    else if(rand() % 10 < 7){
+                        fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-1);
+                        armies--;
+                        cout<<"Advance is executed: each defending army unit has 70% chances of killing one attacking army unit. \n";
+                    }
                 }
-                else if(rand() % 10 < 7){
-                    fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-1);
-                    armies--;
-                    cout<<"Advance is executed: each defending army unit has 70% chances of killing one attacking army unit. \n";
+                if(toTerritory->getArmyBonusValue()==0){
+                    toTerritory->setPlayer(player->getPlayerId());
+                    player->addTerritory(toTerritory);
+                    toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
+                    player->getHand()->addCard(card);
                 }
+            }
 
-            }
-            if(toTerritory->getArmyBonusValue()==0){
-                toTerritory->setPlayer(player->getPlayerId());
-                player->addTerritory(toTerritory);
-                toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
-                player->getHand()->addCard(card);
-            }
         }
     }
     else
@@ -235,10 +235,11 @@ void Advance::setIsExecutable(bool isExecutable) {
 
 Bomb::Bomb() :Order(){
     setID(2);
-    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed"<<endl;
 }
 
 Bomb::Bomb(Player* player,Territory* targetTerritory) :Order(player){
+    setID(2);
     this->player = player;
     this->targetTerritory = targetTerritory;
     cout<<"The order Bomb is been placed with issuer "<<player->getPlayerId()<<" targeting to the territory "<<targetTerritory->getName()<<"\n"<<endl;
@@ -248,7 +249,7 @@ Bomb::Bomb(Player* player,Territory* targetTerritory) :Order(player){
 
 //copy constructor
 Bomb::Bomb(const Bomb& copiedBo) {
-    this->type = *new string (copiedBo.type);
+/*    this->type = *new string (copiedBo.type);*/
     this->targetTerritory = copiedBo.targetTerritory;
     this->player = copiedBo.player;
 }
@@ -267,9 +268,6 @@ Bomb& Bomb::operator = (const Bomb&Bo){
     return *this;
 };
 
-string* Bomb::getOrderType() {
-    return &type;
-}
 
 bool Bomb::validate() {
     if(!player->containsTerritory(targetTerritory)){
@@ -281,7 +279,7 @@ bool Bomb::validate() {
 
 }
 void Bomb::execute() {
-    if(validate()&&player->getHand()->getCardByType(bomb)){
+    if(validate()&&player->getHand()->getCardByType(bomb)&&getAttackable()){
         targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()/2);
         cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
     } else
@@ -296,9 +294,10 @@ void Bomb::setIsExecutable(bool isExecutable) {
 //Blockade class
 Blockade::Blockade() : Order() {
     setID(3);
-    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed"<<endl;
 }
 Blockade::Blockade(Player* player, Territory* targetTerritory) : Order(player){
+    setID(3);
     this->targetTerritory = targetTerritory;
     this->player = player;
     cout<<"The order Blockade is been placed with issuer "<<player->getPlayerId()<<" targeting to the territory "<<targetTerritory->getName()<<"\n"<<endl;
@@ -307,7 +306,7 @@ Blockade::Blockade(Player* player, Territory* targetTerritory) : Order(player){
 
 //copy constructor
 Blockade::Blockade(const Blockade& copiedBl) {
-    this->type = *new string (copiedBl.type);
+/*    this->type = *new string (copiedBl.type);*/
     this->player = copiedBl.player;
     this->targetTerritory = copiedBl.targetTerritory;
 }
@@ -325,9 +324,6 @@ Blockade& Blockade::operator = (const Blockade&Blo){
     return *this;
 };
 
-string* Blockade::getOrderType() {
-    return &type;
-}
 
 bool Blockade::validate() {
     if(player->containsTerritory(targetTerritory)){
@@ -355,9 +351,10 @@ void Blockade::execute() {
 //Airlift class
 Airlift::Airlift() :Order(){
     setID(4);
-    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed"<<endl;
 }
 Airlift::Airlift(Player* player,Territory* fromTerritory,Territory* toTerritory,unsigned int armies) : Order(player){
+    setID(4);
     this->fromTerritory = fromTerritory;
     this->toTerritory = toTerritory;
     this->armies = armies;
@@ -366,7 +363,7 @@ Airlift::Airlift(Player* player,Territory* fromTerritory,Territory* toTerritory,
 
 //copy constructor
 Airlift::Airlift(const Airlift& copiedAir){
-    this->type = *new string (copiedAir.type);
+ /*   this->type = *new string (copiedAir.type);*/
     this->fromTerritory = copiedAir.fromTerritory;
     this->toTerritory = copiedAir.toTerritory;
 }
@@ -386,9 +383,7 @@ Airlift& Airlift::operator = (const Airlift&Airo){
     return *this;
 };
 
-string* Airlift::getOrderType() {
-    return &type;
-}
+
 
 bool Airlift::validate() {
     if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)){
@@ -413,10 +408,11 @@ void Airlift::execute() {
 //Negotiate class
 Negotiate::Negotiate() :Order(){
     setID(5);
-    cout<<"The order"<<" "<<type<<" is been placed"<<endl;
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed"<<endl;
 }
 
 Negotiate::Negotiate(Player* player,Player* targetPlayer) : Order(player){
+    setID(5);
     this->player = player;
     this->targetPlayer = targetPlayer;
     cout<<"The order Negotiate is been placed by player "<<player->getPlayerId()<<" to target player "<<targetPlayer->getPlayerId()<<"\n"<<endl;
@@ -429,7 +425,7 @@ Negotiate::~Negotiate() {
 
 //copy constructor
 Negotiate::Negotiate(const Negotiate& copiedNe){
-    this->type = *new string (copiedNe.type);
+ /*   this->type = *new string (copiedNe.type);*/
     this->player = copiedNe.player;
     this->targetPlayer = copiedNe.targetPlayer;
 }
@@ -441,12 +437,11 @@ Negotiate& Negotiate::operator = (const Negotiate&Neo){
     return *this;
 };
 
-string* Negotiate::getOrderType() {
-    return &type;
-}
+
 
 bool Negotiate::validate() {
     if(targetPlayer->getPlayerId() == player->getPlayerId()){
+
         cout<<"Target player cannot be the Negotiate Issuer\n"<<endl;
         return false;
     }
@@ -459,7 +454,11 @@ bool Negotiate::validate() {
 void Negotiate::execute() {
     if(validate()&&player->getHand()->getCardByType(diplomacy)){
     //Todo: what should be considered as attack?
-     cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
+        if(player->containsOrder("bomb")||player->containsOrder("advance")){
+            setAttackable(false);
+            cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
+        }
+    /*    else if(targetPlayer->containsOrder(targetPlayer.get))*/
     }
     else
         cout<<"The Negotiate order cannot be executed\n"<<endl;
