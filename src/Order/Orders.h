@@ -82,11 +82,11 @@ public:
     Bomb& operator = (const Bomb &Bo);
     virtual bool validate();
     virtual void execute();
-    void setIsExecutable(bool isExecutable);
+
 
 private:
     Territory* targetTerritory;
-    bool canExecute = true;
+
 };
 
 
@@ -103,13 +103,13 @@ public:
     Advance& operator = (const Advance &Ao);
     virtual bool validate();
     virtual void execute();
-    void setIsExecutable(bool isExecutable);
+
 
 private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
-    bool canExecute = true;
+
     Card *card = new Card();
 };
 

@@ -226,9 +226,6 @@ void Advance::execute() {
         cout<<" advance cannot be executed\n"<<endl;
 }
 
-void Advance::setIsExecutable(bool isExecutable) {
-   canExecute = isExecutable;
-}
 
 
 // Bomb class
@@ -286,9 +283,6 @@ void Bomb::execute() {
         cout<<" Bomb cannot be executed "<<"\n"<<endl;
 }
 
-void Bomb::setIsExecutable(bool isExecutable) {
-    canExecute = isExecutable;
-}
 
 
 //Blockade class

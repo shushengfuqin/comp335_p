@@ -9,9 +9,6 @@ using namespace std;
 
 int main() {
 
-
-
-
     Player *player1=new Player();
     player1->setPlayerId(1);
     Player* player2 = new Player();
@@ -115,8 +112,6 @@ int main() {
     airlift1->execute();
 
 
-
-
     player1->issueOrders(deploy1);
     player1->issueOrders(advance1);
     player1->issueOrders(bomb1);
@@ -146,55 +141,6 @@ int main() {
 
 
 
-  /*  cout << "\n" << "Here is the Current Orderlist:" << endl;
-    for (int i = 0; i < ol.getOrderList()->size(); i++) {
-        cout << ol.getOrderList()->at(i)->getOrderType() << "\n";
-    }*/
-    /* Advance advance1;
-    Bomb bomb1;
-    Blockade blockade1;
-    Airlift airlift1;
-    Negotiate negotiate1;
-    //test the valid and execute from orders
-   // cout << "\n" << "Here we try to valid and excute the order: deploy1: " << endl;
-  deploy1->execute();
-    //Orderlist
-    Orderslist l1;
-    //add orders to the list
-    l1.setOrderList(deploy1);
-    l1.setOrderList(&advance1);
-    l1.setOrderList(&bomb1);
-    l1.setOrderList(&blockade1);
-    l1.setOrderList(&airlift1);
-    l1.setOrderList(&negotiate1);
-    //display the orderlist
-    cout << "\n" << "Here is the Current Orderlist:" << endl;
-    //iterate the entire list
-    for (int i = 0; i < l1.getOrderList()->size(); i++) {
-        cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
-    }
-    cout << "\n" << "Now, we try to remove the first element deploy out of the list" << endl;
-    //remove an order from the list
-    l1.remove(deploy1);
-    //display the list
-    cout << "\n" << "Here is the Current Orderlist:" << endl;
-    for (int i = 0; i < l1.getOrderList()->size(); i++) {
-        cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
-    }
-    cout << "\n" << "Now, we try to move the order at position 1 to position 4" << endl;
-    //move and order from 1 to 4
-    l1.move(1, 4);
-    //display the list
-    cout << "\n" << "Here is the Current Orderlist:" << endl;
-    for (int i = 0; i < l1.getOrderList()->size(); i++) {
-        cout << l1.getOrderList()->at(i)->getOrderType() << "\n";
-    }
-*//*   }*//*
-*/
-
-
-
- /*   player1->printOrder();*/
    // ol->printOrderlist();
     delete (map); // delete values of map on heap
     map = NULL; // erase the address of the map.
