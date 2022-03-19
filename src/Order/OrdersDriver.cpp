@@ -54,10 +54,10 @@ public:
         territory3->setArmyBonusValue(8);
         territory4->setArmyBonusValue(2);
 
-    map->addTerritory(*territory1, 0);
-    map->addTerritory(*territory2, 0);
-    map->addTerritory(*territory3, 0);
-    map->addTerritory(*territory4, 0);
+        map->addTerritory(*territory1, 0);
+        map->addTerritory(*territory2, 0);
+        map->addTerritory(*territory3, 2);
+        map->addTerritory(*territory4, 3);
 
         //verify player has hand by adding cards
         // player1->getHandLimit();
@@ -75,8 +75,9 @@ public:
         cout << "execute deploy---------" << endl;
         deploy1->execute();
 
-    cout<<"creating advance order---------"<<endl;
-    Advance* advance1 = new Advance(player1,territory1,territory2,5);
+        cout << "creating advance order---------" << endl;
+        Advance *advance1 = new Advance(player1, territory1, territory2, 5);
+        advance1->map = map;
 
         cout << "validate advance---------" << endl;
         advance1->validate();

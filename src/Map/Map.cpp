@@ -23,9 +23,10 @@ void Territory::setContinentId(int continentId) {
     _continentId = continentId;
 }
 
-Territory::Territory(const string name, const int territoryId, const int continentId) :
+Territory::Territory(const string name, const int territoryId, const int continentId, const int numArmies) :
         _territoryId(territoryId),
-        _continentId(continentId) {
+        _continentId(continentId),
+        _numOfArmy(numArmies){
     _name = new string;
     *_name = name;
 
@@ -77,6 +78,7 @@ Territory::Territory(const Territory &t1) {
     _continentName = t1._continentName;
     _continentId = t1._continentId;
     _armyBonusValue = t1._armyBonusValue;
+    _numOfArmy = t1._numOfArmy;
 }
 
 //Territory::~Territory() {
@@ -91,6 +93,7 @@ Territory &Territory::operator=(const Territory &t1) {
     this->_continentName = t1._continentName;
     this->_continentId = t1._continentId;
     this->_armyBonusValue = t1._armyBonusValue;
+    this->_numOfArmy = t1._numOfArmy;
     return *this;
 }
 
@@ -499,7 +502,7 @@ Map *MapLoader::generateMap() {
             int territoryId = stoi(countryValues[0]);
             string territoryName = countryValues[1];
             int continentId = stoi(countryValues[2]);
-            Territory *territory = new Territory(territoryName, territoryId, continentId);
+            Territory *territory = new Territory(territoryName, territoryId, continentId, 0);
 
             // Add a territory as Node in vector list
             map->addTerritory(*territory, lineIndex - 1);

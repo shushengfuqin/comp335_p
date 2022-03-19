@@ -16,43 +16,43 @@ public:
 
         // For now, manually making an example map (Based from the assignment video)
         Map *map = new Map(SIZE); // new map
-        Territory *t1 = new Territory("Canada", 1, 1); // new territories
+        Territory *t1 = new Territory("Canada", 1, 1, 0); // new territories
         t1->setContinentName("North-America");
         t1->setArmyBonusValue(5);
-        Territory *t2 = new Territory("USA", 2, 1);
+        Territory *t2 = new Territory("USA", 2, 1, 0);
         t2->setContinentName("North-America");
         t2->setArmyBonusValue(5);
-        Territory *t3 = new Territory("Mexico", 3, 1);
+        Territory *t3 = new Territory("Mexico", 3, 1, 0);
         t3->setContinentName("North-America");
         t3->setArmyBonusValue(5);
-        Territory *t4 = new Territory("Egypt", 4, 2);
+        Territory *t4 = new Territory("Egypt", 4, 2, 0);
         t4->setContinentName("Africa");
         t4->setArmyBonusValue(2);
-        Territory *t5 = new Territory("South Africa", 5, 2);
+        Territory *t5 = new Territory("South Africa", 5, 2, 0);
         t5->setContinentName("Africa");
         t5->setArmyBonusValue(2);
-        Territory *t6 = new Territory("USSR", 6, 3);
+        Territory *t6 = new Territory("USSR", 6, 3, 0);
         t6->setContinentName("Asia");
         t6->setArmyBonusValue(7);
-        Territory *t7 = new Territory("Austria", 7, 3);
+        Territory *t7 = new Territory("Austria", 7, 3, 0);
         t7->setContinentName("Asia");
         t7->setArmyBonusValue(7);
-        Territory *t8 = new Territory("Israel", 8, 3);
+        Territory *t8 = new Territory("Israel", 8, 3, 0);
         t8->setContinentName("Asia");
         t8->setArmyBonusValue(5);
-        Territory *t9 = new Territory("Italy", 9, 4);
+        Territory *t9 = new Territory("Italy", 9, 4, 0);
         t9->setContinentName("Europe");
         t9->setArmyBonusValue(4);
-        Territory *t10 = new Territory("Spain", 10, 4);
+        Territory *t10 = new Territory("Spain", 10, 4, 0);
         t10->setContinentName("Europe");
         t10->setArmyBonusValue(4);
-        Territory *t11 = new Territory("France", 11, 4);
+        Territory *t11 = new Territory("France", 11, 4, 0);
         t11->setContinentName("Europe");
         t11->setArmyBonusValue(4);
-        Territory *t12 = new Territory("Germany", 12, 4);
+        Territory *t12 = new Territory("Germany", 12, 4, 0);
         t12->setContinentName("Europe");
         t12->setArmyBonusValue(4);
-        Territory *t13 = new Territory("Pacific Ocean", 13, 4);
+        Territory *t13 = new Territory("Pacific Ocean", 13, 4, 0);
         t13->setContinentName("Europe");
         t13->setArmyBonusValue(4);
 

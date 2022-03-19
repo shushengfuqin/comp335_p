@@ -208,11 +208,15 @@ Advance& Advance::operator = (const Advance&Ao){
 //If the target territory is not adjacent to the source territory, the order is invalid.
 
 bool Advance::validate() {
-    if (player->containsTerritory(fromTerritory))// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
-       cout<<"Advance is valid and can be executed.\n"<<endl;
+    if (player->containsTerritory(fromTerritory) && map->isAdjacentTerritory(fromTerritory, toTerritory)) {
+        cout<<"Advance is valid and can be executed.\n"<<endl;
         return true;
+    }// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
+    else {
         cout<<"advance is invalid\n"<<endl;
-    return false;
+        return false;
+    }
+
 }
 
 
