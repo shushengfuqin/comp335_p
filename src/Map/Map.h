@@ -43,6 +43,7 @@ public:
 
 //    virtual ~Territory();
 
+
 private:
     string *_name;
     int _territoryId;
@@ -93,6 +94,7 @@ public:
 
     virtual ~Map();
 
+    bool isAdjacentTerritory(Territory* source, Territory* target);
 private:
     int SIZE;
     vector<Territory> *territory;

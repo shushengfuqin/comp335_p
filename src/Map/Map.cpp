@@ -599,3 +599,15 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
+bool Map::isAdjacentTerritory(Territory* source, Territory* target) {
+    for (int i = 0; i < SIZE; ++i) {
+        if (territory[i][0].getTerritoryId() == source->getTerritoryId()) {
+            for (auto adjTerritory : territory[i]) {
+                if (adjTerritory.getTerritoryId() == target->getTerritoryId()) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

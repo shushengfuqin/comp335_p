@@ -362,6 +362,18 @@ bool Player::containsOrder(string orderType) {
     return false;
 }
 
+Order * Player::getOrderbyType(string orderType){
+    vector<Order*> *listOfOrders = orderList->getOrderList();
+    auto iter = listOfOrders->begin();
+    for(;iter!=  listOfOrders->end(); iter++){
+        if((*iter)->getOrderType() == orderType){
+            cout<<"the list contains the order"<<endl;
+            return *iter;
+        }
+    }
+    cout<<"this player does not contain this order"<<endl;
+    return nullptr;
+    }
 /*
 void Player::printOrder()
 {

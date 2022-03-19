@@ -60,14 +60,6 @@ int main() {
 
 
 
-    // Adjacent Territories
-/*    bool adj = map->isAdjacentTerritory(territory1, territory2);
-    cout << "Is t1 adjacent to t2: ";
-    if (adj) {
-        cout << "Yes" << endl;
-    } else {
-        cout << "No" << endl;
-    }*/
 /*    void callOrdersDriver() {*/
     //Orders
     cout<<"creating deploy order---------"<<endl;
@@ -141,6 +133,14 @@ int main() {
 
 
 
+    // Adjacent Territories
+/*    bool adj = map->isAdjacentTerritory(territory1, territory2);
+    cout << "Is t1 adjacent to t2: ";
+    if (adj) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }*/
    // ol->printOrderlist();
     delete (map); // delete values of map on heap
     map = NULL; // erase the address of the map.

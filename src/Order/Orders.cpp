@@ -1,5 +1,5 @@
 //
-// Created by admin on 2022/2/3.
+// Created by yuxin wang on 2022/2/3.
 //
 
 #include "Orders.h"
@@ -47,7 +47,6 @@ istream & operator >> (istream &in,  Order &o)
     in >> o.valid;
     return in;
 }
-
 
 bool Order::validate() {
         if(valid){
@@ -452,7 +451,13 @@ void Negotiate::execute() {
             setAttackable(false);
             cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
         }
-    /*    else if(targetPlayer->containsOrder(targetPlayer.get))*/
+        else if(targetPlayer->containsOrder("bomb")||targetPlayer->containsOrder("advance")){
+            Order *targetBomb = targetPlayer->getOrderbyType("bomb");
+            targetBomb->setAttackable(false);
+            Order *targetAdvance = targetPlayer->getOrderbyType("advance");
+            targetAdvance->setAttackable(false);
+            cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
+        }
     }
     else
         cout<<"The Negotiate order cannot be executed\n"<<endl;

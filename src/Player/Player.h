@@ -51,8 +51,9 @@ public:
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
     Hand *getHand(){ return playerHand ;};
     bool containsOrder(string orderType);
-    void printOrder();
+   // void printOrder();
 
+    Order *getOrderbyType(string orderType);
 private:
     vector<Territory*>* playerTerritoryList;
     vector<Territory*>* playerDefendList;
@@ -61,7 +62,6 @@ private:
     Orderslist* orderList;
     int armyNum;
     int playerId;
-
 
 
 };
