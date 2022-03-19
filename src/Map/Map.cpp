@@ -100,6 +100,14 @@ std::ostream &operator<<(ostream &os, const Territory &territory) {
     return os;
 }
 
+int Territory::getNumArmies() const {
+    return _numOfArmy;
+}
+
+void Territory::setNumArmies(int numArmies) {
+    _numOfArmy = numArmies;
+}
+
 // Functions for the Map class
 // Constructor with no vector (Vector is empty)
 Map::Map(const int V) : SIZE(V) {
@@ -503,7 +511,7 @@ Map *MapLoader::generateMap() {
                 }
                 int adjTerritoryId = stoi(borderValues[i]);
 
-                Territory *adjTerritory = new Territory("", adjTerritoryId, -1);
+                Territory *adjTerritory = new Territory("", adjTerritoryId, -1,0);
                 map->addTerritory(*adjTerritory, lineIndex - 1);
 
                 delete (adjTerritory);

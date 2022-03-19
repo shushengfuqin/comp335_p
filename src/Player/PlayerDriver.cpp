@@ -12,6 +12,7 @@ public:
     PlayerDriver()= default;;
     ~PlayerDriver()= default;;
     void callPlayerDriver(){
+
         //initialize the player
         Player *player=new Player();
 
@@ -19,9 +20,9 @@ public:
         player->setPlayerId(1);
 
         //initialize some new territories.
-        Territory *territory1= new Territory( "big", 1 ,1);
-        Territory *territory2= new Territory( "small", 2 ,2);
-        Territory *territory3= new Territory( "medium", 3 ,3);
+        Territory *territory1= new Territory( "big", 1 ,1,0);
+        Territory *territory2= new Territory( "small", 2 ,2,0);
+        Territory *territory3= new Territory( "medium", 3 ,3,0);
 
         //add territories to the player attack list
         player->attackTerritory(territory1);
@@ -34,9 +35,9 @@ public:
         player->displayTerritory(player->getAttackList());
 
         //instantiate new list for player to defend
-        Territory *territory4= new Territory( "large", 4,4 );
-        Territory *territory5= new Territory( "ice", 5 ,5);
-        Territory *territory6= new Territory( "cap", 6 ,6);
+        Territory *territory4= new Territory( "large", 4,4,0 );
+        Territory *territory5= new Territory( "ice", 5 ,5,0);
+        Territory *territory6= new Territory( "cap", 6 ,6,0);
 
         //add territories to the player defend list
         player->defendTerritory(territory4);
@@ -53,9 +54,9 @@ public:
 
 
         //create new territory that should be used to add into the player class
-        Territory *territory7= new Territory( "pikachu", 7,7 );
-        Territory *territory8= new Territory( "eevee", 8 , 8);
-        Territory *territory9= new Territory( "jigglypuff", 9, 9 );
+        Territory *territory7= new Territory( "pikachu", 7,7 ,0);
+        Territory *territory8= new Territory( "eevee", 8 , 8,0);
+        Territory *territory9= new Territory( "jigglypuff", 9, 9,0 );
 
 
         //add territory belongs to the player
@@ -67,22 +68,28 @@ public:
 
 
         //create new orders
+/*
         Deploy deploy1;
         Advance advance1;
         Bomb bomb1;
         Blockade blockade1;
         Airlift airlift1;
         Negotiate negotiate1;
+*/
+
+    Deploy *deploy1 = new Deploy(player, territory1, 3);
+    Advance *advance1 = new Advance(player, territory1, territory2, 5);
+    Bomb *bomb1 = new Bomb(player, territory3);
+    Blockade *blockade1 = new Blockade(player, territory2);
+    Airlift *airlift1 = new Airlift(player, territory3, territory4, 3);
 
         //issue new orders
-/*
-        player->issueOrders(&deploy1);
-        player->issueOrders(&advance1);
-        player->issueOrders(&bomb1);
-        player->issueOrders(&blockade1);
-        player->issueOrders(&airlift1);
-        player->issueOrders(&negotiate1);
-*/
+        player->issueOrders(deploy1);
+        player->issueOrders(advance1);
+        player->issueOrders(bomb1);
+        player->issueOrders(blockade1);
+        player->issueOrders(airlift1);
+      //  player->issueOrders(negotiate);
 
 
         //create another player using copy constructor
@@ -116,9 +123,9 @@ public:
         Player *player4=new Player();
         player4->setPlayerId(4);
         //create new territory that should be used to add into the player class
-        Territory *territory10= new Territory( "new territory 10", 10,7 );
-        Territory *territory11= new Territory( "new territory 11", 11 , 8);
-        Territory *territory12= new Territory( "new territory 12", 12, 9 );
+        Territory *territory10= new Territory( "new territory 10", 10,7 ,0);
+        Territory *territory11= new Territory( "new territory 11", 11 , 8,0);
+        Territory *territory12= new Territory( "new territory 12", 12, 9 ,0);
 
 
         //add territory belongs to the player
@@ -145,5 +152,7 @@ public:
         cout<<territory1->getPlayer()<<endl;
         territory1->neutralState();
         cout<<territory1->getPlayer()<<endl;
+
     }
+
 };

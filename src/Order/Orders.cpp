@@ -11,13 +11,16 @@ using namespace std;
 
 
 
-
+/*********** ORDER ************/
 //Order Class
+// Here are the 1. default constructor
+// 2. constructor with the order issuer (player)
 Order::Order(){};
 Order::Order(Player* player) {
     this->player = player;
 }
 
+//destructor for order
 Order::~Order() {};
 
 //copy constructor
@@ -48,6 +51,7 @@ istream & operator >> (istream &in,  Order &o)
     return in;
 }
 
+//validate method to validate if the order can be executed
 bool Order::validate() {
         if(valid){
             cout << "this order is valid and ready to be executed\n" << endl;
@@ -56,7 +60,8 @@ bool Order::validate() {
             return false;
 }
 
-
+//if the order is valid, then it can be executed
+//for each specific order, it will have different executions
 void Order::execute() {
     if (validate()) {
         cout << "the order has been executed\n" << endl;
@@ -65,29 +70,41 @@ void Order::execute() {
     }
 }
 
+//set id for this order
 void Order::setID(int i) {
     id = i;
 }
 
+//get the type of this order by its id
 string Order::getOrderType() {
     return orders.at(id);
 
 }
 
+/*
+// To get who is the player issues the order
 const Player *Order::getOrderIssuer() {
     return player;
 }
+*/
 
+// TO set who is the player issues the order
 void Order::setOrderIssuer(Player *issuer) {
     player = issuer;
 }
 
 
+
+
+
+/*********** DEPLOY ************/
 //Deploy class
+//Deploy order constructor without signed player
 Deploy::Deploy() : Order() {
     setID(0);
     cout<<"The order"<<" "<<getOrderType()<<" is been placed\n"<<endl;
 };
+//Deploy order with
 Deploy::Deploy(Player *player,Territory* targetTerritory,unsigned int armies) : Order(player){
     setID(0);
     this->player = player;
@@ -116,10 +133,10 @@ Deploy& Deploy::operator = (const Deploy&Deo){
 };
 
 
-
+//If the target territory does not belong to the player that issued the order, the order is invalid.
 bool Deploy::validate() {
 
-    if( targetTerritory->getArmyBonusValue()>0 && player->containsTerritory(targetTerritory)){
+    if( player->containsTerritory(targetTerritory)){
         cout<<"Deploy is valid and can be executed\n"<<endl;
         return true;
     }
@@ -129,11 +146,14 @@ bool Deploy::validate() {
     }
 }
 
+
+//If the target territory belongs to the player that issued the deploy order,
+// the selected number of armies is added to the number of armies on that territory.
 void Deploy::execute() {
 
     if(validate()){
         player->removeArmyNum(armies);
-        targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()+armies);
+        targetTerritory->setNumArmies(targetTerritory->getNumArmies()+armies);
         cout<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<"\n"<<endl;
     } else{
         cout<<"deploy cannot be executed\n"<<endl;
@@ -143,6 +163,8 @@ void Deploy::execute() {
 
 
 
+
+/*********** ADVANCE ************/
 //Advance class
 Advance::Advance() :Order() {
     setID(1);
@@ -182,6 +204,9 @@ Advance& Advance::operator = (const Advance&Ao){
 };
 
 
+//If the source territory does not belong to the player that issued the order, the order is invalid.
+//If the target territory is not adjacent to the source territory, the order is invalid.
+
 bool Advance::validate() {
     if (player->containsTerritory(fromTerritory))// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
        cout<<"Advance is valid and can be executed.\n"<<endl;
@@ -189,32 +214,40 @@ bool Advance::validate() {
         cout<<"advance is invalid\n"<<endl;
     return false;
 }
+
+
+// If the source and target territory both belong to the player that issued the order, the army units are moved from the source to the target territory.
+// If the target territory belongs to another player than the player that issued the advance order, an attack is simulated when the order is executed. An attack is simulated by the following battle simulation mechanism:
+//-- Each attacking army unit involved has 60% chances of killing one defending army. At the same time, each defending army unit has 70% chances of killing one attacking army unit.
+//-- If all the defender's armies are eliminated, the attacker captures the territory. The attacking army units that survived the battle then occupy the conquered territory.
+//-- A player receives a card at the end of his turn if they successfully conquered at least one territory during their turn.
+
 void Advance::execute() {
     if(validate()){
         if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
             {
-            fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
-            toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
+            fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
+            toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
             cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
         }
         else{
             if(getAttackable()){
-                while(toTerritory->getArmyBonusValue()>0 || fromTerritory->getArmyBonusValue()>0){
+                while(toTerritory->getNumArmies()>0 || fromTerritory->getNumArmies()>0){
                     srand(time(NULL));
                     if(rand() % 10 < 6){
-                        toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()-1);
+                        toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
                         cout<<"Advance is executed: Each attacking army unit involved has 60% chances of killing one defending army. \n";
                     }
                     else if(rand() % 10 < 7){
-                        fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-1);
+                        fromTerritory->setNumArmies(fromTerritory->getNumArmies()-1);
                         armies--;
                         cout<<"Advance is executed: each defending army unit has 70% chances of killing one attacking army unit. \n";
                     }
                 }
-                if(toTerritory->getArmyBonusValue()==0){
+                if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
                     player->addTerritory(toTerritory);
-                    toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
+                    toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
                 }
             }
@@ -227,6 +260,13 @@ void Advance::execute() {
 
 
 
+
+
+
+
+
+
+/*********** BOMB ************/
 // Bomb class
 
 Bomb::Bomb() :Order(){
@@ -265,6 +305,8 @@ Bomb& Bomb::operator = (const Bomb&Bo){
 };
 
 
+//• If the target belongs to the player that issued the order, the order is invalid.
+//• If the target territory is not adjacent to one of the territory owned by the player issuing the order, then the order is invalid.
 bool Bomb::validate() {
     if(!player->containsTerritory(targetTerritory)){
         cout<<"Bomb is valid and can be executed. \n"<<endl;
@@ -274,15 +316,29 @@ bool Bomb::validate() {
         return false;
 
 }
+
+
+//If the target belongs to an enemy player, half of the armies are removed from this territory.
 void Bomb::execute() {
     if(validate()&&player->getHand()->getCardByType(bomb)&&getAttackable()){
-        targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()/2);
+        targetTerritory->setNumArmies(targetTerritory->getNumArmies()/2);
         cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
     } else
         cout<<" Bomb cannot be executed "<<"\n"<<endl;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+/*********** BLOCKADE ************/
 
 //Blockade class
 Blockade::Blockade() : Order() {
@@ -318,6 +374,7 @@ Blockade& Blockade::operator = (const Blockade&Blo){
 };
 
 
+//If the target territory belongs to an enemy player, the order is declared invalid.
 bool Blockade::validate() {
     if(player->containsTerritory(targetTerritory)){
         cout<<"blockade is valid and can be executed.\n"<<endl;
@@ -326,13 +383,14 @@ bool Blockade::validate() {
     else
         cout<<"this territory is not belongs to the order issuer, the blockade is invalid"<<endl;
         return false;
-
-
 }
 
+//If the target territory belongs to the player issuing the order,
+// the number of armies on the territory is doubled and the ownership of the territory is transferred to the Neutral player,
+// which must be created if it does not already exist.
 void Blockade::execute() {
     if(validate()&&player->getHand()->getCardByType(blockade)){
-        targetTerritory->setArmyBonusValue(targetTerritory->getArmyBonusValue()*2);
+        targetTerritory->setNumArmies(targetTerritory->getNumArmies()*2);
         targetTerritory->neutralState();
         cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
     } else
@@ -341,6 +399,15 @@ void Blockade::execute() {
 
 
 
+
+
+
+
+
+
+
+
+/*********** AIRLIFT ************/
 //Airlift class
 Airlift::Airlift() :Order(){
     setID(4);
@@ -377,7 +444,8 @@ Airlift& Airlift::operator = (const Airlift&Airo){
 };
 
 
-
+//• The target territory does not need to be adjacent to the source territory.
+//• If the source or target does not belong to the player that issued the order, the order is invalid.
 bool Airlift::validate() {
     if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)){
         cout<<"airlift is valid and can be executed\n"<<endl;
@@ -387,10 +455,12 @@ bool Airlift::validate() {
         return false;
 }
 
+//If both the source and target territories belong to the player that issue the airlift order,
+// then the selected number of armies is moved from the source to the target territory.
 void Airlift::execute() {
         if(validate()&&player->getHand()->getCardByType(airlift)){
-            fromTerritory->setArmyBonusValue(fromTerritory->getArmyBonusValue()-armies);
-            toTerritory->setArmyBonusValue(toTerritory->getArmyBonusValue()+armies);
+            fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
+            toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
             cout<<"Airlift is executed: The player has moved "<<armies<<" armies from the source territory "<<fromTerritory->getName()<<" to the target territory "<<toTerritory->getName()<<"\n"<<endl;
         }
         else
@@ -398,6 +468,12 @@ void Airlift::execute() {
 }
 
 
+
+
+
+
+
+/*********** NEGOTIATE ***************/
 //Negotiate class
 Negotiate::Negotiate() :Order(){
     setID(5);
@@ -431,7 +507,7 @@ Negotiate& Negotiate::operator = (const Negotiate&Neo){
 };
 
 
-
+//If the target territory belongs to an enemy player, the order is declared invalid.
 bool Negotiate::validate() {
     if(targetPlayer->getPlayerId() == player->getPlayerId()){
 
@@ -444,6 +520,9 @@ bool Negotiate::validate() {
     }
 }
 
+//If the target territory belongs to the player issuing the order,
+// the number of armies on the territory is doubled and the ownership of the territory is transferred to the Neutral player,
+// which must be created if it does not already exist.
 void Negotiate::execute() {
     if(validate()&&player->getHand()->getCardByType(diplomacy)){
     //Todo: what should be considered as attack?
@@ -463,6 +542,19 @@ void Negotiate::execute() {
         cout<<"The Negotiate order cannot be executed\n"<<endl;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+/*********** ORDER LIST ************/
 //implementation of Orderslist
 
 Orderslist::Orderslist()= default;;
@@ -513,7 +605,7 @@ void Orderslist::remove(Order* order) {
 
 
 
-
+//move order from origin position to the target position
 void Orderslist::move(int origin, int targetPosition)
 {
     //origin and targetPosition are in list
