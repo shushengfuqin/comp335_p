@@ -10,7 +10,7 @@ using namespace std;
     Player::Player() {
         //player owns a hand
         playerHand = new Hand();
-        //player owns a territory list
+        //The list of territory that the player have.
         playerTerritoryList = new vector<Territory*>;
         //player owns a defend territory list
         playerDefendList = new vector<Territory*>();
@@ -224,6 +224,7 @@ vector<Territory*>* Player::toDefend() {
     return playerDefendList;
 }
 
+//
 void Player::displayTerritory(vector<Territory*>* territoryList) {
 
     //print out all territory of this player in the list in the console
@@ -337,6 +338,9 @@ void Player::calculateBonus(Map *map) {
 
 }
 
+/**
+ * this is the function to get the ammount of army for that person.
+ */
 void Player::calculateArmy(Map *map){
     armyNum+=playerTerritoryList->size()/3;
     this->calculateBonus(map);

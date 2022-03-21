@@ -292,3 +292,64 @@ void GameEng::Transition(){
 string GameEng::stringToLog() {
     return "Game Engine: " + userCmd;
 }
+
+/**
+ * This function checks the amount of reinforcement that each player gets and set it in to their reinforcement num.
+ * @param playerList
+ */
+void GameEng::reinforcementPhase(vector<Player*> playerList){
+    // temp for that player's reinforcementNum
+    int temp = 0;
+
+    // get the num of territory that player has
+    int ter_count = 0;
+
+    // bool check if that player has continent bonus
+    bool check = false;
+
+    // the bonus that the player get from continent bonus
+    int bonus = 0;
+
+    // 1. for each player in the vector
+    for(int i = 0; i < playerList.size(), i++){
+        // get the ammount of reinforcement for that player
+        temp = playerList[i]->getReinforcementPool();
+
+        // get the amount of territory of that player
+        for(int j = 0; j< playList[i]->territory.size(); j++){
+            ter_count++;
+        }
+
+        // calculate the continent bonus of the that player
+        check = playerList[i].continentBonus();
+        bonus = getBonus();
+
+        // according to the bonus that the player has, the amount of reignforcement the player has
+        if(check){
+            temp += bonus + (int)round(ter_count/3);
+        } else {
+            temp += (int)round(ter_count / 3);
+        }
+
+        playerList[i]->setReinforcement(temp);
+        temp = 0;
+        check = false;
+        bonus = 0;
+        ter_count = 0;
+    }
+
+}
+
+/**
+ * Each player make an order and add it into the orderList.
+ * If the order is to play a card, if will first call the function to play a card in hand
+ * Player who still have reinforcement in the pool, can only deploy.
+ */
+void GameEng::issueOrderPhase(vector<Player*> playerList){
+// first it is round robin style of passing through the players
+    for(int i = 0; i < playerList.size(), i++){
+        // check if that players reinforcement is greater than 0
+        if(playerList[i])
+    }
+}
+

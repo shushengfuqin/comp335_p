@@ -30,6 +30,16 @@ public:
     string maploadedFunc();
     string mapvalidatedFunc();
     string playeraddedFunc();
+
+    // for each player do the reinforcementPhase, once all of their reinforcement is done, move to issueOrderPhase, and then executeOrderPhase
+    string mainGameLoop();
+
+    void reinforcementPhase();
+
+    void issueOrderPhase(); // get the list of orders
+
+    void executeOrdersPhase();
+
     string assignreinforcementFunc();
     string issueordersFunc();
     string executeordersFunc();
