@@ -294,6 +294,23 @@ string GameEng::stringToLog() {
 }
 
 /**
+ * This function calls the main game loop
+ */
+
+void GameEng::mainGameLoop() {
+    //check if there is a winner
+    if(winner = true){
+        // goes the winfunc
+    } else{
+        cout << "reinforcementPhase" <<endl;
+        GameEng::reinforcementPhase();
+        cout << "issue Order phase" <<endl;
+        GameEng::issueOrderPhase();
+        cout << "Execute Order phase" << endl;
+        GameEng::executeOrdersPhase();
+    }
+}
+/**
  * This function checks the amount of reinforcement that each player gets and set it in to their reinforcement num.
  * @param playerList
  */
@@ -341,15 +358,24 @@ void GameEng::reinforcementPhase(vector<Player*> playerList){
 }
 
 /**
- * Each player make an order and add it into the orderList.
- * If the order is to play a card, if will first call the function to play a card in hand
- * Player who still have reinforcement in the pool, can only deploy.
+ * Since each player has a orderlist there for
  */
 void GameEng::issueOrderPhase(vector<Player*> playerList){
 // first it is round robin style of passing through the players
     for(int i = 0; i < playerList.size(), i++){
         // check if that players reinforcement is greater than 0
-        if(playerList[i])
+        if(playerList[i].reinforcementPool > 0){
+            //can only deploy
+        } else {
+            // can issue other order
+        }
     }
+}
+
+/**
+ * Execute order phase
+ */
+void GameEng::executeOrdersPhase(vector<Player*> playerList) {
+    // for each player
 }
 
