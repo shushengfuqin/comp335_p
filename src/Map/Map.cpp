@@ -23,9 +23,10 @@ void Territory::setContinentId(int continentId) {
     _continentId = continentId;
 }
 
-Territory::Territory(const string name, const int territoryId, const int continentId) :
+Territory::Territory(const string name, const int territoryId, const int continentId, const int numArmies) :
         _territoryId(territoryId),
-        _continentId(continentId) {
+        _continentId(continentId),
+        _numOfArmy(numArmies){
     _name = new string;
     *_name = name;
 
@@ -77,6 +78,7 @@ Territory::Territory(const Territory &t1) {
     _continentName = t1._continentName;
     _continentId = t1._continentId;
     _armyBonusValue = t1._armyBonusValue;
+    _numOfArmy = t1._numOfArmy;
 }
 
 //Territory::~Territory() {
@@ -91,6 +93,7 @@ Territory &Territory::operator=(const Territory &t1) {
     this->_continentName = t1._continentName;
     this->_continentId = t1._continentId;
     this->_armyBonusValue = t1._armyBonusValue;
+    this->_numOfArmy = t1._numOfArmy;
     return *this;
 }
 
@@ -98,6 +101,14 @@ Territory &Territory::operator=(const Territory &t1) {
 std::ostream &operator<<(ostream &os, const Territory &territory) {
     os << "Hi I am a Territory" << endl;
     return os;
+}
+
+int Territory::getNumArmies() const {
+    return _numOfArmy;
+}
+
+void Territory::setNumArmies(int numArmies) {
+    _numOfArmy = numArmies;
 }
 
 // Functions for the Map class
@@ -491,7 +502,7 @@ Map *MapLoader::generateMap() {
             int territoryId = stoi(countryValues[0]);
             string territoryName = countryValues[1];
             int continentId = stoi(countryValues[2]);
-            Territory *territory = new Territory(territoryName, territoryId, continentId);
+            Territory *territory = new Territory(territoryName, territoryId, continentId, 0);
 
             // Add a territory as Node in vector list
             map->addTerritory(*territory, lineIndex - 1);
@@ -503,7 +514,7 @@ Map *MapLoader::generateMap() {
                 }
                 int adjTerritoryId = stoi(borderValues[i]);
 
-                Territory *adjTerritory = new Territory("", adjTerritoryId, -1);
+                Territory *adjTerritory = new Territory("", adjTerritoryId, -1,0);
                 map->addTerritory(*adjTerritory, lineIndex - 1);
 
                 delete (adjTerritory);
@@ -598,4 +609,16 @@ MapLoader::~MapLoader() {
     delete (borders);
     borders = NULL;
 
+}
+bool Map::isAdjacentTerritory(Territory* source, Territory* target) {
+    for (int i = 0; i < SIZE; ++i) {
+        if (territory[i][0].getTerritoryId() == source->getTerritoryId()) {
+            for (auto adjTerritory : territory[i]) {
+                if (adjTerritory.getTerritoryId() == target->getTerritoryId()) {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }

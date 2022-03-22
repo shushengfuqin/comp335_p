@@ -2,6 +2,7 @@
 // Created by Mia Yan on 8/2/2022.
 //
 #include <ostream>
+#include <algorithm>
 #include "Player.h"
 
 using namespace std;
@@ -39,6 +40,7 @@ Player::~Player(){
     delete playerDefendList;
     delete orderList;
 }
+
 
 //Player copy constructor
 //it should call the copy constructor of the other classes
@@ -184,12 +186,12 @@ void Player::cancelAttack(Territory *territory) {
 
 bool Player::containsTerritory(Territory *territory) {
     if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory) ) {
-        cout<<"player has this territory"<<endl;
+        //cout<<"player has this territory"<<endl;
         return true;
     }
     else {
         cout<<"player does not have this territory"<<endl;
-       return true;
+       return false;
     }
 }
 
@@ -292,11 +294,11 @@ int Player::addArmyNum(int number) {
     return armyNum;
 }
 
-//int Player::removeArmyNum(int number) {
-//    armyNum-=number;
-//    return armyNum;
-//}
-//
+int Player::removeArmyNum(int number) {
+   armyNum-=number;
+   return armyNum;
+}
+
 //int Player::updateArmyNum(int continentBonus) {
 //    //need to update the code
 //    return armyNum;
@@ -351,5 +353,42 @@ void Player::calculateArmy(Map *map){
 
 }
 
+bool Player::containsOrder(string orderType) {
+       vector<Order*> *listOfOrders = orderList->getOrderList();
+        auto iter = listOfOrders->begin();
+       for(;iter!=  listOfOrders->end(); iter++){
+           if((*iter)->getOrderType() == orderType){
+               cout<<"the list contains the order"<<endl;
+               return true;
+           }
 
+       }
+    return false;
+}
+
+Order * Player::getOrderbyType(string orderType){
+    vector<Order*> *listOfOrders = orderList->getOrderList();
+    auto iter = listOfOrders->begin();
+    for(;iter!=  listOfOrders->end(); iter++){
+        if((*iter)->getOrderType() == orderType){
+            cout<<"the list contains the order"<<endl;
+            return *iter;
+        }
+    }
+    cout<<"this player does not contain this order"<<endl;
+    return nullptr;
+    }
+/*
+void Player::printOrder()
+{
+
+        vector<Order*> *listOfOrders = orderList->getOrderList();
+    vector<Order*>::iterator it = listOfOrders->begin();
+    for (; it != listOfOrders->end(); it++)
+    {
+        cout << (*it)->getOrderType() << " ";
+    }
+    cout << endl;
+}
+*/
 

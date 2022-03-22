@@ -16,6 +16,13 @@
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments" />
+    <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="">
+      <change beforePath="$PROJECT_DIR$/src/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Map/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Map/MapDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/MapDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +74,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -107,6 +115,8 @@
       <workItem from="1647642198713" duration="1023000" />
       <workItem from="1647723403183" duration="332000" />
       <workItem from="1647830598299" duration="12000" />
+      <workItem from="1647643476578" duration="5767000" />
+      <workItem from="1647712723688" duration="7909000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
@@ -143,7 +153,28 @@
       <option name="project" value="LOCAL" />
       <updated>1646180420216</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="merge main to current">
+      <created>1647565666959</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647565666959</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update orders">
+      <created>1647648231953</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647648231953</updated>
+    </task>
+    <task id="LOCAL-00008" summary="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments">
+      <created>1647728661111</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1647728661111</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,11 +197,23 @@
     <MESSAGE value="put the main back" />
     <MESSAGE value="update the removing feature and update the get army number method." />
     <MESSAGE value="adding setter and getter for the territory, to assign the territory to some player by id." />
-    <option name="LAST_COMMIT_MESSAGE" value="adding setter and getter for the territory, to assign the territory to some player by id." />
+    <MESSAGE value="merge main to current" />
+    <MESSAGE value="update orders" />
+    <MESSAGE value="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
+          <line>46</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
+          <line>45</line>
+          <option name="timeStamp" value="33" />
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/Map/MapDriver.cpp</url>
           <line>150</line>
