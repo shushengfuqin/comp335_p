@@ -155,6 +155,9 @@ public:
         territory1->neutralState();
         cout<<territory1->getPlayer()<<endl;
 
+        vector<Player*>* players=new vector<Player*>();
+        players->push_back(player4);
+
     }
 
 };

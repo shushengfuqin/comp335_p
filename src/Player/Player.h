@@ -26,6 +26,7 @@ public:
     vector<Territory*>* getTerritoryList();
     vector<Territory*>* getAttackList();
     vector<Territory*>* getDefendList();
+    Territory* getTerritoryByName(string name,vector<Territory*>* territoryList);
 
     void displayTerritory(vector<Territory*>*);
     void attackTerritory(Territory *territory);
@@ -48,6 +49,7 @@ public:
     int getArmyNum();
     int addArmyNum(int number);
     bool containsTerritory(Territory *territory);
+    bool containTerritoryByName(string territoryName,vector<Territory*>* territoryList);
     int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
