@@ -18,6 +18,7 @@ public:
 
         // TODO:: NEUTRAL PLAYER DOUBLE CHECK WITH TEACHER
         player->setPlayerId(1);
+        player->setPlayerName("PeterParker");
 
         //initialize some new territories.
         Territory *territory1= new Territory( "big", 1 ,1,0);
@@ -122,6 +123,7 @@ public:
         //create a new player
         Player *player4=new Player();
         player4->setPlayerId(4);
+        player4->setPlayerName("IronMan");
         //create new territory that should be used to add into the player class
         Territory *territory10= new Territory( "new territory 10", 10,7 ,0);
         Territory *territory11= new Territory( "new territory 11", 11 , 8,0);

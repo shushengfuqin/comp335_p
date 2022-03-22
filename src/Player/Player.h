@@ -41,6 +41,8 @@ public:
     int getHandLimit();
     void setPlayerId(int id);
     int getPlayerId();
+    void setPlayerName(string name);
+    string getPlayerName();
     void calculateBonus(Map *map);
     int getPlayerNumOfTerritoriesInContinent(int id);
     int getArmyNum();
@@ -62,6 +64,7 @@ private:
     Orderslist* orderList;
     int armyNum;
     int playerId;
+    string playerName;
 
 
 };

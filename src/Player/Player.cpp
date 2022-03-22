@@ -19,7 +19,8 @@ using namespace std;
         playerAttackList = new vector<Territory*>();
         //player owns an order list
         orderList = new Orderslist();
-        int playerId=0;
+        playerId=0;
+        playerName;
         armyNum = 50;
 }
 
@@ -97,7 +98,7 @@ Player&Player::operator=(const Player& player1) {
 
 //Player stream insertion
 std::ostream &operator<<(ostream &os, const Player &player) {
-    os<<"Hi I am player :"<<player.playerId<<endl;
+    os<<"Hi I am player :"<<player.playerName<<endl;
     return os;
 }
 
@@ -107,12 +108,12 @@ std::ostream &operator<<(ostream &os, const Player &player) {
 void Player::attackTerritory(Territory *territory) {
     //validating if the territory already in the list
     if (std::count(playerAttackList->begin(), playerAttackList->end(), territory) ) {
-        std::cout << "Element already existed, cannot be added to the player "<<playerId<<"'s attack list: "<<territory->getName()<<endl;
+        std::cout << "Element already existed, cannot be added to the player "<<playerName<<"'s attack list: "<<territory->getName()<<endl;
     }
     else {
         //add territory to the attack list
         playerAttackList->push_back(territory);
-        std::cout<<"Element has been added to the player "<<playerId<<"'s attack list: "<<territory->getName()<<endl;
+        std::cout<<"Element has been added to the player "<<playerName<<"'s attack list: "<<territory->getName()<<endl;
     }
 
 }
@@ -123,12 +124,12 @@ void Player::defendTerritory(Territory *territory) {
 
     //validating if the territory already in the list
     if (std::count(playerDefendList->begin(), playerDefendList->end(), territory) ) {
-        std::cout << "Element already existed, cannot be added to the player "<<playerId<<"'s defend list: "<<territory->getName()<<endl;
+        std::cout << "Element already existed, cannot be added to the player "<<playerName<<"'s defend list: "<<territory->getName()<<endl;
     }
     else {
         //add territory to the defended list
         playerDefendList->push_back(territory);
-        std::cout<<"Element has been added to the player "<<playerId<<"'s defend list: "<<territory->getName()<<endl;
+        std::cout<<"Element has been added to the player "<<playerName<<"'s defend list: "<<territory->getName()<<endl;
     }
 }
 
@@ -139,12 +140,12 @@ void Player::addTerritory(Territory *territory) {
 
     //validating if the territory already in the list
     if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory) ) {
-        std::cout << "Element already existed, cannot be added to the defend list: "<<territory->getName()<<endl;
+        std::cout << "Element already existed, cannot be added to the player "<<playerName<<"'s defend list: "<<territory->getName()<<endl;
     }
     else {
         //add territory to the list
         playerTerritoryList->push_back(territory);
-        std::cout<<"Element has been added to the player's territories list: "<<territory->getName()<<endl;
+        std::cout<<"Element has been added to the player "<<playerName<<"'s territories list: "<<territory->getName()<<endl;
     }
 }
 
@@ -155,12 +156,12 @@ void Player::removeTerritory(Territory *territory) {
         //remove the territory from the list
         playerTerritoryList->erase(std::remove(playerTerritoryList->begin(),playerTerritoryList->end(),territory),playerTerritoryList->end());
 
-        std::cout << "Element removed from the player "<<playerId<<"'s Territory list: "<<territory->getName()<<endl;
+        std::cout << "Element removed from the player "<<playerName<<"'s Territory list: "<<territory->getName()<<endl;
 
     }
     else {
 
-        std::cout<<"The player does not have such territory, so the remove from player "<<playerId<<"'s territory list failed: "<<territory->getName()<<endl;
+        std::cout<<"The player does not have such territory, so the remove from player "<<playerName<<"'s territory list failed: "<<territory->getName()<<endl;
     }
 
 
@@ -173,12 +174,12 @@ void Player::cancelAttack(Territory *territory) {
         //remove the territory from the list
         playerAttackList->erase(std::remove(playerAttackList->begin(),playerAttackList->end(),territory),playerAttackList->end());
 
-        std::cout << "Element removed from the player "<<playerId<<"'s Attacking list: "<<territory->getName()<<endl;
+        std::cout << "Element removed from the player "<<playerName<<"'s Attacking list: "<<territory->getName()<<endl;
 
     }
     else {
 
-        std::cout<<"The player "<<playerId<<" didn't want to attack the following territory, so the remove failed: "<<territory->getName()<<endl;
+        std::cout<<"The player "<<playerName<<" didn't want to attack the following territory, so the remove failed: "<<territory->getName()<<endl;
     }
 
 
@@ -190,7 +191,7 @@ bool Player::containsTerritory(Territory *territory) {
         return true;
     }
     else {
-        cout<<"player does not have this territory"<<endl;
+        cout<<"player "<<playerName<<" does not have this territory"<<endl;
        return false;
     }
 }
@@ -202,12 +203,12 @@ void Player::cancelDefend(Territory *territory) {
         //remove the territory from the list
         playerDefendList->erase(std::remove(playerDefendList->begin(),playerDefendList->end(),territory),playerDefendList->end());
 
-        std::cout << "Element removed from the player "<<playerId<<"'s defending list: "<<territory->getName()<<endl;
+        std::cout << "Element removed from the player "<<playerName<<"'s defending list: "<<territory->getName()<<endl;
 
     }
     else {
 
-        std::cout<<"The player "<<playerId<<" did not need to defend the following territory, so the remove failed: "<<territory->getName()<<endl;
+        std::cout<<"The player "<<playerName<<" did not need to defend the following territory, so the remove failed: "<<territory->getName()<<endl;
     }
 
 
@@ -229,7 +230,7 @@ vector<Territory*>* Player::toDefend() {
 void Player::displayTerritory(vector<Territory*>* territoryList) {
 
     //print out all territory of this player in the list in the console
-    std::cout << '\n' << "Player "<<playerId<<"'s Territory List:" << '\n'<<endl;
+    std::cout << '\n' << "Player "<<playerName<<"'s Territory List:" << '\n'<<endl;
 
     for (int i = 0; i < territoryList->size(); ++i) {
         cout << territoryList->at(i)->getName() << '\n'<<endl;
@@ -240,7 +241,7 @@ void Player::displayTerritory(vector<Territory*>* territoryList) {
 int Player::getHandLimit() {
 
     //display the number of hand of this player
-    cout << '\n' << "Hand Limit for this player "<<playerId<<": " << '\n'<<endl;
+    cout << '\n' << "Hand Limit for this player "<<playerName<<": " << '\n'<<endl;
     cout << playerHand->getHandLimit() << '\n'<<endl;
 
     return playerHand->getHandLimit();
@@ -284,6 +285,16 @@ int Player::getPlayerId(){
     return playerId;
 }
 
+void Player::setPlayerName(string name){
+    playerName=name;
+
+}
+
+string Player::getPlayerName(){
+
+    return playerName;
+}
+
 int Player::getArmyNum() {
     return armyNum;
 }
@@ -308,7 +319,7 @@ void Player::switchTerritories(Territory *territory, Player *player1,Player *pla
     player1->removeTerritory(territory);
     player2->addTerritory(territory);
 
-    cout<<"the territory :"<<territory->getName()<<"has been removed from player "<<player1->getPlayerId()<<" and added to player "<<player2->getPlayerId()<<endl;
+    cout<<"the territory :"<<territory->getName()<<"has been removed from player "<<player1->getPlayerName()<<" and added to player "<<player2->getPlayerName()<<endl;
 }
 
 int Player::getPlayerNumOfTerritoriesInContinent(int id) {
