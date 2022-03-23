@@ -11,14 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments">
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/MapDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/MapDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.h" afterDir="false" />
     </list>
-    <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -209,6 +205,11 @@
           <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
           <line>45</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/Map/Map.cpp</url>
+          <line>385</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

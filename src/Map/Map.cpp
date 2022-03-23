@@ -373,17 +373,31 @@ int Map::getArmyContinentBonus(int continentId) {
 }
 /**
  * Use a vector of pointer players, then divide the territories to each player
- * Each player should start with at least 3 countries from the same continent
+ * Each player should start with at least 3 countries from the same continent or as defined from the territoryLimitPerPlayer
  * @param players
  */
 void Map::assignTerritoriesToPlayers(vector<Player*> players) {
     int numOfPlayers = players.size();
+    int territoryLimitPerPlayer = 2; // Change this to set num of territories for each player
+    int numOfTerritoriesAssignedAtPlayer = 0;
+    int continentIdInQuestion = 1;
+//// DEBUG: Print out size of the players
     cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
     for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < ; ++j) {
-            players.at(0)->addTerritory(&territory[i][0]);
+        if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) {
+            if (continentIdInQuestion == territory[i][0].getContinentId()) {
+                continue;
+            } else {
+                continentIdInQuestion++;
+                numOfTerritoriesAssignedAtPlayer = 0;
+            }
         }
-
+        for (int playerIndex = 0; playerIndex < numOfPlayers; ++playerIndex) {
+            if (playerIndex + 1 == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
+                players.at(playerIndex)->addTerritory(&territory[i][0]);
+                numOfTerritoriesAssignedAtPlayer++;
+            }
+        }
     }
 }
 
