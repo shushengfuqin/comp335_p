@@ -153,6 +153,26 @@ public:
         player->displayTerritory(player->getTerritoryList());
         player->calculateArmy(map);
 
+        Player *player1 = new Player();
+        vector<Player*> *players = new vector<Player*>();
+        players->push_back(player);
+        players->push_back(player1);
+        players->at(0)->addTerritory(t5);
+
+        map->assignTerritoriesToPlayers(*players);
+
+        vector<Territory> adjTerritories = map->getAllAdjacentTerritories(*t3);
+        for (auto adjTerritory : adjTerritories) {
+            cout << adjTerritory.getName() << ", ";
+        }
+        cout << endl;
+
+//        delete player;
+//        player = NULL;
+//        delete player1;
+//        player1 = NULL;
+        delete players;
+        players = NULL;
 
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.

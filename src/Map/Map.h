@@ -5,8 +5,10 @@
 #ifndef COMP335_P_MAP_H
 #define COMP335_P_MAP_H
 #include <vector>
-using namespace std;
+#include "../Player/Player.h"
 
+using namespace std;
+class Player;
 class Territory {
 public:
     const string &getName() const;
@@ -97,9 +99,14 @@ public:
 
     int getArmyContinentBonus(int continentId);
 
+    void assignTerritoriesToPlayers(vector<Player*> players);
+
     virtual ~Map();
 
     bool isAdjacentTerritory(Territory* source, Territory* target);
+
+    vector<Territory> getAllAdjacentTerritories(Territory territory);
+
 private:
     int SIZE;
     vector<Territory> *territory;

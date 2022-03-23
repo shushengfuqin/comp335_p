@@ -13,6 +13,8 @@ using namespace std;
 
 struct Order;
 class Orderslist;
+class Territory;
+class Map;
 
 class Player{
 public:
