@@ -49,7 +49,7 @@ string GameEng::startFunc()
     cmdProc->getCommand();
     for (;;)
     {
-        string cmdInput = cmdProc->validate(getState());
+        cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, loadRegex)) {
             string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
@@ -194,7 +194,7 @@ string GameEng::playeraddedFunc()
             cmdProc->getCommand();
             continue;
         }
-        else if(userCmd == "gamestart"){
+        else if(cmdInput == "gamestart"){
             cout << "Moving to next state\n";
             Notify(this);
 
