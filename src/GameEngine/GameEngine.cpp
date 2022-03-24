@@ -95,7 +95,7 @@ string GameEng::maploadedFunc()
 
     for (;;)
     {
-        userCmd = cmdProc->validate(getState());
+        cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, loadRegex)){
             // *** LOAD MAP HERE ***
@@ -142,7 +142,7 @@ string GameEng::mapvalidatedFunc()
     cmdProc->getCommand();
 
     for (;;) {
-        string cmdInput = cmdProc->validate(getState());
+        cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
@@ -180,7 +180,7 @@ string GameEng::playeraddedFunc()
     cmdProc->getCommand();
     for (;;)
     {
-        userCmd = cmdProc->validate(getState());
+        cmdInput = cmdProc->validate(getState());
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
             string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
@@ -188,6 +188,9 @@ string GameEng::playeraddedFunc()
             player->setPlayerId(++playerCount);
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
+            cout << "this is the player added state\n";
+            cout << "1 - addplayer <playername> \n";
+            cout << "2 - gamestart\n";
             cmdProc->getCommand();
             continue;
         }
