@@ -22,6 +22,23 @@ using namespace std;
         playerId=0;
         playerName;
         armyNum = 50;
+
+
+//Player constructor (with name)
+Player::Player(string name) {
+    //player owns a hand
+    playerHand = new Hand();
+    //player owns a territory list
+    playerTerritoryList = new vector<Territory*>;
+    //player owns a defend territory list
+    playerDefendList = new vector<Territory*>();
+    //player owns an attack territory list
+    playerAttackList = new vector<Territory*>();
+    //player owns an order list
+    orderList = new Orderslist();
+    int playerId=0;
+    armyNum = 50;
+    setPlayerName(name);
 }
 
 //Player destructor

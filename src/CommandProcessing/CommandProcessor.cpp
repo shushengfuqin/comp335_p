@@ -9,6 +9,11 @@ Command::Command(string cmd){
     command = std::move(cmd);
 }
 
+Command::Command(const Command& c){
+    command = c.command;
+    effect = c.effect;
+}
+
 void Command::saveEffect(string e) {
     effect = std::move(e);
     Notify(this);
@@ -16,7 +21,24 @@ void Command::saveEffect(string e) {
 string Command::stringToLog() {
     return "Command stringToLog: " + effect ;
 }
+
+ostream &operator<<(ostream &output, Command &C ) {
+    output << "Command: " << C.command << endl;
+    output << "Effect: " << C.effect << endl;
+    return output;
+}
+
+Command&Command::operator=(const Command& c){
+    command = c.command;
+    effect = c.effect;
+    return *this;
+}
+
 /////////////////
+
+CommandProcessor::CommandProcessor(const CommandProcessor& c){
+    lc = c.lc;
+}
 
 void CommandProcessor::getCommand() {
     string cmd = readCommand();
@@ -67,18 +89,49 @@ string CommandProcessor::validate(GameState gs) {
         lc->back().saveEffect("Error: Invalid input.");
     return c;
 }
+
 string CommandProcessor::stringToLog() {
     return "CommandProcessor stringToLog: " + lc->back().getCommandText();
 }
+
+ostream &operator<<(ostream &output, CommandProcessor &C ) {
+    output << C.lc->back().getCommandText() << " " << C.lc->back().getEffect();
+    return output;
+}
+
+CommandProcessor&CommandProcessor::operator=(const CommandProcessor& c){
+    lc = c.lc;
+    return *this;
+}
+
 //////////////
+
+FileCommandProcessorAdapter::FileCommandProcessorAdapter(const FileCommandProcessorAdapter& f){
+    flr = f.flr;
+}
 
 string FileCommandProcessorAdapter::readCommand() {
     return flr->readLineFromFile();
 }
 
+ostream &operator<<(ostream &output, FileCommandProcessorAdapter &F ) {
+    output << F.readCommand();
+    return output;
+}
+
+FileCommandProcessorAdapter&FileCommandProcessorAdapter::operator=(const FileCommandProcessorAdapter& f){
+    flr = f.flr;
+    return *this;
+}
+
 //////////////
 
-FileLineReader::FileLineReader(const string& filename) {
+FileLineReader::FileLineReader(const FileLineReader& f){
+    filename = f.filename;
+}
+
+FileLineReader::FileLineReader(string fn) {
+    filename = fn;
     inputFileStream.open(filename,  ios::in);
     if(!inputFileStream.is_open()){
         cout << "File does not exist or cannot be opened.\n";
@@ -100,4 +153,14 @@ string FileLineReader::readLineFromFile() {
     getline(inputFileStream, cmd);
     cout << "INPUT: " << cmd << endl;
     return cmd;
+}
+
+ostream &operator<<(ostream &output, FileLineReader &F ) {
+    output << F.filename;
+    return output;
+}
+
+FileLineReader&FileLineReader::operator=(const FileLineReader& f){
+    filename = f.filename;
+    return *this;
 }

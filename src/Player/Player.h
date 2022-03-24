@@ -19,6 +19,7 @@ class Map;
 class Player{
 public:
     Player();
+    Player(string name);
     ~Player();
     Player(const Player &player1);
     Player& operator=(const Player& player);
@@ -56,6 +57,8 @@ public:
     int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
+    void setPlayerName(string n) {name = n;}
+    string getPlayerName(){return name;}
     Hand *getHand(){ return playerHand ;};
     bool containsOrder(string orderType);
    // void printOrder();
@@ -70,8 +73,6 @@ private:
     int armyNum;
     int playerId;
     string playerName;
-
-
 
 };
 
