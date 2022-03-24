@@ -53,6 +53,7 @@ public:
     int addArmyNum(int number);
     bool containsTerritory(Territory *territory);
     bool canAttack(Territory *territory);
+    bool alreadyOwn(Territory *territory);
     bool containTerritoryByName(string territoryName,vector<Territory*>* territoryList);
     int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);

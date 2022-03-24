@@ -232,6 +232,17 @@ using namespace std;
         return true;
     }
 
+bool Player::alreadyOwn(Territory *territory) {
+    for (int i = 0; i < playerTerritoryList->size(); i++) {
+        if (playerTerritoryList->at(i)->getTerritoryId() == territory->getTerritoryId()) {
+            return true;
+        }
+
+    }
+    return false;
+}
+
+
 //take a territory as parameters
 //a boolean function to know if the territory is in the attack list
     bool Player::containTerritoryByName(string territoryName, vector<Territory *> *territoryList) {
@@ -275,7 +286,7 @@ using namespace std;
 
             for (int j = 0; j < adjList.size(); j++) {
 
-                if (this->canAttack(adjList.at(j))) {
+                if (this->canAttack(adjList.at(j))&&this->alreadyOwn(adjList.at(j))==false) {
                     this->attackTerritory(adjList.at(j));
                 }
             }
