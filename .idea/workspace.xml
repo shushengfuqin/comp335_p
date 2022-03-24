@@ -11,14 +11,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="create new branch  edit orders">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommandProcessing/CommandProcessorDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.h" afterDir="false" />
-    </list>
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments" />
+    <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="Changes by banan" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +25,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="Implementation_of_each_Orders" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -170,11 +164,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Map/MapDriver.cpp</url>
-          <line>150</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
           <line>46</line>
