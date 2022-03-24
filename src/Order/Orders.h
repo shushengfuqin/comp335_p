@@ -10,6 +10,7 @@
 #include "../Map/Map.h"
 #include "../Player/Player.h"
 #include "../Cards/Cards.h"
+#include "../Observer/LoggingObserver.h"
 
 using namespace std;
 class Player;
@@ -54,7 +55,7 @@ private:
 };
 
 
-struct Deploy : public Order{
+struct Deploy : public Order,public ILoggable, public Subject{
 public:
     Deploy();
     Deploy(Player* player,Territory* targetTerritory,unsigned int armies);
@@ -64,13 +65,15 @@ public:
     virtual bool validate();
     virtual void execute();
 
+    //stringTolog from observer
+    string stringToLog() override;
 private:
     Territory* targetTerritory;
     unsigned int armies;
 
 
 };
-struct Bomb : public Order {
+struct Bomb : public Order,public ILoggable, public Subject{
 public:
 
 
@@ -82,7 +85,8 @@ public:
     virtual bool validate();
     virtual void execute();
 
-
+    //stringTolog from observer
+    string stringToLog() override;
 private:
     Territory* targetTerritory;
 
@@ -92,7 +96,7 @@ private:
 
 
 
-struct Advance : public Order{
+struct Advance : public Order,public ILoggable, public Subject{
 public:
 
     Advance();
@@ -103,7 +107,8 @@ public:
     virtual bool validate();
     virtual void execute();
 
-
+    //stringTolog from observer
+    string stringToLog() override;
 private:
     Territory* fromTerritory;
     Territory* toTerritory;
@@ -112,7 +117,7 @@ private:
     Card *card = new Card();
 };
 
-struct Blockade : public Order{
+struct Blockade : public Order,public ILoggable, public Subject{
 public:
 
     Blockade();
@@ -123,11 +128,13 @@ public:
     virtual bool validate();
     virtual void execute();
 
+    //stringTolog from observer
+    string stringToLog() override;
 private:
     Territory* targetTerritory;
 };
 
-struct Airlift : public Order{
+struct Airlift : public Order,public ILoggable, public Subject{
 public:
 
     Airlift() ;
@@ -138,14 +145,16 @@ public:
     virtual bool validate();
     virtual void execute();
 
+    //stringTolog from observer
+    string stringToLog() override;
+
 private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
-
 };
 
-struct Negotiate : public Order{
+struct Negotiate : public Order,public ILoggable, public Subject{
 public:
 
 
@@ -157,6 +166,8 @@ public:
     virtual bool validate();
     virtual void execute();
 
+    //stringTolog from observer
+    string stringToLog() override;
 private:
     Player* targetPlayer;
 
@@ -168,7 +179,7 @@ private:
 
 
 
-class Orderslist {
+class Orderslist:public ILoggable, public Subject {
 public:
 
     Orderslist();
@@ -184,9 +195,12 @@ public:
     //methods to modify the list
     void remove(Order* order);
     void move(int origin,int targetPosition);
+
+    //method from ILoggable and Subject for Observer
+    string stringToLog() override;
 private:
     vector<Order*> orderlist;
-
+    string orderForObs;
 
 };
 
