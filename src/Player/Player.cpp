@@ -187,13 +187,23 @@ void Player::cancelAttack(Territory *territory) {
 
 bool Player::containsTerritory(Territory *territory) {
     if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory) ) {
-        //cout<<"player has this territory"<<endl;
+        cout<<"player "<<playerName<<"has this territory"<<endl;
         return true;
     }
     else {
         cout<<"player "<<playerName<<" does not have this territory"<<endl;
        return false;
     }
+}
+
+bool Player::canAttack(Territory *territory) {
+    for(int i=0;i<playerAttackList->size();i++){
+        if(playerAttackList->at(i)->getTerritoryId()==territory->getTerritoryId()){
+            return false;
+        }
+
+    }
+    return true;
 }
 
 //take a territory as parameters
@@ -230,7 +240,17 @@ void Player::cancelDefend(Territory *territory) {
 }
 
 //the player attack action, returns a list of territories being attacked
-vector<Territory*>* Player::toAttack() {
+vector<Territory*>* Player::toAttack(Map *map) {
+    for(int i=0;i<playerTerritoryList->size();i++){
+        vector<Territory*> adjList=map->getAllAdjacentTerritories(*playerTerritoryList->at(i));
+
+        for(int j=0;j<adjList.size();j++){
+
+            if(this->canAttack(adjList.at(j))){
+                this->attackTerritory(adjList.at(j));
+            }
+        }
+    }
 
     return playerAttackList;
 
@@ -239,7 +259,7 @@ vector<Territory*>* Player::toAttack() {
 //the player defend action, returns a list of territories being defended
 vector<Territory*>* Player::toDefend() {
 
-    return playerDefendList;
+    return playerTerritoryList;
 }
 
 void Player::displayTerritory(vector<Territory*>* territoryList) {

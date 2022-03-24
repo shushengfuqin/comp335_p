@@ -13,6 +13,8 @@ using namespace std;
 
 struct Order;
 class Orderslist;
+class Territory;
+class Map;
 
 class Player{
 public:
@@ -21,7 +23,7 @@ public:
     Player(const Player &player1);
     Player& operator=(const Player& player);
     friend std::ostream& operator<<(ostream &os, const Player& player);
-    vector<Territory*>* toAttack();
+    vector<Territory*>* toAttack(Map *map);
     vector<Territory*>* toDefend();
     vector<Territory*>* getTerritoryList();
     vector<Territory*>* getAttackList();
@@ -49,6 +51,7 @@ public:
     int getArmyNum();
     int addArmyNum(int number);
     bool containsTerritory(Territory *territory);
+    bool canAttack(Territory *territory);
     bool containTerritoryByName(string territoryName,vector<Territory*>* territoryList);
     int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
@@ -67,6 +70,7 @@ private:
     int armyNum;
     int playerId;
     string playerName;
+
 
 
 };

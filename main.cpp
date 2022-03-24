@@ -42,27 +42,27 @@ int main(int argc, char *argv[]) {
 //    else
 //        cpd.callCommandProcessorDriver(false, "");
 //    }
-//
-//    cout << "\n";
-//    cout << "Going to the next one please enter Y\n";
-//    cin >> x;
-//
-//    cout << "\n";
-//    if(x == "y"){
-//        cout << "------------- MAP DRIVER CLASS ----------------\n";
-//        MapDriver md;
-//        md.callMapDriver();
-//    }
-//    cout << "\n";
+
+    cout << "\n";
     cout << "Going to the next one please enter Y\n";
     cin >> x;
+
     cout << "\n";
     if(x == "y"){
-        cout << "------------- PLAYER DRIVER CLASS ----------------\n";
-        PlayerDriver playerDriver;
-        playerDriver.callPlayerDriver();
+        cout << "------------- MAP DRIVER CLASS ----------------\n";
+        MapDriver md;
+        md.callMapDriver();
     }
-    cout << "Done";
+    cout << "\n";
+    cout << "Going to the next one please enter Y\n";
+//    cin >> x;
+//    cout << "\n";
+//    if(x == "y"){
+//        cout << "------------- PLAYER DRIVER CLASS ----------------\n";
+//        PlayerDriver playerDriver;
+//        playerDriver.callPlayerDriver();
+//    }
+//    cout << "Done";
     return 0;
 }
 

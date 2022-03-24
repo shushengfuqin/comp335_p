@@ -25,15 +25,6 @@ public:
         Territory *territory2= new Territory( "small", 2 ,2,0);
         Territory *territory3= new Territory( "medium", 3 ,3,0);
 
-        //add territories to the player attack list
-        player->attackTerritory(territory1);
-        player->attackTerritory(territory2);
-        player->attackTerritory(territory2);
-        player->attackTerritory(territory3);
-
-        //player attack action
-        player->toAttack();
-        player->displayTerritory(player->getAttackList());
 
         //instantiate new list for player to defend
         Territory *territory4= new Territory( "large", 4,4,0 );
@@ -92,18 +83,6 @@ public:
         player->issueOrders(airlift1);
       //  player->issueOrders(negotiate);
 
-
-        //create another player using copy constructor
-//        Player *player2=player;
-//        player2->setPlayerId(2);
-//        player2->toAttack();
-
-        //create another player using assignment operator
-//        Player *player3;
-//        player3=player;
-//        player3->setPlayerId(3);
-//        player3->toDefend();
-
         //use the player stream
         cout<<"player 1 wanna talk: "<<*player<<endl;
 
@@ -111,9 +90,6 @@ public:
         player->removeTerritory(territory7);
         player->displayTerritory(player->getTerritoryList());
 
-        player->cancelAttack(territory1);
-        player->cancelAttack(territory1);
-        player->displayTerritory(player->getAttackList());
 
         player->cancelDefend(territory4);
         player->cancelDefend(territory4);
