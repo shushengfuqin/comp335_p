@@ -11,6 +11,8 @@
 #include "vector"
 using namespace std;
 
+struct Order;
+class Orderslist;
 
 class Player{
 public:
@@ -45,20 +47,21 @@ public:
     int getArmyNum();
     int addArmyNum(int number);
     bool containsTerritory(Territory *territory);
-
-//    int removeArmyNum(int number);
+    int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
     void setPlayerName(string n) {name = n;}
     string getPlayerName(){return name;}
+    Hand *getHand(){ return playerHand ;};
+    bool containsOrder(string orderType);
+   // void printOrder();
 
-
+    Order *getOrderbyType(string orderType);
 private:
     vector<Territory*>* playerTerritoryList;
     vector<Territory*>* playerDefendList;
     vector<Territory*>* playerAttackList;
     Hand *playerHand;
-
     Orderslist* orderList;
     int armyNum;
     int playerId;

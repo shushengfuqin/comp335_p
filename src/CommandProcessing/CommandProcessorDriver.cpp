@@ -3,7 +3,7 @@
 #include <string>
 
 #include "../GameEngine/GameEngine.h"
-#include "../GameEngine/GameState.h"
+
 
 using namespace std;
 
@@ -11,7 +11,7 @@ class CommandProcessorDriver{
 public:
     CommandProcessorDriver()= default;
     ~CommandProcessorDriver()= default;
-    static void callCommandProcessorDriver(bool readFromFile, string filename) {
+    static void callCommandProcessorDriver(bool readFromFile, const string& filename) {
 
         // Initialize gamestate at state and update upon state change
         //GameState currentState = start;
@@ -26,21 +26,20 @@ public:
         string* userChoicePtr = &userChoice;
 
         // Initialize logObserver
-        LogObserver* logObserver = new LogObserver();
-        CommandProcessor* cp = new CommandProcessor();
+        auto* logObserver = new LogObserver();
+        auto* cp = new CommandProcessor();
 
         if(readFromFile){
             //filename = "C:\\Users\\Scrib\\Documents\\GitHub\\comp345_p\\src\\CommandProcessing\\commands.txt";
-            FileLineReader * flr = new FileLineReader(filename);
+            auto * flr = new FileLineReader(filename);
             cp = new FileCommandProcessorAdapter(flr);
         }
         else
             cp = new CommandProcessor();
 
-        cp->Attach(logObserver);
-        GameEng* gameState = new GameEng(cp);
+        auto* gameState = new GameEng(cp);
         GameEng ge = *gameState;
-        ge.Attach(logObserver);
+
         ge.setState(start);
 
         // while true keep the game playing.
@@ -50,17 +49,20 @@ public:
                     ge.startUpPhase();
                 /*case start:
                     *userChoicePtr = ge.startFunc();
-                    if (userChoice == "loadmap") {
+                    if (*userChoicePtr == "loadmap") {
+                        ge.Transition();
                         ge.setState(maploaded);
                     }
                 case maploaded:
                     *userChoicePtr = ge.maploadedFunc();
-                    if (userChoice == "validatemap") {
+                    if (*userChoicePtr == "validatemap") {
+                        ge.Transition();
                         ge.setState(mapvalidated);
                     }
                 case mapvalidated:
                     *userChoicePtr = ge.mapvalidatedFunc();
-                    if (userChoice == "addplayer") {
+                    if (*userChoicePtr == "addplayer") {
+                        ge.Transition();
                         ge.setState(playeradded);
                     }
                 case playeradded:
@@ -93,10 +95,12 @@ public:
                 */
                 case win:
                     *userChoicePtr = ge.winFunc();
-                    if (userChoice == "replay") {
+                    if (*userChoicePtr == "replay") {
+                        ge.Transition();
                         ge.setState(start);
-                    } else if (userChoice == "quit") {
+                    } else if (*userChoicePtr == "quit") {
                         // since the user chose to quit, therefore, change the bool to play false, to close.
+                        ge.Transition();
                         *playPtr = false;
                         break;
                     }

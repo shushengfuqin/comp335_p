@@ -95,18 +95,16 @@ string GameEng::maploadedFunc()
 
     for (;;)
     {
-        string cmdInput = cmdProc->validate(getState());
+        userCmd = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, loadRegex)){
             // *** LOAD MAP HERE ***
             string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
             LoadMap(mapName);
-
             cout << "map loaded again\n";
             cout << "1 - loadmap <mapfile>\n";
             cout << "2 - validatemap\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
         else if(cmdInput == "validatemap"){
@@ -120,13 +118,11 @@ string GameEng::maploadedFunc()
 
             cout << "Moving to next state\n";
             //Notify(this);
-
             return "validatemap";
         }
         else{
             cout << "Error: Please enter a valid input\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
     }
@@ -184,8 +180,7 @@ string GameEng::playeraddedFunc()
     cmdProc->getCommand();
     for (;;)
     {
-        string cmdInput = cmdProc->validate(getState());
-
+        userCmd = cmdProc->validate(getState());
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
             string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
@@ -193,23 +188,19 @@ string GameEng::playeraddedFunc()
             player->setPlayerId(++playerCount);
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
-
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
-        else if(cmdInput == "gamestart"){
+        else if(userCmd == "gamestart"){
             cout << "Moving to next state\n";
             Notify(this);
 
             // *** START GAME HERE ***
-
             return "assigncountries";
         }
         else{
             cout << "Error: Please enter a valid input\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
     }
@@ -331,26 +322,26 @@ string GameEng::winFunc()
     cmdProc->getCommand();
     for (;;)
     {
-        string cmdInput = cmdProc->validate(getState());
+        userCmd = cmdProc->validate(getState());
 
-        if(cmdInput == "replay"){
+        if(userCmd == "replay"){
             cout << "Moving to next state\n";
-            Notify(this);
             return "replay";
         }
-        else if(cmdInput == "quit"){
+        else if(userCmd == "quit"){
             cout << "Thank you for playing. See you next time\n";
-            Notify(this);
             return "quit";
         }
         else{
             cout << "Error: Please enter a valid input\n";
             cmdProc->getCommand();
-            Notify(this);
             continue;
         }
     }
+}
 
+void GameEng::Transition(){
+    Notify(this);
 }
 
 void GameEng::startUpPhase() {
@@ -388,5 +379,5 @@ void GameEng::startUpPhase() {
 }
 
 string GameEng::stringToLog() {
-    return "Game Engine user enter: ";
+    return "Game Engine: " + userCmd;
 }

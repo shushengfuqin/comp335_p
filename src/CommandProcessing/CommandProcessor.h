@@ -26,13 +26,14 @@ public:
     ~Command() = default;
     void saveEffect(string e);
     string getEffect() {return effect;}
-    string getCommand() {return command;}
+    string getCommandText() {return command;}
     string stringToLog() override;
     friend ostream &operator<<(ostream &output, Command &C );
     Command& operator=(const Command& c);
 private:
     string command;
     string effect;
+
 };
 
 
@@ -48,9 +49,11 @@ public:
     friend ostream &operator<<(ostream &output, CommandProcessor &C );
     CommandProcessor& operator=(const CommandProcessor& C);
 protected:
-    virtual string readCommand();
-    void saveCommand(string cmd);
+
+
 private:
+    virtual string readCommand();
+    void saveCommand(const string& cmd);
     list<Command> *lc = new list<Command>();
 };
 

@@ -1,12 +1,12 @@
 #include "CommandProcessor.h"
 #include <iostream>
-#include <fstream>
 #include <regex>
+#include <utility>
 
 /////////////////
 
 Command::Command(string cmd){
-    command = cmd;
+    command = std::move(cmd);
 }
 
 Command::Command(const Command& c){
@@ -15,11 +15,11 @@ Command::Command(const Command& c){
 }
 
 void Command::saveEffect(string e) {
+    effect = std::move(e);
     Notify(this);
-    effect = e;
 }
 string Command::stringToLog() {
-    return "Command stringToLog";
+    return "Command stringToLog: " + effect ;
 }
 
 ostream &operator<<(ostream &output, Command &C ) {
@@ -52,17 +52,16 @@ string CommandProcessor::readCommand() {
     return cmd;
 }
 
-void CommandProcessor::saveCommand(string cmd) {
+void CommandProcessor::saveCommand(const string& cmd) {
     Command c(cmd);
     // Save effect
-    c.saveEffect(cmd);
     lc->push_back(c);
     Notify(this);
 }
 
 // If valid, returns the passing command
 string CommandProcessor::validate(GameState gs) {
-    string c = lc->back().getCommand();
+    string c = lc->back().getCommandText();
 
     regex loadRegex ("loadmap\\s.+");
     regex playerRegex("addplayer\\s.+");
@@ -88,12 +87,11 @@ string CommandProcessor::validate(GameState gs) {
     // Command is not usable
     else
         lc->back().saveEffect("Error: Invalid input.");
-
     return c;
 }
 
 string CommandProcessor::stringToLog() {
-    return "CommandProcessor stringToLog";
+    return "CommandProcessor stringToLog: " + lc->back().getCommandText();
 }
 
 ostream &operator<<(ostream &output, CommandProcessor &C ) {

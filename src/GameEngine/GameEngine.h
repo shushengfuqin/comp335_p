@@ -50,6 +50,10 @@ public:
 
     vector<Player*>* playerList;
     int playerCount = 0;
+
+    void Transition();
+private:
+    string userCmd;
 };
 
 #endif //COMP335_P_GAMEENGINE_H
