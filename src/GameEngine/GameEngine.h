@@ -11,6 +11,8 @@
 #include "../CommandProcessing/CommandProcessor.h"
 #include "GameState.h"
 #include "../Observer/LoggingObserver.h"
+#include "../Map/Map.h"
+#include "../Player//Player.h"
 
 #pragma once
 using namespace std;
@@ -40,6 +42,15 @@ public:
     GameState currentState;
     string cmdInput;
     string stringToLog() override;
+    void startUpPhase();
+
+    MapLoader *pMapLoader;
+    Map *generatedMap;
+    void LoadMap(string name);
+
+    vector<Player*>* playerList;
+    int playerCount = 0;
+
     void Transition();
 private:
     string userCmd;

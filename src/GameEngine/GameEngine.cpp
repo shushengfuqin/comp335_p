@@ -20,14 +20,17 @@ regex playerRegex("addplayer\\s.+");
 
 GameEng::GameEng() {
     cmdProc = new CommandProcessor();
+    playerList = new vector<Player*>();
 }
 
 GameEng::GameEng(CommandProcessor * cp) {
     cmdProc = cp;
+    playerList = new vector<Player*>();
 }
 
 GameEng::GameEng(FileLineReader *flr) {
     cmdProc = new FileCommandProcessorAdapter(flr);
+    playerList = new vector<Player*>();
 }
 
 GameEng::~GameEng() = default;
@@ -44,15 +47,36 @@ string GameEng::startFunc()
     cout << "this is the start state\n";
     cout << "1 - loadmap <mapfile>\n";
     cmdProc->getCommand();
-    userCmd = cmdProc->validate(getState());
-    while (!regex_match (userCmd, loadRegex))
+    for (;;)
     {
-        cout << "Error: Please enter an valid command\n";
-        cmdProc->getCommand();
-        userCmd = cmdProc->validate(getState());
+        cmdInput = cmdProc->validate(getState());
+
+        if(regex_match (cmdInput, loadRegex)) {
+            string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
+            LoadMap(mapName);
+
+            cout << "Moving to the next state\n";
+            Notify(this);
+
+            return "loadmap";
+        }
+        else{
+            cout << "Error: Please enter an valid command\n";
+            cmdProc->getCommand();
+            continue;
+        }
     }
-    cout << "Moving to the next state\n";
-    return "loadmap";
+
+}
+
+//
+void GameEng::LoadMap(string name){
+    pMapLoader = new MapLoader("../canada/"+name+".map");
+    generatedMap = pMapLoader->generateMap();
+
+    for (int i = 0; i < generatedMap->getSize(); ++i) {
+        generatedMap->printTerritoryBorders(i);
+    }
 }
 
 /**
@@ -71,17 +95,29 @@ string GameEng::maploadedFunc()
 
     for (;;)
     {
-        userCmd = cmdProc->validate(getState());
+        cmdInput = cmdProc->validate(getState());
 
-        if(regex_match (userCmd, loadRegex)){
+        if(regex_match (cmdInput, loadRegex)){
+            // *** LOAD MAP HERE ***
+            string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
+            LoadMap(mapName);
             cout << "map loaded again\n";
             cout << "1 - loadmap <mapfile>\n";
             cout << "2 - validatemap\n";
             cmdProc->getCommand();
             continue;
         }
-        else if(userCmd == "validatemap"){
+        else if(cmdInput == "validatemap"){
+            // *** VALIDATE MAP HERE ***
+            if (generatedMap->validate()) {
+                cout << endl << "---MAP GENERATION VALID---" << endl;
+            } else {
+                cout << endl << "---MAP GENERATION INVALID---" << endl;
+                return "invalidmap";
+            }
+
             cout << "Moving to next state\n";
+            //Notify(this);
             return "validatemap";
         }
         else{
@@ -104,15 +140,29 @@ string GameEng::mapvalidatedFunc()
     cout << "this is the map validated state\n";
     cout << "1 - addplayer <playername> \n";
     cmdProc->getCommand();
-    userCmd = cmdProc->validate(getState());
-    while (!regex_match (userCmd, playerRegex))
-    {
-        cout << "Error: Please enter an valid command\n";
-        cmdProc->getCommand();
-        userCmd = cmdProc->validate(getState());
+
+    for (;;) {
+        cmdInput = cmdProc->validate(getState());
+
+        if(regex_match (cmdInput, playerRegex)){
+            // *** ADD PLAYER HERE ***
+            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
+            Player *player = new Player(playerName);
+            player->setPlayerId(++playerCount);
+            playerList->push_back(player);
+            cout << "Added player: " << playerName << endl;
+
+            cout << "Moving to the next state\n";
+            Notify(this);
+            return "addplayer";
+        }
+        else{
+            cout << "Error: Please enter an valid command\n";
+            cmdProc->getCommand();
+            Notify(this);
+            continue;
+        }
     }
-    cout << "Moving to the next state\n";
-    return "addplayer";
 }
 
 /**
@@ -130,17 +180,25 @@ string GameEng::playeraddedFunc()
     cmdProc->getCommand();
     for (;;)
     {
-        userCmd = cmdProc->validate(getState());
-
-        if(regex_match (userCmd, playerRegex)){
-            cout << "add player again\n";
-            cout << "1 - addplayer <playername>\n";
+        cmdInput = cmdProc->validate(getState());
+        if(regex_match (cmdInput, playerRegex)){
+            // *** ADD PLAYER HERE ***
+            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
+            Player *player = new Player(playerName);
+            player->setPlayerId(++playerCount);
+            playerList->push_back(player);
+            cout << "Added player: " << playerName << endl;
+            cout << "this is the player added state\n";
+            cout << "1 - addplayer <playername> \n";
             cout << "2 - gamestart\n";
             cmdProc->getCommand();
             continue;
         }
-        else if(userCmd == "gamestart"){
+        else if(cmdInput == "gamestart"){
             cout << "Moving to next state\n";
+            Notify(this);
+
+            // *** START GAME HERE ***
             return "assigncountries";
         }
         else{
@@ -287,6 +345,40 @@ string GameEng::winFunc()
 
 void GameEng::Transition(){
     Notify(this);
+}
+
+void GameEng::startUpPhase() {
+    // Clear player list
+    playerList->clear();
+
+    // Continue until start up phase is complete
+    while(getState() != win && getState() != assignreignforcement){
+        switch (getState()) {
+            case start:
+                if (startFunc() == "loadmap") {
+                    setState(maploaded);
+                }
+            case maploaded:
+                if (maploadedFunc() == "validatemap") {
+                    setState(mapvalidated);
+                }
+            case mapvalidated:
+                if (mapvalidatedFunc() == "addplayer") {
+                    setState(playeradded);
+                }
+            case playeradded:
+                if (playeraddedFunc() == "assigncountries") {
+                    setState(win);
+                }
+            default:
+                break;
+        }
+    }
+
+    // Clean up
+    delete (pMapLoader);
+    pMapLoader = NULL;
+
 }
 
 string GameEng::stringToLog() {
