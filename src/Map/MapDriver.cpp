@@ -161,9 +161,9 @@ public:
 
         map->assignTerritoriesToPlayers(*players);
 
-        vector<Territory> adjTerritories = map->getAllAdjacentTerritories(*t3);
+        vector<Territory*> adjTerritories = map->getAllAdjacentTerritories(*t3);
         for (auto adjTerritory : adjTerritories) {
-            cout << adjTerritory.getName() << ", ";
+            cout << "Adj Territory: " << adjTerritory->getName() << ", ";
         }
         cout << endl;
 

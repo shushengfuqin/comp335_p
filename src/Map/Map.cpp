@@ -666,12 +666,15 @@ bool Map::isAdjacentTerritory(Territory *source, Territory *target) {
  * @param territory
  * @return getterritoryRow
  */
-vector<Territory> Map::getAllAdjacentTerritories(Territory territory) {
+vector<Territory*> Map::getAllAdjacentTerritories(Territory territory) {
     int territoryId = territory.getTerritoryId();
+    vector<Territory*> adjTerritories;
 
     for (int i = 0; i < SIZE; ++i) {
         if (this->territory[i][0].getTerritoryId() == territoryId) {
-            vector<Territory> adjTerritories = this->getTerritoryRow(territoryId-1);
+            for (auto  terr: this->territory[i]){
+                adjTerritories.push_back(&terr);
+            }
             adjTerritories.erase(adjTerritories.begin());
             return adjTerritories;
         }
