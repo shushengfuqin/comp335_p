@@ -57,8 +57,8 @@ public:
     int removeArmyNum(int number);
 //    int updateArmyNum(int continentBonus);
 //    bool isTerritorySame(Territory *territory1, Territory *territory2);
-    void setPlayerName(string n) {name = n;}
-    string getPlayerName(){return name;}
+//    void setPlayerName(string n) {name = n;}
+//    string getPlayerName(){return name;}
     Hand *getHand(){ return playerHand ;};
     bool containsOrder(string orderType);
    // void printOrder();
