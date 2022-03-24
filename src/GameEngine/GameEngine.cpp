@@ -137,11 +137,11 @@ string GameEng::maploadedFunc()
 string GameEng::mapvalidatedFunc()
 {
     string nextState;
-    cout << "this is the map validated state\n";
-    cout << "1 - addplayer <playername> \n";
-    cmdProc->getCommand();
 
     for (;;) {
+        cout << "this is the map validated state\n";
+        cout << "1 - addplayer <playername> \n";
+        cmdProc->getCommand();
         cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, playerRegex)){
@@ -152,9 +152,11 @@ string GameEng::mapvalidatedFunc()
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
-            cout << "Moving to the next state\n";
-            Notify(this);
-            return "addplayer";
+            if(playerCount > 1) {
+                cout << "Moving to the next state\n";
+                Notify(this);
+                return "addplayer";
+            }
         }
         else{
             cout << "Error: Please enter an valid command\n";
