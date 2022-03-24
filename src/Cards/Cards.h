@@ -22,8 +22,10 @@ public:
     void play(int index, Hand& player, Deck& deck);
     friend ostream &operator<<(ostream &output, Card &C );
     Card& operator=(const Card& c);
+    CardType getCardType(){ return cardType; }
 private:
     CardType cardType;
+
 };
 
 class Deck{
@@ -45,6 +47,7 @@ private:
     int front;
     int back;
     Card *cards;
+
 };
 
 class Hand{
@@ -64,10 +67,14 @@ public:
     Card* getCardAtIndex(int index){return &cards[index];}
     friend ostream &operator<<( ostream &output, const Hand &H );
     Hand& operator=(const Hand& h);
+    bool getCardByType(CardType ct);
+
 private:
     int size;
     int limit;
     Card *cards;
+
+
 };
 
 #endif //COMP345_P_CARDS_H

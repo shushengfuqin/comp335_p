@@ -219,3 +219,12 @@ Hand& Hand::operator=(const Hand& h)
     }
     return *this;
 }
+
+bool Hand::getCardByType(CardType ct){
+    for(int i = 0; i < size; i++){
+        if(cards[i].getCardType() == ct){
+            return true;
+        }
+    }
+    return false;
+}

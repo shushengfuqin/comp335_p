@@ -19,6 +19,8 @@ public:
 
     int getArmyBonusValue() const;
 
+    int getNumArmies() const;
+
     void setName(const string &name);
 
     void setContinentId(int continentId);
@@ -27,13 +29,15 @@ public:
 
     void setArmyBonusValue(int numArmies);
 
+    void setNumArmies(int numArmies);
+
     void setPlayer(int playerId);
 
     void neutralState();
 
     int getPlayer() const;
 
-    Territory(const string name, const int territoryId, const int continentId);
+    Territory(const string name, const int territoryId, const int continentId, const int numArmies);
 
     Territory(const Territory &t1);
 
@@ -43,12 +47,14 @@ public:
 
 //    virtual ~Territory();
 
+
 private:
     string *_name;
     int _territoryId;
     int _continentId;
     string *_continentName;
     int _armyBonusValue;
+    int _numOfArmy = 0;
     int belongToPlayer;
 public:
 
@@ -93,6 +99,7 @@ public:
 
     virtual ~Map();
 
+    bool isAdjacentTerritory(Territory* source, Territory* target);
 private:
     int SIZE;
     vector<Territory> *territory;
