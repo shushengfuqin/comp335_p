@@ -95,7 +95,7 @@ string CommandProcessor::stringToLog() {
 }
 
 ostream &operator<<(ostream &output, CommandProcessor &C ) {
-    output << C.lc->back().getCommand() << " " << C.lc->back().getEffect();
+    output << C.lc->back().getCommandText() << " " << C.lc->back().getEffect();
     return output;
 }
 
