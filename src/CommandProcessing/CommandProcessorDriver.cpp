@@ -47,6 +47,7 @@ public:
             switch (ge.getState()) {
                 case start:
                     ge.startUpPhase();
+                    ge.mainGameLoop();
                 /*case start:
                     *userChoicePtr = ge.startFunc();
                     if (*userChoicePtr == "loadmap") {

@@ -381,6 +381,77 @@ void GameEng::startUpPhase() {
 
 }
 
+void GameEng::mainGameLoop(){
+    // while the amount of player is not 1 the main game loop will keep looping.
+//    while(playerCount != 1){
+//        // call the reinforcementphase
+//        reinforcementPhase();
+//    }
+    issueOrdersPhase();
+}
+
+void GameEng::reinforcementPhase() {
+//check if the player has still army
+
+}
+
+void GameEng::issueOrdersPhase() {
+//    for(auto & i : *playerList){
+//        cout << i->getArmyNum() << endl;
+//    }
+    // count if there are still player not done in deploying
+    int exit_Count = 0;
+    // all player in deploy mode
+    while(exit_Count < playerCount){
+        for(auto & i : *playerList){
+            if(i->getArmyNum() != 0){
+                // current player, which territory and amount of armies.
+                // the territory is an object
+                // army int
+                cout << i->getTerritoryList() << endl;
+//                Deploy *deploy = new Deploy(i,);
+//                i->issueOrders();
+//                cout << "----------------- " << i->getPlayerId() << "------------------" << endl;
+//                int x;
+//                cout << "How many army do you wish to deploy" << endl;
+//                cout << "You have " << playerList[i].getReinforcement() << " army left\n";
+//                cin >> x;
+//                playerList[i].setReinforcement(x);
+//                cout << "current army num " << playerList[i].getReinforcement() << endl;
+//                if(playerList[i].getReinforcement() == 0){
+//                    exit_Count++;
+                }
+            }
+        }
+    }
+
+    // issue order
+//    int exit_Count2 = 0;
+//    int x[playerCount];
+//    while(exit_Count2 < playerCount){
+//        for(int i = 0; i < playerCount; i++){
+//            cout << "----------------- " << playerList[i].getName() << "------------------" << endl;
+//            if(x[i] !=1){
+//                string command;
+//                string done;
+//                cout << "what would you like to do\n";
+//                cin >> command;
+//                cout << "you wish do to " << command << endl;
+//                cout << "are you done with issue Order? If yes type Y. Else type anything\n";
+//                cin >> done;
+//                if(done == "Y"){
+//                    exit_Count2++;
+//                    x[i] = 1;
+//                }
+//            }
+//        }
+//    }
+
+
+void GameEng::executeOrdersPhase() {
+
+}
+
 string GameEng::stringToLog() {
     return "Game Engine: " + userCmd;
 }

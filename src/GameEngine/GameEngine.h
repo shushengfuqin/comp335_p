@@ -42,7 +42,13 @@ public:
     GameState currentState;
     string cmdInput;
     string stringToLog() override;
+
+    // game phases
     void startUpPhase();
+    void mainGameLoop();
+    void reinforcementPhase();
+    void issueOrdersPhase();
+    void executeOrdersPhase();
 
     MapLoader *pMapLoader;
     Map *generatedMap;
@@ -50,7 +56,6 @@ public:
 
     vector<Player*>* playerList;
     int playerCount = 0;
-
     void Transition();
 private:
     string userCmd;
