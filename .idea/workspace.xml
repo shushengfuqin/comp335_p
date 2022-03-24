@@ -11,7 +11,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="1.add army in territory constructor. 2.change get/set armies in orders &#10;3.add comments" />
+    <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
+    </list>
     <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="">
       <change beforePath="$PROJECT_DIR$/src/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Map/Map.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.h" afterDir="false" />
@@ -43,6 +47,27 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/Order/Orders.cpp">
+      <ranges>
+        <range start1="17" end1="17" start2="17" end2="18" changelist="496fcf59-bd2b-488c-9171-6379bac8a10e" />
+        <range start1="160" end1="160" start2="161" end2="162" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="162" end1="162" start2="164" end2="167" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="262" end1="262" start2="267" end2="268" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="265" end1="266" start2="271" end2="274" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="331" end1="331" start2="339" end2="340" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="333" end1="334" start2="342" end2="345" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="401" end1="401" start2="412" end2="413" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="404" end1="405" start2="416" end2="419" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="471" end1="471" start2="485" end2="486" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="473" end1="474" start2="488" end2="491" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="546" end1="546" start2="563" end2="564" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="548" end1="549" start2="566" end2="569" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="592" end1="592" start2="612" end2="613" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+        <range start1="640" end1="640" start2="661" end2="670" changelist="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -82,6 +107,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="comp345_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp345_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp345_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -206,6 +236,10 @@
           <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
           <line>45</line>
           <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/CommandProcessing/CommandProcessor.cpp</url>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
