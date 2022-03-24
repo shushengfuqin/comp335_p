@@ -10,7 +10,7 @@ using namespace std;
 //Player constructor
 Player::Player() {
     //player owns a hand
-    playerHand = new Hand(2);
+    playerHand = new Hand();
     //player owns a territory list
     playerTerritoryList = new vector<Territory*>;
     //player owns a defend territory list
