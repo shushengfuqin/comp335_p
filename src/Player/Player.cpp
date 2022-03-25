@@ -399,6 +399,11 @@ bool Player::alreadyOwn(Territory *territory) {
 
     }
 
+    //get the orderList
+    Orderslist* Player::getOrderList() {
+        cout<<"return the orderlist"<<endl;
+        return orderList;
+    }
     string Player::getPlayerName() {
 
         return playerName;
@@ -462,7 +467,7 @@ bool Player::alreadyOwn(Territory *territory) {
     }
 
     void Player::calculateArmy(Map *map) {
-        armyNum += floor(playerTerritoryList->size() / 3);
+        armyNum += playerTerritoryList->size() / 3;
         this->calculateBonus(map);
         if (armyNum < 3) {
             armyNum = 3;
