@@ -138,22 +138,22 @@ public:
 
         // Army value with 1 territory
         Player* player = new Player();
-        player->addTerritory(t1);
-        player->displayTerritory(player->getTerritoryList());
-        player->calculateArmy(map);
-//        cout<<"----------------------------------"<<endl;
-//        player->displayTerritory(player->getAttackList());
-
-        // Army value with 3 territory differet continents
-        player->addTerritory(t2);
-        player->addTerritory(t4);
-        player->displayTerritory(player->getTerritoryList());
-        player->calculateArmy(map);
-
-        // Army value with territory completing contintent
-        player->addTerritory(t3);
-        player->displayTerritory(player->getTerritoryList());
-        player->calculateArmy(map);
+//        player->addTerritory(t1);
+//        player->displayTerritory(player->getTerritoryList());
+//        player->calculateArmy(map);
+////        cout<<"----------------------------------"<<endl;
+////        player->displayTerritory(player->getAttackList());
+//
+//        // Army value with 3 territory differet continents
+//        player->addTerritory(t2);
+//        player->addTerritory(t4);
+//        player->displayTerritory(player->getTerritoryList());
+//        player->calculateArmy(map);
+//
+//        // Army value with territory completing contintent
+//        player->addTerritory(t3);
+//        player->displayTerritory(player->getTerritoryList());
+//        player->calculateArmy(map);
 
 
         Player *player1 = new Player();
@@ -164,6 +164,7 @@ public:
 
 
         map->assignTerritoriesToPlayers(*players);
+        player->displayTerritory(player->getTerritoryList());
         cout<<"----------------------------"<<endl;
         cout<<"Player attack list"<<endl;
         player->toAttack(map);
