@@ -18,21 +18,13 @@ public:
 
         // TODO:: NEUTRAL PLAYER DOUBLE CHECK WITH TEACHER
         player->setPlayerId(1);
+        player->setPlayerName("PeterParker");
 
         //initialize some new territories.
         Territory *territory1= new Territory( "big", 1 ,1,0);
         Territory *territory2= new Territory( "small", 2 ,2,0);
         Territory *territory3= new Territory( "medium", 3 ,3,0);
 
-        //add territories to the player attack list
-        player->attackTerritory(territory1);
-        player->attackTerritory(territory2);
-        player->attackTerritory(territory2);
-        player->attackTerritory(territory3);
-
-        //player attack action
-        player->toAttack();
-        player->displayTerritory(player->getAttackList());
 
         //instantiate new list for player to defend
         Territory *territory4= new Territory( "large", 4,4,0 );
@@ -91,18 +83,6 @@ public:
         player->issueOrders(airlift1);
       //  player->issueOrders(negotiate);
 
-
-        //create another player using copy constructor
-//        Player *player2=player;
-//        player2->setPlayerId(2);
-//        player2->toAttack();
-
-        //create another player using assignment operator
-//        Player *player3;
-//        player3=player;
-//        player3->setPlayerId(3);
-//        player3->toDefend();
-
         //use the player stream
         cout<<"player 1 wanna talk: "<<*player<<endl;
 
@@ -110,9 +90,6 @@ public:
         player->removeTerritory(territory7);
         player->displayTerritory(player->getTerritoryList());
 
-        player->cancelAttack(territory1);
-        player->cancelAttack(territory1);
-        player->displayTerritory(player->getAttackList());
 
         player->cancelDefend(territory4);
         player->cancelDefend(territory4);
@@ -122,6 +99,7 @@ public:
         //create a new player
         Player *player4=new Player();
         player4->setPlayerId(4);
+        player4->setPlayerName("IronMan");
         //create new territory that should be used to add into the player class
         Territory *territory10= new Territory( "new territory 10", 10,7 ,0);
         Territory *territory11= new Territory( "new territory 11", 11 , 8,0);
@@ -138,6 +116,10 @@ public:
         player->displayTerritory(player->getTerritoryList());
         player4->displayTerritory(player4->getTerritoryList());
 
+        player4->getOrderList();
+        cout<<"-----------------------------"<<endl;
+
+
 
         cout<<player->getPlayerNumOfTerritoriesInContinent(9)<<endl;
 
@@ -152,6 +134,11 @@ public:
         cout<<territory1->getPlayer()<<endl;
         territory1->neutralState();
         cout<<territory1->getPlayer()<<endl;
+
+        vector<Player*>* players=new vector<Player*>();
+        players->push_back(player4);
+
+
 
     }
 

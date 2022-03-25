@@ -99,7 +99,7 @@ Territory &Territory::operator=(const Territory &t1) {
 
 //Territory stream insertion
 std::ostream &operator<<(ostream &os, const Territory &territory) {
-    os << "Hi I am a Territory" << endl;
+//    os << "Hi I am a Territory" << endl;
     return os;
 }
 
@@ -681,3 +681,4 @@ vector<Territory*> Map::getAllAdjacentTerritories(Territory territory) {
         }
     }
 }
+

@@ -15,6 +15,7 @@ using namespace std;
 //Order Class
 // Here are the 1. default constructor
 // 2. constructor with the order issuer (player)
+
 Order::Order(){};
 Order::Order(Player* player) {
     this->player = player;
@@ -158,8 +159,12 @@ void Deploy::execute() {
     } else{
         cout<<"deploy cannot be executed\n"<<endl;
     }
+    Notify(this);
 }
 
+string Deploy::stringToLog() {
+    return "Deploy executed";
+}
 
 
 
@@ -260,10 +265,13 @@ void Advance::execute() {
     }
     else
         cout<<" advance cannot be executed\n"<<endl;
+    Notify(this);
 }
 
 
-
+string Advance::stringToLog() {
+    return "Advance executed";
+}
 
 
 
@@ -329,9 +337,12 @@ void Bomb::execute() {
         cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
     } else
         cout<<" Bomb cannot be executed "<<"\n"<<endl;
+    Notify(this);
 }
 
-
+string Bomb::stringToLog() {
+    return "Bomb executed";
+}
 
 
 
@@ -399,10 +410,13 @@ void Blockade::execute() {
         cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
     } else
         cout<<"Blockade cannot be executed"<<endl;
+    Notify(this);
 }
 
 
-
+string Blockade::stringToLog() {
+    return "Blockade executed";
+}
 
 
 
@@ -469,9 +483,12 @@ void Airlift::execute() {
         }
         else
             cout<<"No airlift card is creating or airlift order is invalid"<<endl;
+    Notify(this);
 }
 
-
+string Airlift::stringToLog(){
+    return "Airlist executed";
+}
 
 
 
@@ -544,9 +561,12 @@ void Negotiate::execute() {
     }
     else
         cout<<"The Negotiate order cannot be executed\n"<<endl;
+    Notify(this);
 }
 
-
+string Negotiate::stringToLog() {
+    return "Negotiate executed";
+}
 
 
 
@@ -590,6 +610,7 @@ istream & operator >> (istream &in,  Orderslist &o)
 //add order
 void Orderslist::setOrderList(Order *order) {
     orderlist.push_back(order);
+    Notify(this);
 }
 //get the orderlist
 vector<Order*>* Orderslist::getOrderList() {
@@ -638,5 +659,14 @@ void Orderslist::move(int origin, int targetPosition)
     cout << endl;
 
  }*/
+
+// string to log when addOrder from OrderList has been called.
+string Orderslist::stringToLog() {
+//    string orderType = order.getOrderType();
+//    vector<Order*>::iterator it = orderlist.end();
+//    string lastOrder = (*it)->getOrderType();
+//    string toString = "OrderList add order" + it;
+    return "OrderList add order: ";
+}
 
 
