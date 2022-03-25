@@ -9,6 +9,8 @@
 #include <sstream>
 #include <memory>
 #include "Map.h"
+#include <ctime>
+#include <cstdlib>
 
 // Functions for the Territory class
 const string &Territory::getName() const {
@@ -378,22 +380,26 @@ int Map::getArmyContinentBonus(int continentId) {
  */
 void Map::assignTerritoriesToPlayers(vector<Player*> players) {
     int numOfPlayers = players.size();
-    int territoryLimitPerPlayer = 2; // Change this to set num of territories for each player
+    srand(time(0));
+    int randomContinentIdStart = rand() % (territory[SIZE - 1][0].getContinentId() - numOfPlayers + 1); // random number between num of continents - size of players
+    int territoryLimitPerPlayer = 3; // Change this to set num of territories for each player
     int numOfTerritoriesAssignedAtPlayer = 0;
-    int continentIdInQuestion = 1;
+    int continentIdInQuestion = 1 + randomContinentIdStart; // Which continent are we at.
 //// DEBUG: Print out size of the players
-    cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
+//    cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
     for (int i = 0; i < SIZE; ++i) {
-        if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) {
+        if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) { // Player has reached their territory limit.
             if (continentIdInQuestion == territory[i][0].getContinentId()) {
                 continue;
-            } else {
+            } else { // Player can still be assigned another territory
                 continentIdInQuestion++;
                 numOfTerritoriesAssignedAtPlayer = 0;
             }
         }
         for (int playerIndex = 0; playerIndex < numOfPlayers; ++playerIndex) {
-            if (playerIndex + 1 == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
+            if (playerIndex + 1 + randomContinentIdStart == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
+                //// Debug: Print the player Id with the assignment of a territory
+                cout << "Player ID " << playerIndex << " ";
                 players.at(playerIndex)->addTerritory(&territory[i][0]);
                 numOfTerritoriesAssignedAtPlayer++;
             }
