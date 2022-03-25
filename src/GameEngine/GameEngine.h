@@ -47,7 +47,7 @@ public:
 
     MapLoader *pMapLoader;
     Map *generatedMap;
-    void LoadMap(string name);
+    bool LoadMap(string name);
 
     vector<Player*>* playerList;
     int playerCount = 0;

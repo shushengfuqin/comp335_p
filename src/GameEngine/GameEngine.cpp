@@ -57,12 +57,20 @@ string GameEng::startFunc()
 
         if(regex_match (cmdInput, loadRegex)) {
             string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
-            LoadMap(mapName);
+            bool loaded = LoadMap(mapName);
 
-            cout << "Moving to the next state\n";
-            Notify(this);
+            if(loaded){
+                cout << "Moving to the next state\n";
+                Notify(this);
 
-            return "loadmap";
+                return "loadmap";
+            }
+            else{
+                cout << "this is the start state\n";
+                cout << "1 - loadmap <mapfile>\n";
+                cmdProc->getCommand();
+                continue;
+            }
         }
         else{
             cout << "Error: Please enter an valid command\n";
@@ -73,14 +81,20 @@ string GameEng::startFunc()
 
 }
 
-// TODO: MAKE SURE INVALID MAP FILENAMES DON'T EXIT THE PROGRAM
-void GameEng::LoadMap(string name){
+bool GameEng::LoadMap(string name){
     pMapLoader = new MapLoader("../canada/"+name+".map");
+
+    // Failed to load filename
+    if(!pMapLoader->success)
+        return false;
+
     generatedMap = pMapLoader->generateMap();
 
     for (int i = 0; i < generatedMap->getSize(); ++i) {
         generatedMap->printTerritoryBorders(i);
     }
+
+    return true;
 }
 
 /**
@@ -210,11 +224,6 @@ string GameEng::playeraddedFunc()
             // Randomly determine the order of play of the players in the game
             auto rng = std::default_random_engine {};
             shuffle(playerList->begin(), playerList->end(), rng);
-
-            /*for(int i = 0; i < playerCount; i++){
-                Player *p = playerList->at(i);
-                cout << *p;
-            }*/
 
             // Each player to draw 2 cards each from the deck
             for(int i = 0; i < playerCount; i++){

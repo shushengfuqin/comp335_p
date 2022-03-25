@@ -120,6 +120,8 @@ public:
 
     virtual ~MapLoader();
 
+    bool success;
+
 private:
     Map *map;
     string *continents;
