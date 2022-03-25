@@ -251,6 +251,9 @@ public:
           }*/
         //// Debug: Test The random assignment of territories with the map loader's map
         generatedMap->assignTerritoriesToPlayers(*players);
+        //// Debug: Test assignTerritories to neutral player
+        Player * neutralPlayer = new Player();
+        generatedMap->assignTerritoriesToNeutralPlayer(neutralPlayer, *players);
 
         delete players;
         players = NULL;

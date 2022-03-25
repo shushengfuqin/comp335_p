@@ -407,6 +407,31 @@ void Map::assignTerritoriesToPlayers(vector<Player*> players) {
     }
 }
 
+/**
+ * Assigns territories to the neutral Player at the start of the game.
+ * if onw of the players has the territory already skip that territry.
+ * If nobody ownes it, assign the territory to the neutralPlayer.
+ * @param neutralPlayer
+ * @param players
+ */
+void Map::assignTerritoriesToNeutralPlayer(Player* neutralPlayer, vector<Player*> players) {
+    bool isOwnerByOnePlayer = false;
+    for (int i = 0; i < SIZE; ++i) {
+        for (auto player : players) {
+            if (player->containsTerritory(&territory[i][0])) {
+                isOwnerByOnePlayer = true;
+                break;
+            }
+        }
+        if (isOwnerByOnePlayer) {
+            isOwnerByOnePlayer = false;
+            continue;
+        }
+        cout << "ID " << i << " ";
+        neutralPlayer->addTerritory(&territory[i][0]);
+    }
+
+}
 
 // Functions for the MapLoader
 MapLoader::MapLoader(const string &fileName) {
