@@ -418,6 +418,7 @@ bool Player::alreadyOwn(Territory *territory) {
         return armyNum;
     }
 
+
 //int Player::updateArmyNum(int continentBonus) {
 //    //need to update the code
 //    return armyNum;
@@ -461,7 +462,7 @@ bool Player::alreadyOwn(Territory *territory) {
     }
 
     void Player::calculateArmy(Map *map) {
-        armyNum += playerTerritoryList->size() / 3;
+        armyNum += floor(playerTerritoryList->size() / 3);
         this->calculateBonus(map);
         if (armyNum < 3) {
             armyNum = 3;

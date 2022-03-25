@@ -59,6 +59,7 @@ public:
     void Transition();
 private:
     string userCmd;
+    int turnNum = 1;
 };
 
 #endif //COMP335_P_GAMEENGINE_H

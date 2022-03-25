@@ -569,15 +569,6 @@ string Negotiate::stringToLog() {
 }
 
 
-
-
-
-
-
-
-
-
-
 /*********** ORDER LIST ************/
 //implementation of Orderslist
 
