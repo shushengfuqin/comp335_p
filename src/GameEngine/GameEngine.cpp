@@ -2,6 +2,7 @@
 #include <iostream>
 #include <regex>
 #include <typeinfo>
+#include <vector>
 
 /**
  * Why input int instead of string.
@@ -444,10 +445,13 @@ void GameEng::issueOrdersPhase() {
     // issue order
     int exit_Count2 = 0;
     int x[playerCount];
+    for(int i = 0; i < playerCount; i++){
+        x[i] = 0;
+    }
     while(exit_Count2 < playerCount){
         for(auto &i: *playerList){
             cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
-            if(x[i->getPlayerId()] !=1){
+            if(x[i->getPlayerId() - 1] !=1){
                 string command;
                 string done;
                 bool correct = true;
@@ -483,6 +487,7 @@ void GameEng::issueOrdersPhase() {
                             if(y->getPlayerId() == target){
                                 cout << "this is the player's id that you choose " << y->getPlayerId() << endl;
                                 auto *negotiate = new Negotiate(i,i+2);
+                                i->issueOrders(negotiate);
                             }
                         }
                         correct = false;
@@ -497,7 +502,7 @@ void GameEng::issueOrdersPhase() {
                 cin >> done;
                 if(done == "Y"){
                     exit_Count2++;
-                    x[i->getPlayerId()] = 1;
+                    x[i->getPlayerId() - 1] = 1;
                 }
             }
         }
@@ -509,9 +514,9 @@ void GameEng::executeOrdersPhase() {
     int exit_count3 = 0;
     while(exit_count3 < playerCount){
         for(auto &i: *playerList){
-            cout << typeid(i->getOrderList()).name() << endl;
-//            auto it2 = it->begin();
-            cout << exit_count3 <<endl;
+            orderlist = i->getOrderList();
+            
+
             exit_count3++;
          //else checkout the
         }

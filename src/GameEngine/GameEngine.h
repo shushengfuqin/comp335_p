@@ -56,7 +56,7 @@ public:
     void LoadMap(string name);
 
     vector<Player*>* playerList;
-    vector<Order*> orderlist;
+    Orderslist* orderlist;
     int playerCount = 0;
     void Transition();
 private:

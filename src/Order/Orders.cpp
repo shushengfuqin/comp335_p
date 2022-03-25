@@ -645,7 +645,7 @@ void Orderslist::printOrderlist(){
     auto it = orderlist.begin();
     for (; it != orderlist.end(); it++)
     {
-        cout << (*it)->getOrderType() << " ";
+        cout << (*it)->getOrderType() << " " << endl;
     }
     cout << endl;
 

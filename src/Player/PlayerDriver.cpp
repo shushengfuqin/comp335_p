@@ -82,7 +82,10 @@ public:
         player->issueOrders(blockade1);
         player->issueOrders(airlift1);
       //  player->issueOrders(negotiate);
-
+        Orderslist* ol = player->getOrderList();
+        cout << "Ruochen working\n";
+        ol->printOrderlist();
+        cout << "Ruochen done testing\n";
         //use the player stream
         cout<<"player 1 wanna talk: "<<*player<<endl;
 
