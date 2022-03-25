@@ -399,6 +399,11 @@ bool Player::alreadyOwn(Territory *territory) {
 
     }
 
+    //get the orderList
+    Orderslist* Player::getOrderList() {
+        cout<<"return the orderlist"<<endl;
+        return orderList;
+    }
     string Player::getPlayerName() {
 
         return playerName;

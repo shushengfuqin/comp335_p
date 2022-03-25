@@ -43,6 +43,7 @@ public:
     void switchTerritories(Territory *territory,Player *player1, Player *player2);
     void issueOrders(Order* order);
     int getHandLimit();
+    Orderslist* getOrderList();
     void setPlayerId(int id);
     int getPlayerId();
     void setPlayerName(string name);

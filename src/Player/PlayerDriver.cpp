@@ -116,6 +116,10 @@ public:
         player->displayTerritory(player->getTerritoryList());
         player4->displayTerritory(player4->getTerritoryList());
 
+        player4->getOrderList();
+        cout<<"-----------------------------"<<endl;
+
+
 
         cout<<player->getPlayerNumOfTerritoriesInContinent(9)<<endl;
 
@@ -133,6 +137,8 @@ public:
 
         vector<Player*>* players=new vector<Player*>();
         players->push_back(player4);
+
+
 
     }
 
