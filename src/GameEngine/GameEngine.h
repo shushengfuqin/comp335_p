@@ -13,6 +13,7 @@
 #include "../Observer/LoggingObserver.h"
 #include "../Map/Map.h"
 #include "../Player//Player.h"
+#include "../Order/Orders.h"
 
 #pragma once
 using namespace std;
@@ -55,6 +56,7 @@ public:
     void LoadMap(string name);
 
     vector<Player*>* playerList;
+    vector<Order*> orderlist;
     int playerCount = 0;
     void Transition();
 private:

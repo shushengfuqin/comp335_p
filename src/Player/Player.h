@@ -68,9 +68,6 @@ public:
    // void printOrder();
 
     Order *getOrderbyType(string orderType);
-
-    //getter for orderlist of that player
-    Orderlist getOrderlist();
 private:
     vector<Territory*>* playerTerritoryList;
     vector<Territory*>* playerDefendList;

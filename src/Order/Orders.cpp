@@ -641,15 +641,15 @@ void Orderslist::move(int origin, int targetPosition)
     }
 }
 
-/*void Orderslist::printOrderlist(){
-    vector<Order*>::iterator it = orderlist.begin();
+void Orderslist::printOrderlist(){
+    auto it = orderlist.begin();
     for (; it != orderlist.end(); it++)
     {
         cout << (*it)->getOrderType() << " ";
     }
     cout << endl;
 
- }*/
+ }
 
 // string to log when addOrder from OrderList has been called.
 string Orderslist::stringToLog() {

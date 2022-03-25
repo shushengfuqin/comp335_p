@@ -1,6 +1,7 @@
 #include "GameEngine.h"
 #include <iostream>
 #include <regex>
+#include <typeinfo>
 
 /**
  * Why input int instead of string.
@@ -424,6 +425,7 @@ void GameEng::issueOrdersPhase() {
                 // y the id for the territory want to deploy army to.
                 int y;
                 cout << "You have " << i->getArmyNum() << " army left\n";
+                cout << "List of territory that you control\n";
                 cout << "Where would you like to deploy for army\n";
                 cin >> y;
                 cout << "How many army do you wish to deploy" << endl;
@@ -467,6 +469,22 @@ void GameEng::issueOrdersPhase() {
                         correct = false;
                     } else if (command == "Negotiate") {
                         cout << "you chose negotiate\n";
+                        //print all other player
+                        cout << "Please chose your target player by id\n";
+                        for(auto &j: *playerList){
+                            if(i != j){
+                                cout << "Player Id : " << j->getPlayerId() << ". Player Name : "<< j->getPlayerName()<<endl;
+                            }
+                        }
+                        int target;
+                        cin >> target;
+                        cout << "You chose Player: " << target <<endl;
+                        for(auto &y: *playerList){
+                            if(y->getPlayerId() == target){
+                                cout << "this is the player's id that you choose " << y->getPlayerId() << endl;
+                                auto *negotiate = new Negotiate(i,i+2);
+                            }
+                        }
                         correct = false;
                     } else {
                         cout << "please enter an available order\n";
@@ -491,8 +509,11 @@ void GameEng::executeOrdersPhase() {
     int exit_count3 = 0;
     while(exit_count3 < playerCount){
         for(auto &i: *playerList){
-         //check if the orderlist is empty
-         if(i->get)
+            cout << typeid(i->getOrderList()).name() << endl;
+//            auto it2 = it->begin();
+            cout << exit_count3 <<endl;
+            exit_count3++;
+         //else checkout the
         }
     }
 }
