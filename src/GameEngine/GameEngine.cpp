@@ -514,8 +514,9 @@ void GameEng::executeOrdersPhase() {
     int exit_count3 = 0;
     while(exit_count3 < playerCount){
         for(auto &i: *playerList){
+            cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
             orderlist = i->getOrderList();
-            
+
 
             exit_count3++;
          //else checkout the
