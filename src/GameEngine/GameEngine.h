@@ -12,6 +12,7 @@
 #include "GameState.h"
 #include "../Observer/LoggingObserver.h"
 #include "../Map/Map.h"
+#include "../Cards/Cards.h"
 #include "../Player//Player.h"
 
 #pragma once
@@ -50,6 +51,8 @@ public:
 
     vector<Player*>* playerList;
     int playerCount = 0;
+
+    Deck* gameDeck;
 
     void Transition();
 private:

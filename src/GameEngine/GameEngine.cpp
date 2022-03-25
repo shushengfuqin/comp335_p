@@ -1,6 +1,8 @@
 #include "GameEngine.h"
 #include <iostream>
 #include <regex>
+#include <algorithm>
+#include <random>
 
 /**
  * Why input int instead of string.
@@ -17,20 +19,22 @@ int userInput;
 regex loadRegex ("loadmap\\s.+");
 regex playerRegex("addplayer\\s.+");
 
-
 GameEng::GameEng() {
     cmdProc = new CommandProcessor();
     playerList = new vector<Player*>();
+    gameDeck = new Deck(60);
 }
 
 GameEng::GameEng(CommandProcessor * cp) {
     cmdProc = cp;
     playerList = new vector<Player*>();
+    gameDeck = new Deck(60);
 }
 
 GameEng::GameEng(FileLineReader *flr) {
     cmdProc = new FileCommandProcessorAdapter(flr);
     playerList = new vector<Player*>();
+    gameDeck = new Deck(60);
 }
 
 GameEng::~GameEng() = default;
@@ -69,7 +73,7 @@ string GameEng::startFunc()
 
 }
 
-//
+// TODO: MAKE SURE INVALID MAP FILENAMES DON'T EXIT THE PROGRAM
 void GameEng::LoadMap(string name){
     pMapLoader = new MapLoader("../canada/"+name+".map");
     generatedMap = pMapLoader->generateMap();
@@ -201,6 +205,24 @@ string GameEng::playeraddedFunc()
             Notify(this);
 
             // *** START GAME HERE ***
+            // TODO:  Fairly distributing the territories among all players
+
+            // Randomly determine the order of play of the players in the game
+            auto rng = std::default_random_engine {};
+            shuffle(playerList->begin(), playerList->end(), rng);
+
+            /*for(int i = 0; i < playerCount; i++){
+                Player *p = playerList->at(i);
+                cout << *p;
+            }*/
+
+            // Each player to draw 2 cards each from the deck
+            for(int i = 0; i < playerCount; i++){
+                Player *p = playerList->at(i);
+                gameDeck->draw(*p->getHand());
+                gameDeck->draw(*p->getHand());
+            }
+
             return "assigncountries";
         }
         else{
