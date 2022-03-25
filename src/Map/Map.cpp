@@ -212,7 +212,10 @@ void Map::printTerritoriesByContinentId(int continentId) {
 // Moves through from a starting node to other nodes using Breath first Search
 bool Map::bfs(int startIndex) {
 
-    unique_ptr<bool[]> visited(new bool[SIZE]);
+    bool visited[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        visited[i] = true;
+    }
 //    bool * visited = new bool[SIZE];
 
     queue<int> queueTerritoryIds;
@@ -266,7 +269,11 @@ bool Map::bfsContinents(int startIndex, int continentId) {
         }
     }
 
-    unique_ptr<bool[]> visited(new bool[SIZE]);
+    bool visited[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        visited[i] = true;
+    }
+
     for (int i = 0; i < sizeof(visited) / sizeof(visited[0]); ++i) {
         if (i < offsetSize || i >= (continentSize + offsetSize)) {
             visited[i] = false;
