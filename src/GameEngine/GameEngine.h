@@ -12,6 +12,7 @@
 #include "GameState.h"
 #include "../Observer/LoggingObserver.h"
 #include "../Map/Map.h"
+#include "../Cards/Cards.h"
 #include "../Player//Player.h"
 #include "../Order/Orders.h"
 
@@ -53,11 +54,15 @@ public:
 
     MapLoader *pMapLoader;
     Map *generatedMap;
-    void LoadMap(string name);
+    bool LoadMap(string name);
 
     vector<Player*>* playerList;
+    Player* neutral;
     Orderslist* orderlist;
     int playerCount = 0;
+
+    Deck* gameDeck;
+
     void Transition();
 private:
     string userCmd;

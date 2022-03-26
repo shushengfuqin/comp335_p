@@ -101,11 +101,15 @@ public:
 
     void assignTerritoriesToPlayers(vector<Player*> players);
 
+    void assignTerritoriesToNeutralPlayer(Player* neutralPlayer, vector<Player*> players);
+
     virtual ~Map();
 
     bool isAdjacentTerritory(Territory* source, Territory* target);
 
     vector<Territory*> getAllAdjacentTerritories(Territory territory);
+
+
 
 private:
     int SIZE;
@@ -126,6 +130,8 @@ public:
     Map *generateMap();
 
     virtual ~MapLoader();
+
+    bool success;
 
 private:
     Map *map;
