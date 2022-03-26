@@ -505,8 +505,47 @@ void GameEng::issueOrdersPhase() {
                     cin >> command;
                     if(command == "Advance"){
                         cout << "you chose advance\n";
-                        
-//                    Advance *advance = new Advance(i,)
+                        // Advance need player, source T, target T, army num
+                        // All your t
+                        int st;
+                        int tt;
+                        int armyNum;
+                        auto territory = i->getTerritoryList();
+                        cout << "Your territory\n";
+                        for(auto &pT: *territory){
+                            cout << "Territory id: " <<pT->getTerritoryId() <<endl;
+                        }
+
+                        //get all adjacent territory of each of your territory
+                        cout << "All Adjacent territory\n";
+                        for(auto &t: *territory){
+                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*t);
+                            cout << "Adjacent territory of :" << t->getTerritoryId()<<endl;
+                            for(auto &adj: adjacent_territory){
+                                cout << "Territory Id : "<<adj->getTerritoryId() << endl;
+                            }
+                        }
+                        cout << "Choose one for your territory. Choose by Id.\n";
+                        cin >> st;
+                        cout << "Choose one for adjacent territory. Choose by Id.\n";
+                        cin >> tt;
+                        cout << "How many army would you like to send?\n";
+                        cin >> armyNum;
+
+                        for(auto &pT: *territory){
+                            if(pT->getTerritoryId() == st){
+                                for(auto &t: *territory){
+                                    auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*t);
+                                    for(auto &adj: adjacent_territory){
+                                        if(adj->getTerritoryId() == tt){
+                                            // create advance obj
+                                            auto *advance = new Advance(i,pT,adj,armyNum);
+                                            i->issueOrders(advance);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                         correct = false;
                     } else if (command == "Bomb") {
                         cout << "you chose bomb\n";
@@ -565,8 +604,8 @@ void GameEng::issueOrdersPhase() {
                         // get list of all territory
                         for(auto &allpl: *playerList){
                             auto plT = allpl->getTerritoryList();
+                            cout << "Territory of Player: " <<allpl->getPlayerName() << endl;
                             for(auto &TiD: *plT){
-                                cout << "Territory of Player: " <<allpl->getPlayerName() << endl;
                                 cout << "Territory Id: " << TiD->getTerritoryId() << endl;
                             }
                         }
