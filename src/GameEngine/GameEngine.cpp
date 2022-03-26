@@ -203,11 +203,16 @@ string GameEng::playeraddedFunc()
         cmdInput = cmdProc->validate(getState());
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
-            Player *player = new Player(playerName);
-            player->setPlayerId(++playerCount);
-            playerList->push_back(player);
-            cout << "Added player: " << playerName << endl;
+            if(playerCount >= 6){
+                cout << "Max player limit reached. Unable to add new player." << endl;
+            }
+            else{
+                string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
+                Player *player = new Player(playerName);
+                player->setPlayerId(++playerCount);
+                playerList->push_back(player);
+                cout << "Added player: " << playerName << endl;
+            }
             cout << "this is the player added state\n";
             cout << "1 - addplayer <playername> \n";
             cout << "2 - gamestart\n";
