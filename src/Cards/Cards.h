@@ -25,7 +25,6 @@ public:
     CardType getCardType(){ return cardType; }
 private:
     CardType cardType;
-
 };
 
 class Deck{
@@ -44,10 +43,7 @@ public:
     Deck& operator=(const Deck& d);
 private:
     int size;
-    int front;
-    int back;
     Card *cards;
-
 };
 
 class Hand{
@@ -68,13 +64,10 @@ public:
     friend ostream &operator<<( ostream &output, const Hand &H );
     Hand& operator=(const Hand& h);
     bool getCardByType(CardType ct);
-
 private:
     int size;
     int limit;
     Card *cards;
-
-
 };
 
 #endif //COMP345_P_CARDS_H

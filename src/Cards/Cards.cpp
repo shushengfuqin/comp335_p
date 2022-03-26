@@ -56,21 +56,15 @@ Card&Card::operator=(const Card& c)
 Deck::Deck(int s){
     size = s;
     cards = new Card[size];
-    front = 0;
-    back = s-1;
 }
 
 Deck::Deck(){
     size = 52;
     cards = new Card[size];
-    front = 0;
-    back = 51;
 }
 
 Deck::Deck(const Deck& d)
 {
-    this->front = d.front;
-    this->back = d.back;
     this->size = d.size;
     this->cards = new Card[size];
 
@@ -97,42 +91,34 @@ void Deck::draw(Hand& player) {
         return;
     }
 
-    // Take top card
-    Card* topCard;
-    topCard = &cards[front];
-    if(front >= back){      //only one element in queue
-        front = -1;
-        back = -1;
+    // Take random card from deck
+    int r = rand() % size;
+    Card topCard = cards[r];
+
+    for(int i = r; i < size-1; i++){
+        cards[i] = cards[i+1];
     }
-    else {
-        front++;
-    }
-    cout << "Drawing a card => " << *topCard << " from Deck" << endl;
+
+    cout << "Drawing a card => " << topCard << " from Deck" << endl;
 
     // Give hand the card
-    player.addCard(topCard);
+    player.addCard(&topCard);
     size--;
 
-    cout << "DECK: " << *this << endl << endl;
+    //cout << "DECK: " << *this << endl;
+    cout << "HAND: " << player << endl << endl;
 }
 
 void Deck::returnToDeck(Card &newCard) {
-    // Was the deck just empty?
-    if(front == -1)
-        front = 0;
-
-    back++;
-    cards[back] = newCard;
-    size++;
-    cout << endl << "Adding a card => " << cards[back] << " back to Deck" << endl;
+    cards[size++] = newCard;
+    cout << endl << "Adding a card => " << cards[size-1] << " back to Deck" << endl;
     cout << "DECK: " << *this << endl << endl;
 }
 
 ostream &operator<<( ostream &output, const Deck &D ) {
-    int limit = D.front + D.size;
-    for(int i = D.front; i < limit; i++){
+    for(int i = 0; i < D.size; i++){
         output << D.cards[i];
-        if(i < limit-1)
+        if(i < D.size-1)
             output << " --- ";
     }
     return output;
@@ -140,14 +126,10 @@ ostream &operator<<( ostream &output, const Deck &D ) {
 
 Deck& Deck::operator=(const Deck& d)
 {
-    this->front = d.front;
-    this->back = d.back;
     this->size = d.size;
     this->cards = new Card[size];
 
-    int limit = d.front + d.size;
-
-    for(int i = d.front; i < limit; i++){
+    for(int i = 0; i < d.size; i++){
         this->cards[i] = d.cards[i];
     }
     return *this;
