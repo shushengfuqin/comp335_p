@@ -455,10 +455,15 @@ MapLoader::MapLoader(const string &fileName) {
     } else {
         cout << "This is not a valid .map file" << endl;
     }
+
     if (!inputFileStream) {
-        cerr << "Unable to open file .map file";
-        exit(1);   // call system to stop
+        cerr << "Unable to open file .map file" << endl;
+        success = false;
+        return;
     }
+
+    success = true;
+
 
     string line;
     bool inContinents = false;
@@ -495,6 +500,8 @@ MapLoader::MapLoader(const string &fileName) {
 
     }
     inputFileStream.close();
+
+    cout << "c" << endl;
 }
 
 

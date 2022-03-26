@@ -1,6 +1,8 @@
 #include "GameEngine.h"
 #include <iostream>
 #include <regex>
+#include <algorithm>
+#include <random>
 
 /**
  * Why input int instead of string.
@@ -17,20 +19,22 @@ int userInput;
 regex loadRegex ("loadmap\\s.+");
 regex playerRegex("addplayer\\s.+");
 
-
 GameEng::GameEng() {
     cmdProc = new CommandProcessor();
     playerList = new vector<Player*>();
+    gameDeck = new Deck(60);
 }
 
 GameEng::GameEng(CommandProcessor * cp) {
     cmdProc = cp;
     playerList = new vector<Player*>();
+    gameDeck = new Deck(60);
 }
 
 GameEng::GameEng(FileLineReader *flr) {
     cmdProc = new FileCommandProcessorAdapter(flr);
     playerList = new vector<Player*>();
+    gameDeck = new Deck(60);
 }
 
 GameEng::~GameEng() = default;
@@ -53,12 +57,20 @@ string GameEng::startFunc()
 
         if(regex_match (cmdInput, loadRegex)) {
             string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
-            LoadMap(mapName);
+            bool loaded = LoadMap(mapName);
 
-            cout << "Moving to the next state\n";
-            Notify(this);
+            if(loaded){
+                cout << "Moving to the next state\n";
+                Notify(this);
 
-            return "loadmap";
+                return "loadmap";
+            }
+            else{
+                cout << "this is the start state\n";
+                cout << "1 - loadmap <mapfile>\n";
+                cmdProc->getCommand();
+                continue;
+            }
         }
         else{
             cout << "Error: Please enter an valid command\n";
@@ -69,14 +81,20 @@ string GameEng::startFunc()
 
 }
 
-//
-void GameEng::LoadMap(string name){
-    pMapLoader = new MapLoader("../canada/"+name+".map");
+bool GameEng::LoadMap(string name){
+    pMapLoader = new MapLoader("../"+name+"/"+name+".map");
+
+    // Failed to load filename
+    if(!pMapLoader->success)
+        return false;
+
     generatedMap = pMapLoader->generateMap();
 
     for (int i = 0; i < generatedMap->getSize(); ++i) {
         generatedMap->printTerritoryBorders(i);
     }
+
+    return true;
 }
 
 /**
@@ -137,11 +155,11 @@ string GameEng::maploadedFunc()
 string GameEng::mapvalidatedFunc()
 {
     string nextState;
-    cout << "this is the map validated state\n";
-    cout << "1 - addplayer <playername> \n";
-    cmdProc->getCommand();
 
     for (;;) {
+        cout << "this is the map validated state\n";
+        cout << "1 - addplayer <playername> \n";
+        cmdProc->getCommand();
         cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, playerRegex)){
@@ -152,9 +170,11 @@ string GameEng::mapvalidatedFunc()
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
-            cout << "Moving to the next state\n";
-            Notify(this);
-            return "addplayer";
+            if(playerCount > 1) {
+                cout << "Moving to the next state\n";
+                Notify(this);
+                return "addplayer";
+            }
         }
         else{
             cout << "Error: Please enter an valid command\n";
@@ -183,11 +203,16 @@ string GameEng::playeraddedFunc()
         cmdInput = cmdProc->validate(getState());
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
-            Player *player = new Player(playerName);
-            player->setPlayerId(++playerCount);
-            playerList->push_back(player);
-            cout << "Added player: " << playerName << endl;
+            if(playerCount >= 6){
+                cout << "Max player limit reached. Unable to add new player." << endl;
+            }
+            else{
+                string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
+                Player *player = new Player(playerName);
+                player->setPlayerId(++playerCount);
+                playerList->push_back(player);
+                cout << "Added player: " << playerName << endl;
+            }
             cout << "this is the player added state\n";
             cout << "1 - addplayer <playername> \n";
             cout << "2 - gamestart\n";
@@ -199,6 +224,22 @@ string GameEng::playeraddedFunc()
             Notify(this);
 
             // *** START GAME HERE ***
+            // Fairly distributing the territories among all players
+            neutral = new Player("N/A");
+            generatedMap->assignTerritoriesToPlayers(*playerList);
+            generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
+
+            // Randomly determine the order of play of the players in the game
+            auto rng = std::default_random_engine {};
+            shuffle(playerList->begin(), playerList->end(), rng);
+
+            // Each player to draw 2 cards each from the deck
+            for(int i = 0; i < playerCount; i++){
+                Player *p = playerList->at(i);
+                gameDeck->draw(*p->getHand());
+                gameDeck->draw(*p->getHand());
+            }
+
             return "assigncountries";
         }
         else{
