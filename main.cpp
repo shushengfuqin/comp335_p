@@ -20,7 +20,6 @@ int main(int argc, char *argv[]) {
     cin >> x;
     cout << "\n";
 
-
     if(x == "y"){
         cout << "------------- CARDS DRIVER CLASS ----------------\n";
         CardsDriver cd;
