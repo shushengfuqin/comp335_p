@@ -443,7 +443,7 @@ void GameEng::reinforcementPhase() {
     cout << "------------ Reinforcement Phase ------------\n";
     //check if the player has still army
     for(auto &i: *playerList){
-        i->calculateBonus(generatedMap);
+        i->calculateArmy(generatedMap);
     }
 }
 
@@ -512,6 +512,22 @@ void GameEng::issueOrdersPhase() {
                         correct = false;
                     } else if (command == "Blockade") {
                         cout << "you chose blockade\n";
+                        // list all territory user control.
+                        auto territory = i->getTerritoryList();
+                        //target territory;
+                        int t;
+                        for(auto &t : *territory){
+                            cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << endl;
+                        }
+                        cout << "Which territory would you like to use Blockade. Chose by id\n";
+                        cin >> t;
+                        for(auto &e : *territory){
+                            if(e->getTerritoryId() == t){
+                                cout << "This is the territory you chose: " << t << endl;
+                                auto *blockade = new Blockade(i,e);
+                                i->issueOrders(blockade);
+                            }
+                        }
                         correct = false;
                     } else if (command == "Airlift") {
                         cout << "you chose airlift\n";

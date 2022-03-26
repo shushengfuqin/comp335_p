@@ -419,12 +419,6 @@ string Blockade::stringToLog() {
 }
 
 
-
-
-
-
-
-
 /*********** AIRLIFT ************/
 //Airlift class
 Airlift::Airlift() :Order(){
