@@ -443,6 +443,7 @@ void GameEng::reinforcementPhase() {
     cout << "------------ Reinforcement Phase ------------\n";
     //check if the player has still army
     for(auto &i: *playerList){
+        cout << "------------ Player : " << i->getPlayerName() << " ------------\n";
         i->calculateArmy(generatedMap);
     }
 }
