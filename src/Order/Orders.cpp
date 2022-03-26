@@ -613,7 +613,7 @@ void Orderslist::remove(Order* order) {
     for (int i = 0; i < orderlist.size(); i++) {
         if (order->getOrderType() == orderlist.at(i)->getOrderType()) {
             orderlist.erase(orderlist.begin() + i);
-            cout << "The order" << order->getOrderType() << "has been removed from the list" << endl;
+            cout << "The order " << order->getOrderType() << " has been removed from the list" << endl;
             return;
         }
     }

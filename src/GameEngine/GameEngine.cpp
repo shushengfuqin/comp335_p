@@ -516,10 +516,50 @@ void GameEng::executeOrdersPhase() {
         for(auto &i: *playerList){
             cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
             orderlist = i->getOrderList();
-
-
-            exit_count3++;
-         //else checkout the
+            vector<Order *> *listOfOrders = orderlist->getOrderList();
+            if(!listOfOrders->empty()){
+                auto it = listOfOrders->begin();
+                string orderType = (*it)->getOrderType();
+                if(orderType == "deploy"){
+                    bool validation = (*it)->validate();
+                    if(validation){
+                        (*it)->execute();
+                    }
+                    orderlist->remove(*it);
+                } else if (orderType == "bomb"){
+                    bool validation = (*it)->validate();
+                    if(validation){
+                        (*it)->execute();
+                    }
+                    orderlist->remove(*it);
+                } else if (orderType == "advance"){
+                    bool validation = (*it)->validate();
+                    if(validation){
+                        (*it)->execute();
+                    }
+                    orderlist->remove(*it);
+                } else if (orderType == "blockade"){
+                    bool validation = (*it)->validate();
+                    if(validation){
+                        (*it)->execute();
+                    }
+                    orderlist->remove(*it);
+                } else if (orderType == "airlift"){
+                    bool validation = (*it)->validate();
+                    if(validation){
+                        (*it)->execute();
+                    }
+                    orderlist->remove(*it);
+                } else if (orderType == "negotiate"){
+                    bool validation = (*it)->validate();
+                    if(validation){
+                        (*it)->execute();
+                    }
+                    orderlist->remove(*it);
+                }
+            } else {
+                exit_count3 ++;
+            }
         }
     }
 }
