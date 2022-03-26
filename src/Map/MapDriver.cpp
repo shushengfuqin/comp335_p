@@ -136,23 +136,47 @@ public:
         cout << "_____" << map->getLastContinentId() << "_____" << endl;
         cout << "_____" << map->getArmyContinentBonus(1)<< "_____" << endl;
 
+        //// Debug: Test the Army value bonus feature
         // Army value with 1 territory
         Player* player = new Player();
-        player->addTerritory(t1);
-        player->displayTerritory(player->getTerritoryList());
-        player->calculateArmy(map);
+//        player->addTerritory(t1);
+//        player->displayTerritory(player->getTerritoryList());
+//        player->calculateArmy(map);
+//        cout<<"----------------------------------"<<endl;
+//        player->displayTerritory(player->getAttackList());
+//
+//        // Army value with 3 territory differet continents
+//        player->addTerritory(t2);
+//        player->addTerritory(t4);
+//        player->displayTerritory(player->getTerritoryList());
+//        player->calculateArmy(map);
+//
+//        // Army value with territory completing contintent
+//        player->addTerritory(t3);
+//        player->displayTerritory(player->getTerritoryList());
+//        player->calculateArmy(map);
 
-        // Army value with 3 territory differet continents
-        player->addTerritory(t2);
-        player->addTerritory(t4);
-        player->displayTerritory(player->getTerritoryList());
-        player->calculateArmy(map);
 
-        // Army value with territory completing contintent
-        player->addTerritory(t3);
-        player->displayTerritory(player->getTerritoryList());
-        player->calculateArmy(map);
+        Player *player1 = new Player();
+        vector<Player*> *players = new vector<Player*>();
+        players->push_back(player);
+        players->push_back(player1);
+//        players->at(0)->addTerritory(t5);
 
+        //// Debug: Test The random assignment of territories with code-made map.
+        //// Debug: View the attack list of a player with those territories assigned to the player territory list.
+//        map->assignTerritoriesToPlayers(*players);
+//        player->displayTerritory(player->getTerritoryList());
+//        cout<<"----------------------------"<<endl;
+//        cout<<"Player attack list"<<endl;
+//        player->toAttack(map);
+//        player->displayTerritory(player->getAttackList());
+//        cout<<"----------------------------"<<endl;
+//        vector<Territory*> adjTerritories = map->getAllAdjacentTerritories(*t7);
+//        for (auto adjTerritory : adjTerritories) {
+//            cout << "Adj Territory: " << adjTerritory->getName() << ", ";
+//        }
+//        cout << endl;
 
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.
@@ -218,13 +242,21 @@ public:
 
 
         // Adjacent Territories
-      /*  bool adj = map->isAdjacentTerritory(t1, t7);
-        cout << "Is t1 adjacent to t2: ";
-        if (adj) {
-            cout << "Yes" << endl;
-        } else {
-            cout << "No" << endl;
-        }*/
+        /*  bool adj = map->isAdjacentTerritory(t1, t7);
+          cout << "Is t1 adjacent to t2: ";
+          if (adj) {
+              cout << "Yes" << endl;
+          } else {
+              cout << "No" << endl;
+          }*/
+        //// Debug: Test The random assignment of territories with the map loader's map
+        generatedMap->assignTerritoriesToPlayers(*players);
+        //// Debug: Test assignTerritories to neutral player
+        Player * neutralPlayer = new Player();
+        generatedMap->assignTerritoriesToNeutralPlayer(neutralPlayer, *players);
+
+        delete players;
+        players = NULL;
 
         delete (pMapLoader);
         pMapLoader = NULL;

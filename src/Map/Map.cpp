@@ -9,6 +9,8 @@
 #include <sstream>
 #include <memory>
 #include "Map.h"
+#include <ctime>
+#include <cstdlib>
 
 // Functions for the Territory class
 const string &Territory::getName() const {
@@ -26,24 +28,24 @@ void Territory::setContinentId(int continentId) {
 Territory::Territory(const string name, const int territoryId, const int continentId, const int numArmies) :
         _territoryId(territoryId),
         _continentId(continentId),
-        _numOfArmy(numArmies){
+        _numOfArmy(numArmies) {
     _name = new string;
     *_name = name;
 
     _continentName = new string;
-    belongToPlayer=-1;
+    belongToPlayer = -1;
 }
 
 void Territory::setPlayer(int playerId) {
-    belongToPlayer=playerId;
+    belongToPlayer = playerId;
 }
 
-int Territory::getPlayer() const{
+int Territory::getPlayer() const {
     return belongToPlayer;
 }
 
 void Territory::neutralState() {
-    belongToPlayer=-1;
+    belongToPlayer = -1;
 }
 
 
@@ -99,7 +101,7 @@ Territory &Territory::operator=(const Territory &t1) {
 
 //Territory stream insertion
 std::ostream &operator<<(ostream &os, const Territory &territory) {
-    os << "Hi I am a Territory" << endl;
+//    os << "Hi I am a Territory" << endl;
     return os;
 }
 
@@ -210,7 +212,10 @@ void Map::printTerritoriesByContinentId(int continentId) {
 // Moves through from a starting node to other nodes using Breath first Search
 bool Map::bfs(int startIndex) {
 
-    unique_ptr<bool[]> visited(new bool[SIZE]);
+    bool visited[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        visited[i] = true;
+    }
 //    bool * visited = new bool[SIZE];
 
     queue<int> queueTerritoryIds;
@@ -264,7 +269,11 @@ bool Map::bfsContinents(int startIndex, int continentId) {
         }
     }
 
-    unique_ptr<bool[]> visited(new bool[SIZE]);
+    bool visited[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        visited[i] = true;
+    }
+
     for (int i = 0; i < sizeof(visited) / sizeof(visited[0]); ++i) {
         if (i < offsetSize || i >= (continentSize + offsetSize)) {
             visited[i] = false;
@@ -359,7 +368,7 @@ int Map::getNumOfTerritoriesInContinent(int id) {
 }
 
 int Map::getLastContinentId() {
-    Territory lastTerritory = territory[SIZE-1][0];
+    Territory lastTerritory = territory[SIZE - 1][0];
     return lastTerritory.getContinentId();
 }
 
@@ -370,6 +379,65 @@ int Map::getArmyContinentBonus(int continentId) {
         }
     }
     return 0;
+}
+/**
+ * Use a vector of pointer players, then divide the territories to each player
+ * Each player should start with at least 3 countries from the same continent or as defined from the territoryLimitPerPlayer
+ * @param players
+ */
+void Map::assignTerritoriesToPlayers(vector<Player*> players) {
+    int numOfPlayers = players.size();
+    srand(time(0));
+    int randomContinentIdStart = rand() % (territory[SIZE - 1][0].getContinentId() - numOfPlayers + 1); // random number between num of continents - size of players
+    int territoryLimitPerPlayer = 3; // Change this to set num of territories for each player
+    int numOfTerritoriesAssignedAtPlayer = 0;
+    int continentIdInQuestion = 1 + randomContinentIdStart; // Which continent are we at.
+//// DEBUG: Print out size of the players
+//    cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
+    for (int i = 0; i < SIZE; ++i) {
+        if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) { // Player has reached their territory limit.
+            if (continentIdInQuestion == territory[i][0].getContinentId()) {
+                continue;
+            } else { // Player can still be assigned another territory
+                continentIdInQuestion++;
+                numOfTerritoriesAssignedAtPlayer = 0;
+            }
+        }
+        for (int playerIndex = 0; playerIndex < numOfPlayers; ++playerIndex) {
+            if (playerIndex + 1 + randomContinentIdStart == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
+                //// Debug: Print the player Id with the assignment of a territory
+                cout << "Player ID " << playerIndex << " ";
+                players.at(playerIndex)->addTerritory(&territory[i][0]);
+                numOfTerritoriesAssignedAtPlayer++;
+            }
+        }
+    }
+}
+
+/**
+ * Assigns territories to the neutral Player at the start of the game.
+ * if onw of the players has the territory already skip that territry.
+ * If nobody ownes it, assign the territory to the neutralPlayer.
+ * @param neutralPlayer
+ * @param players
+ */
+void Map::assignTerritoriesToNeutralPlayer(Player* neutralPlayer, vector<Player*> players) {
+    bool isOwnerByOnePlayer = false;
+    for (int i = 0; i < SIZE; ++i) {
+        for (auto player : players) {
+            if (player->containsTerritory(&territory[i][0])) {
+                isOwnerByOnePlayer = true;
+                break;
+            }
+        }
+        if (isOwnerByOnePlayer) {
+            isOwnerByOnePlayer = false;
+            continue;
+        }
+        cout << "ID " << i << " ";
+        neutralPlayer->addTerritory(&territory[i][0]);
+    }
+
 }
 
 // Functions for the MapLoader
@@ -521,7 +589,7 @@ Map *MapLoader::generateMap() {
                 }
                 int adjTerritoryId = stoi(borderValues[i]);
 
-                Territory *adjTerritory = new Territory("", adjTerritoryId, -1,0);
+                Territory *adjTerritory = new Territory("", adjTerritoryId, -1, 0);
                 map->addTerritory(*adjTerritory, lineIndex - 1);
 
                 delete (adjTerritory);
@@ -617,10 +685,18 @@ MapLoader::~MapLoader() {
     borders = NULL;
 
 }
-bool Map::isAdjacentTerritory(Territory* source, Territory* target) {
+
+
+/**
+ * Given a territory called source, and a destination territory target, find if it its possible to move from source to target
+ * @param source
+ * @param target
+ * @return
+ */
+bool Map::isAdjacentTerritory(Territory *source, Territory *target) {
     for (int i = 0; i < SIZE; ++i) {
         if (territory[i][0].getTerritoryId() == source->getTerritoryId()) {
-            for (auto adjTerritory : territory[i]) {
+            for (auto adjTerritory: territory[i]) {
                 if (adjTerritory.getTerritoryId() == target->getTerritoryId()) {
                     return true;
                 }
@@ -629,3 +705,25 @@ bool Map::isAdjacentTerritory(Territory* source, Territory* target) {
     }
     return false;
 }
+
+/**
+ * Find all adjacent territories of a territory. Pass in the territory, and find the vector list of the adjacent territories by the territory id.
+ * @param territory
+ * @return getterritoryRow
+ */
+vector<Territory*> Map::getAllAdjacentTerritories(Territory territory) {
+    int territoryId = territory.getTerritoryId();
+    vector<Territory*> adjTerritories;
+
+    for (int i = 0; i < SIZE; ++i) {
+        if (this->territory[i][0].getTerritoryId() == territoryId) {
+            for (auto  &terr: this->territory[i]){
+                cout << "Debug " << terr;
+                adjTerritories.push_back(&terr);
+            }
+            adjTerritories.erase(adjTerritories.begin());
+            return adjTerritories;
+        }
+    }
+}
+
