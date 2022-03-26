@@ -455,12 +455,6 @@ void GameEng::issueOrdersPhase() {
     while (exit_Count < playerCount) {
         for (auto &i: *playerList) {
             if (i->getArmyNum() != 0) {
-                // current player, which territory and amount of armies.
-                // the territory is an object
-                // army int
-                // cout << i->getPlayerId() << endl;
-                // cout << i->getArmyNum()<< endl;
-
                 cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
                 // x the amount of player want to deploy
                 int x;
@@ -468,13 +462,22 @@ void GameEng::issueOrdersPhase() {
                 int y;
                 cout << "You have " << i->getArmyNum() << " army left\n";
                 cout << "List of territory that you control\n";
+                auto territory = i->getTerritoryList();
+                for(auto t : *territory){
+                    cout << "Territory Id: " << t->getTerritoryId() << endl;
+                }
                 cout << "Where would you like to deploy for army\n";
                 cin >> y;
                 cout << "How many army do you wish to deploy" << endl;
                 cin >> x;
                 i->removeArmyNum(x);
-                // Deploy *deploy = new Deploy(i,);
-                // i->issueOrders();
+                for(auto e : *territory){
+                    if(e->getTerritoryId() == y){
+                        cout << "This is the territory you chose: " << y << endl;
+                        auto *deploy = new Deploy(i,e,x);
+                        i->issueOrders(deploy);
+                    }
+                }
                 cout << "current army num " << i->getArmyNum() << endl;
                 if (i->getArmyNum() == 0) {
                     exit_Count++;

@@ -139,8 +139,10 @@ public:
         //// Debug: Test the Army value bonus feature
         // Army value with 1 territory
         Player* player = new Player();
-//        player->addTerritory(t1);
-//        player->displayTerritory(player->getTerritoryList());
+        cout << "\n\n\n Ruochen testing \n\n\n";
+        player->addTerritory(t1);
+        player->displayTerritory(player->getTerritoryList());
+        cout << "\n\n\n Ruochen testing \n\n\n";
 //        player->calculateArmy(map);
 //        cout<<"----------------------------------"<<endl;
 //        player->displayTerritory(player->getAttackList());
