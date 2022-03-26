@@ -153,7 +153,7 @@ bool Deploy::validate() {
 void Deploy::execute() {
 
     if(validate()){
-        player->removeArmyNum(armies);
+//        player->removeArmyNum(armies);
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()+armies);
         cout<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<"\n"<<endl;
     } else{

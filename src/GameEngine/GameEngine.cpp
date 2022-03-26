@@ -419,8 +419,8 @@ void GameEng::startUpPhase() {
     }
 
     // Clean up
-    delete (pMapLoader);
-    pMapLoader = NULL;
+//    delete (pMapLoader);
+//    pMapLoader = NULL;
 
 }
 
@@ -463,15 +463,15 @@ void GameEng::issueOrdersPhase() {
                 cout << "You have " << i->getArmyNum() << " army left\n";
                 cout << "List of territory that you control\n";
                 auto territory = i->getTerritoryList();
-                for(auto t : *territory){
-                    cout << "Territory Id: " << t->getTerritoryId() << endl;
+                for(auto &t : *territory){
+                    cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << endl;
                 }
-                cout << "Where would you like to deploy for army\n";
+                cout << "Where would you like to deploy for army. Chose by territory Id\n";
                 cin >> y;
                 cout << "How many army do you wish to deploy" << endl;
                 cin >> x;
                 i->removeArmyNum(x);
-                for(auto e : *territory){
+                for(auto &e : *territory){
                     if(e->getTerritoryId() == y){
                         cout << "This is the territory you chose: " << y << endl;
                         auto *deploy = new Deploy(i,e,x);
@@ -504,6 +504,7 @@ void GameEng::issueOrdersPhase() {
                     cin >> command;
                     if(command == "Advance"){
                         cout << "you chose advance\n";
+                        
 //                    Advance *advance = new Advance(i,)
                         correct = false;
                     } else if (command == "Bomb") {
