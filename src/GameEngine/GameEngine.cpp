@@ -554,6 +554,57 @@ void GameEng::issueOrdersPhase() {
                         correct = false;
                     } else if (command == "Airlift") {
                         cout << "you chose airlift\n";
+                        int sourceT;
+                        int targetT;
+                        int armyNum;
+                        Territory *sourceTerritory;
+                        Territory *targetTerritory;
+                        //Airlift need player, fromT, toT, army num
+                        //get list of controlled territory and other territory;
+                        auto territory = i->getTerritoryList();
+                        // get list of all territory
+                        for(auto &allpl: *playerList){
+                            auto plT = allpl->getTerritoryList();
+                            for(auto &TiD: *plT){
+                                cout << "Territory of Player: " <<allpl->getPlayerName() << endl;
+                                cout << "Territory Id: " << TiD->getTerritoryId() << endl;
+                            }
+                        }
+                        auto AllNeutralT = neutral->getTerritoryList();
+                        cout << "Neutral Territory Id\n";
+                        for(auto &NTiD: *AllNeutralT){
+                            cout << "Territory Id: " <<NTiD->getTerritoryId()<<endl;
+                        }
+                        cout << "Chose one of your territory\n";
+                        cin >> sourceT;
+                        cout << "Chose one of the other's territory\n";
+                        cin >> targetT;
+                        // find source territory
+                        for(auto &pTerritory : *territory){
+                            if(pTerritory->getTerritoryId() == sourceT){
+                                sourceTerritory = pTerritory;
+                            }
+                        }
+
+                        // find target territory
+                        for(auto &allpl: *playerList){
+                            auto plT = allpl->getTerritoryList();
+                            for(auto &TiD: *plT){
+                                if(TiD->getTerritoryId() == targetT){
+                                    targetTerritory = TiD;
+                                }
+                            }
+                        }
+                        for(auto &NTiD: *AllNeutralT){
+                            if(NTiD->getTerritoryId() == targetT){
+                                targetTerritory = NTiD;
+                            }
+                        }
+                        cout << "How many army would you like to send?\n";
+                        cin >> armyNum;
+                        // create Airlift obj
+                        auto *airlift = new Airlift(i,sourceTerritory,targetTerritory, armyNum);
+                        i->issueOrders(airlift);
                         correct = false;
                     } else if (command == "Negotiate") {
                         cout << "you chose negotiate\n";
