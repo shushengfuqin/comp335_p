@@ -105,7 +105,7 @@ void Deck::draw(Hand& player) {
     player.addCard(&topCard);
     size--;
 
-    cout << "DECK: " << *this << endl;
+    //cout << "DECK: " << *this << endl;
     cout << "HAND: " << player << endl << endl;
 }
 

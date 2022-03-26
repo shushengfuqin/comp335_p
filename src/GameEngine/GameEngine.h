@@ -50,6 +50,7 @@ public:
     bool LoadMap(string name);
 
     vector<Player*>* playerList;
+    Player* neutral;
     int playerCount = 0;
 
     Deck* gameDeck;

@@ -82,7 +82,7 @@ string GameEng::startFunc()
 }
 
 bool GameEng::LoadMap(string name){
-    pMapLoader = new MapLoader("../canada/"+name+".map");
+    pMapLoader = new MapLoader("../"+name+"/"+name+".map");
 
     // Failed to load filename
     if(!pMapLoader->success)
@@ -224,7 +224,10 @@ string GameEng::playeraddedFunc()
             Notify(this);
 
             // *** START GAME HERE ***
-            // TODO:  Fairly distributing the territories among all players
+            // Fairly distributing the territories among all players
+            neutral = new Player("N/A");
+            generatedMap->assignTerritoriesToPlayers(*playerList);
+            generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
             // Randomly determine the order of play of the players in the game
             auto rng = std::default_random_engine {};
