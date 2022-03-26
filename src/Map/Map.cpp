@@ -9,6 +9,8 @@
 #include <sstream>
 #include <memory>
 #include "Map.h"
+#include <ctime>
+#include <cstdlib>
 
 // Functions for the Territory class
 const string &Territory::getName() const {
@@ -210,7 +212,10 @@ void Map::printTerritoriesByContinentId(int continentId) {
 // Moves through from a starting node to other nodes using Breath first Search
 bool Map::bfs(int startIndex) {
 
-    unique_ptr<bool[]> visited(new bool[SIZE]);
+    bool visited[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        visited[i] = true;
+    }
 //    bool * visited = new bool[SIZE];
 
     queue<int> queueTerritoryIds;
@@ -264,7 +269,11 @@ bool Map::bfsContinents(int startIndex, int continentId) {
         }
     }
 
-    unique_ptr<bool[]> visited(new bool[SIZE]);
+    bool visited[SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        visited[i] = true;
+    }
+
     for (int i = 0; i < sizeof(visited) / sizeof(visited[0]); ++i) {
         if (i < offsetSize || i >= (continentSize + offsetSize)) {
             visited[i] = false;
@@ -378,22 +387,26 @@ int Map::getArmyContinentBonus(int continentId) {
  */
 void Map::assignTerritoriesToPlayers(vector<Player*> players) {
     int numOfPlayers = players.size();
-    int territoryLimitPerPlayer = 2; // Change this to set num of territories for each player
+    srand(time(0));
+    int randomContinentIdStart = rand() % (territory[SIZE - 1][0].getContinentId() - numOfPlayers + 1); // random number between num of continents - size of players
+    int territoryLimitPerPlayer = 3; // Change this to set num of territories for each player
     int numOfTerritoriesAssignedAtPlayer = 0;
-    int continentIdInQuestion = 1;
+    int continentIdInQuestion = 1 + randomContinentIdStart; // Which continent are we at.
 //// DEBUG: Print out size of the players
-    cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
+//    cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
     for (int i = 0; i < SIZE; ++i) {
-        if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) {
+        if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) { // Player has reached their territory limit.
             if (continentIdInQuestion == territory[i][0].getContinentId()) {
                 continue;
-            } else {
+            } else { // Player can still be assigned another territory
                 continentIdInQuestion++;
                 numOfTerritoriesAssignedAtPlayer = 0;
             }
         }
         for (int playerIndex = 0; playerIndex < numOfPlayers; ++playerIndex) {
-            if (playerIndex + 1 == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
+            if (playerIndex + 1 + randomContinentIdStart == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
+                //// Debug: Print the player Id with the assignment of a territory
+                cout << "Player ID " << playerIndex << " ";
                 players.at(playerIndex)->addTerritory(&territory[i][0]);
                 numOfTerritoriesAssignedAtPlayer++;
             }
@@ -401,6 +414,31 @@ void Map::assignTerritoriesToPlayers(vector<Player*> players) {
     }
 }
 
+/**
+ * Assigns territories to the neutral Player at the start of the game.
+ * if onw of the players has the territory already skip that territry.
+ * If nobody ownes it, assign the territory to the neutralPlayer.
+ * @param neutralPlayer
+ * @param players
+ */
+void Map::assignTerritoriesToNeutralPlayer(Player* neutralPlayer, vector<Player*> players) {
+    bool isOwnerByOnePlayer = false;
+    for (int i = 0; i < SIZE; ++i) {
+        for (auto player : players) {
+            if (player->containsTerritory(&territory[i][0])) {
+                isOwnerByOnePlayer = true;
+                break;
+            }
+        }
+        if (isOwnerByOnePlayer) {
+            isOwnerByOnePlayer = false;
+            continue;
+        }
+        cout << "ID " << i << " ";
+        neutralPlayer->addTerritory(&territory[i][0]);
+    }
+
+}
 
 // Functions for the MapLoader
 MapLoader::MapLoader(const string &fileName) {
@@ -673,7 +711,7 @@ vector<Territory*> Map::getAllAdjacentTerritories(Territory territory) {
     for (int i = 0; i < SIZE; ++i) {
         if (this->territory[i][0].getTerritoryId() == territoryId) {
             for (auto  &terr: this->territory[i]){
-//                cout << "Debug " << terr;
+                cout << "Debug " << terr;
                 adjTerritories.push_back(&terr);
             }
             adjTerritories.erase(adjTerritories.begin());
@@ -681,3 +719,4 @@ vector<Territory*> Map::getAllAdjacentTerritories(Territory territory) {
         }
     }
 }
+
