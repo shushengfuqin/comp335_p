@@ -58,7 +58,7 @@ string GameEng::startFunc()
         cmdInput = cmdProc->validate(getState());
 
         if(regex_match (cmdInput, loadRegex)) {
-            string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
+            string mapName = cmdInput.substr(cmdInput.find(' ') + 1);
             bool loaded = LoadMap(mapName);
 
             if(loaded){
@@ -83,7 +83,7 @@ string GameEng::startFunc()
 
 }
 
-bool GameEng::LoadMap(string name){
+bool GameEng::LoadMap(const string& name){
     pMapLoader = new MapLoader("../"+name+"/"+name+".map");
 
     // Failed to load filename
@@ -119,7 +119,7 @@ string GameEng::maploadedFunc()
 
         if(regex_match (cmdInput, loadRegex)){
             // *** LOAD MAP HERE ***
-            string mapName = cmdInput.substr(cmdInput.find(" ") + 1);
+            string mapName = cmdInput.substr(cmdInput.find(' ') + 1);
             LoadMap(mapName);
             cout << "map loaded again\n";
             cout << "1 - loadmap <mapfile>\n";
@@ -166,8 +166,8 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
-            Player *player = new Player(playerName);
+            string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
+            auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
@@ -209,8 +209,8 @@ string GameEng::playeraddedFunc()
                 cout << "Max player limit reached. Unable to add new player." << endl;
             }
             else{
-                string playerName = cmdInput.substr(cmdInput.find(" ") + 1);
-                Player *player = new Player(playerName);
+                string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
+                auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
                 playerList->push_back(player);
                 cout << "Added player: " << playerName << endl;
@@ -439,7 +439,7 @@ void GameEng::mainGameLoop(){
 
 }
 
-void GameEng::reinforcementPhase() {
+void GameEng::reinforcementPhase() const {
     cout << "------------ Reinforcement Phase ------------\n";
     //check if the player has still army
     for(auto &i: *playerList){
@@ -510,6 +510,28 @@ void GameEng::issueOrdersPhase() {
                         correct = false;
                     } else if (command == "Bomb") {
                         cout << "you chose bomb\n";
+                        // bomb need the player, and the target territory
+                        // The territory needs to be an adjacent territory
+                        // list all adjacent territory
+                        auto territory = i->getTerritoryList();
+                        for(auto &t: *territory){
+                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*t);
+                            for(auto &adj: adjacent_territory){
+                                cout << "Adjacent Territory Id : "<<adj->getTerritoryId() << endl;
+                            }
+                        }
+                        cout << "Which one would you like to bombard? Choose by ID:\n";
+                        int bombId;
+                        cin >> bombId;
+                        for(auto &t: *territory){
+                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*t);
+                            for(auto &adj: adjacent_territory){
+                                if(adj->getTerritoryId() == bombId){
+                                    Bomb *bomb = new Bomb(i,adj);
+                                    i->issueOrders(bomb);
+                                }
+                            }
+                        }
                         correct = false;
                     } else if (command == "Blockade") {
                         cout << "you chose blockade\n";
@@ -517,8 +539,8 @@ void GameEng::issueOrdersPhase() {
                         auto territory = i->getTerritoryList();
                         //target territory;
                         int t;
-                        for(auto &t : *territory){
-                            cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << endl;
+                        for(auto &pTerritory : *territory){
+                            cout << "Territory ID: " << pTerritory->getTerritoryId() << " Territory Name : " << pTerritory->getName() << endl;
                         }
                         cout << "Which territory would you like to use Blockade. Chose by id\n";
                         cin >> t;
@@ -583,39 +605,39 @@ void GameEng::executeOrdersPhase() {
                 auto it = listOfOrders->begin();
                 string orderType = (*it)->getOrderType();
                 if(orderType == "deploy"){
-                    bool validation = (*it)->validate();
+                    bool validation = (*it)->validate(generatedMap);
                     if(validation){
-                        (*it)->execute();
+                        (*it)->execute(generatedMap);
                     }
                     orderlist->remove(*it);
                 } else if (orderType == "bomb"){
-                    bool validation = (*it)->validate();
+                    bool validation = (*it)->validate(generatedMap);
                     if(validation){
-                        (*it)->execute();
+                        (*it)->execute(generatedMap);
                     }
                     orderlist->remove(*it);
                 } else if (orderType == "advance"){
-                    bool validation = (*it)->validate();
+                    bool validation = (*it)->validate(generatedMap);
                     if(validation){
-                        (*it)->execute();
+                        (*it)->execute(generatedMap);
                     }
                     orderlist->remove(*it);
                 } else if (orderType == "blockade"){
-                    bool validation = (*it)->validate();
+                    bool validation = (*it)->validate(generatedMap);
                     if(validation){
-                        (*it)->execute();
+                        (*it)->execute(generatedMap);
                     }
                     orderlist->remove(*it);
                 } else if (orderType == "airlift"){
-                    bool validation = (*it)->validate();
+                    bool validation = (*it)->validate(generatedMap);
                     if(validation){
-                        (*it)->execute();
+                        (*it)->execute(generatedMap);
                     }
                     orderlist->remove(*it);
                 } else if (orderType == "negotiate"){
-                    bool validation = (*it)->validate();
+                    bool validation = (*it)->validate(generatedMap);
                     if(validation){
-                        (*it)->execute();
+                        (*it)->execute(generatedMap);
                     }
                     orderlist->remove(*it);
                 }

@@ -33,9 +33,9 @@ public:
     friend ostream & operator <<(ostream &out, const Order &o);
     friend istream & operator >> (istream &in,  Order &o);
 
-    virtual bool validate() = 0 ;
+    virtual bool validate(Map *map) = 0 ;
 
-    virtual void execute() = 0;
+    virtual void execute(Map *map) = 0;
 
     void setID(int i);
 
@@ -62,8 +62,8 @@ public:
     ~Deploy();
     Deploy(const Deploy& copiedDe);
     Deploy& operator = (const Deploy &Do);
-    virtual bool validate() override;
-    virtual void execute() override;
+    virtual bool validate(Map *map) override;
+    virtual void execute(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -82,8 +82,8 @@ public:
     ~Bomb();
     Bomb(const Bomb& copiedBo);
     Bomb& operator = (const Bomb &Bo);
-    virtual bool validate() override;
-    virtual void execute() override;
+    virtual bool validate(Map *map) override;
+    virtual void execute(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -104,8 +104,8 @@ public:
     ~Advance();
      Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
-    virtual bool validate() override;
-    virtual void execute() override;
+    virtual bool validate(Map *map) override;
+    virtual void execute(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -125,8 +125,8 @@ public:
     ~Blockade();
     Blockade(const Blockade& copiedBl);
     Blockade& operator = (const Blockade &Blo);
-    virtual bool validate() override;
-    virtual void execute() override;
+    virtual bool validate(Map *map) override;
+    virtual void execute(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -142,8 +142,8 @@ public:
     ~Airlift();
     Airlift(const Airlift& copoedAir);
     Airlift& operator = (const Airlift &Airo);
-    virtual bool validate() override;
-    virtual void execute() override;
+    virtual bool validate(Map *map) override;
+    virtual void execute(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -163,8 +163,8 @@ public:
     ~Negotiate();
     Negotiate(const Negotiate& copiedNe);
     Negotiate& operator = (const Negotiate &Neo);
-    virtual bool validate() override;
-    virtual void execute() override;
+    virtual bool validate(Map *map) override;
+    virtual void execute(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;

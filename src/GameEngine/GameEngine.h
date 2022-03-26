@@ -34,9 +34,9 @@ public:
     string maploadedFunc();
     string mapvalidatedFunc();
     string playeraddedFunc();
-    string assignreinforcementFunc();
-    string issueordersFunc();
-    string executeordersFunc();
+    static string assignreinforcementFunc();
+    static string issueordersFunc();
+    static string executeordersFunc();
     string winFunc();
     void setState(GameState gs){ currentState = gs; }
     GameState getState() { return currentState; }
@@ -48,13 +48,13 @@ public:
     // game phases
     void startUpPhase();
     void mainGameLoop();
-    void reinforcementPhase();
+    void reinforcementPhase() const;
     void issueOrdersPhase();
     void executeOrdersPhase();
 
     MapLoader *pMapLoader;
     Map *generatedMap;
-    bool LoadMap(string name);
+    bool LoadMap(const string& name);
 
     vector<Player*>* playerList;
     Player* neutral;

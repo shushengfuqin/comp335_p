@@ -718,7 +718,6 @@ vector<Territory*> Map::getAllAdjacentTerritories(Territory territory) {
     for (int i = 0; i < SIZE; ++i) {
         if (this->territory[i][0].getTerritoryId() == territoryId) {
             for (auto  &terr: this->territory[i]){
-                cout << "Debug " << terr;
                 adjTerritories.push_back(&terr);
             }
             adjTerritories.erase(adjTerritories.begin());

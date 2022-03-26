@@ -71,43 +71,43 @@ public:
         Deploy *deploy1 = new Deploy(player1, territory1, 3);
 
         cout << "validate deploy---------" << endl;
-        deploy1->validate();
+//        deploy1->validate();
         cout << "execute deploy---------" << endl;
-        deploy1->execute();
+//        deploy1->execute();
 
         cout << "creating advance order---------" << endl;
         Advance *advance1 = new Advance(player1, territory1, territory2, 5);
         advance1->map = map;
 
         cout << "validate advance---------" << endl;
-        advance1->validate();
+//        advance1->validate();
         cout << "execute advance---------" << endl;
-        advance1->execute();
+//        advance1->execute();
 
         cout << "creating bomb order---------" << endl;
         Bomb *bomb1 = new Bomb(player1, territory3);
 
         cout << "validate bomb---------" << endl;
-        bomb1->validate();
+//        bomb1->validate();
         cout << "execute bomb---------" << endl;
-        bomb1->execute();
+//        bomb1->execute();
 
         cout << "creating blockade order---------" << endl;
         Blockade *blockade1 = new Blockade(player1, territory2);
 
         cout << "validate blockade---------" << endl;
-        blockade1->validate();
-        cout << "execute blockade---------" << endl;
-        blockade1->execute();
+//        blockade1->validate();
+//        cout << "execute blockade---------" << endl;
+//        blockade1->execute();
 
 
         cout << "creating airlift order---------" << endl;
         Airlift *airlift1 = new Airlift(player2, territory3, territory4, 3);
 
-        cout << "validate airlift---------" << endl;
-        airlift1->validate();
-        cout << "execute airlift---------" << endl;
-        airlift1->execute();
+//        cout << "validate airlift---------" << endl;
+//        airlift1->validate();
+//        cout << "execute airlift---------" << endl;
+//        airlift1->execute();
 
 
         player1->issueOrders(deploy1);
@@ -129,9 +129,9 @@ public:
         Negotiate *negotiate1 = new Negotiate(player1, player2);
 
         cout << "validate negotiate---------" << endl;
-        negotiate1->validate();
-        cout << "execute negotiate--------" << endl;
-        negotiate1->execute();
+//        negotiate1->validate();
+//        cout << "execute negotiate--------" << endl;
+//        negotiate1->execute();
 
 
         player1->issueOrders(negotiate1);
