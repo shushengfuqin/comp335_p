@@ -471,6 +471,10 @@ void GameEng::issueOrdersPhase() {
                 cin >> y;
                 cout << "How many army do you wish to deploy" << endl;
                 cin >> x;
+                while(x > i->getArmyNum()){
+                    cout << "You don't have enought amry. Please enter again.\n";
+                    cin >> x;
+                }
                 i->removeArmyNum(x);
                 for(auto &e : *territory){
                     if(e->getTerritoryId() == y){
@@ -502,6 +506,7 @@ void GameEng::issueOrdersPhase() {
                 bool correct = true;
                 while (correct){
                     cout << "what would you like to do\n";
+                    cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
                     cin >> command;
                     if(command == "Advance"){
                         cout << "you chose advance\n";
