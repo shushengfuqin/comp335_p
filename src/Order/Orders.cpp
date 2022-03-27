@@ -155,7 +155,7 @@ Deploy& Deploy::operator = (const Deploy&Deo){
 
 bool Deploy::validate() {
 
-    if( player->containsTerritory(targetTerritory)){
+    if( player->containsTerritory(targetTerritory) && player->getArmyNum()>armies){
         cout<<"Deploy is valid and can be executed\n"<<endl;
         return true;
     }
@@ -169,7 +169,7 @@ bool Deploy::validate() {
 //If the target territory does not belong to the player that issued the order, the order is invalid.
 bool Deploy::validate2(Map *map) {
 
-    if( player->containsTerritory(targetTerritory)){
+    if( player->containsTerritory(targetTerritory) && player->getArmyNum()>armies){
         cout<<"Deploy is valid and can be executed\n"<<endl;
         return true;
     }
@@ -261,7 +261,7 @@ Advance& Advance::operator = (const Advance&Ao){
 
 
 bool Advance::validate() {
-    if (player->containsTerritory(fromTerritory) && map->isAdjacentTerritory(fromTerritory, toTerritory)) {
+    if (player->containsTerritory(fromTerritory) && map->isAdjacentTerritory(fromTerritory, toTerritory) && fromTerritory->getNumArmies()>=armies) {
         cout<<"Advance is valid and can be executed.\n"<<endl;
         return true;
     }// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
@@ -275,7 +275,7 @@ bool Advance::validate() {
 //If the source territory does not belong to the player that issued the order, the order is invalid.
 //If the target territory is not adjacent to the source territory, the order is invalid.
 bool Advance::validate2(Map *map) {
-    if (player->containsTerritory(fromTerritory) && map->isAdjacentTerritory(fromTerritory, toTerritory)) {
+    if (player->containsTerritory(fromTerritory) && map->isAdjacentTerritory(fromTerritory, toTerritory)&& fromTerritory->getNumArmies()>=armies) {
         cout<<"Advance is valid and can be executed.\n"<<endl;
         return true;
     }// &&map->isAdjacentTerritory(fromTerritory, toTerritory)
@@ -300,22 +300,23 @@ void Advance::execute() {
         }
         else{
             if(getAttackable()){
+                fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
                 while(toTerritory->getNumArmies()>0 && armies>0){
 
                     srand(time(NULL));
                     if(rand() % 10 < 6){// Each attacking army unit involved has 60% chances of killing one defending army
                         toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
                         cout<<"Advance is executed: There is one army on "<<toTerritory->getName()<<"has been killed.\n" ;
-                        // advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
+                         advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
                     }
                     else if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
                         armies--;
                         cout<<"Advance is executed: There is one army from"+fromTerritory->getName()+" as attacker has been killed. \n";
-                        //advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";
+                        advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";
                     }
                     auto armyOnTarget = std::to_string(toTerritory->getNumArmies());
                     cout<<"Now there is " <<toTerritory->getNumArmies()<<" armies left on the "<<toTerritory->getName()<<endl;
-                    // advanceExecute = "Now there is " +armyOnTarget+" armies left on the "+toTerritory->getName()+"\n.";
+                     advanceExecute = "Now there is " +armyOnTarget+" armies left on the "+toTerritory->getName()+"\n.";
                 }
                 if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
@@ -359,18 +360,19 @@ void Advance::execute2(Map *map) {
         }
         else{
             if(getAttackable()){
+                fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
                 while(toTerritory->getNumArmies()>0 && armies>0){
 
                     srand(time(NULL));
                     if(rand() % 10 < 6){// Each attacking army unit involved has 60% chances of killing one defending army
                         toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
                         cout<<"Advance is executed: There is one army on "<<toTerritory->getName()<<"has been killed.\n" ;
-                        // advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
+                         advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
                     }
                     else if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
                         armies--;
                         cout<<"Advance is executed: There is one army from"+fromTerritory->getName()+" as attacker has been killed. \n";
-                        //advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";
+                        advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";
                     }
                     auto armyOnTarget = std::to_string(toTerritory->getNumArmies());
                     cout<<"Now there is " <<toTerritory->getNumArmies()<<" armies left on the "<<toTerritory->getName()<<endl;
@@ -633,7 +635,7 @@ Airlift& Airlift::operator = (const Airlift&Airo){
 };
 
 bool Airlift::validate() {
-    if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)){
+    if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory) && fromTerritory->getNumArmies()>armies){
         cout<<"airlift is valid and can be executed\n"<<endl;
         return true;
     } else
@@ -644,7 +646,7 @@ bool Airlift::validate() {
 //• The target territory does not need to be adjacent to the source territory.
 //• If the source or target does not belong to the player that issued the order, the order is invalid.
 bool Airlift::validate2(Map *map) {
-    if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)){
+    if(player->containsTerritory(fromTerritory)&&player->containsTerritory(toTerritory)&& fromTerritory->getNumArmies()>armies){
         cout<<"airlift is valid and can be executed\n"<<endl;
         return true;
     } else
