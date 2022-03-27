@@ -85,7 +85,7 @@ string GameEng::startFunc()
 }
 
 bool GameEng::LoadMap(const string& name){
-    pMapLoader = new MapLoader("../"+name+"/"+name+".map");
+    pMapLoader = new MapLoader("../maps/"+name+".map");
 
     // Failed to load filename
     if(!pMapLoader->success)
