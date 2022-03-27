@@ -2,12 +2,6 @@ loadmap mapname
 validatemap
 addplayer p1
 addplayer p2
-gamestart
-replay
-loadmap mapname2
-incorrect command
-validatemap
 addplayer p3
 addplayer p4
 gamestart
-quit

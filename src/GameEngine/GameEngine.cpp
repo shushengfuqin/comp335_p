@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <random>
+#include <chrono>
 
 /**
  * Why input int instead of string.
@@ -232,7 +233,8 @@ string GameEng::playeraddedFunc()
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
             // Randomly determine the order of play of the players in the game
-            auto rng = std::default_random_engine {};
+            unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+            auto rng = std::default_random_engine { seed };
             shuffle(playerList->begin(), playerList->end(), rng);
 
             // Each player to draw 2 cards each from the deck
