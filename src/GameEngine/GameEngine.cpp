@@ -474,7 +474,7 @@ void GameEng::issueOrdersPhase() {
                 cout << "List of territory that you control\n";
                 auto territory = i->getTerritoryList();
                 for(auto &t : *territory){
-                    cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << endl;
+                    cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << " Territory current Army Num: " <<t->getNumArmies()<< endl;
                 }
                 cout << "Where would you like to deploy for army. Chose by territory Id\n";
                 cin >> y;
@@ -525,6 +525,9 @@ void GameEng::issueOrdersPhase() {
                         int tt;
                         int armyNum;
                         bool issued = false;
+                        Player *targetPl;
+                        Territory *sourceTerritory;
+                        Territory *targetTerritory;
                         auto territory = i->getTerritoryList();
                         cout << "Your territory\n";
                         for(auto &pT: *territory){
@@ -548,21 +551,34 @@ void GameEng::issueOrdersPhase() {
                             cout << "How many army would you like to send?\n";
                             cin >> armyNum;
 
-                            for(auto &pT: *territory){
-                                if(pT->getTerritoryId() == st){
-                                    for(auto &t: *territory){
-                                        auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*t);
-                                        for(auto &adj: adjacent_territory){
-                                            if(adj->getTerritoryId() == tt){
-                                                // create advance obj
-                                                auto *advance = new Advance(i,pT,adj,armyNum);
-                                                i->issueOrders(advance);
-                                                issued = true;
-                                                continue;
-                                            }
-                                        }
+                            // find owner of the target territory
+                            // is it controled by a neutral player
+                            auto neutralTerritory = neutral->getTerritoryList();
+                            for(auto &neutralP: *neutralTerritory){
+                                if(neutralP->getTerritoryId() == tt){
+                                    targetPl = neutral;
+                                    targetTerritory = neutralP;
+                                }
+                            }
+                            // if it's controled by a player
+                            for(auto &playerlist : *playerList){
+                                auto plTerritory = playerlist->getTerritoryList();
+                                // go through that player's territory
+                                for(auto &plT: *plTerritory){
+                                    if(plT->getTerritoryId() == tt){
+                                        targetPl = playerlist;
+                                        targetTerritory = plT;
                                     }
                                 }
+                            }
+                            // find source territory
+                            for(auto &pT: *territory){
+                               if(pT->getTerritoryId() == st){
+                                   sourceTerritory = pT;
+                                   auto *advance = new Advance(i,targetPl,sourceTerritory,targetTerritory,armyNum);
+                                   i->issueOrders(advance);
+                                   issued = true;
+                               }
                             }
                             if(!issued){
                                 cout << "The id that you entered aren't available please enter again.\n";

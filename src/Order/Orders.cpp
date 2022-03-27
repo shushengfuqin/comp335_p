@@ -226,8 +226,9 @@ Advance::Advance() :Order() {
     cout<<"The order"<<" "<<getOrderType()<<" is been placed\n"<<endl;
 }
 
-Advance::Advance(Player* player, Territory* fromTerritory,Territory* toTerritory,unsigned int armies) : Order(player){
+Advance::Advance(Player* player,Player* targetPlayer, Territory* fromTerritory,Territory* toTerritory,unsigned int armies) : Order(player){
     setID(1);
+    this->targetPlayer = targetPlayer;
     this->fromTerritory = fromTerritory;
     this->toTerritory = toTerritory;
     this->armies = armies;
@@ -319,6 +320,9 @@ void Advance::execute() {
                 if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
                     player->addTerritory(toTerritory);
+                    targetPlayer->removeTerritory(toTerritory);
+//                    switch territory from 2 players
+//                    targetPlayer->switchTerritories(toTerritory,targetPlayer,player);
                     toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
                     cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
@@ -374,7 +378,8 @@ void Advance::execute2(Map *map) {
                 }
                 if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
-                    player->addTerritory(toTerritory);
+//                    player->addTerritory(toTerritory);
+                    targetPlayer->switchTerritories(toTerritory,targetPlayer,player);
                     toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
                     cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;

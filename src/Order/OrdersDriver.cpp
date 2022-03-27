@@ -78,13 +78,13 @@ public:
         deploy1->execute();
 
         cout << "creating advance order---------" << endl;
-        Advance *advance1 = new Advance(player1, territory1, territory2, 5);
-        advance1->map = map;
-
-        cout << "validate advance---------" << endl;
-        advance1->validate();
-        cout << "execute advance---------" << endl;
-        advance1->execute();
+//        Advance *advance1 = new Advance(player1, territory1, territory2, 5);
+//        advance1->map = map;
+//
+//        cout << "validate advance---------" << endl;
+//        advance1->validate();
+//        cout << "execute advance---------" << endl;
+//        advance1->execute();
 
         cout << "creating bomb order---------" << endl;
         Bomb *bomb1 = new Bomb(player1, territory3);
@@ -113,7 +113,7 @@ public:
 
 
         player1->issueOrders(deploy1);
-        player1->issueOrders(advance1);
+//        player1->issueOrders(advance1);
         player1->issueOrders(bomb1);
         player1->issueOrders(blockade1);
         player2->issueOrders(airlift1);
@@ -123,7 +123,7 @@ public:
         ol.setOrderList(bomb1);
         ol.setOrderList(blockade1);
         ol.setOrderList(airlift1);
-        ol.setOrderList(advance1);
+//        ol.setOrderList(advance1);
         ol.setOrderList(deploy1);
 
 

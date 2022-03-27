@@ -108,7 +108,7 @@ struct Advance : public Order,public ILoggable, public Subject{
 public:
 
     Advance();
-    Advance(Player* player, Territory* fromTerritory,Territory* toTerritory,unsigned int armies);
+    Advance(Player* player,Player *targetPlayer ,Territory* fromTerritory,Territory* toTerritory,unsigned int armies);
     ~Advance();
      Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
@@ -123,6 +123,7 @@ public:
 private:
     Territory* fromTerritory;
     Territory* toTerritory;
+    Player* targetPlayer;
     unsigned int armies;
     string advanceExecute;
     Card *card = new Card();
