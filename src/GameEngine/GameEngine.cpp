@@ -691,7 +691,7 @@ void GameEng::issueOrdersPhase() {
                             for (auto &y: *playerList) {
                                 if (y->getPlayerId() == target) {
                                     cout << "this is the player's id that you choose " << y->getPlayerId() << endl;
-                                    auto *negotiate = new Negotiate(i, i + 2);
+                                    auto *negotiate = new Negotiate(i, y);
                                     i->issueOrders(negotiate);
                                     issued = true;
                                 }
