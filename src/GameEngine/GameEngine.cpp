@@ -556,6 +556,7 @@ void GameEng::issueOrdersPhase() {
                                                 auto *advance = new Advance(i,pT,adj,armyNum);
                                                 i->issueOrders(advance);
                                                 issued = true;
+                                                continue;
                                             }
                                         }
                                     }

@@ -233,23 +233,20 @@ bool Advance::validate(Map *map) {
 void Advance::execute(Map *map) {
     if(validate(map)){
         if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
-            {
+        {
+            auto armyNumber = std::to_string(armies);
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
             toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
-            cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
         }
         else{
             if(getAttackable()){
-                while(toTerritory->getNumArmies()>0 || fromTerritory->getNumArmies()>0){
+                while(toTerritory->getNumArmies()>0 || armies>0){
                     srand(time(NULL));
-                    if(rand() % 10 < 6){
+                    if(rand() % 10 < 6){// Each attacking army unit involved has 60% chances of killing one defending army
                         toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
-                        cout<<"Advance is executed: Each attacking army unit involved has 60% chances of killing one defending army. \n";
                     }
-                    else if(rand() % 10 < 7){
-                        fromTerritory->setNumArmies(fromTerritory->getNumArmies()-1);
+                    else if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
                         armies--;
-                        cout<<"Advance is executed: each defending army unit has 70% chances of killing one attacking army unit. \n";
                     }
                 }
                 if(toTerritory->getNumArmies()==0){
