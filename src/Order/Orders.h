@@ -70,6 +70,7 @@ public:
 private:
     Territory* targetTerritory;
     unsigned int armies;
+    string deployExecute;
 
 
 };
@@ -89,6 +90,7 @@ public:
     string stringToLog() override;
 private:
     Territory* targetTerritory;
+    string bombExecute;
 
 };
 
@@ -113,7 +115,7 @@ private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
-
+    string advanceExecute;
     Card *card = new Card();
 };
 
@@ -132,6 +134,7 @@ public:
     string stringToLog() override;
 private:
     Territory* targetTerritory;
+    string blockadeExecute;
 };
 
 struct Airlift : public Order,public ILoggable, public Subject{
@@ -152,6 +155,7 @@ private:
     Territory* fromTerritory;
     Territory* toTerritory;
     unsigned int armies;
+    string airliftExecute;
 };
 
 struct Negotiate : public Order,public ILoggable, public Subject{
@@ -170,6 +174,7 @@ public:
     string stringToLog() override;
 private:
     Player* targetPlayer;
+    string negotiateExecute;
 
 };
 
@@ -201,6 +206,7 @@ public:
 private:
     vector<Order*> orderlist;
     string orderForObs;
+
 
 };
 

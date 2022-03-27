@@ -17,8 +17,10 @@ public:
     void callOrdersDriver() {
         Player *player1 = new Player();
         player1->setPlayerId(1);
+        player1->setPlayerName("player1");
         Player *player2 = new Player();
         player2->setPlayerId(2);
+        player2->setPlayerName("player2");
         const int SIZE = 4;
         Map *map = new Map(SIZE);
 
