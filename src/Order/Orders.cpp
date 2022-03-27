@@ -63,7 +63,7 @@ bool Order::validate(Map *map) {
 
 //if the order is valid, then it can be executed
 //for each specific order, it will have different executions
-void Order::execute(Map *map) {
+void Order::execute(Map *map,vector<Player*> playerList) {
     if (validate(map)) {
         cout << "the order has been executed\n" << endl;
     }else{
@@ -148,7 +148,7 @@ bool Deploy::validate(Map *map) {
 
 //If the target territory belongs to the player that issued the deploy order,
 // the selected number of armies is added to the number of armies on that territory.
-void Deploy::execute(Map *map) {
+void Deploy::execute(Map *map,vector<Player*> playerList) {
 
     if(validate(map)){
 //        player->removeArmyNum(armies);
@@ -264,8 +264,7 @@ void Advance::execute(Map *map, vector<Player*> playerList) {
                     // advanceExecute = "Now there is " +armyOnTarget+" armies left on the "+toTerritory->getName()+"\n.";
                 }
                 if(toTerritory->getNumArmies()==0){
-                    toTerritory->setPlayer(player->getPlayerId());
-                    player->switchTerritories(toTerritory,player,toTerritory->getPlayerById(toTerritory->getPlayer(),playerList));
+                    player->switchTerritories(toTerritory,toTerritory->getPlayerById(toTerritory->getPlayer(),playerList),player);
                     toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
                     cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
@@ -345,7 +344,7 @@ bool Bomb::validate(Map *map) {
 
 
 //If the target belongs to an enemy player, half of the armies are removed from this territory.
-void Bomb::execute(Map *map) {
+void Bomb::execute(Map *map,vector<Player*> playerList) {
     if(validate(map)&&player->getHand()->getCardByType(bomb)&&getAttackable()){
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()/2);
         cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<" has been removed half by the issuer. \n"<<endl;
@@ -421,7 +420,7 @@ bool Blockade::validate(Map *map) {
 //If the target territory belongs to the player issuing the order,
 // the number of armies on the territory is doubled and the ownership of the territory is transferred to the Neutral player,
 // which must be created if it does not already exist.
-void Blockade::execute(Map *map) {
+void Blockade::execute(Map *map,vector<Player*> playerList) {
     if(validate(map)&&player->getHand()->getCardByType(blockade)){
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()*2);
         targetTerritory->neutralState();
@@ -492,7 +491,7 @@ bool Airlift::validate(Map *map) {
 
 //If both the source and target territories belong to the player that issue the airlift order,
 // then the selected number of armies is moved from the source to the target territory.
-void Airlift::execute(Map *map) {
+void Airlift::execute(Map *map,vector<Player*> playerList) {
         if(validate(map)&&player->getHand()->getCardByType(airlift)){
             auto armyNumber = std::to_string(armies);
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
@@ -565,7 +564,7 @@ bool Negotiate::validate(Map *map) {
 //If the target territory belongs to the player issuing the order,
 // the number of armies on the territory is doubled and the ownership of the territory is transferred to the Neutral player,
 // which must be created if it does not already exist.
-void Negotiate::execute(Map *map) {
+void Negotiate::execute(Map *map,vector<Player*> playerList) {
     if(validate(map)&&player->getHand()->getCardByType(diplomacy)){
     //Todo: what should be considered as attack?
         if(player->containsOrder("bomb")||player->containsOrder("advance")){

@@ -739,22 +739,22 @@ void GameEng::executeOrdersPhase() {
                 auto it = listOfOrders->begin();
                 string orderType = (*it)->getOrderType();
                 if(orderType == "deploy"){
-                    (*it)->execute(generatedMap);
+                    (*it)->execute(generatedMap,*playerList);
                     orderlist->remove(*it);
                 } else if (orderType == "bomb"){
-                    (*it)->execute(generatedMap);
+                    (*it)->execute(generatedMap,*playerList);
                     orderlist->remove(*it);
                 } else if (orderType == "advance"){
-                    (*it)->execute(generatedMap);
+                    (*it)->execute(generatedMap,*playerList);
                     orderlist->remove(*it);
                 } else if (orderType == "blockade"){
-                    (*it)->execute(generatedMap);
+                    (*it)->execute(generatedMap,*playerList);
                     orderlist->remove(*it);
                 } else if (orderType == "airlift"){
-                    (*it)->execute(generatedMap);
+                    (*it)->execute(generatedMap,*playerList);
                     orderlist->remove(*it);
                 } else if (orderType == "negotiate"){
-                    (*it)->execute(generatedMap);
+                    (*it)->execute(generatedMap,*playerList);
                     orderlist->remove(*it);
                 }
             } else {

@@ -430,6 +430,7 @@ bool Player::alreadyOwn(Territory *territory) {
 //
 //switchTerritories between two player, remove from player 1, add to player 2.
     void Player::switchTerritories(Territory *territory, Player *player1, Player *player2) {
+        territory->setPlayer(player2->getPlayerId());
         player1->removeTerritory(territory);
         player2->addTerritory(territory);
 
