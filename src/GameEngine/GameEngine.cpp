@@ -435,6 +435,12 @@ void GameEng::mainGameLoop(){
         issueOrdersPhase();
         executeOrdersPhase();
         turnNum++;
+        //check the each player's territory size
+        for(auto pl : *playerList){
+            if(pl->getTerritoryList()->empty()){
+                playerList->push_back(pl);
+            }
+        }
     }
 
 }
@@ -524,14 +530,12 @@ void GameEng::issueOrdersPhase() {
 
                         //get all adjacent territory of each of your territory
                         cout << "All Adjacent territory\n";
-                        cout << "These are the territory to Attack\n";
-                        auto playerToAttackList = i->toAttack(generatedMap);
-                        for (auto &t: *playerToAttackList) {
-                            cout << "Territory Id: " << t->getTerritoryId() << endl;
-                        }
-                        cout << "There are your territory to defend\n";
                         for(auto &pT: *territory){
-                            cout << "Territory id: " <<pT->getTerritoryId() <<endl;
+                            cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
+                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
+                            for(auto &adj: adjacent_territory){
+                                cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                            }
                         }
                         while(!issued){
                             cout << "Choose one for your territory. Choose by Id.\n";
@@ -606,6 +610,8 @@ void GameEng::issueOrdersPhase() {
                                     cout << "This is the territory you chose: " << t << endl;
                                     auto *blockade = new Blockade(i, e);
                                     i->issueOrders(blockade);
+                                    issued = true;
+                                    break;
                                 }
                             }
                             if(!issued){
@@ -731,40 +737,22 @@ void GameEng::executeOrdersPhase() {
                 auto it = listOfOrders->begin();
                 string orderType = (*it)->getOrderType();
                 if(orderType == "deploy"){
-                    bool validation = (*it)->validate(generatedMap);
-                    if(validation){
-                        (*it)->execute(generatedMap);
-                    }
+                    (*it)->execute(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "bomb"){
-                    bool validation = (*it)->validate(generatedMap);
-                    if(validation){
-                        (*it)->execute(generatedMap);
-                    }
+                    (*it)->execute(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "advance"){
-                    bool validation = (*it)->validate(generatedMap);
-                    if(validation){
-                        (*it)->execute(generatedMap);
-                    }
+                    (*it)->execute(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "blockade"){
-                    bool validation = (*it)->validate(generatedMap);
-                    if(validation){
-                        (*it)->execute(generatedMap);
-                    }
+                    (*it)->execute(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "airlift"){
-                    bool validation = (*it)->validate(generatedMap);
-                    if(validation){
-                        (*it)->execute(generatedMap);
-                    }
+                    (*it)->execute(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "negotiate"){
-                    bool validation = (*it)->validate(generatedMap);
-                    if(validation){
-                        (*it)->execute(generatedMap);
-                    }
+                    (*it)->execute(generatedMap);
                     orderlist->remove(*it);
                 }
             } else {
