@@ -107,7 +107,7 @@ public:
      Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
     virtual bool validate(Map *map) override;
-    virtual void execute(Map *map) override;
+    virtual void execute(Map *map, vector<Player*> playerList) override;
 
     //stringTolog from observer
     string stringToLog() override;

@@ -231,7 +231,8 @@ bool Advance::validate(Map *map) {
 //-- If all the defender's armies are eliminated, the attacker captures the territory. The attacking army units that survived the battle then occupy the conquered territory.
 //-- A player receives a card at the end of his turn if they successfully conquered at least one territory during their turn.
 
-void Advance::execute(Map *map) {
+
+void Advance::execute(Map *map, vector<Player*> playerList) {
     auto armyNumber = std::to_string(armies);
 
     if(validate(map)){
@@ -264,7 +265,7 @@ void Advance::execute(Map *map) {
                 }
                 if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
-                    player->addTerritory(toTerritory);
+                    player->switchTerritories(toTerritory,player,toTerritory->getPlayerById(toTerritory->getPlayer(),playerList));
                     toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
                     cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;

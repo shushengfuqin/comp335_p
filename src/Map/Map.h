@@ -25,6 +25,8 @@ public:
 
     void setName(const string &name);
 
+    Player* getPlayerById(int id, vector<Player*> playerList);
+
     void setContinentId(int continentId);
 
     void setContinentName(const string &continentName);
@@ -38,6 +40,7 @@ public:
     void neutralState();
 
     int getPlayer() const;
+
 
     Territory(const string name, const int territoryId, const int continentId, const int numArmies);
 

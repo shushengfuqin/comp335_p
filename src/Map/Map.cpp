@@ -57,6 +57,15 @@ int Territory::getContinentId() const {
     return _continentId;
 }
 
+//get the player obj by the id
+Player* Territory::getPlayerById(int id, vector<Player *> playerList) {
+    for(int i=0; i<playerList.size();i++){
+        if(id==playerList.at(i)->getPlayerId()){
+            return playerList.at(i);
+        }
+    }
+
+}
 void Territory::setContinentName(const string &continentName) {
     *_continentName = continentName;
 }
