@@ -26,6 +26,8 @@ public:
     friend std::ostream& operator<<(ostream &os, const Player& player);
     vector<Territory*>* toAttack(Map *map);
     vector<Territory*>* toDefend();
+
+    // getter for the component in the constructor
     vector<Territory*>* getTerritoryList();
     vector<Territory*>* getAttackList();
     vector<Territory*>* getDefendList();

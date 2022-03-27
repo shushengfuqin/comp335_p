@@ -10,4 +10,3 @@ validatemap
 addplayer p3
 addplayer p4
 gamestart
-quit

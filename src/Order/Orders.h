@@ -34,8 +34,9 @@ public:
     friend istream & operator >> (istream &in,  Order &o);
 
     virtual bool validate() = 0 ;
-
     virtual void execute() = 0;
+    virtual bool validate2(Map *map) = 0 ;
+    virtual void execute2(Map *map) = 0;
 
     void setID(int i);
 
@@ -62,8 +63,10 @@ public:
     ~Deploy();
     Deploy(const Deploy& copiedDe);
     Deploy& operator = (const Deploy &Do);
-    virtual bool validate();
-    virtual void execute();
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -83,8 +86,11 @@ public:
     ~Bomb();
     Bomb(const Bomb& copiedBo);
     Bomb& operator = (const Bomb &Bo);
-    virtual bool validate();
-    virtual void execute();
+
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -102,18 +108,22 @@ struct Advance : public Order,public ILoggable, public Subject{
 public:
 
     Advance();
-    Advance(Player* player, Territory* fromTerritory,Territory* toTerritory,unsigned int armies);
+    Advance(Player* player,Player *targetPlayer ,Territory* fromTerritory,Territory* toTerritory,unsigned int armies);
     ~Advance();
      Advance(const Advance& copiedAd);
     Advance& operator = (const Advance &Ao);
-    virtual bool validate();
-    virtual void execute();
+
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
 private:
     Territory* fromTerritory;
     Territory* toTerritory;
+    Player* targetPlayer;
     unsigned int armies;
     string advanceExecute;
     Card *card = new Card();
@@ -127,8 +137,11 @@ public:
     ~Blockade();
     Blockade(const Blockade& copiedBl);
     Blockade& operator = (const Blockade &Blo);
-    virtual bool validate();
-    virtual void execute();
+
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -145,8 +158,11 @@ public:
     ~Airlift();
     Airlift(const Airlift& copoedAir);
     Airlift& operator = (const Airlift &Airo);
-    virtual bool validate();
-    virtual void execute();
+
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -167,8 +183,11 @@ public:
     ~Negotiate();
     Negotiate(const Negotiate& copiedNe);
     Negotiate& operator = (const Negotiate &Neo);
-    virtual bool validate();
-    virtual void execute();
+
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
 
     //stringTolog from observer
     string stringToLog() override;
@@ -200,7 +219,7 @@ public:
     //methods to modify the list
     void remove(Order* order);
     void move(int origin,int targetPosition);
-
+    void printOrderlist();
     //method from ILoggable and Subject for Observer
     string stringToLog() override;
 private:

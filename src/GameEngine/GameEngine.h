@@ -14,6 +14,7 @@
 #include "../Map/Map.h"
 #include "../Cards/Cards.h"
 #include "../Player//Player.h"
+#include "../Order/Orders.h"
 
 #pragma once
 using namespace std;
@@ -33,9 +34,9 @@ public:
     string maploadedFunc();
     string mapvalidatedFunc();
     string playeraddedFunc();
-    string assignreinforcementFunc();
-    string issueordersFunc();
-    string executeordersFunc();
+    static string assignreinforcementFunc();
+    static string issueordersFunc();
+    static string executeordersFunc();
     string winFunc();
     void setState(GameState gs){ currentState = gs; }
     GameState getState() { return currentState; }
@@ -43,14 +44,21 @@ public:
     GameState currentState;
     string cmdInput;
     string stringToLog() override;
+
+    // game phases
     void startUpPhase();
+    void mainGameLoop();
+    void reinforcementPhase() const;
+    void issueOrdersPhase();
+    void executeOrdersPhase();
 
     MapLoader *pMapLoader;
     Map *generatedMap;
-    bool LoadMap(string name);
+    bool LoadMap(const string& name);
 
     vector<Player*>* playerList;
     Player* neutral;
+    Orderslist* orderlist;
     int playerCount = 0;
 
     Deck* gameDeck;
@@ -58,6 +66,7 @@ public:
     void Transition();
 private:
     string userCmd;
+    int turnNum = 1;
 };
 
 #endif //COMP335_P_GAMEENGINE_H

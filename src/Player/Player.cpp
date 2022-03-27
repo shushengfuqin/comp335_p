@@ -127,13 +127,13 @@ using namespace std;
     void Player::attackTerritory(Territory *territory) {
         //validating if the territory already in the list
         if (std::count(playerAttackList->begin(), playerAttackList->end(), territory)) {
-            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s attack list: "
-                      << territory->getName() << endl;
+//            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s attack list: "
+//                      << territory->getName() << endl;
         } else {
             //add territory to the attack list
             playerAttackList->push_back(territory);
-            std::cout << "Element has been added to the player " << playerName << "'s attack list: "
-                      << territory->getName() << endl;
+//            std::cout << "Element has been added to the player " << playerName << "'s attack list: "
+//                      << territory->getName() << endl;
         }
 
     }
@@ -161,13 +161,13 @@ using namespace std;
 
         //validating if the territory already in the list
         if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory)) {
-            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s defend list: "
-                      << territory->getName() << endl;
+//            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s defend list: "
+//                      << territory->getName() << endl;
         } else {
             //add territory to the list
             playerTerritoryList->push_back(territory);
-            std::cout << "Element has been added to the player " << playerName << "'s territories list: "
-                      << territory->getName() << endl;
+//            std::cout << "Element has been added to the player " << playerName << "'s territories list: "
+//                      << territory->getName() << endl;
         }
     }
 
@@ -400,8 +400,7 @@ bool Player::alreadyOwn(Territory *territory) {
     }
 
     //get the orderList
-    Orderslist* Player::getOrderList() {
-        cout<<"return the orderlist"<<endl;
+    Orderslist * Player::getOrderList() {
         return orderList;
     }
     string Player::getPlayerName() {
@@ -422,6 +421,7 @@ bool Player::alreadyOwn(Territory *territory) {
         armyNum -= number;
         return armyNum;
     }
+
 
 //int Player::updateArmyNum(int continentBonus) {
 //    //need to update the code
@@ -453,12 +453,12 @@ bool Player::alreadyOwn(Territory *territory) {
         cout << "Init" << endl;
         int continentNum = map->getLastContinentId();
         for (int i = 1; i <= continentNum; i++) {
-            cout << "for loop " << i << endl;
+//            cout << "for loop " << i << endl;
             int x = this->getPlayerNumOfTerritoriesInContinent(i);
             int y = map->getNumOfTerritoriesInContinent(i);
 
             if (x == y) {
-                cout << "player have one complete continent: " << endl;
+//                cout << "player have one complete continent: " << endl;
                 armyNum += map->getArmyContinentBonus(i);
             }
         }
@@ -471,7 +471,7 @@ bool Player::alreadyOwn(Territory *territory) {
         if (armyNum < 3) {
             armyNum = 3;
         }
-        cout << "Army Value is ..." << armyNum << endl;
+//        cout << "Army Value is ..." << armyNum << endl;
 
     }
 
