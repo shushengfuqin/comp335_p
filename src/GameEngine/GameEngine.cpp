@@ -650,27 +650,20 @@ void GameEng::issueOrdersPhase() {
                         //Airlift need player, fromT, toT, army num
                         //get list of controlled territory and other territory;
                         auto territory = i->getTerritoryList();
-                        cout << "Your territory by Id.\n";
-                        for(auto &t: *territory){
-                            cout << "Territory Id: " << t->getTerritoryId() << endl;
-                        }
-                        // get list of all territory
-                        for(auto &allpl: *playerList){
-                            auto plT = allpl->getTerritoryList();
-                            cout << "Territory of Player: " <<allpl->getPlayerName() << endl;
-                            for(auto &TiD: *plT){
-                                cout << "Territory Id: " << TiD->getTerritoryId() << endl;
-                            }
-                        }
-                        auto AllNeutralT = neutral->getTerritoryList();
-                        cout << "Neutral Territory Id\n";
-                        for(auto &NTiD: *AllNeutralT){
-                            cout << "Territory Id: " <<NTiD->getTerritoryId()<<endl;
-                        }
                         while(!issued) {
+                            cout << "Your territory by Id.\n";
+                            for(auto &t: *territory){
+                                cout << "Territory Id: " << t->getTerritoryId() << endl;
+                            }
                             cout << "Chose one of your territory\n";
                             cin >> sourceT;
-                            cout << "Chose one of the other's territory\n";
+                            //get all other territory
+                            for(auto &t: *territory){
+                                if(t->getTerritoryId() != sourceT){
+                                    cout << "Territory Id: " << t->getTerritoryId() << endl;
+                                }
+                            }
+                            cout << "Chose one of the your other's territory\n";
                             cin >> targetT;
                             // find source territory
                             for (auto &pTerritory: *territory) {
@@ -680,25 +673,17 @@ void GameEng::issueOrdersPhase() {
                             }
 
                             // find target territory
-                            for (auto &allpl: *playerList) {
-                                auto plT = allpl->getTerritoryList();
-                                for (auto &TiD: *plT) {
-                                    if (TiD->getTerritoryId() == targetT) {
-                                        targetTerritory = TiD;
-                                    }
+                            for (auto &pTerritory: *territory) {
+                                if (pTerritory->getTerritoryId() == targetT) {
+                                    targetTerritory = pTerritory;
+                                    cout << "How many army would you like to send?\n";
+                                    cin >> armyNum;
+                                    // create Airlift obj
+                                    auto *airlift = new Airlift(i, sourceTerritory, targetTerritory, armyNum);
+                                    i->issueOrders(airlift);
+                                    issued = true;
                                 }
                             }
-                            for (auto &NTiD: *AllNeutralT) {
-                                if (NTiD->getTerritoryId() == targetT) {
-                                    targetTerritory = NTiD;
-                                }
-                            }
-                            cout << "How many army would you like to send?\n";
-                            cin >> armyNum;
-                            // create Airlift obj
-                            auto *airlift = new Airlift(i, sourceTerritory, targetTerritory, armyNum);
-                            i->issueOrders(airlift);
-                            issued = true;
                             if(!issued){
                                 cout << "The id that you entered aren't available please enter again.\n";
                             }
