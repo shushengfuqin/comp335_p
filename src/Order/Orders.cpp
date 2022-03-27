@@ -82,12 +82,10 @@ string Order::getOrderType() {
 
 }
 
-/*
 // To get who is the player issues the order
 const Player *Order::getOrderIssuer() {
     return player;
 }
-*/
 
 // TO set who is the player issues the order
 void Order::setOrderIssuer(Player *issuer) {
@@ -155,15 +153,18 @@ void Deploy::execute(Map *map) {
     if(validate(map)){
 //        player->removeArmyNum(armies);
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()+armies);
-        cout<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<"\n"<<endl;
+        cout<<"Deploy is executed: "<<armies<<" armies has been deployed to the territory "<<targetTerritory->getName()<<"\n"<<endl;
+        auto armyNumber = std::to_string(armies);
+        deployExecute ="Deploy is executed: "+armyNumber+" armies has been deployed to the territory " + targetTerritory->getName()+"\n";
     } else{
         cout<<"deploy cannot be executed\n"<<endl;
+        deployExecute = "deploy cannot be executed\n";
     }
     Notify(this);
 }
 
 string Deploy::stringToLog() {
-    return "Deploy executed";
+    return deployExecute;
 }
 
 
@@ -267,7 +268,7 @@ void Advance::execute(Map *map) {
                     toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
                     cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
-                    // advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
+                    advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
                 }
 
             }
@@ -275,13 +276,14 @@ void Advance::execute(Map *map) {
     }
     else{
         cout<<" advance cannot be executed\n"<<endl;
+        advanceExecute = " advance cannot be executed\n";
     }
-
     Notify(this);
 }
 
+
 string Advance::stringToLog() {
-    return "Advance executed";
+    return advanceExecute;
 }
 
 
@@ -345,14 +347,18 @@ bool Bomb::validate(Map *map) {
 void Bomb::execute(Map *map) {
     if(validate(map)&&player->getHand()->getCardByType(bomb)&&getAttackable()){
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()/2);
-        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
-    } else
-        cout<<" Bomb cannot be executed "<<"\n"<<endl;
+        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<" has been removed half by the issuer. \n"<<endl;
+        bombExecute = "Bomb is executed: the armies on target Territory "+targetTerritory->getName()+" has been removed half by the issuer. \n";
+    } else{
+        cout<<" Bomb cannot be executed \n"<<endl;
+        bombExecute = " Bomb cannot be executed \n";
+    }
+
     Notify(this);
 }
 
 string Bomb::stringToLog() {
-    return "Bomb executed";
+    return bombExecute;
 }
 
 
@@ -418,15 +424,19 @@ void Blockade::execute(Map *map) {
     if(validate(map)&&player->getHand()->getCardByType(blockade)){
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()*2);
         targetTerritory->neutralState();
-        cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
-    } else
+        cout<<"Blockade is executed: The army on territory "<<targetTerritory->getName()<<" has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
+        blockadeExecute = "Blockade is executed: The army on territory "+targetTerritory->getName()+" has been doubled ,and the ownership of this territory has been transferred to neutral.\n";
+    } else{
         cout<<"Blockade cannot be executed"<<endl;
+        blockadeExecute = "Blockade cannot be executed";
+    }
+
     Notify(this);
 }
 
 
 string Blockade::stringToLog() {
-    return "Blockade executed";
+    return blockadeExecute;
 }
 
 
@@ -442,6 +452,7 @@ Airlift::Airlift(Player* player,Territory* fromTerritory,Territory* toTerritory,
     this->toTerritory = toTerritory;
     this->armies = armies;
     cout<<"The order Blockade is been placed with issuer "<<player->getPlayerId()<<" from territory "<<fromTerritory->getName()<<" to territory "<<toTerritory->getName()<<"\n"<<endl;
+
 }
 
 //copy constructor
@@ -482,17 +493,22 @@ bool Airlift::validate(Map *map) {
 // then the selected number of armies is moved from the source to the target territory.
 void Airlift::execute(Map *map) {
         if(validate(map)&&player->getHand()->getCardByType(airlift)){
+            auto armyNumber = std::to_string(armies);
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
             toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
             cout<<"Airlift is executed: The player has moved "<<armies<<" armies from the source territory "<<fromTerritory->getName()<<" to the target territory "<<toTerritory->getName()<<"\n"<<endl;
+            airliftExecute = "Airlift is executed: The player has moved "+armyNumber+" armies from the source territory "+fromTerritory->getName()+" to the target territory "+toTerritory->getName()+"\n";
         }
-        else
+        else{
             cout<<"No airlift card is creating or airlift order is invalid"<<endl;
+            airliftExecute = "No airlift card is creating or airlift order is invalid";
+        }
+
     Notify(this);
 }
 
 string Airlift::stringToLog(){
-    return "Airlist executed";
+    return airliftExecute;
 }
 
 
@@ -536,7 +552,6 @@ Negotiate& Negotiate::operator = (const Negotiate&Neo){
 //If the target territory belongs to an enemy player, the order is declared invalid.
 bool Negotiate::validate(Map *map) {
     if(targetPlayer->getPlayerId() == player->getPlayerId()){
-
         cout<<"Target player cannot be the Negotiate Issuer\n"<<endl;
         return false;
     }
@@ -555,6 +570,7 @@ void Negotiate::execute(Map *map) {
         if(player->containsOrder("bomb")||player->containsOrder("advance")){
             setAttackable(false);
             cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
+            negotiateExecute = "Negotiate is executed: The Negotiate has been executed by player "+player->getPlayerName()+" targeting to player "+targetPlayer->getPlayerName()+". No attack can be executed between them\n";
         }
         else if(targetPlayer->containsOrder("bomb")||targetPlayer->containsOrder("advance")){
             Order *targetBomb = targetPlayer->getOrderbyType("bomb");
@@ -562,15 +578,19 @@ void Negotiate::execute(Map *map) {
             Order *targetAdvance = targetPlayer->getOrderbyType("advance");
             targetAdvance->setAttackable(false);
             cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
+            negotiateExecute = "Negotiate is executed: The Negotiate has been executed by player "+player->getPlayerName()+" targeting to player "+targetPlayer->getPlayerName()+". No attack can be executed between them\n";
         }
     }
-    else
+    else{
         cout<<"The Negotiate order cannot be executed\n"<<endl;
+        negotiateExecute = "The Negotiate order cannot be executed\n";
+    }
+
     Notify(this);
 }
 
 string Negotiate::stringToLog() {
-    return "Negotiate executed";
+    return negotiateExecute;
 }
 
 
@@ -606,6 +626,9 @@ istream & operator >> (istream &in,  Orderslist &o)
 //add order
 void Orderslist::setOrderList(Order *order) {
     orderlist.push_back(order);
+
+    cout<<"OrderList add order: "+order->getOrderType()<<" has been added by "<<order->player->getPlayerName()<<endl;
+    orderForObs = "OrderList add order: "+order->player->getPlayerName() +" added "+order->getOrderType()+" to the list.\n";
     Notify(this);
 }
 //get the orderlist
@@ -662,7 +685,7 @@ string Orderslist::stringToLog() {
 //    vector<Order*>::iterator it = orderlist.end();
 //    string lastOrder = (*it)->getOrderType();
 //    string toString = "OrderList add order" + it;
-    return "OrderList add order: ";
+    return orderForObs;
 }
 
 
