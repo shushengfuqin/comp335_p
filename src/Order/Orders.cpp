@@ -82,12 +82,10 @@ string Order::getOrderType() {
 
 }
 
-/*
 // To get who is the player issues the order
 const Player *Order::getOrderIssuer() {
     return player;
 }
-*/
 
 // TO set who is the player issues the order
 void Order::setOrderIssuer(Player *issuer) {
@@ -235,30 +233,28 @@ bool Advance::validate() {
 //-- A player receives a card at the end of his turn if they successfully conquered at least one territory during their turn.
 
 void Advance::execute() {
+    auto armyNumber = std::to_string(armies);
     if(validate()){
         if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
             {
-                auto armyNumber = std::to_string(armies);
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
             toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
             cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
-            advanceExecute = "Advance is executed: Advance "+armyNumber+" armies from "+fromTerritory->getName()+" to "+toTerritory->getName();
+            advanceExecute = "Advance is executed: Advance "+armyNumber+" armies from "+fromTerritory->getName()+" to "+toTerritory->getName()+"\n";
             }
         else{
             if(getAttackable()){
-                while(toTerritory->getNumArmies()>0 || fromTerritory->getNumArmies()>0){
+                while(toTerritory->getNumArmies()>0 && armies>0){
                     srand(time(NULL));
                     if(rand() % 10 < 6){// Each attacking army unit involved has 60% chances of killing one defending army
                         toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
-                        cout<<"Advance is executed: There is one army on "<<toTerritory->getName()<<"has been killed.\n" ;
-                        advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
                     }
                     else if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
-                        fromTerritory->setNumArmies(fromTerritory->getNumArmies()-1);
                         armies--;
-                        cout<<"Advance is executed: each defending army unit has 70% chances of killing one attacking army unit. \n";
-                        advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";
                     }
+                    auto armyOnTarget = std::to_string(toTerritory->getNumArmies());
+                    cout<<"Now there is " <<toTerritory->getNumArmies()<<" armies left on the "<<toTerritory->getName()<<endl;
+                    advanceExecute = "Now there is " +armyOnTarget+" armies left on the "+toTerritory->getName()+"\n.";
                 }
                 if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
@@ -269,14 +265,12 @@ void Advance::execute() {
                     advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
                 }
             }
-
         }
     }
     else{
         cout<<" advance cannot be executed\n"<<endl;
         advanceExecute = " advance cannot be executed\n";
     }
-
     Notify(this);
 }
 
@@ -346,8 +340,8 @@ bool Bomb::validate() {
 void Bomb::execute() {
     if(validate()&&player->getHand()->getCardByType(bomb)&&getAttackable()){
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()/2);
-        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<"has been removed half by the issuer. \n"<<endl;
-        bombExecute = "Bomb is executed: the armies on target Territory "+targetTerritory->getName()+"has been removed half by the issuer. \n";
+        cout<< "Bomb is executed: the armies on target Territory "<<targetTerritory->getName()<<" has been removed half by the issuer. \n"<<endl;
+        bombExecute = "Bomb is executed: the armies on target Territory "+targetTerritory->getName()+" has been removed half by the issuer. \n";
     } else{
         cout<<" Bomb cannot be executed \n"<<endl;
         bombExecute = " Bomb cannot be executed \n";
@@ -423,8 +417,8 @@ void Blockade::execute() {
     if(validate()&&player->getHand()->getCardByType(blockade)){
         targetTerritory->setNumArmies(targetTerritory->getNumArmies()*2);
         targetTerritory->neutralState();
-        cout<<"Blockade is executed: The army on territory"<<targetTerritory->getName()<<"has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
-        blockadeExecute = "Blockade is executed: The army on territory"+targetTerritory->getName()+"has been doubled ,and the ownership of this territory has been transferred to neutral.\n";
+        cout<<"Blockade is executed: The army on territory "<<targetTerritory->getName()<<" has been doubled ,and the ownership of this territory has been transferred to neutral.\n"<<endl;
+        blockadeExecute = "Blockade is executed: The army on territory "+targetTerritory->getName()+" has been doubled ,and the ownership of this territory has been transferred to neutral.\n";
     } else{
         cout<<"Blockade cannot be executed"<<endl;
         blockadeExecute = "Blockade cannot be executed";
@@ -557,7 +551,6 @@ Negotiate& Negotiate::operator = (const Negotiate&Neo){
 //If the target territory belongs to an enemy player, the order is declared invalid.
 bool Negotiate::validate() {
     if(targetPlayer->getPlayerId() == player->getPlayerId()){
-
         cout<<"Target player cannot be the Negotiate Issuer\n"<<endl;
         return false;
     }
@@ -572,7 +565,6 @@ bool Negotiate::validate() {
 // which must be created if it does not already exist.
 void Negotiate::execute() {
     if(validate()&&player->getHand()->getCardByType(diplomacy)){
-    //Todo: what should be considered as attack?
         if(player->containsOrder("bomb")||player->containsOrder("advance")){
             setAttackable(false);
             cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
@@ -641,8 +633,9 @@ istream & operator >> (istream &in,  Orderslist &o)
 //add order
 void Orderslist::setOrderList(Order *order) {
     orderlist.push_back(order);
-    cout<<"OrderList add order: "+order->getOrderType()<<" has been added.\n";
-    orderForObs = "OrderList add order: "+order->getOrderType()+" has been added.\n";
+
+    cout<<"OrderList add order: "+order->getOrderType()<<" has been added by "<<order->player->getPlayerName()<<endl;
+    orderForObs = "OrderList add order: "+order->player->getPlayerName() +" added "+order->getOrderType()+" to the list.\n";
     Notify(this);
 }
 //get the orderlist
