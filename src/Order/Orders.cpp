@@ -639,7 +639,7 @@ bool Airlift::validate() {
         cout<<"airlift is valid and can be executed\n"<<endl;
         return true;
     } else
-        cout<<"The airlift order is invalid";
+        cout<<"The airlift order is invalid\n";
     return false;
 }
 
@@ -650,7 +650,7 @@ bool Airlift::validate2(Map *map) {
         cout<<"airlift is valid and can be executed\n"<<endl;
         return true;
     } else
-        cout<<"The airlift order is invalid";
+        cout<<"The airlift order is invalid\n";
         return false;
 }
 
@@ -752,9 +752,11 @@ bool Negotiate::validate2(Map *map) {
 
 void Negotiate::execute() {
     if(validate()&&player->getHand()->getCardByType(diplomacy)){
-        //Todo: what should be considered as attack?
         if(player->containsOrder("bomb")||player->containsOrder("advance")){
-            setAttackable(false);
+            player->getOrderbyType("bomb")->setAttackable(false);
+            player->getOrderbyType("advance")->setAttackable(false);
+          /*  cout<<player->getOrderbyType("bomb")->getAttackable()<<endl;
+            cout<<player->getOrderbyType("advance")->getAttackable()<<endl;*/
             cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
             negotiateExecute = "Negotiate is executed: The Negotiate has been executed by player "+player->getPlayerName()+" targeting to player "+targetPlayer->getPlayerName()+". No attack can be executed between them\n";
         }
@@ -780,9 +782,9 @@ void Negotiate::execute() {
 // which must be created if it does not already exist.
 void Negotiate::execute2(Map *map) {
     if(validate2(map)&&player->getHand()->getCardByType(diplomacy)){
-    //Todo: what should be considered as attack?
         if(player->containsOrder("bomb")||player->containsOrder("advance")){
-            setAttackable(false);
+            player->getOrderbyType("bomb")->setAttackable(false);
+            player->getOrderbyType("advance")->setAttackable(false);
             cout<<"Negotiate is executed: The Negotiate has been executed by player "<<player->getPlayerId()<<" targeting to player "<<targetPlayer->getPlayerId()<<". No attack can be executed between them\n"<<endl;
             negotiateExecute = "Negotiate is executed: The Negotiate has been executed by player "+player->getPlayerName()+" targeting to player "+targetPlayer->getPlayerName()+". No attack can be executed between them\n";
         }
@@ -841,7 +843,7 @@ istream & operator >> (istream &in,  Orderslist &o)
 void Orderslist::setOrderList(Order *order) {
     orderlist.push_back(order);
 
-    cout<<"OrderList add order: "+order->getOrderType()<<" has been added by "<<order->player->getPlayerName()<<endl;
+    cout<<"OrderList add order: "+order->getOrderType()<<" has been added by "<<order->player->getPlayerName()<<"\n"<<endl;
     orderForObs = "OrderList add order: "+order->player->getPlayerName() +" added "+order->getOrderType()+" to the list.\n";
     Notify(this);
 }

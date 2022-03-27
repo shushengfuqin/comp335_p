@@ -31,6 +31,7 @@ public:
         Card *diplomacyCard = new Card(diplomacy);
 
         player1->getHand()->addCard(bombCard);
+        player1->getHand()->addCard(airliftCard);
         player2->getHand()->addCard(airliftCard);
         player1->getHand()->addCard(blockadeCard);
         player1->getHand()->addCard(diplomacyCard);
@@ -51,10 +52,6 @@ public:
         territory3->setContinentName("North-America");
         territory4->setContinentName("North-America");
 
-        territory1->setArmyBonusValue(5);
-        territory2->setArmyBonusValue(3);
-        territory3->setArmyBonusValue(8);
-        territory4->setArmyBonusValue(2);
 
         map->addTerritory(*territory1, 0);
         map->addTerritory(*territory2, 0);
@@ -78,13 +75,13 @@ public:
         deploy1->execute();
 
         cout << "creating advance order---------" << endl;
-//        Advance *advance1 = new Advance(player1, territory1, territory2, 5);
-//        advance1->map = map;
+        Advance *advance1 = new Advance(player1,player2, territory1, territory2, 1);
+        advance1->map = map;
 //
-//        cout << "validate advance---------" << endl;
-//        advance1->validate();
-//        cout << "execute advance---------" << endl;
-//        advance1->execute();
+        cout << "validate advance---------" << endl;
+        advance1->validate();
+        cout << "execute advance---------" << endl;
+        advance1->execute();
 
         cout << "creating bomb order---------" << endl;
         Bomb *bomb1 = new Bomb(player1, territory3);
@@ -104,7 +101,8 @@ public:
 
 
         cout << "creating airlift order---------" << endl;
-        Airlift *airlift1 = new Airlift(player2, territory3, territory4, 3);
+        Airlift *airlift1 = new Airlift(player1, territory1, territory2, 1);
+        //Airlift *airlift1 = new Airlift(player2, territory3, territory4, 3);
 
         cout << "validate airlift---------" << endl;
         airlift1->validate();
@@ -113,7 +111,7 @@ public:
 
 
         player1->issueOrders(deploy1);
-//        player1->issueOrders(advance1);
+        player1->issueOrders(advance1);
         player1->issueOrders(bomb1);
         player1->issueOrders(blockade1);
         player2->issueOrders(airlift1);
@@ -130,14 +128,18 @@ public:
         cout << "creating airlift order---------" << endl;
         Negotiate *negotiate1 = new Negotiate(player1, player2);
 
+
+        player1->issueOrders(negotiate1);
+
         cout << "validate negotiate---------" << endl;
         negotiate1->validate();
         cout << "execute negotiate--------" << endl;
         negotiate1->execute();
 
 
-        player1->issueOrders(negotiate1);
-
+        player1->issueOrders(bomb1);
+        bomb1->validate();
+        bomb1->execute();
 
 
         // Adjacent Territories
