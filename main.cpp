@@ -11,12 +11,12 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-
+    
     CommandProcessorDriver cpd;
     // file
-    if (argc > 1 && argv[1] == "-file")
+    if (argc > 1 && std::string(argv[1]) == "-file")
         cpd.callCommandProcessorDriver(true, argv[2]);
-        // console (default)
+    // console (default)
     else
         cpd.callCommandProcessorDriver(false, "");
 
