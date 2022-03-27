@@ -214,7 +214,7 @@ using namespace std;
 
     bool Player::containsTerritory(Territory *territory) {
         if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory)) {
-            cout << "player " << playerName << "has this territory" << endl;
+            cout << "player " << playerName << " has "<<territory->getName()<< endl;
             return true;
         } else {
             cout << "player " << playerName << " does not have this territory" << endl;
