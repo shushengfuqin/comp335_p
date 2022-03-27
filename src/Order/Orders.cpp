@@ -169,7 +169,7 @@ bool Deploy::validate() {
 //If the target territory does not belong to the player that issued the order, the order is invalid.
 bool Deploy::validate2(Map *map) {
 
-    if( player->containsTerritory(targetTerritory) && player->getArmyNum()>armies){
+    if( player->containsTerritory(targetTerritory)){
         cout<<"Deploy is valid and can be executed\n"<<endl;
         return true;
     }
