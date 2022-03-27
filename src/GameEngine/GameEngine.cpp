@@ -439,6 +439,7 @@ void GameEng::mainGameLoop(){
         for(auto pl : *playerList){
             if(pl->getTerritoryList()->empty()){
                 playerList->push_back(pl);
+                playerCount--;
             }
         }
     }

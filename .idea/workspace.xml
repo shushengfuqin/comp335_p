@@ -12,7 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="add player some functons for the engine and have some implementation for the deploy process.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
     </list>
     <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="" />
@@ -110,7 +109,7 @@
       <workItem from="1648217140629" duration="348000" />
       <workItem from="1648217522312" duration="608000" />
       <workItem from="1648317949003" duration="6682000" />
-      <workItem from="1648335933630" duration="4918000" />
+      <workItem from="1648335933630" duration="4997000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
