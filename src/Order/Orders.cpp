@@ -364,12 +364,23 @@ void Advance::execute2(Map *map) {
                 while(toTerritory->getNumArmies()>0 && armies>0){
 
                     srand(time(NULL));
+                    int randAtk = rand() % 10;
+                    int randDef = rand() % 10;
+                    if(randAtk <= 6 && randDef <= 7){
+                        //both die both army --
+                    } else if (randAtk <= 6 && randDef > 7){
+                        //def army --
+                    } else if (randAtk > 6 && randDef <= 7){
+                        //akt army --
+                    } else {
+                        //nothing happend continue;
+                    };
                     if(rand() % 10 < 6){// Each attacking army unit involved has 60% chances of killing one defending army
                         toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
                         cout<<"Advance is executed: There is one army on "<<toTerritory->getName()<<"has been killed.\n" ;
                          advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
                     }
-                    else if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
+                    if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
                         armies--;
                         cout<<"Advance is executed: There is one army from"+fromTerritory->getName()+" as attacker has been killed. \n";
                         advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";

@@ -14,8 +14,6 @@
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="add player some functons for the engine and have some implementation for the deploy process.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/OrdersDriver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
     </list>
     <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +84,11 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="comp345_p" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="comp335_p" TARGET_NAME="comp345_p" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="comp335_p" RUN_TARGET_NAME="comp345_p">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
