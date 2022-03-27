@@ -464,6 +464,7 @@ void GameEng::issueOrdersPhase() {
     // all player in deploy mode
     while (exit_Count < playerCount) {
         for (auto &i: *playerList) {
+            i->calculateBonus(generatedMap);
             if (i->getArmyNum() != 0) {
                 cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
                 // x the amount of player want to deploy
