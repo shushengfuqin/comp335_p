@@ -231,39 +231,54 @@ bool Advance::validate(Map *map) {
 //-- A player receives a card at the end of his turn if they successfully conquered at least one territory during their turn.
 
 void Advance::execute(Map *map) {
+    auto armyNumber = std::to_string(armies);
+
     if(validate(map)){
         if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
         {
-            auto armyNumber = std::to_string(armies);
+
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
             toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
+            cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
+            //  advanceExecute = "Advance is executed: Advance "+armyNumber+" armies from "+fromTerritory->getName()+" to "+toTerritory->getName()+"\n";
         }
         else{
             if(getAttackable()){
-                while(toTerritory->getNumArmies()>0 || armies>0){
+                while(toTerritory->getNumArmies()>0 && armies>0){
+
                     srand(time(NULL));
                     if(rand() % 10 < 6){// Each attacking army unit involved has 60% chances of killing one defending army
                         toTerritory->setNumArmies(toTerritory->getNumArmies()-1);
+                        cout<<"Advance is executed: There is one army on "<<toTerritory->getName()<<"has been killed.\n" ;
+                        // advanceExecute = "Advance is executed: There is one army on "+toTerritory->getName()+" as defender has been killed.\n" ;
                     }
                     else if(rand() % 10 < 7){//each defending army unit has 70% chances of killing one attacking army unit.
                         armies--;
+                        cout<<"Advance is executed: There is one army from"+fromTerritory->getName()+" as attacker has been killed. \n";
+                        //advanceExecute = "Advance is executed: There is one army on "+fromTerritory->getName()+" as attacker has been killed. \n";
                     }
+                    auto armyOnTarget = std::to_string(toTerritory->getNumArmies());
+                    cout<<"Now there is " <<toTerritory->getNumArmies()<<" armies left on the "<<toTerritory->getName()<<endl;
+                    // advanceExecute = "Now there is " +armyOnTarget+" armies left on the "+toTerritory->getName()+"\n.";
                 }
                 if(toTerritory->getNumArmies()==0){
                     toTerritory->setPlayer(player->getPlayerId());
                     player->addTerritory(toTerritory);
                     toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
                     player->getHand()->addCard(card);
+                    cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+                    // advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
                 }
-            }
 
+            }
         }
     }
-    else
+    else{
         cout<<" advance cannot be executed\n"<<endl;
+    }
+
     Notify(this);
 }
-
 
 string Advance::stringToLog() {
     return "Advance executed";
