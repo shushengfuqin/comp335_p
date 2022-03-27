@@ -634,6 +634,10 @@ void GameEng::issueOrdersPhase() {
                         //Airlift need player, fromT, toT, army num
                         //get list of controlled territory and other territory;
                         auto territory = i->getTerritoryList();
+                        cout << "Your territory by Id.\n";
+                        for(auto &t: *territory){
+                            cout << "Territory Id: " << t->getTerritoryId() << endl;
+                        }
                         // get list of all territory
                         for(auto &allpl: *playerList){
                             auto plT = allpl->getTerritoryList();
