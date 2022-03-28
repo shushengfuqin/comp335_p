@@ -47,7 +47,6 @@ public:
 
     friend std::ostream& operator<<(ostream &os, const Territory& territory);
 
-//    virtual ~Territory();
 
 
 private:
@@ -64,13 +63,12 @@ public:
 
 class Map {
 public:
-//    Map(const vector<Territory> &territory);
     Map(const int V);
 
     Map(const Map &map1);
 
     Map& operator=(const Map& map1);
-//
+
     friend std::ostream& operator<<(ostream &os, const Map& map);
 
     const int getSize() const;

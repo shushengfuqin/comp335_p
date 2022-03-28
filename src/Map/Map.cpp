@@ -83,10 +83,6 @@ Territory::Territory(const Territory &t1) {
     _numOfArmy = t1._numOfArmy;
 }
 
-//Territory::~Territory() {
-//    delete _name;
-//    delete _continentName;
-//}
 
 // Territory Assignment Operator
 Territory &Territory::operator=(const Territory &t1) {
@@ -101,7 +97,6 @@ Territory &Territory::operator=(const Territory &t1) {
 
 //Territory stream insertion
 std::ostream &operator<<(ostream &os, const Territory &territory) {
-//    os << "Hi I am a Territory" << endl;
     return os;
 }
 
@@ -155,7 +150,6 @@ void Map::setTerritoryVector(const vector<Territory> &territory, int rowIndex) {
 
 // Add a pointer to a territory (new Territory).
 void Map::addTerritory(Territory territory, int rowIndex) {
-//    this->territory.push_back(territory);
     this->territory[rowIndex].push_back(territory);
 }
 
@@ -216,7 +210,6 @@ bool Map::bfs(int startIndex) {
     for (int i = 0; i < SIZE; ++i) {
         visited[i] = true;
     }
-//    bool * visited = new bool[SIZE];
 
     queue<int> queueTerritoryIds;
 
@@ -392,8 +385,7 @@ void Map::assignTerritoriesToPlayers(vector<Player*> players) {
     int territoryLimitPerPlayer = 3; // Change this to set num of territories for each player
     int numOfTerritoriesAssignedAtPlayer = 0;
     int continentIdInQuestion = 1 + randomContinentIdStart; // Which continent are we at.
-//// DEBUG: Print out size of the players
-//    cout << "Number of players passed in assignTerritoriesToPlayers function: " << numOfPlayers << endl;
+
     for (int i = 0; i < SIZE; ++i) {
         if (numOfTerritoriesAssignedAtPlayer >= territoryLimitPerPlayer) { // Player has reached their territory limit.
             if (continentIdInQuestion == territory[i][0].getContinentId()) {

@@ -6,8 +6,7 @@
 #include "Orders.h"
 
 using namespace std;
-/*
-int main() {*/
+
 class OrdersDriver{
 
 public:
@@ -58,13 +57,9 @@ public:
         map->addTerritory(*territory3, 2);
         map->addTerritory(*territory4, 3);
 
-        //verify player has hand by adding cards
-        // player1->getHandLimit();
 
 
 
-
-/*    void callOrdersDriver() {*/
         //Orders
         cout << "creating deploy order---------" << endl;
         Deploy *deploy1 = new Deploy(player1, territory1, 3);
@@ -77,7 +72,7 @@ public:
         cout << "creating advance order---------" << endl;
         Advance *advance1 = new Advance(player1,player2, territory1, territory2, 1);
         advance1->map = map;
-//
+
         cout << "validate advance---------" << endl;
         advance1->validate();
         cout << "execute advance---------" << endl;
@@ -121,7 +116,7 @@ public:
         ol.setOrderList(bomb1);
         ol.setOrderList(blockade1);
         ol.setOrderList(airlift1);
-//        ol.setOrderList(advance1);
+        ol.setOrderList(advance1);
         ol.setOrderList(deploy1);
 
 
@@ -142,15 +137,6 @@ public:
         bomb1->execute();
 
 
-        // Adjacent Territories
-/*    bool adj = map->isAdjacentTerritory(territory1, territory2);
-    cout << "Is t1 adjacent to t2: ";
-    if (adj) {
-        cout << "Yes" << endl;
-    } else {
-        cout << "No" << endl;
-    }*/
-        // ol->printOrderlist();
         delete (map); // delete values of map on heap
         map = NULL; // erase the address of the map.
 

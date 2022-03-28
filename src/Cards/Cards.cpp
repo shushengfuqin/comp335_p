@@ -51,7 +51,6 @@ Card&Card::operator=(const Card& c)
     return *this;
 }
 
-///////
 
 Deck::Deck(int s){
     size = s;
@@ -105,7 +104,6 @@ void Deck::draw(Hand& player) {
     player.addCard(&topCard);
     size--;
 
-    //cout << "DECK: " << *this << endl;
     cout << "HAND: " << player << endl << endl;
 }
 
@@ -135,7 +133,6 @@ Deck& Deck::operator=(const Deck& d)
     return *this;
 }
 
-///////
 
 Hand::Hand(int s){
     limit = s;

@@ -127,13 +127,13 @@ using namespace std;
     void Player::attackTerritory(Territory *territory) {
         //validating if the territory already in the list
         if (std::count(playerAttackList->begin(), playerAttackList->end(), territory)) {
-//            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s attack list: "
-//                      << territory->getName() << endl;
+            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s attack list: "
+                      << territory->getName() << endl;
         } else {
             //add territory to the attack list
             playerAttackList->push_back(territory);
-//            std::cout << "Element has been added to the player " << playerName << "'s attack list: "
-//                      << territory->getName() << endl;
+            std::cout << "Element has been added to the player " << playerName << "'s attack list: "
+                      << territory->getName() << endl;
         }
 
     }
@@ -161,13 +161,13 @@ using namespace std;
 
         //validating if the territory already in the list
         if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory)) {
-//            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s defend list: "
-//                      << territory->getName() << endl;
+            std::cout << "Element already existed, cannot be added to the player " << playerName << "'s defend list: "
+                      << territory->getName() << endl;
         } else {
             //add territory to the list
             playerTerritoryList->push_back(territory);
-//            std::cout << "Element has been added to the player " << playerName << "'s territories list: "
-//                      << territory->getName() << endl;
+            std::cout << "Element has been added to the player " << playerName << "'s territories list: "
+                      << territory->getName() << endl;
         }
     }
 
@@ -333,33 +333,6 @@ bool Player::alreadyOwn(Territory *territory) {
     }
     void Player::issueOrders(Order *order) {
         //add the order in the order list
-
-//    cout<<"Player "<<playerName<<"'s turn:"<<endl;
-//    while(armyNum>0){
-//        cout<<"Your army number is: "<<armyNum<<endl;
-//        cout<<"Your attack list is: "<<endl;
-//        displayTerritory(playerAttackList);
-//        cout<<"Your defending list is: "<<endl;
-//        displayTerritory(playerTerritoryList);
-//        string input;
-//        cout<<"You can now deploy, which territory you would like to deploy?"<<endl;
-//        cin>>input;
-//        string territoryName=input;
-//        cout<<"\n";
-//        if(this->containTerritoryByName(territoryName,playerAttackList)){
-//            cout<<"How many armies you want to deploy to this territory?"<<endl;
-//            cin>>input;
-//            Deploy *deploy1 = new Deploy(this, getTerritoryByName(territoryName,playerAttackList), stoi(input));
-//
-//            orderList->setOrderList(deploy1);
-//
-//        }else{
-//            cout<<"you cannot attack this territory"<<endl;
-//        }
-//
-//
-//
-//    }
         orderList->setOrderList(order);
 
     }
@@ -423,11 +396,6 @@ bool Player::alreadyOwn(Territory *territory) {
     }
 
 
-//int Player::updateArmyNum(int continentBonus) {
-//    //need to update the code
-//    return armyNum;
-//}
-//
 //switchTerritories between two player, remove from player 1, add to player 2.
     void Player::switchTerritories(Territory *territory, Player *player1, Player *player2) {
         player1->removeTerritory(territory);
@@ -468,7 +436,6 @@ bool Player::alreadyOwn(Territory *territory) {
         if (armyNum < 3) {
             armyNum = 3;
         }
-//        cout << "Army Value is ..." << armyNum << endl;
 
     }
 
@@ -497,17 +464,4 @@ bool Player::alreadyOwn(Territory *territory) {
         cout << "this player does not contain this order" << endl;
         return nullptr;
     }
-/*
-void Player::printOrder()
-{
-
-        vector<Order*> *listOfOrders = orderList->getOrderList();
-    vector<Order*>::iterator it = listOfOrders->begin();
-    for (; it != listOfOrders->end(); it++)
-    {
-        cout << (*it)->getOrderType() << " ";
-    }
-    cout << endl;
-}
-*/
 

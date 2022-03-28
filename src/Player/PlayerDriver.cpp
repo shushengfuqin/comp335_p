@@ -16,7 +16,6 @@ public:
         //initialize the player
         Player *player=new Player();
 
-        // TODO:: NEUTRAL PLAYER DOUBLE CHECK WITH TEACHER
         player->setPlayerId(1);
         player->setPlayerName("PeterParker");
 
@@ -59,29 +58,17 @@ public:
 
 
 
-        //create new orders
-/*
-        Deploy deploy1;
-        Advance advance1;
-        Bomb bomb1;
-        Blockade blockade1;
-        Airlift airlift1;
-        Negotiate negotiate1;
-*/
 
     Deploy *deploy1 = new Deploy(player, territory1, 3);
-//    Advance *advance1 = new Advance(player, territory1, territory2, 5);
     Bomb *bomb1 = new Bomb(player, territory3);
     Blockade *blockade1 = new Blockade(player, territory2);
     Airlift *airlift1 = new Airlift(player, territory3, territory4, 3);
 
         //issue new orders
         player->issueOrders(deploy1);
-//        player->issueOrders(advance1);
         player->issueOrders(bomb1);
         player->issueOrders(blockade1);
         player->issueOrders(airlift1);
-      //  player->issueOrders(negotiate);
         Orderslist* ol = player->getOrderList();
         cout << "Ruochen working\n";
         ol->printOrderlist();
