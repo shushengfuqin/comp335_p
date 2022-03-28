@@ -451,7 +451,6 @@ void GameEng::mainGameLoop(){
     }
     delete (pMapLoader);
     pMapLoader = NULL;
-
 }
 
 void GameEng::reinforcementPhase() const {
@@ -471,6 +470,7 @@ void GameEng::issueOrdersPhase() {
     while (exit_Count < playerCount) {
         for (auto &i: *playerList) {
             if (i->getArmyNum() != 0) {
+                bool territoryFalse = false;
                 cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
                 // x the amount of player want to deploy
                 int x;
@@ -482,10 +482,21 @@ void GameEng::issueOrdersPhase() {
                 for(auto &t : *territory){
                     cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << " Territory current Army Num: " <<t->getNumArmies()<< endl;
                 }
-                cout << "Where would you like to deploy for army. Chose by territory Id\n";
-                cin >> y;
+                while(!territoryFalse){
+                    cout << "Where would you like to deploy for army. Chose by territory Id\n";
+                    cin >> y;
+                    for(auto &t : *territory){
+                        if(t->getTerritoryId() == y){
+                            territoryFalse = true;
+                        }
+                    }
+                    if(!territoryFalse){
+                        cout << "The territory you entered doesn't exit. Please enter again.\n";
+                    }
+                }
                 cout << "How many army do you wish to deploy" << endl;
                 cin >> x;
+
                 while(x > i->getArmyNum()){
                     cout << "You don't have enought amry. Please enter again.\n";
                     cin >> x;
