@@ -374,6 +374,8 @@ string GameEng::winFunc()
 
         if(userCmd == "replay"){
             cout << "Moving to next state\n";
+//            delete generatedMap;
+//            generatedMap = NULL;
             return "replay";
         }
         else if(userCmd == "quit"){
@@ -395,6 +397,7 @@ void GameEng::Transition(){
 void GameEng::startUpPhase() {
     // Clear player list
     playerList->clear();
+    playerCount = 0;
 
     // Continue until start up phase is complete
     while(getState() != win && getState() != assignreignforcement){
@@ -421,12 +424,13 @@ void GameEng::startUpPhase() {
     }
 
     // Clean up
-//    delete (pMapLoader);
-//    pMapLoader = NULL;
+
 
 }
 
 void GameEng::mainGameLoop(){
+
+    turnNum = 1;
     //while the amount of player is not 1 the main game loop will keep looping.
     while(playerCount != 1){
         cout << "------------ TURN : " << turnNum << " ------------\n";
@@ -445,6 +449,8 @@ void GameEng::mainGameLoop(){
             }
         }
     }
+    delete (pMapLoader);
+    pMapLoader = NULL;
 
 }
 
