@@ -450,15 +450,12 @@ bool Player::alreadyOwn(Territory *territory) {
 
 
     void Player::calculateBonus(Map *map) {
-        cout << "Init" << endl;
         int continentNum = map->getLastContinentId();
         for (int i = 1; i <= continentNum; i++) {
-//            cout << "for loop " << i << endl;
             int x = this->getPlayerNumOfTerritoriesInContinent(i);
             int y = map->getNumOfTerritoriesInContinent(i);
 
             if (x == y) {
-//                cout << "player have one complete continent: " << endl;
                 armyNum += map->getArmyContinentBonus(i);
             }
         }

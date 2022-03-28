@@ -1,0 +1,20 @@
+[files]
+pic periodictable.png
+map periodictable.gif
+crd periodict.cards
+
+[continents]
+Conti1 6 yellow
+Conti2 8 blue
+
+[countries]
+1 Terri1 1 34 43
+2 Terri2 1 594 43
+3 Terri3 1 34 81
+4 Terri4 2 68 81
+
+[borders]
+1 2 3
+2 1 3
+3 1 2 4
+4 3
