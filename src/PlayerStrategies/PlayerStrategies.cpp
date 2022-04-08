@@ -34,6 +34,7 @@ Human::Human(): PlayerStrategy() {
 //Constructor
 Human::Human(Player* p): PlayerStrategy(p) {}
 
+// human will do what's in the issueorder in the gameeng file's issue order
 void Human::issueOrder() {
 
 }
@@ -58,6 +59,7 @@ Aggressive::Aggressive(): PlayerStrategy() {
 //Constructor
 Aggressive::Aggressive(Player* p): PlayerStrategy(p) {}
 
+// it will only issue deploy and advance to attack enemy territory
 void Aggressive::issueOrder() {
 
 }
@@ -81,6 +83,7 @@ Benevolent::Benevolent(): PlayerStrategy() {
 //Constructor
 Benevolent::Benevolent(Player* p): PlayerStrategy(p) {}
 
+// It will only issue deploy and advance to own territory
 void Benevolent::issueOrder() {
 
 }
@@ -104,6 +107,7 @@ Neutral::Neutral(): PlayerStrategy() {
 //Constructor
 Neutral::Neutral(Player* p): PlayerStrategy(p) {}
 
+// Does not thing
 void Neutral::issueOrder() {
 
 }
@@ -127,6 +131,7 @@ Cheater::Cheater(): PlayerStrategy() {
 //Constructor
 Cheater::Cheater(Player* p): PlayerStrategy(p) {}
 
+// special issueOrder. add a cheat order for him which will get all his adjacent territory and change the territory to the cheaters
 void Cheater::issueOrder() {
 
 }
