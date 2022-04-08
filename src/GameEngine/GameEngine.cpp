@@ -464,6 +464,8 @@ void GameEng::reinforcementPhase() const {
 
 void GameEng::issueOrdersPhase() {
     cout << "------------ Issue Orders Phase ------------\n";
+    //check the player Strat
+    if()
     // count if there are still player not done in deploying
     int exit_Count = 0;
     // all player in deploy mode
@@ -479,9 +481,7 @@ void GameEng::issueOrdersPhase() {
                 cout << "You have " << i->getArmyNum() << " army left\n";
                 cout << "List of territory that you control\n";
                 auto territory = i->getTerritoryList();
-                for(auto &t : *territory){
-                    cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << " Territory current Army Num: " <<t->getNumArmies()<< endl;
-                }
+                i->displayTerritory(territory);
                 while(!territoryFalse){
                     cout << "Where would you like to deploy for army. Chose by territory Id\n";
                     cin >> y;
@@ -547,17 +547,24 @@ void GameEng::issueOrdersPhase() {
                         Territory *targetTerritory;
                         auto territory = i->getTerritoryList();
                         cout << "Your territory\n";
-                        for(auto &pT: *territory){
-                            cout << "Territory id: " <<pT->getTerritoryId() <<endl;
-                        }
+                        i->displayTerritory(territory);
+//                        for(auto &pT: *territory){
+//                            cout << "Territory id: " <<pT->getTerritoryId() <<endl;
+//                        }
 
                         //get all adjacent territory of each of your territory
+                        //get the toAttackList
+                        auto toAttackTerritory = i->toAttack(generatedMap);
+
                         cout << "All Adjacent territory\n";
                         for(auto &pT: *territory){
                             cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
                             auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
                             for(auto &adj: adjacent_territory){
-                                cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                                // find if this is not part one of his territory
+                                if(!i->alreadyOwn(adj)){
+                                    cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                                }
                             }
                         }
                         while(!issued){

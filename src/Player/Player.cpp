@@ -302,13 +302,13 @@ bool Player::alreadyOwn(Territory *territory) {
         return playerTerritoryList;
     }
 
-    void Player::displayTerritory(vector<Territory *> *territoryList) {
+    void Player::displayTerritory(vector<Territory *> *territory) {
 
         //print out all territory of this player in the list in the console
         std::cout << '\n' << "Player " << playerName << "'s Territory List:" << '\n' << endl;
 
-        for (int i = 0; i < territoryList->size(); ++i) {
-            cout << territoryList->at(i)->getName() << '\n' << endl;
+        for(auto &t : *territory){
+            cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << " Territory current Army Num: " <<t->getNumArmies()<< endl;
         }
 
     }

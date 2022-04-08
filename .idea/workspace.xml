@@ -12,8 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="add player some functons for the engine and have some implementation for the deploy process.">
+      <change afterPath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
     </list>
     <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -242,7 +246,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/GameEngine/GameEngine.cpp</url>
-          <line>759</line>
+          <line>766</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
