@@ -465,7 +465,6 @@ void GameEng::reinforcementPhase() const {
 void GameEng::issueOrdersPhase() {
     cout << "------------ Issue Orders Phase ------------\n";
     //check the player Strat
-    if()
     // count if there are still player not done in deploying
     int exit_Count = 0;
     // all player in deploy mode

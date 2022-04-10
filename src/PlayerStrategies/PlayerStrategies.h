@@ -21,8 +21,12 @@ public:
     ~PlayerStrategy(); // destructor
     void setPlayer(Player* p);
     virtual void issueOrder() = 0;
-    virtual vector <Territory*> toAttack() = 0;
-    virtual vector <Territory*> toDefend() = 0;
+//    virtual vector <Territory*> toAttack() = 0;
+//    virtual vector <Territory*> toDefend() = 0;
+    void setStrategyName(string name); // Mutator
+    string getStrategyName() const; // Accesor
+private:
+    string strategy_name;
   };
 
 /**
@@ -33,8 +37,8 @@ public:
     Human(); // default constructor
     explicit Human(Player* p); // constructor
     void issueOrder() override;
-    vector <Territory*> toAttack() override;
-    vector <Territory*> toDefend() override;
+//    vector <Territory*> toAttack() override;
+//    vector <Territory*> toDefend() override;
 };
 
 /**
@@ -45,8 +49,8 @@ public:
     Aggressive(); // default constructor
     explicit Aggressive(Player* p); // constructor
     void issueOrder() override;
-    vector <Territory*> toAttack() override;
-    vector <Territory*> toDefend() override;
+//    vector <Territory*> toAttack() override;
+//    vector <Territory*> toDefend() override;
 };
 
 /**
@@ -57,8 +61,8 @@ public:
     Benevolent();
     explicit Benevolent(Player* p);
     void issueOrder() override;
-    vector <Territory*> toAttack() override;
-    vector <Territory*> toDefend() override;
+//    vector <Territory*> toAttack() override;
+//    vector <Territory*> toDefend() override;
 };
 
 /**
@@ -69,8 +73,8 @@ public:
     Neutral(); // default constructor
     explicit Neutral(Player* p); // constructor
     void issueOrder() override;
-    vector <Territory*> toAttack() override;
-    vector <Territory*> toDefend() override;
+//    vector <Territory*> toAttack() override;
+//    vector <Territory*> toDefend() override;
 };
 
 /**
@@ -81,8 +85,8 @@ public:
     Cheater();  // default constructor
     explicit Cheater(Player* p); // constructor
     void issueOrder() override;
-    vector <Territory*> toAttack() override;
-    vector <Territory*> toDefend() override;
+//    vector <Territory*> toAttack() override;
+//    vector <Territory*> toDefend() override;
 };
 
 #endif //COMP335_P_PLAYERSTRATEGIES_H

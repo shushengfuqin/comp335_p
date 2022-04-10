@@ -8,6 +8,7 @@
 #include "../Map/Map.h"
 #include "../Cards/Cards.h"
 #include "../Order/Orders.h"
+#include "../PlayerStrategies/PlayerStrategies.h"
 #include "vector"
 using namespace std;
 
@@ -15,9 +16,15 @@ struct Order;
 class Orderslist;
 class Territory;
 class Map;
+class PlayerStrategy;
 
 class Player{
 public:
+
+    string getPlayerStrategyString();
+    void setStrategyString(string strategyString);
+    void setStrategy(PlayerStrategy *newStrategy);
+    PlayerStrategy* getPlayerStrategy();
     Player();
     Player(string name);
     ~Player();
@@ -72,7 +79,8 @@ private:
     int armyNum;
     int playerId;
     string playerName;
-
+    PlayerStrategy *strategy;
+    string strategyString;
 };
 
 #endif //COMP335_P_PLAYER_H

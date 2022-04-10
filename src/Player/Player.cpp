@@ -465,3 +465,18 @@ bool Player::alreadyOwn(Territory *territory) {
         return nullptr;
     }
 
+void Player::setStrategy(PlayerStrategy *newStrategy) {
+    this->strategy = newStrategy;
+}
+
+void Player::setStrategyString(string strategyString) {
+    this->strategyString = strategyString;
+}
+
+PlayerStrategy* Player::getPlayerStrategy() {
+    return strategy;
+}
+
+string Player::getPlayerStrategyString() {
+    return strategyString;
+}
