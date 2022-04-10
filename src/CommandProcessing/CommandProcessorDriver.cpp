@@ -11,7 +11,7 @@ class CommandProcessorDriver{
 public:
     CommandProcessorDriver()= default;
     ~CommandProcessorDriver()= default;
-    static void callCommandProcessorDriver(bool readFromFile, const string& filename) {
+    static void callCommandProcessorDriver(bool readFromFile, bool tournamentMode, const string& filename) {
 
         // Initializa game play boolean.
         bool play = true;

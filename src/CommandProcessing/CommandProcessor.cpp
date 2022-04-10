@@ -65,10 +65,14 @@ string CommandProcessor::validate(GameState gs) {
 
     regex loadRegex ("loadmap\\s.+");
     regex playerRegex("addplayer\\s.+");
+    regex tournamentRegex("tournament\\s-M\\s([^\\s]+\\s){1,5}-P\\s([^\\s]+\\s){2,4}-G\\s[1-4]\\s-D\\s([1-4][0-9]|50)");
 
     // Loadmap is usable
     if(regex_match (c, loadRegex) && (gs == GameState::start || gs == GameState::maploaded))
         lc->back().saveEffect("maploaded");
+    // Tournament is usable
+    else if(regex_match (c, tournamentRegex) && gs == GameState::start)
+        lc->back().saveEffect("tournament");
     // Validatemap is usable
     else if(c == "validatemap" && gs == GameState::maploaded)
         lc->back().saveEffect("mapvalidated");
@@ -89,6 +93,10 @@ string CommandProcessor::validate(GameState gs) {
         lc->back().saveEffect("Error: Invalid input.");
     return c;
 }
+
+/*bool CommandProcessor::tournamentValidation(string c){
+
+}*/
 
 string CommandProcessor::stringToLog() {
     return "CommandProcessor stringToLog: " + lc->back().getCommandText();

@@ -21,6 +21,11 @@
 int userInput;
 regex loadRegex ("loadmap\\s.+");
 regex playerRegex("addplayer\\s.+");
+regex tournamentRegex("tournament\\s-M\\s([^\\s]+\\s){1,5}-P\\s([^\\s]+\\s){2,4}-G\\s[1-4]\\s-D\\s([1-4][0-9]|50)");
+//tournament -M TEST -P TEST -G 4 -D 10
+//tournament -M TEST 1 2 3 4 -P TEST 1 -G 4 -D 10
+//tournament -M TEST 1 2 3 4 5 -P TEST 1 -G 4 -D 10
+//comp345_p -M TEST 1 2 3 4 -P TEST 1 -G 4 -D 10
 
 GameEng::GameEng() {
     cmdProc = new CommandProcessor();
@@ -53,6 +58,7 @@ string GameEng::startFunc()
 {
     cout << "this is the start state\n";
     cout << "1 - loadmap <mapfile>\n";
+    cout << "2 - tournament -M <listofmapfiles (1-5)> -P <listofplayerstrategies (2-4)> -G <numberofgames (1-4)> -D <maxnumberofturns (10-50)>\n";
     cmdProc->getCommand();
     for (;;)
     {
@@ -75,6 +81,12 @@ string GameEng::startFunc()
                 continue;
             }
         }
+        else if (regex_match (cmdInput, tournamentRegex)){
+            cout << "Moving to the tournament state\n";
+            Notify(this);
+
+            return "tournament";
+        }
         else{
             cout << "Error: Please enter an valid command\n";
             cmdProc->getCommand();
@@ -82,6 +94,20 @@ string GameEng::startFunc()
         }
     }
 
+}
+
+/////////////
+
+string GameEng::tournamentFunc()
+{
+    cout << "Tournament Mode:\n"
+            "M:\n"
+            "P:\n"
+            "G:\n"
+            "D:\n";
+    //cmdProc->getCommand();
+
+    //return "startTournament";
 }
 
 bool GameEng::LoadMap(const string& name){
@@ -402,22 +428,37 @@ void GameEng::startUpPhase() {
     // Continue until start up phase is complete
     while(getState() != win && getState() != assignreignforcement){
         switch (getState()) {
-            case start:
-                if (startFunc() == "loadmap") {
+            case start:{
+                string sf = startFunc();
+
+                if (sf == "loadmap") {
                     setState(maploaded);
                 }
+                else if(sf == "tournament"){
+                    setState(tournament);
+                }
+                break;
+            }
+            case tournament:
+                if (tournamentFunc() == "startTournament") {
+                    setState(assignreignforcement);
+                }
+                break;
             case maploaded:
                 if (maploadedFunc() == "validatemap") {
                     setState(mapvalidated);
                 }
+                break;
             case mapvalidated:
                 if (mapvalidatedFunc() == "addplayer") {
                     setState(playeradded);
                 }
+                break;
             case playeradded:
                 if (playeraddedFunc() == "assigncountries") {
-                    setState(win);
+                    setState(assignreignforcement);
                 }
+                break;
             default:
                 break;
         }
@@ -464,8 +505,9 @@ void GameEng::reinforcementPhase() const {
 
 void GameEng::issueOrdersPhase() {
     cout << "------------ Issue Orders Phase ------------\n";
-    //check the player Strat
-    if()
+    // TODO: Check the player Strat
+    //if()
+
     // count if there are still player not done in deploying
     int exit_Count = 0;
     // all player in deploy mode

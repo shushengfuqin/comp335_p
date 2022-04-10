@@ -31,6 +31,7 @@ public:
     GameEng(FileLineReader *flr);
     ~GameEng();
     string startFunc();
+    string tournamentFunc();
     string maploadedFunc();
     string mapvalidatedFunc();
     string playeraddedFunc();
