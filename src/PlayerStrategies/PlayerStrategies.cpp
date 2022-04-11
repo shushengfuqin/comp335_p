@@ -39,15 +39,18 @@ void Human::issueOrder(Player*& i, Map* generatedMap) {
 
 }
 
-vector<Territory *>* Human::toAttack(Map* Map, Player &player) {
-    cout << "Human to attack" << endl;
-    return {};
-}
 
 vector<Territory *>* Human::toDefend(Map* Map, Player &player) {
     cout << "Human to defend" << endl;
     return {};
 }
+vector<Territory *>* Human::toAttack() {
+    return p->getAttackList();
+}
+//
+//vector<Territory *>* Human::toDefend() {
+//    return vector<Territory *>*();
+//}
 
 
 /**
@@ -69,6 +72,13 @@ vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {
     return {};
 }
 
+//vector<Territory *>* Aggressive::toAttack() {
+//    return vector<Territory *>*();
+//}
+//
+//vector<Territory *>* Aggressive::toDefend() {
+//    return vector<Territory *>*();
+//}
 vector<Territory *> Aggressive::toDefend(Map* Map, Player &player) {
     cout << "Aggressive to defend" << endl;
     return {};
@@ -97,6 +107,13 @@ vector<Territory *> Benevolent::toDefend(Map* Map, Player &player) {
     cout << "Benevolent to defend" <<endl;
     return {};
 }
+//vector<Territory *>* Benevolent::toAttack() {
+//    return vector<Territory *>();
+//}
+//
+//vector<Territory *> Benevolent::toDefend() {
+//    return vector<Territory *>*();
+//}
 
 /**
 *  Player Strat Neutral
@@ -122,6 +139,13 @@ vector<Territory *> Neutral::toDefend(Map* Map, Player &player) {
     cout << "Neutral to defend" << endl;
     return {};
 }
+//vector<Territory *>* Neutral::toAttack() {
+//    return vector<Territory *>*();
+//}
+//
+//vector<Territory *> Neutral::toDefend() {
+//    return vector<Territory *>*();
+//}
 
 /**
 *  Player Strat Cheater
@@ -146,3 +170,10 @@ vector<Territory *> Cheater::toDefend(Map* Map, Player &player) {
     cout << "Cheater to defend" << endl;
     return {};
 }
+//vector<Territory *>* Cheater::toAttack() {
+//    return vector<Territory *>();
+//}
+//
+//vector<Territory *>* Cheater::toDefend() {
+//    return vector<Territory *>();
+//}
