@@ -128,13 +128,13 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
 
                 // find owner of the target territory
                 // is it controled by a neutral player
-                auto neutralTerritory = neutral->getTerritoryList();
-                for(auto &neutralP: *neutralTerritory){
-                    if(neutralP->getTerritoryId() == tt){
-                        targetPl = neutral;
-                        targetTerritory = neutralP;
-                    }
-                }
+//                auto neutralTerritory = neutral->getTerritoryList();
+//                for(auto &neutralP: *neutralTerritory){
+//                    if(neutralP->getTerritoryId() == tt){
+//                        targetPl = neutral;
+//                        targetTerritory = neutralP;
+//                    }
+//                }
                 // if it's controled by a player
                 for(auto &playerlist : *playerList){
                     auto plTerritory = playerlist->getTerritoryList();
@@ -299,13 +299,13 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
 }
 
 
-vector<Territory *>* Human::toDefend(Map* Map, Player &player) {
-    cout << "Human to defend" << endl;
-    return {};
-}
-vector<Territory *>* Human::toAttack() {
-    return p->getAttackList();
-}
+//vector<Territory *>* Human::toDefend(Map* Map, Player &player) {
+//    cout << "Human to defend" << endl;
+//    return {};
+//}
+//vector<Territory *>* Human::toAttack() {
+//    return p->getAttackList();
+//}
 
 
 
@@ -319,19 +319,19 @@ Aggressive::Aggressive(): PlayerStrategy() {
 }
 
 // it will only issue deploy and advance to attack enemy territory
-void Aggressive::issueOrder(Player*& i, Map* generatedMap) {
+void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vector<Player*> *playerList ) {
 
 }
 
-vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {
-    cout << "Aggressive to attack" << endl;
-    return {};
-}
-
-vector<Territory *> Aggressive::toDefend(Map* Map, Player &player) {
-    cout << "Aggressive to defend" << endl;
-    return {};
-}
+//vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {
+//    cout << "Aggressive to attack" << endl;
+//    return {};
+//}
+//
+//vector<Territory *> Aggressive::toDefend(Map* Map, Player &player) {
+//    cout << "Aggressive to defend" << endl;
+//    return {};
+//}
 
 /**
 *  Player Strat Benevolent
@@ -347,15 +347,15 @@ void Benevolent::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vecto
 
 }
 
-vector<Territory *> Benevolent::toAttack(Map* Map, Player &player) {
-    cout << "Benevolent to attack" <<endl;
-    return {};
-}
-
-vector<Territory *> Benevolent::toDefend(Map* Map, Player &player) {
-    cout << "Benevolent to defend" <<endl;
-    return {};
-}
+//vector<Territory *> Benevolent::toAttack(Map* Map, Player &player) {
+//    cout << "Benevolent to attack" <<endl;
+//    return {};
+//}
+//
+//vector<Territory *> Benevolent::toDefend(Map* Map, Player &player) {
+//    cout << "Benevolent to defend" <<endl;
+//    return {};
+//}
 
 /**
 *  Player Strat Neutral
@@ -372,15 +372,15 @@ void Neutral::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<P
 
 }
 
-vector<Territory *> Neutral::toAttack(Map* Map, Player &player) {
-    cout << "Neutral to attack" << endl;
-    return {};
-}
-
-vector<Territory *> Neutral::toDefend(Map* Map, Player &player) {
-    cout << "Neutral to defend" << endl;
-    return {};
-}
+//vector<Territory *> Neutral::toAttack(Map* Map, Player &player) {
+//    cout << "Neutral to attack" << endl;
+//    return {};
+//}
+//
+//vector<Territory *> Neutral::toDefend(Map* Map, Player &player) {
+//    cout << "Neutral to defend" << endl;
+//    return {};
+//}
 
 /**
 *  Player Strat Cheater
@@ -396,12 +396,12 @@ void Cheater::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<P
 
 }
 
-vector<Territory *> Cheater::toAttack(Map* Map, Player &player) {
-    cout << "Cheater to attack" << endl;
-    return {};
-}
-
-vector<Territory *> Cheater::toDefend(Map* Map, Player &player) {
-    cout << "Cheater to defend" << endl;
-    return {};
-}
+//vector<Territory *> Cheater::toAttack(Map* Map, Player &player) {
+//    cout << "Cheater to attack" << endl;
+//    return {};
+//}
+//
+//vector<Territory *> Cheater::toDefend(Map* Map, Player &player) {
+//    cout << "Cheater to defend" << endl;
+//    return {};
+//}

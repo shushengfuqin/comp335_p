@@ -138,28 +138,33 @@ public:
     PlayerStrategy *aggressive = new Aggressive();
     PlayerStrategy *benevolent = new Benevolent();
     PlayerStrategy *cheater = new Cheater();
+    PlayerStrategy *human = new Human();
     auto *player1 = new Player();
     auto *player2 = new Player();
     auto *player3 = new Player();
+    auto *player4 = new Player();
 
-    player1->setStrategy(new Cheater());
+    player1->setStrategy(cheater);
     player1->setStrategyString(cheater->getStrategyName());
     string test1 = player1->getPlayerStrategyString();
 
-    player2->setStrategy(new Aggressive());
+    player2->setStrategy(aggressive);
     player2->setStrategyString(aggressive->getStrategyName());
     string test2 = player2->getPlayerStrategyString();
 
-    player3->setStrategy(new Benevolent());
+    player3->setStrategy(benevolent);
     player3->setStrategyString(benevolent->getStrategyName());
     string test3 = player3->getPlayerStrategyString();
+
+    player4->setStrategy(human);
+    player4->setStrategyString(human->getStrategyName());
+    string test4 = player4->getPlayerStrategyString();
 
     cout << "Hallo world" <<endl;
     cout << test1 << endl;
     cout << test2 << endl;
     cout << test3 << endl;
+    cout << test4 << endl;
 
-    player1->toAttack(generatedMap);
-    player1->toDefend(generatedMap);
 }
 };
