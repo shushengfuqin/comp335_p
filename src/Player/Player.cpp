@@ -331,10 +331,10 @@ bool Player::alreadyOwn(Territory *territory) {
         }
 
     }
-    void Player::issueOrders(Player*& i, Map* generatedMap) {
+    void Player::issueOrders(Player*& i, Map* generatedMap,bool deployOrNot,vector<Player*> *playerList ) {
 //        add the order in the order list
 //        orderList->setOrderList(order);
-        this->strategy->issueOrder(i,generatedMap);
+        this->strategy->issueOrder(i, generatedMap, deployOrNot, playerList);
     }
 
 
