@@ -78,56 +78,56 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
             cout << "current army num " << i->getArmyNum() << endl;
 
         }
-    }
-    string command;
-    bool correct = true;
-    while (correct){
-        cout << "what would you like to do\n";
-        cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
-        cin >> command;
-        if(command == "Advance"){
-            cout << "you chose advance\n";
-            // Advance need player, source T, target T, army num
-            // All your territory
-            int st;
-            int tt;
-            int armyNum;
-            bool issued = false;
-            Player *targetPl;
-            Territory *sourceTerritory;
-            Territory *targetTerritory;
-            auto territory = i->getTerritoryList();
-            cout << "Your territory\n";
-            i->displayTerritory(territory);
+    } else {
+        string command;
+        bool correct = true;
+        while (correct){
+            cout << "what would you like to do\n";
+            cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
+            cin >> command;
+            if(command == "Advance"){
+                cout << "you chose advance\n";
+                // Advance need player, source T, target T, army num
+                // All your territory
+                int st;
+                int tt;
+                int armyNum;
+                bool issued = false;
+                Player *targetPl;
+                Territory *sourceTerritory;
+                Territory *targetTerritory;
+                auto territory = i->getTerritoryList();
+                cout << "Your territory\n";
+                i->displayTerritory(territory);
 //                        for(auto &pT: *territory){
 //                            cout << "Territory id: " <<pT->getTerritoryId() <<endl;
 //                        }
 
-            //get all adjacent territory of each of your territory
-            //get the toAttackList
-            auto toAttackTerritory = i->toAttack(generatedMap);
+                //get all adjacent territory of each of your territory
+                //get the toAttackList
+                auto toAttackTerritory = i->toAttack(generatedMap);
 
-            cout << "All Adjacent territory\n";
-            for(auto &pT: *territory){
-                cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
-                auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
-                for(auto &adj: adjacent_territory){
-                    // find if this is not part one of his territory
-                    if(!i->alreadyOwn(adj)){
-                        cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                cout << "All Adjacent territory\n";
+                for(auto &pT: *territory){
+                    cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
+                    auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
+                    for(auto &adj: adjacent_territory){
+                        // find if this is not part one of his territory
+                        if(!i->alreadyOwn(adj)){
+                            cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                        }
                     }
                 }
-            }
-            while(!issued){
-                cout << "Choose one for your territory. Choose by Id.\n";
-                cin >> st;
-                cout << "Choose one for adjacent territory. Choose by Id.\n";
-                cin >> tt;
-                cout << "How many army would you like to send?\n";
-                cin >> armyNum;
+                while(!issued){
+                    cout << "Choose one for your territory. Choose by Id.\n";
+                    cin >> st;
+                    cout << "Choose one for adjacent territory. Choose by Id.\n";
+                    cin >> tt;
+                    cout << "How many army would you like to send?\n";
+                    cin >> armyNum;
 
-                // find owner of the target territory
-                // is it controled by a neutral player
+                    // find owner of the target territory
+                    // is it controled by a neutral player
 //                auto neutralTerritory = neutral->getTerritoryList();
 //                for(auto &neutralP: *neutralTerritory){
 //                    if(neutralP->getTerritoryId() == tt){
@@ -135,165 +135,166 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
 //                        targetTerritory = neutralP;
 //                    }
 //                }
-                // if it's controled by a player
-                for(auto &playerlist : *playerList){
-                    auto plTerritory = playerlist->getTerritoryList();
-                    // go through that player's territory
-                    for(auto &plT: *plTerritory){
-                        if(plT->getTerritoryId() == tt){
-                            targetPl = playerlist;
-                            targetTerritory = plT;
+                    // if it's controled by a player
+                    for(auto &playerlist : *playerList){
+                        auto plTerritory = playerlist->getTerritoryList();
+                        // go through that player's territory
+                        for(auto &plT: *plTerritory){
+                            if(plT->getTerritoryId() == tt){
+                                targetPl = playerlist;
+                                targetTerritory = plT;
+                            }
                         }
                     }
-                }
-                // find source territory
-                for(auto &pT: *territory){
-                    if(pT->getTerritoryId() == st){
-                        sourceTerritory = pT;
-                        auto *advance = new Advance(i,targetPl,sourceTerritory,targetTerritory,armyNum);
-                        i->getOrderList()->setOrderList(advance);
-                        issued = true;
+                    // find source territory
+                    for(auto &pT: *territory){
+                        if(pT->getTerritoryId() == st){
+                            sourceTerritory = pT;
+                            auto *advance = new Advance(i,targetPl,sourceTerritory,targetTerritory,armyNum);
+                            i->getOrderList()->setOrderList(advance);
+                            issued = true;
+                        }
+                    }
+                    if(!issued){
+                        cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
-                if(!issued){
-                    cout << "The id that you entered aren't available please enter again.\n";
-                }
-            }
-            correct = false;
-        } else if (command == "Bomb") {
-            cout << "you chose bomb\n";
-            bool issued=false;
-            // bomb need the player, and the target territory
-            // The territory needs to be an adjacent territory
-            // list all adjacent territory
-            auto playerToAttackList = i->toAttack(generatedMap);
+                correct = false;
+            } else if (command == "Bomb") {
+                cout << "you chose bomb\n";
+                bool issued=false;
+                // bomb need the player, and the target territory
+                // The territory needs to be an adjacent territory
+                // list all adjacent territory
+                auto playerToAttackList = i->toAttack(generatedMap);
 
-            while(!issued) {
-                for (auto &t: *playerToAttackList) {
-                    cout << "Territory Id: " << t->getTerritoryId() << endl;
-                }
-                cout << "Which one would you like to bombard? Choose by ID:\n";
-                int bombId;
-                cin >> bombId;
-                for (auto &t: *playerToAttackList) {
-                    if (t->getTerritoryId() == bombId) {
-                        Bomb *bomb = new Bomb(i, t);
-                        i->getOrderList()->setOrderList(bomb);
-                        issued = true;
-                    }
-                }
-                if(!issued){
-                    cout << "The id that you entered aren't available please enter again.\n";
-                }
-            }
-            correct = false;
-        } else if (command == "Blockade") {
-            cout << "you chose blockade\n";
-            bool issued = false;
-            // list all territory user control.
-            auto territory = i->getTerritoryList();
-            //target territory;
-            int t;
-            for(auto &pTerritory : *territory){
-                cout << "Territory ID: " << pTerritory->getTerritoryId() << " Territory Name : " << pTerritory->getName() << endl;
-            }
-            while(!issued) {
-                cout << "Which territory would you like to use Blockade. Chose by id\n";
-                cin >> t;
-                for (auto &e: *territory) {
-                    if (e->getTerritoryId() == t) {
-                        cout << "This is the territory you chose: " << t << endl;
-                        auto *blockade = new Blockade(i, e);
-                        i->getOrderList()->setOrderList(blockade);
-                        issued = true;
-                        break;
-                    }
-                }
-                if(!issued){
-                    cout << "The id that you entered aren't available please enter again.\n";
-                }
-            }
-            correct = false;
-        } else if (command == "Airlift") {
-            cout << "you chose airlift\n";
-            int sourceT;
-            int targetT;
-            int armyNum;
-            Territory *sourceTerritory;
-            Territory *targetTerritory;
-            bool issued = false;
-            //Airlift need player, fromT, toT, army num
-            //get list of controlled territory and other territory;
-            auto territory = i->getTerritoryList();
-            while(!issued) {
-                cout << "Your territory by Id.\n";
-                for(auto &t: *territory){
-                    cout << "Territory Id: " << t->getTerritoryId() << endl;
-                }
-                cout << "Chose one of your territory\n";
-                cin >> sourceT;
-                //get all other territory
-                for(auto &t: *territory){
-                    if(t->getTerritoryId() != sourceT){
+                while(!issued) {
+                    for (auto &t: *playerToAttackList) {
                         cout << "Territory Id: " << t->getTerritoryId() << endl;
                     }
-                }
-                cout << "Chose one of the your other's territory\n";
-                cin >> targetT;
-                // find source territory
-                for (auto &pTerritory: *territory) {
-                    if (pTerritory->getTerritoryId() == sourceT) {
-                        sourceTerritory = pTerritory;
+                    cout << "Which one would you like to bombard? Choose by ID:\n";
+                    int bombId;
+                    cin >> bombId;
+                    for (auto &t: *playerToAttackList) {
+                        if (t->getTerritoryId() == bombId) {
+                            Bomb *bomb = new Bomb(i, t);
+                            i->getOrderList()->setOrderList(bomb);
+                            issued = true;
+                        }
+                    }
+                    if(!issued){
+                        cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
+                correct = false;
+            } else if (command == "Blockade") {
+                cout << "you chose blockade\n";
+                bool issued = false;
+                // list all territory user control.
+                auto territory = i->getTerritoryList();
+                //target territory;
+                int t;
+                for(auto &pTerritory : *territory){
+                    cout << "Territory ID: " << pTerritory->getTerritoryId() << " Territory Name : " << pTerritory->getName() << endl;
+                }
+                while(!issued) {
+                    cout << "Which territory would you like to use Blockade. Chose by id\n";
+                    cin >> t;
+                    for (auto &e: *territory) {
+                        if (e->getTerritoryId() == t) {
+                            cout << "This is the territory you chose: " << t << endl;
+                            auto *blockade = new Blockade(i, e);
+                            i->getOrderList()->setOrderList(blockade);
+                            issued = true;
+                            break;
+                        }
+                    }
+                    if(!issued){
+                        cout << "The id that you entered aren't available please enter again.\n";
+                    }
+                }
+                correct = false;
+            } else if (command == "Airlift") {
+                cout << "you chose airlift\n";
+                int sourceT;
+                int targetT;
+                int armyNum;
+                Territory *sourceTerritory;
+                Territory *targetTerritory;
+                bool issued = false;
+                //Airlift need player, fromT, toT, army num
+                //get list of controlled territory and other territory;
+                auto territory = i->getTerritoryList();
+                while(!issued) {
+                    cout << "Your territory by Id.\n";
+                    for(auto &t: *territory){
+                        cout << "Territory Id: " << t->getTerritoryId() << endl;
+                    }
+                    cout << "Chose one of your territory\n";
+                    cin >> sourceT;
+                    //get all other territory
+                    for(auto &t: *territory){
+                        if(t->getTerritoryId() != sourceT){
+                            cout << "Territory Id: " << t->getTerritoryId() << endl;
+                        }
+                    }
+                    cout << "Chose one of the your other's territory\n";
+                    cin >> targetT;
+                    // find source territory
+                    for (auto &pTerritory: *territory) {
+                        if (pTerritory->getTerritoryId() == sourceT) {
+                            sourceTerritory = pTerritory;
+                        }
+                    }
 
-                // find target territory
-                for (auto &pTerritory: *territory) {
-                    if (pTerritory->getTerritoryId() == targetT) {
-                        targetTerritory = pTerritory;
-                        cout << "How many army would you like to send?\n";
-                        cin >> armyNum;
-                        // create Airlift obj
-                        auto *airlift = new Airlift(i, sourceTerritory, targetTerritory, armyNum);
-                        i->getOrderList()->setOrderList(airlift);
-                        issued = true;
+                    // find target territory
+                    for (auto &pTerritory: *territory) {
+                        if (pTerritory->getTerritoryId() == targetT) {
+                            targetTerritory = pTerritory;
+                            cout << "How many army would you like to send?\n";
+                            cin >> armyNum;
+                            // create Airlift obj
+                            auto *airlift = new Airlift(i, sourceTerritory, targetTerritory, armyNum);
+                            i->getOrderList()->setOrderList(airlift);
+                            issued = true;
+                        }
+                    }
+                    if(!issued){
+                        cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
-                if(!issued){
-                    cout << "The id that you entered aren't available please enter again.\n";
-                }
-            }
-            correct = false;
-        } else if (command == "Negotiate") {
-            bool issued = false;
-            cout << "you chose negotiate\n";
-            //print all other player
-            cout << "Please chose your target player by id\n";
-            for(auto &j: *playerList){
-                if(i != j){
-                    cout << "Player Id : " << j->getPlayerId() << ". Player Name : "<< j->getPlayerName()<<endl;
-                }
-            }
-            int target;
-            while(!issued) {
-                cin >> target;
-                cout << "You chose Player: " << target << endl;
-                for (auto &y: *playerList) {
-                    if (y->getPlayerId() == target) {
-                        cout << "this is the player's id that you choose " << y->getPlayerId() << endl;
-                        auto *negotiate = new Negotiate(i, y);
-                        i->getOrderList()->setOrderList(negotiate);
-                        issued = true;
+                correct = false;
+            } else if (command == "Negotiate") {
+                bool issued = false;
+                cout << "you chose negotiate\n";
+                //print all other player
+                cout << "Please chose your target player by id\n";
+                for(auto &j: *playerList){
+                    if(i != j){
+                        cout << "Player Id : " << j->getPlayerId() << ". Player Name : "<< j->getPlayerName()<<endl;
                     }
                 }
-                if(!issued){
-                    cout << "The id that you entered aren't available please enter again.\n";
+                int target;
+                while(!issued) {
+                    cin >> target;
+                    cout << "You chose Player: " << target << endl;
+                    for (auto &y: *playerList) {
+                        if (y->getPlayerId() == target) {
+                            cout << "this is the player's id that you choose " << y->getPlayerId() << endl;
+                            auto *negotiate = new Negotiate(i, y);
+                            i->getOrderList()->setOrderList(negotiate);
+                            issued = true;
+                        }
+                    }
+                    if(!issued){
+                        cout << "The id that you entered aren't available please enter again.\n";
+                    }
                 }
+                correct = false;
+            } else {
+                cout << "please enter an available order\n";
+                continue;
             }
-            correct = false;
-        } else {
-            cout << "please enter an available order\n";
-            continue;
         }
     }
 }
