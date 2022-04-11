@@ -22,9 +22,6 @@ public:
     virtual void issueOrder(Player*& i, Map* generatedMap) = 0;
     virtual vector <Territory*>* toAttack(Map* Map, Player &player) = 0;
     virtual vector <Territory*>* toDefend(Map* Map, Player &player) = 0;
-    virtual void issueOrder() = 0;
-//    virtual vector <Territory*>* toAttack() = 0;
-//    virtual vector <Territory*>* toDefend() = 0;
     void setStrategyName(string name); // Mutator
     string getStrategyName() const; // Accesor
 private:
