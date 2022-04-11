@@ -39,12 +39,12 @@ void Human::issueOrder() {
 
 }
 
-//vector<Territory *> Human::toAttack() {
-//    return vector<Territory *>();
-//}
+vector<Territory *>* Human::toAttack() {
+    return p->getAttackList();
+}
 //
-//vector<Territory *> Human::toDefend() {
-//    return vector<Territory *>();
+//vector<Territory *>* Human::toDefend() {
+//    return vector<Territory *>*();
 //}
 
 
@@ -62,12 +62,12 @@ void Aggressive::issueOrder() {
 
 }
 
-//vector<Territory *> Aggressive::toAttack() {
-//    return vector<Territory *>();
+//vector<Territory *>* Aggressive::toAttack() {
+//    return vector<Territory *>*();
 //}
 //
-//vector<Territory *> Aggressive::toDefend() {
-//    return vector<Territory *>();
+//vector<Territory *>* Aggressive::toDefend() {
+//    return vector<Territory *>*();
 //}
 
 /**
@@ -84,12 +84,12 @@ void Benevolent::issueOrder() {
 
 }
 
-//vector<Territory *> Benevolent::toAttack() {
+//vector<Territory *>* Benevolent::toAttack() {
 //    return vector<Territory *>();
 //}
 //
 //vector<Territory *> Benevolent::toDefend() {
-//    return vector<Territory *>();
+//    return vector<Territory *>*();
 //}
 
 /**
@@ -107,12 +107,12 @@ void Neutral::issueOrder() {
 
 }
 
-//vector<Territory *> Neutral::toAttack() {
-//    return vector<Territory *>();
+//vector<Territory *>* Neutral::toAttack() {
+//    return vector<Territory *>*();
 //}
 //
 //vector<Territory *> Neutral::toDefend() {
-//    return vector<Territory *>();
+//    return vector<Territory *>*();
 //}
 
 /**
@@ -129,10 +129,10 @@ void Cheater::issueOrder() {
 
 }
 
-//vector<Territory *> Cheater::toAttack() {
+//vector<Territory *>* Cheater::toAttack() {
 //    return vector<Territory *>();
 //}
 //
-//vector<Territory *> Cheater::toDefend() {
+//vector<Territory *>* Cheater::toDefend() {
 //    return vector<Territory *>();
 //}
