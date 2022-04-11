@@ -100,13 +100,27 @@ string GameEng::startFunc()
 
 string GameEng::tournamentFunc()
 {
-    cout << "Tournament Mode:\n"
-            "M:\n"
-            "P:\n"
-            "G:\n"
-            "D:\n";
-    //cmdProc->getCommand();
+    // Extract command and save it in Game Engine
+    cmdProc->tournamentData(&tMaps, &tPlayers, tGames, tTurns);
 
+    cout << "Tournament Mode:\n";
+    cout << "M: ";
+    for(int i = 0; i < tMaps.size(); i++){
+        cout << tMaps[i] << " ";
+    }
+    cout << "\nP: ";
+    for(int i = 0; i < tPlayers.size(); i++){
+        if(tPlayers[i] != "")
+            cout << tPlayers[i] << " ";
+    }
+    cout << "\nG: " << tGames;
+    cout << "\nD: " << tTurns;
+    cout << endl;
+
+    // TODO: PROPERLY IMPLEMENT TOURNAMENTS
+
+
+    exit(1);
     //return "startTournament";
 }
 
@@ -470,7 +484,6 @@ void GameEng::startUpPhase() {
 }
 
 void GameEng::mainGameLoop(){
-
     turnNum = 1;
     //while the amount of player is not 1 the main game loop will keep looping.
     while(playerCount != 1){

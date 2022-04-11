@@ -65,6 +65,12 @@ public:
     Deck* gameDeck;
 
     void Transition();
+
+    // Tournament Variables
+    vector<string> tMaps;
+    vector<string> tPlayers;
+    int tGames;
+    int tTurns;
 private:
     string userCmd;
     int turnNum = 1;

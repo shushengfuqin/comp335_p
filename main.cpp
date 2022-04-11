@@ -11,21 +11,21 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    
     CommandProcessorDriver cpd;
 
     string maps[5];
     string players[4];
-    int games;
-    int turns;
+    string games;
+    string turns;
     int index = 2;
     int count = 0;
 
     // parameters
     if (argc > 1){
         if(std::string(argv[1]) == "-file")
-            cpd.callCommandProcessorDriver(true, false, argv[2]);
+            cpd.callCommandProcessorDriver(true, false, argv[2], "");
         else if(std::string(argv[1]) == "-M"){
+            /// COMMAND LINE VALIDATION
             /// MAP VALIDATION
             // Take at most 5 maps
             while(std::string(argv[index]) != "-P"){
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
             /// GAMES VALIDATION
             index++;    // Move past "-G"
             if(atoi(argv[index]) >= 1 && atoi(argv[index]) <= 4){
-                games = atoi(argv[index]);
+                games = argv[index];
                 index++;
             }
             else{
@@ -84,37 +84,37 @@ int main(int argc, char *argv[]) {
             }
             index++;    // Move past "-D"
             if(atoi(argv[index]) >= 10 && atoi(argv[index]) <= 50){
-                turns = atoi(argv[index]);
+                turns = argv[index];
             }
 
             //////////
 
             // Testing that all parameters were read
-            cout << "MAPS: " << endl;
-            for(int i = 0; i < maps->size(); i++){
-                cout << maps[i] << " ";
+            // Recreate full command
+            string tCmd = "tournament ";
+            tCmd += "-M ";
+            for(int i = 0; i < 5; i++){
+                if(maps[i] != "")
+                    tCmd += maps[i] + " ";
             }
-
-            cout << endl;
-
-            cout << "PLAYERS: " << endl;
-            for(int i = 0; i < maps->size(); i++){
-                cout << players[i] << " ";
+            tCmd += "-P ";
+            for(int i = 0; i < 4; i++){
+                if(players[i] != "")
+                    tCmd += players[i] + " ";
             }
+            tCmd += "-G " + games + " ";
+            tCmd += "-D " + turns;
 
-            cout << endl;
-
-            cout << "GAMES: " << games << endl;
-            cout << "TURNS: " << turns << endl;
+            cpd.callCommandProcessorDriver(false, true, "", tCmd);
         }
         else{
-            cout << "Invalid parameters entered1." << endl;
+            cout << "Invalid parameters entered." << endl;
             exit(0);
         }
     }
     // console (default)
     else
-        cpd.callCommandProcessorDriver(false, false, "");
+        cpd.callCommandProcessorDriver(false, false, "", "");
 
 
 

@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <vector>
 #include "../GameEngine/GameEngine.h"
 #include "../GameEngine/GameState.h"
 #include "../Observer/LoggingObserver.h"
@@ -33,7 +34,6 @@ public:
 private:
     string command;
     string effect;
-
 };
 
 
@@ -42,9 +42,11 @@ class CommandProcessor: public ILoggable, public Subject{
 public:
     CommandProcessor() = default;
     CommandProcessor(const CommandProcessor& c);
+    CommandProcessor(string c);
     ~CommandProcessor() = default;
     void getCommand();
     string validate(GameState gs);
+    void tournamentData(vector<string>* m, vector<string>* p, int& g, int& d);
     string stringToLog() override;
     friend ostream &operator<<(ostream &output, CommandProcessor &C );
     CommandProcessor& operator=(const CommandProcessor& C);

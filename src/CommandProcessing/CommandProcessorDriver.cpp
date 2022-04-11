@@ -11,7 +11,7 @@ class CommandProcessorDriver{
 public:
     CommandProcessorDriver()= default;
     ~CommandProcessorDriver()= default;
-    static void callCommandProcessorDriver(bool readFromFile, bool tournamentMode, const string& filename) {
+    static void callCommandProcessorDriver(bool readFromFile, bool tournamentMode, const string& filename, const string& tournamentCmd) {
 
         // Initializa game play boolean.
         bool play = true;
@@ -25,22 +25,32 @@ public:
         auto* logObserver = new LogObserver();
         auto* cp = new CommandProcessor();
 
+        // Unique adapter for file reading
         if(readFromFile){
             auto * flr = new FileLineReader(filename);
             cp = new FileCommandProcessorAdapter(flr);
         }
+        // Add tournament command as first command
+        else if(tournamentMode)
+            cp = new CommandProcessor(tournamentCmd);
         else
             cp = new CommandProcessor();
 
         auto* gameState = new GameEng(cp);
         GameEng ge = *gameState;
 
-        ge.setState(start);
+        // Regular game
+        if(!tournamentMode)
+            ge.setState(start);
+        // Tournament mode
+        else
+            ge.setState(tournament);
 
         // while true keep the game playing.
         while(*playPtr) {
             switch (ge.getState()) {
                 case start:
+                case tournament:
                     ge.startUpPhase();
                     ge.mainGameLoop();
                 case win:

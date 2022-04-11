@@ -40,6 +40,10 @@ CommandProcessor::CommandProcessor(const CommandProcessor& c){
     lc = c.lc;
 }
 
+CommandProcessor::CommandProcessor(string cmd){
+    saveCommand(cmd);
+}
+
 void CommandProcessor::getCommand() {
     string cmd = readCommand();
     saveCommand(cmd);
@@ -94,9 +98,45 @@ string CommandProcessor::validate(GameState gs) {
     return c;
 }
 
-/*bool CommandProcessor::tournamentValidation(string c){
+void CommandProcessor::tournamentData(vector<string>* m, vector<string>* p, int& g, int& d){
+    // Change data to string array
+    stringstream ss(lc->back().getCommandText());
+    istream_iterator<string> begin(ss);
+    istream_iterator<string> end;
+    vector<string> tData(begin, end);
 
-}*/
+    int count = 0;
+    char phase = 'M';
+    for(int i = 2; i < tData.size(); i++){
+        switch(phase){
+            case 'M':
+                if(std::string(tData[i]) == "-P"){
+                    phase = 'P';
+                    count = 0;
+                }
+                else
+                   m->push_back(string(tData[i]));
+                break;
+            case 'P':
+                if(std::string(tData[i]) == "-G"){
+                    phase = 'G';
+                    count = 0;
+                }
+                else
+                    p->push_back(string(tData[i]));
+                break;
+            case 'G':
+                if(std::string(tData[i]) == "-D")
+                    phase = 'D';
+                else
+                    g = stoi(tData[i]);
+                break;
+            case 'D':
+                    d = stoi(tData[i]);
+                break;
+        }
+    }
+}
 
 string CommandProcessor::stringToLog() {
     return "CommandProcessor stringToLog: " + lc->back().getCommandText();
