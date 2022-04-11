@@ -35,17 +35,19 @@ Human::Human(): PlayerStrategy() {
 }
 
 // human will do what's in the issueorder in the gameeng file's issue order
-void Human::issueOrder() {
+void Human::issueOrder(Player*& i, Map* generatedMap) {
 
 }
 
-//vector<Territory *> Human::toAttack() {
-//    return vector<Territory *>();
-//}
-//
-//vector<Territory *> Human::toDefend() {
-//    return vector<Territory *>();
-//}
+vector<Territory *>* Human::toAttack(Map* Map, Player &player) {
+    cout << "Human to attack" << endl;
+    return {};
+}
+
+vector<Territory *>* Human::toDefend(Map* Map, Player &player) {
+    cout << "Human to defend" << endl;
+    return {};
+}
 
 
 /**
@@ -58,17 +60,19 @@ Aggressive::Aggressive(): PlayerStrategy() {
 }
 
 // it will only issue deploy and advance to attack enemy territory
-void Aggressive::issueOrder() {
+void Aggressive::issueOrder(Player*& i, Map* generatedMap) {
 
 }
 
-//vector<Territory *> Aggressive::toAttack() {
-//    return vector<Territory *>();
-//}
-//
-//vector<Territory *> Aggressive::toDefend() {
-//    return vector<Territory *>();
-//}
+vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {
+    cout << "Aggressive to attack" << endl;
+    return {};
+}
+
+vector<Territory *> Aggressive::toDefend(Map* Map, Player &player) {
+    cout << "Aggressive to defend" << endl;
+    return {};
+}
 
 /**
 *  Player Strat Benevolent
@@ -80,17 +84,19 @@ Benevolent::Benevolent(): PlayerStrategy() {
 }
 
 // It will only issue deploy and advance to own territory
-void Benevolent::issueOrder() {
+void Benevolent::issueOrder(Player*& i, Map* generatedMap) {
 
 }
 
-//vector<Territory *> Benevolent::toAttack() {
-//    return vector<Territory *>();
-//}
-//
-//vector<Territory *> Benevolent::toDefend() {
-//    return vector<Territory *>();
-//}
+vector<Territory *> Benevolent::toAttack(Map* Map, Player &player) {
+    cout << "Benevolent to attack" <<endl;
+    return {};
+}
+
+vector<Territory *> Benevolent::toDefend(Map* Map, Player &player) {
+    cout << "Benevolent to defend" <<endl;
+    return {};
+}
 
 /**
 *  Player Strat Neutral
@@ -103,17 +109,19 @@ Neutral::Neutral(): PlayerStrategy() {
 
 
 // Does not thing
-void Neutral::issueOrder() {
+void Neutral::issueOrder(Player*& i, Map* generatedMap) {
 
 }
 
-//vector<Territory *> Neutral::toAttack() {
-//    return vector<Territory *>();
-//}
-//
-//vector<Territory *> Neutral::toDefend() {
-//    return vector<Territory *>();
-//}
+vector<Territory *> Neutral::toAttack(Map* Map, Player &player) {
+    cout << "Neutral to attack" << endl;
+    return {};
+}
+
+vector<Territory *> Neutral::toDefend(Map* Map, Player &player) {
+    cout << "Neutral to defend" << endl;
+    return {};
+}
 
 /**
 *  Player Strat Cheater
@@ -125,14 +133,16 @@ Cheater::Cheater(): PlayerStrategy() {
 }
 
 // special issueOrder. add a cheat order for him which will get all his adjacent territory and change the territory to the cheaters
-void Cheater::issueOrder() {
+void Cheater::issueOrder(Player*& i, Map* generatedMap) {
 
 }
 
-//vector<Territory *> Cheater::toAttack() {
-//    return vector<Territory *>();
-//}
-//
-//vector<Territory *> Cheater::toDefend() {
-//    return vector<Territory *>();
-//}
+vector<Territory *> Cheater::toAttack(Map* Map, Player &player) {
+    cout << "Cheater to attack" << endl;
+    return {};
+}
+
+vector<Territory *> Cheater::toDefend(Map* Map, Player &player) {
+    cout << "Cheater to defend" << endl;
+    return {};
+}

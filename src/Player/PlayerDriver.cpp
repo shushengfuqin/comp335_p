@@ -130,6 +130,11 @@ public:
 //
 //
     // try to create a aggressive player
+
+    // create a map instance.
+
+    MapLoader *pMapLoader = new MapLoader("../maps/canada.map");
+    Map *generatedMap = pMapLoader->generateMap();
     PlayerStrategy *aggressive = new Aggressive();
     PlayerStrategy *benevolent = new Benevolent();
     PlayerStrategy *cheater = new Cheater();
@@ -153,5 +158,8 @@ public:
     cout << test1 << endl;
     cout << test2 << endl;
     cout << test3 << endl;
+
+    player1->toAttack(generatedMap);
+    player1->toDefend(generatedMap);
 }
 };

@@ -50,7 +50,7 @@ public:
     void cancelDefend(Territory *territory);
     void calculateArmy(Map *map);
     void switchTerritories(Territory *territory,Player *player1, Player *player2);
-    void issueOrders(Order* order);
+    void issueOrders(Player*& i, Map* generatedMap);
     int getHandLimit();
     Orderslist* getOrderList();
     void setPlayerId(int id);

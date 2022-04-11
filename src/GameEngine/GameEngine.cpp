@@ -463,6 +463,9 @@ void GameEng::reinforcementPhase() const {
 }
 
 void GameEng::issueOrdersPhase() {
+    // I need a bool to check if it's deploy or not
+    // this bool will be false after deploy mode is done
+    bool deployOfNot = true;
     cout << "------------ Issue Orders Phase ------------\n";
     //check the player Strat
     // count if there are still player not done in deploying
@@ -470,6 +473,7 @@ void GameEng::issueOrdersPhase() {
     // all player in deploy mode
     while (exit_Count < playerCount) {
         for (auto &i: *playerList) {
+            // send to issueOrders Player*
             if (i->getArmyNum() != 0) {
                 bool territoryFalse = false;
                 cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;

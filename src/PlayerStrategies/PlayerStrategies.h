@@ -12,17 +12,16 @@
 
 using namespace std;
 class Player;
-
+class Territory;
 class PlayerStrategy {
 public:
     Player* p;
     PlayerStrategy(); // default constructor
-    explicit PlayerStrategy(Player* p); // constructor
     ~PlayerStrategy(); // destructor
     void setPlayer(Player* p);
-    virtual void issueOrder() = 0;
-//    virtual vector <Territory*> toAttack() = 0;
-//    virtual vector <Territory*> toDefend() = 0;
+    virtual void issueOrder(Player*& i, Map* generatedMap) = 0;
+    virtual vector <Territory*>* toAttack(Map* Map, Player &player) = 0;
+    virtual vector <Territory*>* toDefend(Map* Map, Player &player) = 0;
     void setStrategyName(string name); // Mutator
     string getStrategyName() const; // Accesor
 private:
@@ -35,10 +34,9 @@ private:
 class Human: public PlayerStrategy {
 public:
     Human(); // default constructor
-    explicit Human(Player* p); // constructor
-    void issueOrder() override;
-//    vector <Territory*> toAttack() override;
-//    vector <Territory*> toDefend() override;
+    void issueOrder(Player*& i, Map* generatedMap) override;
+    vector <Territory*>* toAttack(Map* Map, Player &player) override;
+    vector <Territory*>* toDefend(Map* Map, Player &player) override;
 };
 
 /**
@@ -47,10 +45,9 @@ public:
 class Aggressive: public PlayerStrategy {
 public:
     Aggressive(); // default constructor
-    explicit Aggressive(Player* p); // constructor
-    void issueOrder() override;
-//    vector <Territory*> toAttack() override;
-//    vector <Territory*> toDefend() override;
+    void issueOrder(Player*& i, Map* generatedMap) override;
+    vector <Territory*> toAttack(Map* Map, Player &player) override;
+    vector <Territory*> toDefend(Map* Map, Player &player) override;
 };
 
 /**
@@ -59,10 +56,9 @@ public:
 class Benevolent: public PlayerStrategy {
 public:
     Benevolent();
-    explicit Benevolent(Player* p);
-    void issueOrder() override;
-//    vector <Territory*> toAttack() override;
-//    vector <Territory*> toDefend() override;
+    void issueOrder(Player*& i, Map* generatedMap) override;
+    vector <Territory*> toAttack(Map* Map, Player &player) override;
+    vector <Territory*> toDefend(Map* Map, Player &player) override;
 };
 
 /**
@@ -71,10 +67,9 @@ public:
 class Neutral: public PlayerStrategy {
 public:
     Neutral(); // default constructor
-    explicit Neutral(Player* p); // constructor
-    void issueOrder() override;
-//    vector <Territory*> toAttack() override;
-//    vector <Territory*> toDefend() override;
+    void issueOrder(Player*& i, Map* generatedMap) override;
+    vector <Territory*> toAttack(Map* Map, Player &player) override;
+    vector <Territory*> toDefend(Map* Map, Player &player) override;
 };
 
 /**
@@ -83,10 +78,9 @@ public:
 class Cheater: public PlayerStrategy {
 public:
     Cheater();  // default constructor
-    explicit Cheater(Player* p); // constructor
-    void issueOrder() override;
-//    vector <Territory*> toAttack() override;
-//    vector <Territory*> toDefend() override;
+    void issueOrder(Player*& i, Map* generatedMap) override;
+    vector <Territory*> toAttack(Map* Map, Player &player) override;
+    vector <Territory*> toDefend(Map* Map, Player &player) override;
 };
 
 #endif //COMP335_P_PLAYERSTRATEGIES_H
