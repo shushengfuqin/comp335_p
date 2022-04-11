@@ -213,9 +213,13 @@ string GameEng::playeraddedFunc()
                 cout << "Max player limit reached. Unable to add new player." << endl;
             }
             else{
+                // *** ADD PLAYER HERE ***
+                PlayerStrategy *human = new Human();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
+                player->setStrategy(human);
+                player->setStrategyString(human->getStrategyName());
                 playerList->push_back(player);
                 cout << "Added player: " << playerName << endl;
             }
