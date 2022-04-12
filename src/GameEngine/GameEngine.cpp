@@ -214,13 +214,21 @@ string GameEng::playeraddedFunc()
             }
             else{
                 // *** ADD PLAYER HERE ***
-                PlayerStrategy *human = new Human();
+                PlayerStrategy *aggressive = new Aggressive();
+                string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
+                auto *player = new Player(playerName);
+                player->setPlayerId(++playerCount);
+                player->setStrategy(aggressive);
+                player->setStrategyString(aggressive->getStrategyName());
+                playerList->push_back(player);
+
+           /*     PlayerStrategy *human = new Human();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
                 player->setStrategy(human);
                 player->setStrategyString(human->getStrategyName());
-                playerList->push_back(player);
+                playerList->push_back(player);*/
                 cout << "Added player: " << playerName << endl;
             }
             cout << "this is the player added state\n";
@@ -472,7 +480,7 @@ void GameEng::reinforcementPhase() const {
 void GameEng::issueOrdersPhase() {
     // I need a bool to check if it's deploy or not
     // this bool will be false after deploy mode is done
-    bool deployOfNot = true;
+    bool deployOrNot = true;
     cout << "------------ Issue Orders Phase ------------\n";
     //check the player Strat
     // count if there are still player not done in deploying
@@ -481,13 +489,13 @@ void GameEng::issueOrdersPhase() {
     while (exit_Count < playerCount) {
         for (auto &i: *playerList) {
             // send to issueOrders Player*
-            i->issueOrders(i,generatedMap,deployOfNot, playerList);
+            i->issueOrders(i,generatedMap,deployOrNot, playerList);
             if (i->getArmyNum() == 0) {
                 exit_Count++;
             }
         }
     }
-    deployOfNot = false;
+    deployOrNot = false;
 
     // issue order
     int exit_Count2 = 0;
@@ -502,7 +510,7 @@ void GameEng::issueOrdersPhase() {
             if(x[i->getPlayerId() - 1] !=1){
 
                 string done;
-                i->issueOrders(i,generatedMap,deployOfNot, playerList);
+                i->issueOrders(i,generatedMap,deployOrNot, playerList);
                 cout << "are you done with issue Order? If yes type Y. Else type anything\n";
                 cin >> done;
                 if(done == "Y"){

@@ -164,9 +164,12 @@ public:
     string test4 = player4->getPlayerStrategyString();
 
 
-    Territory *territory1= new Territory( "big", 1 ,1,0);
+    Territory *territory1= new Territory( "big", 1 ,1,30);
     Territory *territory2= new Territory( "small", 2 ,2,0);
     Territory *territory3= new Territory( "medium", 3 ,3,0);
+    territory1->setContinentName("North-America");
+    territory2->setContinentName("North-America");
+    territory3->setContinentName("North-America");
 
     player2->addTerritory(territory1);
     player2->addTerritory(territory2);
@@ -185,7 +188,7 @@ public:
     playerList->push_back(player2);
     playerList->push_back(player3);
     playerList->push_back(player4);
-    player2->issueOrders(player2,generatedMap,true,playerList);
+    player2->issueOrders(player2,generatedMap, true,playerList);
 
 }
 };
