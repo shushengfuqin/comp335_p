@@ -3,7 +3,8 @@
 //
 
 #include "PlayerStrategies.h"
-
+#include  <random>
+#include  <iterator>
 /**
  *  PlayerStrategy abstract
  */
@@ -308,6 +309,21 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
 //    return p->getAttackList();
 //}
 
+//Random an object from a list
+
+template<typename Iter, typename RandomGenerator>
+Iter select_randomly(Iter start, Iter end, RandomGenerator& g) {
+    std::uniform_int_distribution<> dis(0, std::distance(start, end) - 1);
+    std::advance(start, dis(g));
+    return start;
+}
+
+template<typename Iter>
+Iter select_randomly(Iter start, Iter end) {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    return select_randomly(start, end, gen);
+}
 
 
 /**
@@ -321,7 +337,134 @@ Aggressive::Aggressive(): PlayerStrategy() {
 
 // it will only issue deploy and advance to attack enemy territory
 void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vector<Player*> *playerList ) {
+    if(deployOrNot){
+        if (i->getArmyNum() != 0) {
+            bool territoryFalse = false;
+            cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
+            // x the amount of player want to deploy
+            int x;
+            // y the id for the territory want to deploy army to.
+            int y;
+            cout << "You have " << i->getArmyNum() << " army left\n";
+            cout << "List of territory that you control\n";
+            auto territory = i->getTerritoryList();
+            i->displayTerritory(territory);
 
+            cout << "Where would you like to deploy for army. Chose by territory Id\n";
+           //TODO:  how to get the number of turns , if the first turn, then random pick a territory, if not then deploy to the strongest
+            if(true){ //count = 0
+                Territory *randT = *select_randomly(i->getTerritoryList()->begin(),i->getTerritoryList()->end());
+                y = randT->getTerritoryId();
+            }
+            else{
+                y = i->findStrongestCountry()->getTerritoryId();
+            }
+            cout <<y<<"\n";
+                //cin >> y;
+
+            cout << "How many army do you wish to deploy" << endl;
+            x = rand()%i->getArmyNum()+1;
+            cout << x<<"\n";
+            //cin >> x;
+            while(x > i->getArmyNum()){
+                cout << "You don't have enought amry. Please enter again.\n";
+                cin >> x;
+            }
+            i->removeArmyNum(x);
+            for(auto &e : *territory){
+                if(e->getTerritoryId() == y){
+                    cout << "This is the territory you chose: " << y << endl;
+                    auto *deploy = new Deploy(i,e,x);
+                    i->getOrderList()->setOrderList(deploy);
+                }
+            }
+            cout << "current army num " << i->getArmyNum() << endl;
+
+        }
+    } else {
+        string command;
+        bool correct = true;
+        while (correct){
+            cout << "what would you like to do\n";
+            cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
+            //If not Deploy,The aggressive player will only advance armies to the strongest country
+
+                cout << "you chose advance\n";
+                // Advance need player, source T, target T, army num
+                // All your territory
+                int st;
+                int tt;
+                int armyNum;
+                bool issued = false;
+                //TODO: random a target player from playerlist
+                Player *targetPl;
+                Territory *sourceTerritory = i->findStrongestCountry();
+                Territory *targetTerritory;
+
+                auto territory = i->getTerritoryList();
+                cout << "Your territory\n";
+                i->displayTerritory(territory);
+
+
+                //get all adjacent territory of each of your territory
+                //get the toAttackList
+                auto toAttackTerritory = i->toAttack(generatedMap);
+
+                cout << "All Adjacent territory\n";
+                for(auto &pT: *territory){
+                    cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
+                    auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
+                    for(auto &adj: adjacent_territory){
+                        // find if this is not part one of his territory
+                        if(!i->alreadyOwn(adj)){
+                            cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                        }
+                    }
+                }
+
+
+                while(!issued){
+                    cout << "Choose one for your territory. Choose by Id.\n";
+                    //cin >> st;
+                    st = sourceTerritory->getTerritoryId();
+                    cout<<st<<endl;
+
+                    cout << "Choose one for adjacent territory. Choose by Id.\n";
+                    //cin >> tt;
+                    targetTerritory = *select_randomly(generatedMap->getAllAdjacentTerritories(*sourceTerritory).begin(),generatedMap->getAllAdjacentTerritories(*sourceTerritory).end());
+                    cout <<targetTerritory->getTerritoryId()<<endl;
+
+                    cout << "How many army would you like to send?\n";
+                    //cin >> armyNum;
+                    armyNum = rand()%sourceTerritory->getNumArmies()+1;
+
+                    // if it's controled by a player
+                    for(auto &playerlist : *playerList){
+                        auto plTerritory = playerlist->getTerritoryList();
+                        // go through that player's territory
+                        for(auto &plT: *plTerritory){
+                            if(plT->getTerritoryId() == tt){
+                                targetPl = playerlist;
+                                targetTerritory = plT;
+                            }
+                        }
+                    }
+                    // find source territory
+                    for(auto &pT: *territory){
+                        if(pT->getTerritoryId() == st){
+                            sourceTerritory = pT;
+                            auto *advance = new Advance(i,targetPl,sourceTerritory,targetTerritory,armyNum);
+                            i->getOrderList()->setOrderList(advance);
+                            issued = true;
+                        }
+                    }
+                    if(!issued){
+                        cout << "The id that you entered aren't available please enter again.\n";
+                    }
+                }
+                correct = false;
+        }
+    }
 }
 
 //vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {
@@ -406,3 +549,5 @@ void Cheater::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<P
 //    cout << "Cheater to defend" << endl;
 //    return {};
 //}
+
+

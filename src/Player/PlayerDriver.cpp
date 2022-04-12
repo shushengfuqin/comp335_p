@@ -144,6 +144,9 @@ public:
     auto *player3 = new Player();
     auto *player4 = new Player();
 
+
+
+
     player1->setStrategy(cheater);
     player1->setStrategyString(cheater->getStrategyName());
     string test1 = player1->getPlayerStrategyString();
@@ -160,11 +163,29 @@ public:
     player4->setStrategyString(human->getStrategyName());
     string test4 = player4->getPlayerStrategyString();
 
+
+    Territory *territory1= new Territory( "big", 1 ,1,0);
+    Territory *territory2= new Territory( "small", 2 ,2,0);
+    Territory *territory3= new Territory( "medium", 3 ,3,0);
+
+    player2->addTerritory(territory1);
+    player2->addTerritory(territory2);
+    player2->addTerritory(territory3);
+
+    player2->displayTerritory(player2->getTerritoryList());
     cout << "Hallo world" <<endl;
     cout << test1 << endl;
     cout << test2 << endl;
     cout << test3 << endl;
     cout << test4 << endl;
+
+    vector<Player*>* playerList;
+    playerList = new vector<Player*>();
+    playerList->push_back(player1);
+    playerList->push_back(player2);
+    playerList->push_back(player3);
+    playerList->push_back(player4);
+    player2->issueOrders(player2,generatedMap,true,playerList);
 
 }
 };

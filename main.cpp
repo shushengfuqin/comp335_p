@@ -12,6 +12,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     
+/*
     CommandProcessorDriver cpd;
     // file
     if (argc > 1 && std::string(argv[1]) == "-file")
@@ -20,6 +21,7 @@ int main(int argc, char *argv[]) {
     else
         cpd.callCommandProcessorDriver(false, "");
 
+*/
 
 
 //string x;
@@ -70,8 +72,8 @@ int main(int argc, char *argv[]) {
 //    cout << "\n";
 //    if(x == "y"){
 //        cout << "------------- PLAYER DRIVER CLASS ----------------\n";
-//        PlayerDriver playerDriver;
-//        playerDriver.callPlayerDriver();
+        PlayerDriver playerDriver;
+        playerDriver.callPlayerDriver();
 //    }
 //    cout << "Done";
     return 0;

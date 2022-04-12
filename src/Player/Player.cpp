@@ -480,3 +480,30 @@ PlayerStrategy* Player::getPlayerStrategy() {
 string Player::getPlayerStrategyString() {
     return strategyString;
 }
+
+Territory*  Player::findStrongestCountry(){
+    Territory* strongest;
+    strongest->setNumArmies(0);
+    auto iter = playerTerritoryList->begin();
+    for(; iter != playerTerritoryList->end(); iter++){
+        if((*iter)->getNumArmies()>strongest->getNumArmies()){
+            strongest = *iter;
+        }
+    }
+    cout<< "The Strongest country from "<< playerName << "is Territory" <<strongest->getName();
+    return strongest;
+}
+
+
+Territory*  Player::findWeakestCountry(){
+    Territory* weakest;
+    auto iter = playerTerritoryList->begin();
+    weakest = *iter;
+    for(; iter != playerTerritoryList->end(); iter++){
+        if((*iter)->getNumArmies()<weakest->getNumArmies()){
+            weakest = *iter;
+        }
+    }
+    cout<< "The Strongest country from "<< playerName << "is Territory" <<weakest->getName();
+    return weakest;
+}
