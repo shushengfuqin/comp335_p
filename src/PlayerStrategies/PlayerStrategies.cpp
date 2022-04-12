@@ -363,7 +363,8 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                 //cin >> y;
 
             cout << "How many army do you wish to deploy" << endl;
-            x = rand()%i->getArmyNum()+1;
+            srand((unsigned int)time(NULL));
+            x = rand()% i->getArmyNum()+1;
             cout << x<<"\n";
             //cin >> x;
             while(x > i->getArmyNum()){
@@ -398,7 +399,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                 bool issued = false;
                 //TODO: random a target player from playerlist
                 Player *targetPl;
-                Territory *sourceTerritory = i->findStrongestCountry();
+                Territory *sourceTerritory;
                 Territory *targetTerritory;
 
                 auto territory = i->getTerritoryList();
@@ -426,6 +427,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                 while(!issued){
                     cout << "Choose one for your territory. Choose by Id.\n";
                     //cin >> st;
+                    sourceTerritory = i->findStrongestCountry();
                     st = sourceTerritory->getTerritoryId();
                     cout<<st<<endl;
 
