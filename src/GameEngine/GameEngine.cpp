@@ -117,11 +117,8 @@ string GameEng::tournamentFunc()
     cout << "\nD: " << tTurns;
     cout << endl;
 
-    // TODO: PROPERLY IMPLEMENT TOURNAMENTS
-
-
-    exit(1);
-    //return "startTournament";
+    //exit(1);
+    return "startTournament";
 }
 
 bool GameEng::LoadMap(const string& name){
@@ -440,7 +437,7 @@ void GameEng::startUpPhase() {
     playerCount = 0;
 
     // Continue until start up phase is complete
-    while(getState() != win && getState() != assignreignforcement){
+    while(getState() != win && getState() != assignreignforcement && getState() != tournament){
         switch (getState()) {
             case start:{
                 string sf = startFunc();
@@ -449,15 +446,11 @@ void GameEng::startUpPhase() {
                     setState(maploaded);
                 }
                 else if(sf == "tournament"){
+                    tournamentFunc();
                     setState(tournament);
                 }
                 break;
             }
-            case tournament:
-                if (tournamentFunc() == "startTournament") {
-                    setState(assignreignforcement);
-                }
-                break;
             case maploaded:
                 if (maploadedFunc() == "validatemap") {
                     setState(mapvalidated);
@@ -477,10 +470,6 @@ void GameEng::startUpPhase() {
                 break;
         }
     }
-
-    // Clean up
-
-
 }
 
 void GameEng::mainGameLoop(){
@@ -505,6 +494,83 @@ void GameEng::mainGameLoop(){
     }
     delete (pMapLoader);
     pMapLoader = NULL;
+}
+
+void GameEng::tournamentGameLoop(){
+    // TODO: PROPERLY IMPLEMENT TOURNAMENTS
+    string results[tMaps.size()][tGames];
+
+    // TODO: CREATE AND ADD PLAYERS
+
+    // Map Loop
+    for(int i = 0; i < tMaps.size(); i++){
+        // TODO: LOAD MAPS HERE
+
+        // Game Loop
+        for(int j = 0; j < tGames; j++){
+            cout << "STARTING MAP " << (i+1) << " - GAME " << (j+1) << endl;
+
+            // TODO: PLAY GAME HERE
+            turnNum = 1;
+            //while the amount of player is not 1 the main game loop will keep looping.
+            // Also when we haven't reached the turn limit
+            while(playerCount != 1 && turnNum <= tTurns){
+                cout << "------------ TURN : " << turnNum << " ------------\n";
+                // call the reinforcementphase
+                /*if(turnNum != 1){
+                    reinforcementPhase();
+                }
+                issueOrdersPhase();
+                executeOrdersPhase();
+                turnNum++;
+                //check the each player's territory size
+                for(auto pl : *playerList){
+                    if(pl->getTerritoryList()->empty()){
+                        playerList->push_back(pl);
+                        playerCount--;
+                    }
+                }*/
+
+                turnNum++;
+            }
+
+            //delete (pMapLoader);
+            //pMapLoader = NULL;
+
+            cout << "ENDING MAP " << (i+1) << " - GAME " << (j+1) << endl;
+            results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
+        }
+    }
+
+    // tournament -M TEST 1 2 3 4 -P TEST 1 -G 4 -D 10
+    /// End the tournament
+    // Print results
+    // TODO: ALSO PRINT RESULTS TO LOG (somehow)
+    cout << "\nResults: \n       | ";
+    // Game Loop
+    for(int i = 0; i < tGames; i++) {
+        cout << "    GAME " << (i+1) <<"     | ";
+    }
+
+    cout << endl;
+
+    for(int i = 0; i < tMaps.size(); i++){
+
+        cout << " MAP " << (i+1) <<" | ";
+        // Game Loop
+        for(int j = 0; j < tGames; j++) {
+            cout << results[i][j] << " | ";
+        }
+        cout << endl;
+    }
+
+    cout << endl << endl;
+
+    // Clear map and player strategy lists
+    tMaps.clear();
+    tPlayers.clear();
+
+    setState(win);
 }
 
 void GameEng::reinforcementPhase() const {

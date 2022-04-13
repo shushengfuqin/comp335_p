@@ -49,6 +49,7 @@ public:
     // game phases
     void startUpPhase();
     void mainGameLoop();
+    void tournamentGameLoop();
     void reinforcementPhase() const;
     void issueOrdersPhase();
     void executeOrdersPhase();
@@ -71,6 +72,7 @@ public:
     vector<string> tPlayers;
     int tGames;
     int tTurns;
+
 private:
     string userCmd;
     int turnNum = 1;

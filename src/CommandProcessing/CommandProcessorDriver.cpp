@@ -49,10 +49,20 @@ public:
         // while true keep the game playing.
         while(*playPtr) {
             switch (ge.getState()) {
-                case start:
-                case tournament:
+                case start:{
                     ge.startUpPhase();
-                    ge.mainGameLoop();
+                    // Changed to Tournament Mode
+                    if(ge.getState() == tournament)
+                        ge.tournamentGameLoop();
+                    else
+                        ge.mainGameLoop();
+                    break;
+                }
+                case tournament:{
+                    ge.startUpPhase();
+                    ge.tournamentGameLoop();
+                    break;
+                }
                 case win:
                     *userChoicePtr = ge.winFunc();
                     if (*userChoicePtr == "replay") {
