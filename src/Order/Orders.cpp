@@ -404,35 +404,6 @@ void Advance::execute2(Map *map) {
 }
 
 
-void Advance::executeForCheater(Map *map) {
-    auto armyNumber = std::to_string(armies);
-
-    if(validate2(map)){
-        if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
-        {
-
-            fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
-            toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
-            cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
-        }
-        else{
-            if(getAttackable()){
-                fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
-                toTerritory->setPlayer(player->getPlayerId());
-                targetPlayer->switchTerritories(toTerritory,targetPlayer,player);
-                toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
-                player->getHand()->addCard(card);
-                cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
-                advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
-            }
-        }
-    }
-    else{
-        cout<<" advance cannot be executed\n"<<endl;
-        advanceExecute = " advance cannot be executed\n";
-    }
-    Notify(this);
-}
 
 
 string Advance::stringToLog() {
@@ -910,7 +881,7 @@ void Cheat::execute2(Map *map) {
 
     if(validate2(map)){
         territory->setPlayer(player->getPlayerId());
-        targetPlayer->switchTerritories(territory,targetPlayer,player);
+        player->switchTerritories(territory,targetPlayer,player);
         cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
 
     }
