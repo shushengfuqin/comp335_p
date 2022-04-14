@@ -483,14 +483,33 @@ string Player::getPlayerStrategyString() {
 
 Territory*  Player::findStrongestCountry(){
     Territory* strongest;
-    strongest->setNumArmies(0);
-    auto iter = playerTerritoryList->begin();
-  //  auto iter2 = playerTerritoryList->begin()+1;
-    for(; iter != playerTerritoryList->end(); iter++){
-        if((*iter)->getNumArmies()>=strongest->getNumArmies()){
-            strongest = *iter;
+    // i need to create an array of territory's army
+
+    int armyArr[playerTerritoryList->size()];
+    int counter = 0;
+    for(auto &ptl : *playerTerritoryList){
+        armyArr[counter] = ptl->getNumArmies();
+        counter++;
+    }
+    for(int i = 0; i<playerTerritoryList->size(); i++){
+        cout << "Army num: " << armyArr[i]<< endl;
+    }
+    int largestIndex = 0;
+    for(int i = 1;i < playerTerritoryList->size(); ++i) {
+        // Change < to > if you want to find the smallest element
+        if(armyArr[0] < armyArr[i]){
+            armyArr[0] = armyArr[i];
+            cout << i<<endl;
+            largestIndex = i;
         }
     }
+    strongest = playerTerritoryList->at(largestIndex);
+//    auto iter = playerTerritoryList->begin();
+//    for(; iter != playerTerritoryList->end(); iter++){
+//        if((*iter)->getNumArmies()>=strongest->getNumArmies()){
+//            strongest = *iter;
+//        }
+//    }
     cout<< "The Strongest country from "<< playerName << "is Territory " <<strongest->getName();
     return strongest;
 }

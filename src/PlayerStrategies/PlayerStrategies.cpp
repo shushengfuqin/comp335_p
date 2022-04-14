@@ -436,20 +436,31 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                     //Todo: This doesnt work!!!
 
 
-                    vector<Territory*> *adjacentForSource = nullptr;
+                    vector<Territory*> *adjacentForSource;
                     for(auto &pT: *territory){
-                        if(pT->getTerritoryId() == st){
-                            sourceTerritory = pT;
-                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
-                            for(auto &adj: adjacent_territory){
-                                // find if this is not part one of his territory
-                                if(!i->alreadyOwn(adj)){
-                                    cout << "Territory Id: " << adj->getTerritoryId() << endl;
-                                    adjacentForSource->push_back(adj);
-                                }
+                        cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
+                        auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
+                        for(auto &adj: adjacent_territory){
+                            // find if this is not part one of his territory
+                            if(!i->alreadyOwn(adj)){
+                                cout << "Territory Id: " << adj->getTerritoryId() << endl;
+                                adjacentForSource->push_back(adj);
                             }
                         }
                     }
+//                    for(auto &pT: *territory){
+//                        if(pT->getTerritoryId() == st){
+//                            sourceTerritory = pT;
+//                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
+//                            for(auto &adj: adjacent_territory){
+//                                // find if this is not part one of his territory
+//                                if(!i->alreadyOwn(adj)){
+//                                    cout << "Territory Id: " << adj->getTerritoryId() << endl;
+//                                    adjacentForSource->push_back(adj);
+//                                }
+//                            }
+//                        }
+//                    }
 
 
                     targetTerritory = *select_randomly(adjacentForSource->begin(),adjacentForSource->end());
