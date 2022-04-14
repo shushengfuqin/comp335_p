@@ -354,7 +354,12 @@ void Advance::execute2(Map *map) {
             cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
         }
         else{
-            if(getAttackable()){
+            if(getAttackable() && player->getPlayerStrategy()->getStrategyName() != "Cheater" ){
+                if(targetPlayer->getPlayerStrategy()->getStrategyName() == "Neutral"){
+                    PlayerStrategy *aggressive = new Aggressive();
+                    targetPlayer->setStrategy(aggressive);
+                    targetPlayer->setStrategyString(aggressive->getStrategyName());
+                }
                 fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
                 while(toTerritory->getNumArmies()>0 && armies>0){
 
@@ -394,6 +399,14 @@ void Advance::execute2(Map *map) {
                 }
 
             }
+            else if(player->getPlayerStrategy()->getStrategyName() != "Cheater"){
+                toTerritory->setPlayer(player->getPlayerId());
+                targetPlayer->switchTerritories(toTerritory,targetPlayer,player);
+                toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
+                player->getHand()->addCard(card);
+                cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+                advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
+            }
         }
     }
     else{
@@ -402,6 +415,8 @@ void Advance::execute2(Map *map) {
     }
     Notify(this);
 }
+
+
 
 
 string Advance::stringToLog() {

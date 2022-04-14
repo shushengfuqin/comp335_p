@@ -486,11 +486,11 @@ Territory*  Player::findStrongestCountry(){
     strongest->setNumArmies(0);
     auto iter = playerTerritoryList->begin();
     for(; iter != playerTerritoryList->end(); iter++){
-        if((*iter)->getNumArmies()>strongest->getNumArmies()){
+        if((*iter)->getNumArmies()>=strongest->getNumArmies()){
             strongest = *iter;
         }
     }
-    cout<< "The Strongest country from "<< playerName << "is Territory" <<strongest->getName();
+    cout<< "The Strongest country from "<< playerName << "is Territory " <<strongest->getName();
     return strongest;
 }
 

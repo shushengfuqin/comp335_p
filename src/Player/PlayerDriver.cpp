@@ -188,7 +188,6 @@ public:
     playerList->push_back(player2);
     playerList->push_back(player3);
     playerList->push_back(player4);
-    player2->issueOrders(player2,generatedMap, true,playerList);
-
+    player2->findStrongestCountry();
 }
 };

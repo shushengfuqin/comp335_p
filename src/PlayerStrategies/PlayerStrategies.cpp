@@ -433,7 +433,9 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
 
                     cout << "Choose one for adjacent territory. Choose by Id.\n";
                     //cin >> tt;
-                    targetTerritory = *select_randomly(generatedMap->getAllAdjacentTerritories(*sourceTerritory).begin(),generatedMap->getAllAdjacentTerritories(*sourceTerritory).end());
+                    //Todo: This doesnt work!!!
+                    auto source_adjacent_territory = generatedMap->getAllAdjacentTerritories(*sourceTerritory);
+                    targetTerritory = *select_randomly(source_adjacent_territory.begin(),source_adjacent_territory.end());
                     cout <<targetTerritory->getTerritoryId()<<endl;
 
                     cout << "How many army would you like to send?\n";

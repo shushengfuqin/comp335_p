@@ -13,7 +13,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="fixing random">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameEngine/GameEngine.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Order/Orders.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Order/Orders.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/PlayerDriver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.cpp" afterDir="false" />
     </list>
     <list id="496fcf59-bd2b-488c-9171-6379bac8a10e" name="Changes by banan" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +125,7 @@
       <workItem from="1649629111843" duration="7975000" />
       <workItem from="1649695935864" duration="3166000" />
       <workItem from="1649896085877" duration="3787000" />
+      <workItem from="1649949677777" duration="7505000" />
     </task>
     <task id="LOCAL-00001" summary="commit test">
       <created>1644825291142</created>
@@ -256,7 +261,7 @@
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/main.cpp</url>
           <line>14</line>
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
