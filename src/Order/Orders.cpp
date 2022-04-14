@@ -881,7 +881,10 @@ void Cheat::execute2(Map *map) {
 
     if(validate2(map)){
         territory->setPlayer(player->getPlayerId());
-        player->switchTerritories(territory,targetPlayer,player);
+        cout << "hello testing" << endl;
+        targetPlayer->removeTerritory(territory);
+        player->addTerritory(territory);
+        //targetPlayer->switchTerritories(territory,targetPlayer,player);
         cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
 
     }

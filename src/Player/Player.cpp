@@ -173,19 +173,42 @@ void Player::addTerritory(Territory *territory) {
 //add an assignment to remove territories
 void Player::removeTerritory(Territory *territory) {
     //validating if the territory already in the list
-    if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory)) {
-        //remove the territory from the list
-        playerTerritoryList->erase(std::remove(playerTerritoryList->begin(), playerTerritoryList->end(), territory),
-                                   playerTerritoryList->end());
+    // check if that player control the territory
+    bool contain = false;
+    int counter = -1;
+    for(auto &pt : *playerTerritoryList){
+        counter ++;
+        if(pt->getName() == territory->getName()){
+            contain = true;
+            break;
+        }
+    }
+    if(contain){
+        cout << "testing"<< endl;
+        //remove from territoy list
+        playerTerritoryList->erase(playerTerritoryList->begin()+counter);
+//        playerTerritoryList->erase(std::remove(playerTerritoryList->begin(), playerTerritoryList->end(), territory),
+//                                   playerTerritoryList->end());
 
         std::cout << "Element removed from the player " << playerName << "'s Territory list: "
                   << territory->getName() << endl;
-
     } else {
-
         std::cout << "The player does not have such territory, so the remove from player " << playerName
                   << "'s territory list failed: " << territory->getName() << endl;
     }
+//    if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory)) {
+//        //remove the territory from the list
+//        playerTerritoryList->erase(std::remove(playerTerritoryList->begin(), playerTerritoryList->end(), territory),
+//                                   playerTerritoryList->end());
+//
+//        std::cout << "Element removed from the player " << playerName << "'s Territory list: "
+//                  << territory->getName() << endl;
+//
+//    } else {
+//
+//        std::cout << "The player does not have such territory, so the remove from player " << playerName
+//                  << "'s territory list failed: " << territory->getName() << endl;
+//    }
 
 
 }
