@@ -352,7 +352,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
 
             cout << "Where would you like to deploy for army. Chose by territory Id\n";
            //TODO:  how to get the number of turns , if the first turn, then random pick a territory, if not then deploy to the strongest
-            if(true){ //count = 0
+            if(i->isNoArmy()){ //count = 0
                 Territory *randT = *select_randomly(i->getTerritoryList()->begin(),i->getTerritoryList()->end());
                 y = randT->getTerritoryId();
             }
@@ -397,10 +397,12 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                 int tt;
                 int armyNum;
                 bool issued = false;
-                //TODO: random a target player from playerlist
+
                 Player *targetPl;
                 Territory *sourceTerritory;
                 Territory *targetTerritory;
+
+
 
                 auto territory = i->getTerritoryList();
                 cout << "Your territory\n";
@@ -468,7 +470,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
 
                     cout << "How many army would you like to send?\n";
                     //cin >> armyNum;
-                    armyNum = rand()%sourceTerritory->getNumArmies()+1;
+                    armyNum = sourceTerritory->getNumArmies();
 
                     // if it's controled by a player
                     for(auto &playerlist : *playerList){
@@ -497,6 +499,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                 correct = false;
         }
     }
+    i->getAttackList()->clear();
 }
 
 //vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {

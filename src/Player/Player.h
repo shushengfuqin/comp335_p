@@ -71,6 +71,7 @@ public:
     Territory *findStrongestCountry();
     Territory *findWeakestCountry();
     Order *getOrderbyType(string orderType);
+    bool isNoArmy();
 private:
     vector<Territory*>* playerTerritoryList;
     vector<Territory*>* playerDefendList;
@@ -82,6 +83,7 @@ private:
     string playerName;
     PlayerStrategy *strategy;
     string strategyString;
+
 
 
 };

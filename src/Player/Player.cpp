@@ -527,3 +527,12 @@ Territory*  Player::findWeakestCountry(){
     cout<< "The Strongest country from "<< playerName << "is Territory" <<weakest->getName();
     return weakest;
 }
+
+bool Player::isNoArmy(){
+        for(int i=0;i<playerTerritoryList->size();i++){
+            if(playerTerritoryList->at(i)->getNumArmies()!=0){
+                return false;
+            }
+        }
+    return true;
+    }
