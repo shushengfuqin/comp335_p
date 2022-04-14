@@ -167,12 +167,12 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *human = new Human();
+            PlayerStrategy *aggressive = new Aggressive();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
-            player->setStrategy(human);
-            player->setStrategyString(human->getStrategyName());
+            player->setStrategy(aggressive);
+            player->setStrategyString(aggressive->getStrategyName());
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
