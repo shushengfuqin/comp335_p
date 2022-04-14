@@ -404,6 +404,37 @@ void Advance::execute2(Map *map) {
 }
 
 
+void Advance::executeForCheater(Map *map) {
+    auto armyNumber = std::to_string(armies);
+
+    if(validate2(map)){
+        if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
+        {
+
+            fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
+            toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
+            cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
+        }
+        else{
+            if(getAttackable()){
+                fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
+                toTerritory->setPlayer(player->getPlayerId());
+                targetPlayer->switchTerritories(toTerritory,targetPlayer,player);
+                toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
+                player->getHand()->addCard(card);
+                cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+                advanceExecute += "The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card";
+            }
+        }
+    }
+    else{
+        cout<<" advance cannot be executed\n"<<endl;
+        advanceExecute = " advance cannot be executed\n";
+    }
+    Notify(this);
+}
+
+
 string Advance::stringToLog() {
     return advanceExecute;
 }
@@ -808,6 +839,92 @@ string Negotiate::stringToLog() {
     return negotiateExecute;
 }
 
+
+/***********CHEATER************/
+//Cheat class
+Cheat::Cheat() :Order() {
+    setID(6);
+    cout<<"The order"<<" "<<getOrderType()<<" is been placed\n"<<endl;
+}
+
+Cheat::Cheat(Player* player,Player* targetPlayer, Territory* territory) : Order(player){
+    setID(6);
+    this->targetPlayer = targetPlayer;
+    this->territory = territory;
+
+    cout<<"The order cheat is been placed with issuer "<<player->getPlayerId()<<endl;
+}
+//copy constructor
+Cheat::Cheat(const Cheat& copiedAd) {
+    this->territory= copiedAd.territory;
+
+}
+Cheat::~Cheat() {
+    delete this->territory;
+    delete this;
+};
+
+
+//assignment operator
+Cheat& Cheat::operator = (const Cheat&Ao){
+    Order::operator=(Ao);
+    player = Ao.player;
+    territory = Ao.territory;
+    return *this;
+};
+bool Cheat::validate() {
+        cout<<"Cheat is valid and can be executed.\n"<<endl;
+        return true;
+
+
+}
+
+//If the source territory does not belong to the player that issued the order, the order is invalid.
+//If the target territory is not adjacent to the source territory, the order is invalid.
+bool Cheat::validate2(Map *map) {
+        cout<<"Cheat is valid and can be executed.\n"<<endl;
+        return true;
+
+}
+void Cheat::execute() {
+    if(validate()){
+        territory->setPlayer(player->getPlayerId());
+        targetPlayer->switchTerritories(territory,targetPlayer,player);
+        cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+
+    }
+    else{
+        cout<<" Cheat cannot be executed\n"<<endl;
+
+    }
+    Notify(this);}
+
+// If the source and target territory both belong to the player that issued the order, the army units are moved from the source to the target territory.
+// If the target territory belongs to another player than the player that issued the advance order, an attack is simulated when the order is executed. An attack is simulated by the following battle simulation mechanism:
+//-- Each attacking army unit involved has 60% chances of killing one defending army. At the same time, each defending army unit has 70% chances of killing one attacking army unit.
+//-- If all the defender's armies are eliminated, the attacker captures the territory. The attacking army units that survived the battle then occupy the conquered territory.
+//-- A player receives a card at the end of his turn if they successfully conquered at least one territory during their turn.
+
+void Cheat::execute2(Map *map) {
+    auto armyNumber = std::to_string(armies);
+
+    if(validate2(map)){
+        territory->setPlayer(player->getPlayerId());
+        targetPlayer->switchTerritories(territory,targetPlayer,player);
+        cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+
+    }
+    else{
+        cout<<" Cheat cannot be executed\n"<<endl;
+
+    }
+    Notify(this);
+}
+
+
+string Cheat::stringToLog() {
+    return advanceExecute;
+}
 
 /*********** ORDER LIST ************/
 //implementation of Orderslist

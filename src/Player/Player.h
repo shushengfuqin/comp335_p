@@ -39,7 +39,7 @@ public:
     vector<Territory*>* getAttackList();
     vector<Territory*>* getDefendList();
     Territory* getTerritoryByName(string name,vector<Territory*>* territoryList);
-
+    Player* getPlayerById(int id, vector<Player*>* playerlist);
     void displayTerritory(vector<Territory*>*);
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);

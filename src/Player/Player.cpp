@@ -303,9 +303,6 @@ vector<Territory *> *Player::toDefend() {
 
 void Player::displayTerritory(vector<Territory *> *territory) {
 
-    //print out all territory of this player in the list in the console
-    std::cout << '\n' << "Player " << playerName << "'s Territory List:" << '\n' << endl;
-
     for (auto &t: *territory) {
         cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName()
              << " Territory current Army Num: " << t->getNumArmies() << endl;
@@ -517,4 +514,13 @@ for(int i=0;i<playerTerritoryList->size();i++){
 }
 return true;
 
+}
+
+Player* Player::getPlayerById(int id, vector<Player*>* playerlist) {
+    for(int i = 0; i<playerlist->size();i++){
+        if(id==playerlist->at(i)->getPlayerId()){
+            return playerlist->at(i);
+        }
+    }
+    cout<<"This player doesnt exist"<<endl;
 }

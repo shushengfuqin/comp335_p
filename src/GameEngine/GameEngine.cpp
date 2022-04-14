@@ -167,12 +167,12 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *benevol = new Benevolent();
+            PlayerStrategy *cheater = new Cheater();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
-            player->setStrategy(benevol);
-            player->setStrategyString(benevol->getStrategyName());
+            player->setStrategy(cheater);
+            player->setStrategyString(cheater->getStrategyName());
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
@@ -214,12 +214,12 @@ string GameEng::playeraddedFunc()
             }
             else{
                 // *** ADD PLAYER HERE ***
-                PlayerStrategy *benevol = new Benevolent();
+                PlayerStrategy *cheater = new Cheater();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
-                player->setStrategy(benevol);
-                player->setStrategyString(benevol->getStrategyName());
+                player->setStrategy(cheater);
+                player->setStrategyString(cheater->getStrategyName());
                 playerList->push_back(player);
                 cout << "Added player: " << playerName << endl;
             }
@@ -482,9 +482,14 @@ void GameEng::issueOrdersPhase() {
         for (auto &i: *playerList) {
             // send to issueOrders Player*
             i->issueOrders(i,generatedMap,deployOfNot, playerList);
-            if (i->getArmyNum() == 0) {
+            if (i->getPlayerStrategyString().compare("Cheater") || i->getPlayerStrategyString().compare("Neutral")) {
                 exit_Count++;
+            }else{
+                if (i->getArmyNum() == 0) {
+                    exit_Count++;
+                }
             }
+
         }
     }
     deployOfNot = false;
@@ -541,6 +546,9 @@ void GameEng::executeOrdersPhase() {
                     (*it)->execute2(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "negotiate"){
+                    (*it)->execute2(generatedMap);
+                    orderlist->remove(*it);
+                }else if (orderType == "cheat"){
                     (*it)->execute2(generatedMap);
                     orderlist->remove(*it);
                 }

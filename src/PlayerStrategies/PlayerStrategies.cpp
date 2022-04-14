@@ -393,26 +393,25 @@ void Benevolent::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vec
         cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
 
         i->toDefend();
-        for(int j=0; j<i->getTerritoryList()->size();j++){
-            if(i->getTerritoryList()->at(j)->getTerritoryId()!=weakest->getTerritoryId()){
-                srand((unsigned int)time(NULL));
-                int x =rand()%100;
-                if(x<=50){
+        for (int j = 0; j < i->getTerritoryList()->size(); j++) {
+            if (i->getTerritoryList()->at(j)->getTerritoryId() != weakest->getTerritoryId()) {
+                srand((unsigned int) time(NULL));
+                int x = rand() % 100;
+                if (x <= 50) {
                     cout << "you chose advance\n";
                     cout << "Your territory\n";
                     i->displayTerritory(i->getTerritoryList());
                     cout << "All Adjacent territory\n";
                     i->toAttack(generatedMap);
                     i->displayTerritory(i->getAttackList());
-                    int y= rand()%i->getTerritoryList()->at(j)->getNumArmies()+1;
-                    cout << "You choose to advanced to your own territories: "+weakest->getTerritoryId()<<endl;
+                    int y = rand() % i->getTerritoryList()->at(j)->getNumArmies() + 1;
+                    cout << "You choose to advanced to your own territories: " + weakest->getTerritoryId() << endl;
                     auto *advance = new Advance(i, i, i->getTerritoryList()->at(j), weakest, y);
                     i->getOrderList()->setOrderList(advance);
 
                 }
             }
         }
-
 
 
     }
@@ -457,15 +456,13 @@ void Neutral::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector
 
 
         cout << "Where would you like to deploy for army. Chose by territory Id\n";
-        cout << "No, I don't want to deploy"<< endl;
-
+        cout << "No, I don't want to deploy" << endl;
 
 
     } else {
         cout << "what would you like to do\n";
         cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
-        cout << "No, I don't want to do any orders"<< endl;
-
+        cout << "No, I don't want to do any orders" << endl;
 
 
     }
@@ -493,6 +490,57 @@ Cheater::Cheater() : PlayerStrategy() {
 // special issueOrder. add a cheat order for him which will get all his adjacent territory and change the territory to the cheaters
 void Cheater::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
 
+    if (deployOrNot) {
+
+        cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
+        cout << "You have " << i->getArmyNum() << " army left\n";
+        cout << "List of territory that you control\n";
+        auto territory = i->getTerritoryList();
+        i->displayTerritory(territory);
+
+
+        cout << "Where would you like to deploy for army. Chose by territory Id\n";
+        cout << "Im a cheater. I don't need to deploy armies." << endl;
+
+
+    } else {
+        cout << "what would you like to do\n";
+        cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
+        bool issued = false;
+        Player *targetPl;
+        Territory *sourceTerritory;
+        Territory *targetTerritory;
+        i->toAttack(generatedMap);
+        cout << "player attack list" << endl;
+        i->displayTerritory(i->getAttackList());
+        auto territory = i->getTerritoryList();
+        cout << "Your territory\n";
+        i->displayTerritory(territory);
+
+        for (int k = 0; k < i->getAttackList()->size(); k++) {
+            int terid = i->getAttackList()->at(k)->getTerritoryId();
+            Territory *target = i->getAttackList()->at(k);
+            cout << "Attacking this territory. \n";
+            cout << terid;
+            // if it's controled by a player
+            for (auto &playerlist: *playerList) {
+                auto plTerritory = playerlist->getTerritoryList();
+                // go through that player's territory
+                for (auto &plT: *plTerritory) {
+                    if (plT->getTerritoryId() == terid) {
+                        targetPl = playerlist;
+                    }
+                }
+            }
+            cout<<terid<<endl;
+            cout<<targetPl->getPlayerName()<<endl;
+            auto *cheat = new Cheat(i, targetPl, target);
+            i->getOrderList()->setOrderList(cheat);
+
+        }
+
+
+    }
 }
 
 //vector<Territory *> Cheater::toAttack(Map* Map, Player &player) {
