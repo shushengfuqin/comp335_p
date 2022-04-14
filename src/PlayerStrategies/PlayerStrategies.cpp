@@ -436,7 +436,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                     //Todo: This doesnt work!!!
 
 
-                    vector<Territory*> *adjacentForSource;
+                    vector<Territory*> adjacentForSource;
                     for(auto &pT: *territory){
                         cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
                         auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
@@ -444,7 +444,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                             // find if this is not part one of his territory
                             if(!i->alreadyOwn(adj)){
                                 cout << "Territory Id: " << adj->getTerritoryId() << endl;
-                                adjacentForSource->push_back(adj);
+                                adjacentForSource.push_back(adj);
                             }
                         }
                     }
@@ -463,7 +463,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
 //                    }
 
 
-                    targetTerritory = *select_randomly(adjacentForSource->begin(),adjacentForSource->end());
+                    targetTerritory = *select_randomly(adjacentForSource.begin(),adjacentForSource.end());
                     cout <<targetTerritory->getTerritoryId()<<endl;
 
                     cout << "How many army would you like to send?\n";
