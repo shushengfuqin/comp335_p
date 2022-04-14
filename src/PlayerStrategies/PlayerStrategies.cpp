@@ -536,6 +536,7 @@ void Cheater::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector
             cout<<targetPl->getPlayerName()<<endl;
             auto *cheat = new Cheat(i, targetPl, target);
             i->getOrderList()->setOrderList(cheat);
+            i->getAttackList()->clear();
 
         }
 

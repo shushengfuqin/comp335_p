@@ -167,7 +167,7 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *cheater = new Human();
+            PlayerStrategy *cheater = new Cheater();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
@@ -508,12 +508,21 @@ void GameEng::issueOrdersPhase() {
 
                 string done;
                 i->issueOrders(i,generatedMap,deployOfNot, playerList);
-                cout << "are you done with issue Order? If yes type Y. Else type anything\n";
-                cin >> done;
-                if(done == "Y"){
-                    exit_Count2++;
-                    x[i->getPlayerId() - 1] = 1;
-                }
+//                if(!i->getPlayerStrategyString().compare("Human")){
+                    cout << "are you done with issue Order? If yes type Y. Else type anything\n";
+                    cin >> done;
+                    if(done == "Y"){
+                        exit_Count2++;
+                        x[i->getPlayerId() - 1] = 1;
+                    }
+//                }else{
+//                    cout << "Player is done with the order\n";
+//
+//                        exit_Count2++;
+//                        x[i->getPlayerId() - 1] = 1;
+//
+//                }
+
             }
         }
     }
