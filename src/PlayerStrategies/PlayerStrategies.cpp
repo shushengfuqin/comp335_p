@@ -3,6 +3,8 @@
 //
 
 #include "PlayerStrategies.h"
+#include  <random>
+#include  <iterator>
 
 /**
  *  PlayerStrategy abstract
@@ -12,11 +14,11 @@ PlayerStrategy::PlayerStrategy() {
 }
 
 //Destructor
-PlayerStrategy::~PlayerStrategy(){
+PlayerStrategy::~PlayerStrategy() {
     delete p;
 }
 
-void PlayerStrategy::setPlayer(Player* p){
+void PlayerStrategy::setPlayer(Player *p) {
     this->p = p;
 }
 
@@ -27,16 +29,17 @@ void PlayerStrategy::setStrategyName(string name) {
 string PlayerStrategy::getStrategyName() const {
     return strategy_name;
 }
+
 /**
 *  Player Strat Human
 */
-Human::Human(): PlayerStrategy() {
+Human::Human() : PlayerStrategy() {
     setStrategyName("Human");
 }
 
 // human will do what's in the issueorder in the gameeng file's issue order
-void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Player*> *playerList ) {
-    if(deployOrNot){
+void Human::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
+    if (deployOrNot) {
         if (i->getArmyNum() != 0) {
             bool territoryFalse = false;
             cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
@@ -48,30 +51,30 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
             cout << "List of territory that you control\n";
             auto territory = i->getTerritoryList();
             i->displayTerritory(territory);
-            while(!territoryFalse){
+            while (!territoryFalse) {
                 cout << "Where would you like to deploy for army. Chose by territory Id\n";
                 cin >> y;
-                for(auto &t : *territory){
-                    if(t->getTerritoryId() == y){
+                for (auto &t: *territory) {
+                    if (t->getTerritoryId() == y) {
                         territoryFalse = true;
                     }
                 }
-                if(!territoryFalse){
+                if (!territoryFalse) {
                     cout << "The territory you entered doesn't exit. Please enter again.\n";
                 }
             }
             cout << "How many army do you wish to deploy" << endl;
             cin >> x;
 
-            while(x > i->getArmyNum()){
+            while (x > i->getArmyNum()) {
                 cout << "You don't have enought amry. Please enter again.\n";
                 cin >> x;
             }
             i->removeArmyNum(x);
-            for(auto &e : *territory){
-                if(e->getTerritoryId() == y){
+            for (auto &e: *territory) {
+                if (e->getTerritoryId() == y) {
                     cout << "This is the territory you chose: " << y << endl;
-                    auto *deploy = new Deploy(i,e,x);
+                    auto *deploy = new Deploy(i, e, x);
                     i->getOrderList()->setOrderList(deploy);
                 }
             }
@@ -81,11 +84,11 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
     } else {
         string command;
         bool correct = true;
-        while (correct){
+        while (correct) {
             cout << "what would you like to do\n";
             cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
             cin >> command;
-            if(command == "Advance"){
+            if (command == "Advance") {
                 cout << "you chose advance\n";
                 // Advance need player, source T, target T, army num
                 // All your territory
@@ -108,17 +111,17 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                 auto toAttackTerritory = i->toAttack(generatedMap);
 
                 cout << "All Adjacent territory\n";
-                for(auto &pT: *territory){
+                for (auto &pT: *territory) {
                     cout << "List of adjacent territory of territory id: " << pT->getTerritoryId() << endl;
                     auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
-                    for(auto &adj: adjacent_territory){
+                    for (auto &adj: adjacent_territory) {
                         // find if this is not part one of his territory
-                        if(!i->alreadyOwn(adj)){
+                        if (!i->alreadyOwn(adj)) {
                             cout << "Territory Id: " << adj->getTerritoryId() << endl;
                         }
                     }
                 }
-                while(!issued){
+                while (!issued) {
                     cout << "Choose one for your territory. Choose by Id.\n";
                     cin >> st;
                     cout << "Choose one for adjacent territory. Choose by Id.\n";
@@ -136,39 +139,39 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
 //                    }
 //                }
                     // if it's controled by a player
-                    for(auto &playerlist : *playerList){
+                    for (auto &playerlist: *playerList) {
                         auto plTerritory = playerlist->getTerritoryList();
                         // go through that player's territory
-                        for(auto &plT: *plTerritory){
-                            if(plT->getTerritoryId() == tt){
+                        for (auto &plT: *plTerritory) {
+                            if (plT->getTerritoryId() == tt) {
                                 targetPl = playerlist;
                                 targetTerritory = plT;
                             }
                         }
                     }
                     // find source territory
-                    for(auto &pT: *territory){
-                        if(pT->getTerritoryId() == st){
+                    for (auto &pT: *territory) {
+                        if (pT->getTerritoryId() == st) {
                             sourceTerritory = pT;
-                            auto *advance = new Advance(i,targetPl,sourceTerritory,targetTerritory,armyNum);
+                            auto *advance = new Advance(i, targetPl, sourceTerritory, targetTerritory, armyNum);
                             i->getOrderList()->setOrderList(advance);
                             issued = true;
                         }
                     }
-                    if(!issued){
+                    if (!issued) {
                         cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
                 correct = false;
             } else if (command == "Bomb") {
                 cout << "you chose bomb\n";
-                bool issued=false;
+                bool issued = false;
                 // bomb need the player, and the target territory
                 // The territory needs to be an adjacent territory
                 // list all adjacent territory
                 auto playerToAttackList = i->toAttack(generatedMap);
 
-                while(!issued) {
+                while (!issued) {
                     for (auto &t: *playerToAttackList) {
                         cout << "Territory Id: " << t->getTerritoryId() << endl;
                     }
@@ -182,7 +185,7 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                             issued = true;
                         }
                     }
-                    if(!issued){
+                    if (!issued) {
                         cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
@@ -194,10 +197,11 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                 auto territory = i->getTerritoryList();
                 //target territory;
                 int t;
-                for(auto &pTerritory : *territory){
-                    cout << "Territory ID: " << pTerritory->getTerritoryId() << " Territory Name : " << pTerritory->getName() << endl;
+                for (auto &pTerritory: *territory) {
+                    cout << "Territory ID: " << pTerritory->getTerritoryId() << " Territory Name : "
+                         << pTerritory->getName() << endl;
                 }
-                while(!issued) {
+                while (!issued) {
                     cout << "Which territory would you like to use Blockade. Chose by id\n";
                     cin >> t;
                     for (auto &e: *territory) {
@@ -209,7 +213,7 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                             break;
                         }
                     }
-                    if(!issued){
+                    if (!issued) {
                         cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
@@ -225,16 +229,16 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                 //Airlift need player, fromT, toT, army num
                 //get list of controlled territory and other territory;
                 auto territory = i->getTerritoryList();
-                while(!issued) {
+                while (!issued) {
                     cout << "Your territory by Id.\n";
-                    for(auto &t: *territory){
+                    for (auto &t: *territory) {
                         cout << "Territory Id: " << t->getTerritoryId() << endl;
                     }
                     cout << "Chose one of your territory\n";
                     cin >> sourceT;
                     //get all other territory
-                    for(auto &t: *territory){
-                        if(t->getTerritoryId() != sourceT){
+                    for (auto &t: *territory) {
+                        if (t->getTerritoryId() != sourceT) {
                             cout << "Territory Id: " << t->getTerritoryId() << endl;
                         }
                     }
@@ -259,7 +263,7 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                             issued = true;
                         }
                     }
-                    if(!issued){
+                    if (!issued) {
                         cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
@@ -269,13 +273,13 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                 cout << "you chose negotiate\n";
                 //print all other player
                 cout << "Please chose your target player by id\n";
-                for(auto &j: *playerList){
-                    if(i != j){
-                        cout << "Player Id : " << j->getPlayerId() << ". Player Name : "<< j->getPlayerName()<<endl;
+                for (auto &j: *playerList) {
+                    if (i != j) {
+                        cout << "Player Id : " << j->getPlayerId() << ". Player Name : " << j->getPlayerName() << endl;
                     }
                 }
                 int target;
-                while(!issued) {
+                while (!issued) {
                     cin >> target;
                     cout << "You chose Player: " << target << endl;
                     for (auto &y: *playerList) {
@@ -286,7 +290,7 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
                             issued = true;
                         }
                     }
-                    if(!issued){
+                    if (!issued) {
                         cout << "The id that you entered aren't available please enter again.\n";
                     }
                 }
@@ -307,7 +311,21 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
 //vector<Territory *>* Human::toAttack() {
 //    return p->getAttackList();
 //}
+//Random an object from a list
 
+template<typename Iter, typename RandomGenerator>
+Iter select_randomly(Iter start, Iter end, RandomGenerator &g) {
+    std::uniform_int_distribution<> dis(0, std::distance(start, end) - 1);
+    std::advance(start, dis(g));
+    return start;
+}
+
+template<typename Iter>
+Iter select_randomly(Iter start, Iter end) {
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
+    return select_randomly(start, end, gen);
+}
 
 
 /**
@@ -315,21 +333,21 @@ void Human::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Pla
  */
 
 //Default Constructor
-Aggressive::Aggressive(): PlayerStrategy() {
+Aggressive::Aggressive() : PlayerStrategy() {
     setStrategyName("Aggressive");
 }
 
 // it will only issue deploy and advance to attack enemy territory
-void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vector<Player*> *playerList ) {
+void Aggressive::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
 
 }
 
-//vector<Territory *> Aggressive::toAttack(Map* Map, Player &player) {
+//vector<Territory *>* Aggressive::toAttack(Map* Map, Player &player) {
 //    cout << "Aggressive to attack" << endl;
 //    return {};
 //}
 //
-//vector<Territory *> Aggressive::toDefend(Map* Map, Player &player) {
+//vector<Territory *>* Aggressive::toDefend(Map* Map, Player &player) {
 //    cout << "Aggressive to defend" << endl;
 //    return {};
 //}
@@ -339,22 +357,80 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
 */
 
 //Default Constructor
-Benevolent::Benevolent(): PlayerStrategy() {
+Benevolent::Benevolent() : PlayerStrategy() {
     setStrategyName("Benevolent");
 }
 
 // It will only issue deploy and advance to own territory
-void Benevolent::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Player*> *playerList) {
+void Benevolent::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
+    Territory *weakest;
+    if (i->isNoArmy()) {
+        weakest = *select_randomly(i->getTerritoryList()->begin(), i->getTerritoryList()->end());
+    } else {
+        weakest = i->findWeakestCountry();
+    }
 
+    if (deployOrNot) {
+
+        cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
+        cout << "You have " << i->getArmyNum() << " army left\n";
+        cout << "List of territory that you control\n";
+        auto territory = i->getTerritoryList();
+        i->displayTerritory(territory);
+
+
+        cout << "Where would you like to deploy for army. Chose by territory Id\n";
+        cout << weakest->getTerritoryId() << endl;
+        cout << "How many army do you wish to deploy" << endl;
+        cout << i->getArmyNum() << endl;
+        auto *deploy = new Deploy(i, weakest, i->getArmyNum());
+        i->getOrderList()->setOrderList(deploy);
+        i->removeArmyNum(i->getArmyNum());
+
+
+    } else {
+        cout << "what would you like to do\n";
+        cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
+
+        i->toDefend();
+        for(int j=0; j<i->getTerritoryList()->size();j++){
+            if(i->getTerritoryList()->at(j)->getTerritoryId()!=weakest->getTerritoryId()){
+                srand((unsigned int)time(NULL));
+                int x =rand()%100;
+                if(x<=50){
+                    cout << "you chose advance\n";
+                    cout << "Your territory\n";
+                    i->displayTerritory(i->getTerritoryList());
+                    cout << "All Adjacent territory\n";
+                    i->toAttack(generatedMap);
+                    i->displayTerritory(i->getAttackList());
+                    int y= rand()%i->getTerritoryList()->at(j)->getNumArmies()+1;
+                    cout << "You choose to advanced to your own territories: "+weakest->getTerritoryId()<<endl;
+                    auto *advance = new Advance(i, i, i->getTerritoryList()->at(j), weakest, y);
+                    i->getOrderList()->setOrderList(advance);
+
+                }
+            }
+        }
+
+
+
+    }
 }
 
-//vector<Territory *> Benevolent::toAttack(Map* Map, Player &player) {
+//vector<Territory *>* Benevolent::toAttack(Map* Map, Player &player) {
 //    cout << "Benevolent to attack" <<endl;
 //    return {};
 //}
 //
-//vector<Territory *> Benevolent::toDefend(Map* Map, Player &player) {
-//    cout << "Benevolent to defend" <<endl;
+//vector<Territory *> *Benevolent::toDefend(Map *Map, Player &player) {
+//    cout << "Benevolent to defend" << endl;
+//    Territory *weakest;
+//    if (player.isNoArmy()) {
+//        weakest = *select_randomly(player.getTerritoryList()->begin(), player.getTerritoryList()->end());
+//    } else {
+//        weakest = player.findWeakestCountry();
+//    }
 //    return {};
 //}
 
@@ -363,22 +439,22 @@ void Benevolent::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vecto
 */
 
 //Default Constructor
-Neutral::Neutral(): PlayerStrategy() {
+Neutral::Neutral() : PlayerStrategy() {
     setStrategyName("Neutral");
 }
 
 
 // Does not thing
-void Neutral::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Player*> *playerList) {
+void Neutral::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
 
 }
 
-//vector<Territory *> Neutral::toAttack(Map* Map, Player &player) {
+//vector<Territory *>* Neutral::toAttack(Map* Map, Player &player) {
 //    cout << "Neutral to attack" << endl;
 //    return {};
 //}
 //
-//vector<Territory *> Neutral::toDefend(Map* Map, Player &player) {
+//vector<Territory *>* Neutral::toDefend(Map* Map, Player &player) {
 //    cout << "Neutral to defend" << endl;
 //    return {};
 //}
@@ -388,12 +464,12 @@ void Neutral::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<P
 */
 
 //Default Constructor
-Cheater::Cheater(): PlayerStrategy() {
+Cheater::Cheater() : PlayerStrategy() {
     setStrategyName("Cheater");
 }
 
 // special issueOrder. add a cheat order for him which will get all his adjacent territory and change the territory to the cheaters
-void Cheater::issueOrder(Player*& i, Map* generatedMap,bool deployOrNot,vector<Player*> *playerList) {
+void Cheater::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
 
 }
 

@@ -167,12 +167,12 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *human = new Human();
+            PlayerStrategy *benevol = new Benevolent();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
-            player->setStrategy(human);
-            player->setStrategyString(human->getStrategyName());
+            player->setStrategy(benevol);
+            player->setStrategyString(benevol->getStrategyName());
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
@@ -214,12 +214,12 @@ string GameEng::playeraddedFunc()
             }
             else{
                 // *** ADD PLAYER HERE ***
-                PlayerStrategy *human = new Human();
+                PlayerStrategy *benevol = new Benevolent();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
-                player->setStrategy(human);
-                player->setStrategyString(human->getStrategyName());
+                player->setStrategy(benevol);
+                player->setStrategyString(benevol->getStrategyName());
                 playerList->push_back(player);
                 cout << "Added player: " << playerName << endl;
             }
