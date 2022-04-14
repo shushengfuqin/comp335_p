@@ -436,7 +436,7 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                     //Todo: This doesnt work!!!
 
 
-                    vector<Territory*> *adjacentForSource;
+                    vector<Territory*> *adjacentForSource = nullptr;
                     for(auto &pT: *territory){
                         if(pT->getTerritoryId() == st){
                             sourceTerritory = pT;
@@ -450,7 +450,6 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                             }
                         }
                     }
-
 
 
                     targetTerritory = *select_randomly(adjacentForSource->begin(),adjacentForSource->end());

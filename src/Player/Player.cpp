@@ -485,6 +485,7 @@ Territory*  Player::findStrongestCountry(){
     Territory* strongest;
     strongest->setNumArmies(0);
     auto iter = playerTerritoryList->begin();
+  //  auto iter2 = playerTerritoryList->begin()+1;
     for(; iter != playerTerritoryList->end(); iter++){
         if((*iter)->getNumArmies()>=strongest->getNumArmies()){
             strongest = *iter;
