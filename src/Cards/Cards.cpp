@@ -207,3 +207,12 @@ bool Hand::getCardByType(CardType ct){
     }
     return false;
 }
+
+void Hand::clearHand(Deck& d){
+    int i = 0;
+    while(getHandSize() != 0){
+        Card usedCard;
+        usedCard = removeCardAtIndex(0);    // Remove from hand and shift
+        d.returnToDeck(usedCard);
+    }
+}

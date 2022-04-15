@@ -465,3 +465,11 @@ bool Player::alreadyOwn(Territory *territory) {
         return nullptr;
     }
 
+void Player::resetPlayer(Deck& d) {
+    orderList->clearOrderlist();
+    playerHand->clearHand(d);
+    playerTerritoryList->clear();
+    playerAttackList->clear();
+    playerDefendList->clear();
+}
+

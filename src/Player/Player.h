@@ -63,6 +63,8 @@ public:
     bool containsOrder(string orderType);
 
     Order *getOrderbyType(string orderType);
+
+    void resetPlayer(Deck& d);
 private:
     vector<Territory*>* playerTerritoryList;
     vector<Territory*>* playerDefendList;
@@ -72,7 +74,6 @@ private:
     int armyNum;
     int playerId;
     string playerName;
-
 };
 
 #endif //COMP335_P_PLAYER_H

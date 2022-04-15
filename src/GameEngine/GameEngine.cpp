@@ -538,6 +538,8 @@ void GameEng::tournamentGameLoop(){
         for(int j = 0; j < tGames; j++){
             cout << "STARTING MAP " << (i+1) << " - GAME " << (j+1) << endl;
 
+            // TODO: ASSIGN TERRITORIES HERE
+
             // TODO: PLAY GAME HERE
             turnNum = 1;
             //while the amount of player is not 1 the main game loop will keep looping.
@@ -562,9 +564,12 @@ void GameEng::tournamentGameLoop(){
                 turnNum++;
             }
 
-            // TODO: RESET TERRITORIES
-            // Reset territories
-
+            // TODO: RESET PLAYER TERRITORIES AND CARDS
+            // Reset player territories and cards;
+            for(int i = 0; i < playerCount; i++){
+                Player *p = playerList->at(i);
+                p->resetPlayer(*gameDeck);
+            }
 
             cout << "ENDING MAP " << (i+1) << " - GAME " << (j+1) << endl;
             results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);

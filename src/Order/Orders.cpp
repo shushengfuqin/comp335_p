@@ -862,8 +862,6 @@ void Orderslist::remove(Order* order) {
     }
 }
 
-
-
 //move order from origin position to the target position
 void Orderslist::move(int origin, int targetPosition)
 {
@@ -891,7 +889,10 @@ void Orderslist::printOrderlist(){
         cout << (*it)->getOrderType() << " " << endl;
     }
     cout << endl;
+ }
 
+void Orderslist::clearOrderlist(){
+     orderlist.clear();
  }
 
 // string to log when addOrder from OrderList has been called.

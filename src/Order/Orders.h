@@ -220,13 +220,12 @@ public:
     void remove(Order* order);
     void move(int origin,int targetPosition);
     void printOrderlist();
+    void clearOrderlist();
     //method from ILoggable and Subject for Observer
     string stringToLog() override;
 private:
     vector<Order*> orderlist;
     string orderForObs;
-
-
 };
 
 

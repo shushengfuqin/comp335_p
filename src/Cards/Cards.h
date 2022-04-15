@@ -64,6 +64,7 @@ public:
     friend ostream &operator<<( ostream &output, const Hand &H );
     Hand& operator=(const Hand& h);
     bool getCardByType(CardType ct);
+    void clearHand(Deck& d);
 private:
     int size;
     int limit;
