@@ -8,6 +8,7 @@
 #include "../Map/Map.h"
 #include "../Cards/Cards.h"
 #include "../Order/Orders.h"
+#include "../PlayerStrategies/PlayerStrategies.h"
 #include "vector"
 using namespace std;
 
@@ -15,9 +16,15 @@ struct Order;
 class Orderslist;
 class Territory;
 class Map;
+class PlayerStrategy;
 
 class Player{
 public:
+
+    string getPlayerStrategyString();
+    void setStrategyString(string strategyString);
+    void setStrategy(PlayerStrategy *newStrategy);
+    PlayerStrategy* getPlayerStrategy();
     Player();
     Player(string name);
     ~Player();
@@ -32,7 +39,7 @@ public:
     vector<Territory*>* getAttackList();
     vector<Territory*>* getDefendList();
     Territory* getTerritoryByName(string name,vector<Territory*>* territoryList);
-
+    Player* getPlayerById(int id, vector<Player*>* playerlist);
     void displayTerritory(vector<Territory*>*);
     void attackTerritory(Territory *territory);
     void defendTerritory(Territory *territory);
@@ -43,7 +50,7 @@ public:
     void cancelDefend(Territory *territory);
     void calculateArmy(Map *map);
     void switchTerritories(Territory *territory,Player *player1, Player *player2);
-    void issueOrders(Order* order);
+    void issueOrders(Player*& i, Map* generatedMap, bool deployOrNot,vector<Player*> *playerList  );
     int getHandLimit();
     Orderslist* getOrderList();
     void setPlayerId(int id);
@@ -61,9 +68,11 @@ public:
     int removeArmyNum(int number);
     Hand *getHand(){ return playerHand ;};
     bool containsOrder(string orderType);
-
+    Territory *findStrongestCountry();
+    Territory *findWeakestCountry();
     Order *getOrderbyType(string orderType);
 
+    bool isNoArmy();
     void resetPlayer(Deck& d);
 private:
     vector<Territory*>* playerTerritoryList;
@@ -74,6 +83,8 @@ private:
     int armyNum;
     int playerId;
     string playerName;
+    PlayerStrategy *strategy;
+    string strategyString;
 };
 
 #endif //COMP335_P_PLAYER_H

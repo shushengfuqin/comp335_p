@@ -11,6 +11,7 @@
 #include "../Player/Player.h"
 #include "../Cards/Cards.h"
 #include "../Observer/LoggingObserver.h"
+#include "../PlayerStrategies/PlayerStrategies.h"
 
 using namespace std;
 class Player;
@@ -19,7 +20,7 @@ class Map;
 class Card;
 class Deck;
 class Hand;
-
+class PlayerStrategies;
 
 struct Order
 {
@@ -50,7 +51,7 @@ public:
 private:
     int id;
     bool valid;
-    vector<string> orders = {"deploy","advance","bomb","blockade","airlift","negotiate"};
+    vector<string> orders = {"deploy","advance","bomb","blockade","airlift","negotiate","cheat"};
     bool attackable = true;
 
 };
@@ -117,7 +118,6 @@ public:
     virtual void execute()override;
     virtual bool validate2(Map *map) override;
     virtual void execute2(Map *map) override;
-
     //stringTolog from observer
     string stringToLog() override;
 private:
@@ -127,6 +127,8 @@ private:
     unsigned int armies;
     string advanceExecute;
     Card *card = new Card();
+
+    void executeForCheater(Map *map);
 };
 
 struct Blockade : public Order,public ILoggable, public Subject{
@@ -199,7 +201,29 @@ private:
 
 
 
+struct Cheat : public Order,public ILoggable, public Subject{
+public:
 
+    Cheat();
+    Cheat(Player* player,Player *targetPlayer ,Territory* territory);
+    ~Cheat();
+    Cheat(const Cheat& copiedAd);
+    Cheat& operator = (const Cheat &Ao);
+    virtual bool validate()override ;
+    virtual void execute()override;
+    virtual bool validate2(Map *map) override;
+    virtual void execute2(Map *map) override;
+
+    //stringTolog from observer
+    string stringToLog() override;
+private:
+    Territory* fromTerritory;
+    Territory* territory;
+    Player* targetPlayer;
+    unsigned int armies;
+    string advanceExecute;
+    Card *card = new Card();
+};
 
 
 
