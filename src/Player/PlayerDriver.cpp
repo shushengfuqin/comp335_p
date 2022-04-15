@@ -43,19 +43,27 @@ public:
 //        //verify player has hand by adding cards
 //        player->getHandLimit();
 //
+//    player1->setStrategy(cheater);
+//    player1->setStrategyString(cheater->getStrategyName());
+//    string test1 = player1->getPlayerStrategyString();
 //
-//        //create new territory that should be used to add into the player class
-//        Territory *territory7= new Territory( "pikachu", 7,7 ,0);
-//        Territory *territory8= new Territory( "eevee", 8 , 8,0);
-//        Territory *territory9= new Territory( "jigglypuff", 9, 9,0 );
+//    player2->setStrategy(aggressive);
+//    player2->setStrategyString(aggressive->getStrategyName());
+//    string test2 = player2->getPlayerStrategyString();
 //
+//    player3->setStrategy(benevolent);
+//    player3->setStrategyString(benevolent->getStrategyName());
+//    string test3 = player3->getPlayerStrategyString();
 //
-//        //add territory belongs to the player
-//        player->addTerritory(territory7);
-//        player->addTerritory(territory8);
-//        player->addTerritory(territory9);
-//        player->displayTerritory(player->getTerritoryList());
+//    player4->setStrategy(human);
+//    player4->setStrategyString(human->getStrategyName());
+//    string test4 = player4->getPlayerStrategyString();
 //
+//    cout << "Hallo world" <<endl;
+//    cout << test1 << endl;
+//    cout << test2 << endl;
+//    cout << test3 << endl;
+//    cout << test4 << endl;
 //
 //
 //

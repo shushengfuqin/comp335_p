@@ -167,12 +167,12 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *aggressive = new Aggressive();
+            PlayerStrategy *cheater = new Aggressive();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
-            player->setStrategy(aggressive);
-            player->setStrategyString(aggressive->getStrategyName());
+            player->setStrategy(cheater);
+            player->setStrategyString(cheater->getStrategyName());
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
@@ -214,21 +214,13 @@ string GameEng::playeraddedFunc()
             }
             else{
                 // *** ADD PLAYER HERE ***
-                PlayerStrategy *aggressive = new Aggressive();
+                PlayerStrategy *cheater = new Aggressive();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
-                player->setStrategy(aggressive);
-                player->setStrategyString(aggressive->getStrategyName());
+                player->setStrategy(cheater);
+                player->setStrategyString(cheater->getStrategyName());
                 playerList->push_back(player);
-
-           /*     PlayerStrategy *human = new Human();
-                string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
-                auto *player = new Player(playerName);
-                player->setPlayerId(++playerCount);
-                player->setStrategy(human);
-                player->setStrategyString(human->getStrategyName());
-                playerList->push_back(player);*/
                 cout << "Added player: " << playerName << endl;
             }
             cout << "this is the player added state\n";
@@ -490,9 +482,14 @@ void GameEng::issueOrdersPhase() {
         for (auto &i: *playerList) {
             // send to issueOrders Player*
             i->issueOrders(i,generatedMap,deployOrNot, playerList);
-            if (i->getArmyNum() == 0) {
+            if (i->getPlayerStrategyString().compare("Cheater") || i->getPlayerStrategyString().compare("Neutral")) {
                 exit_Count++;
+            }else{
+                if (i->getArmyNum() == 0) {
+                    exit_Count++;
+                }
             }
+
         }
     }
     deployOrNot = false;
@@ -511,12 +508,21 @@ void GameEng::issueOrdersPhase() {
 
                 string done;
                 i->issueOrders(i,generatedMap,deployOrNot, playerList);
-                cout << "are you done with issue Order? If yes type Y. Else type anything\n";
-                cin >> done;
-                if(done == "Y"){
-                    exit_Count2++;
-                    x[i->getPlayerId() - 1] = 1;
-                }
+//                if(!i->getPlayerStrategyString().compare("Human")){
+                    cout << "are you done with issue Order? If yes type Y. Else type anything\n";
+                    cin >> done;
+                    if(done == "Y"){
+                        exit_Count2++;
+                        x[i->getPlayerId() - 1] = 1;
+                    }
+//                }else{
+//                    cout << "Player is done with the order\n";
+//
+//                        exit_Count2++;
+//                        x[i->getPlayerId() - 1] = 1;
+//
+//                }
+
             }
         }
     }
@@ -549,6 +555,9 @@ void GameEng::executeOrdersPhase() {
                     (*it)->execute2(generatedMap);
                     orderlist->remove(*it);
                 } else if (orderType == "negotiate"){
+                    (*it)->execute2(generatedMap);
+                    orderlist->remove(*it);
+                }else if (orderType == "cheat"){
                     (*it)->execute2(generatedMap);
                     orderlist->remove(*it);
                 }

@@ -41,7 +41,7 @@ public:
 //    vector <Territory*>* toDefend(Map* Map, Player &player) override;
 //    vector <Territory*>* toAttack() override;
 //    vector <Territory*>* toDefend() override;
-    vector<Territory *> *toAttack();
+//    vector<Territory*> *toAttack();
 };
 
 /**
@@ -64,8 +64,8 @@ class Benevolent: public PlayerStrategy {
 public:
     Benevolent();
     void issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vector<Player*> *playerList ) override;
-//    vector <Territory*> toAttack(Map* Map, Player &player) override;
-//    vector <Territory*> toDefend(Map* Map, Player &player) override;
+//    vector <Territory*>* toAttack(Map* Map, Player &player) override;
+//    vector <Territory*>* toDefend(Map* Map, Player &player) override;
 //    vector <Territory*>* toAttack() override;
 //    vector <Territory*>* toDefend() override;
 };
