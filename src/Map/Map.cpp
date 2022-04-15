@@ -456,7 +456,6 @@ MapLoader::MapLoader(const string &fileName) {
 
     success = true;
 
-
     string line;
     bool inContinents = false;
     bool inCountries = false;
@@ -492,8 +491,6 @@ MapLoader::MapLoader(const string &fileName) {
 
     }
     inputFileStream.close();
-
-    cout << "c" << endl;
 }
 
 

@@ -103,6 +103,32 @@ string GameEng::tournamentFunc()
     // Extract command and save it in Game Engine
     cmdProc->tournamentData(&tMaps, &tPlayers, tGames, tTurns);
 
+    bool error = false;
+
+    // Check if map can load
+    auto it = tMaps.begin();
+    while (it != tMaps.end())
+    {
+        auto curr = it++;
+        pMapLoader = new MapLoader("../maps/" + *curr + ".map");
+
+        // tournament -M canada win solar lunar -P TEST1 TEST2 -G 4 -D 10
+        // Failed to load filename
+        if (!pMapLoader->success) {
+            tMaps.erase(curr);
+            error = true;
+            it--;
+        }
+    }
+
+    if(error)
+        cout << "All invalid maps have been removed." << endl;
+
+    if(tMaps.size() == 0){
+        cout << "There were no valid maps chosen. Please insert valid maps when starting a tournament." << endl << endl;
+        return "start";
+    }
+
     cout << "Tournament Mode:\n";
     cout << "M: ";
     for(int i = 0; i < tMaps.size(); i++){
@@ -446,8 +472,10 @@ void GameEng::startUpPhase() {
                     setState(maploaded);
                 }
                 else if(sf == "tournament"){
-                    tournamentFunc();
-                    setState(tournament);
+                    if(tournamentFunc() == "startTournament")
+                        setState(tournament);
+                    else
+                        setState(start);
                 }
                 break;
             }
@@ -504,7 +532,7 @@ void GameEng::tournamentGameLoop(){
 
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
-        // TODO: LOAD MAPS HERE
+        LoadMap(tMaps[i]);
 
         // Game Loop
         for(int j = 0; j < tGames; j++){
@@ -534,15 +562,20 @@ void GameEng::tournamentGameLoop(){
                 turnNum++;
             }
 
-            //delete (pMapLoader);
-            //pMapLoader = NULL;
+            // TODO: RESET TERRITORIES
+            // Reset territories
+
 
             cout << "ENDING MAP " << (i+1) << " - GAME " << (j+1) << endl;
             results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
         }
+
+        // Clear map loader
+        delete (pMapLoader);
+        pMapLoader = NULL;
     }
 
-    // tournament -M TEST 1 2 3 4 -P TEST 1 -G 4 -D 10
+    // tournament -M canada win solar -P TEST1 TEST2 -G 4 -D 10
     /// End the tournament
     // Print results
     // TODO: ALSO PRINT RESULTS TO LOG (somehow)
@@ -556,7 +589,7 @@ void GameEng::tournamentGameLoop(){
 
     for(int i = 0; i < tMaps.size(); i++){
 
-        cout << " MAP " << (i+1) <<" | ";
+        cout << tMaps[i] << " | ";
         // Game Loop
         for(int j = 0; j < tGames; j++) {
             cout << results[i][j] << " | ";
