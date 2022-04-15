@@ -11,6 +11,7 @@
 #include "../Player/Player.h"
 #include "../Cards/Cards.h"
 #include "../Observer/LoggingObserver.h"
+#include "../PlayerStrategies/PlayerStrategies.h"
 
 using namespace std;
 class Player;
@@ -19,7 +20,7 @@ class Map;
 class Card;
 class Deck;
 class Hand;
-
+class PlayerStrategies;
 
 struct Order
 {
@@ -117,7 +118,7 @@ public:
     virtual void execute()override;
     virtual bool validate2(Map *map) override;
     virtual void execute2(Map *map) override;
-
+    void executeForCheater(Map *map);
     //stringTolog from observer
     string stringToLog() override;
 private:

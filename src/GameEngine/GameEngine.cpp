@@ -472,7 +472,7 @@ void GameEng::reinforcementPhase() const {
 void GameEng::issueOrdersPhase() {
     // I need a bool to check if it's deploy or not
     // this bool will be false after deploy mode is done
-    bool deployOfNot = true;
+    bool deployOrNot = true;
     cout << "------------ Issue Orders Phase ------------\n";
     //check the player Strat
     // count if there are still player not done in deploying
@@ -481,7 +481,7 @@ void GameEng::issueOrdersPhase() {
     while (exit_Count < playerCount) {
         for (auto &i: *playerList) {
             // send to issueOrders Player*
-            i->issueOrders(i,generatedMap,deployOfNot, playerList);
+            i->issueOrders(i,generatedMap,deployOrNot, playerList);
             if (i->getPlayerStrategyString().compare("Cheater") || i->getPlayerStrategyString().compare("Neutral")) {
                 exit_Count++;
             }else{
@@ -492,7 +492,7 @@ void GameEng::issueOrdersPhase() {
 
         }
     }
-    deployOfNot = false;
+    deployOrNot = false;
 
     // issue order
     int exit_Count2 = 0;
@@ -507,7 +507,7 @@ void GameEng::issueOrdersPhase() {
             if(x[i->getPlayerId() - 1] !=1){
 
                 string done;
-                i->issueOrders(i,generatedMap,deployOfNot, playerList);
+                i->issueOrders(i,generatedMap,deployOrNot, playerList);
 //                if(!i->getPlayerStrategyString().compare("Human")){
                     cout << "are you done with issue Order? If yes type Y. Else type anything\n";
                     cin >> done;

@@ -83,6 +83,9 @@ private:
     string playerName;
     PlayerStrategy *strategy;
     string strategyString;
+
+
+
 };
 
 #endif //COMP335_P_PLAYER_H

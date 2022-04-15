@@ -502,48 +502,58 @@ string Player::getPlayerStrategyString() {
     return strategyString;
 }
 
-Territory *Player::findStrongestCountry() {
-    Territory *strongest;
-    strongest->setNumArmies(0);
-    auto iter = playerTerritoryList->begin();
-    for (; iter != playerTerritoryList->end(); iter++) {
-        if ((*iter)->getNumArmies() > strongest->getNumArmies()) {
-            strongest = *iter;
+Territory*  Player::findStrongestCountry(){
+    Territory* strongest;
+    // i need to create an array of territory's army
+
+    int armyArr[playerTerritoryList->size()];
+    int counter = 0;
+    for(auto &ptl : *playerTerritoryList){
+        armyArr[counter] = ptl->getNumArmies();
+        counter++;
+    }
+    for(int i = 0; i<playerTerritoryList->size(); i++){
+        cout << "Army num: " << armyArr[i]<< endl;
+    }
+    int largestIndex = 0;
+    for(int i = 1;i < playerTerritoryList->size(); ++i) {
+        // Change < to > if you want to find the smallest element
+        if(armyArr[0] < armyArr[i]){
+            armyArr[0] = armyArr[i];
+            cout << i<<endl;
+            largestIndex = i;
         }
     }
-    cout << "The Strongest country from " << playerName << "is Territory" << strongest->getName();
+    strongest = playerTerritoryList->at(largestIndex);
+//    auto iter = playerTerritoryList->begin();
+//    for(; iter != playerTerritoryList->end(); iter++){
+//        if((*iter)->getNumArmies()>=strongest->getNumArmies()){
+//            strongest = *iter;
+//        }
+//    }
+    cout<< "The Strongest country from "<< playerName << "is Territory " <<strongest->getName();
     return strongest;
 }
 
 
-Territory *Player::findWeakestCountry() {
-    Territory *weakest;
+Territory*  Player::findWeakestCountry(){
+    Territory* weakest;
     auto iter = playerTerritoryList->begin();
     weakest = *iter;
-    for (; iter != playerTerritoryList->end(); iter++) {
-        if ((*iter)->getNumArmies() < weakest->getNumArmies()) {
+    for(; iter != playerTerritoryList->end(); iter++){
+        if((*iter)->getNumArmies()<weakest->getNumArmies()){
             weakest = *iter;
         }
     }
-    cout << "The Weakest country from " << playerName << "is Territory" << weakest->getName();
+    cout<< "The Strongest country from "<< playerName << "is Territory" <<weakest->getName();
     return weakest;
 }
 
-bool Player::isNoArmy() {
-for(int i=0;i<playerTerritoryList->size();i++){
-    if(playerTerritoryList->at(i)->getNumArmies()!=0){
-        return false;
-    }
-}
-return true;
-
-}
-
-Player* Player::getPlayerById(int id, vector<Player*>* playerlist) {
-    for(int i = 0; i<playerlist->size();i++){
-        if(id==playerlist->at(i)->getPlayerId()){
-            return playerlist->at(i);
+bool Player::isNoArmy(){
+        for(int i=0;i<playerTerritoryList->size();i++){
+            if(playerTerritoryList->at(i)->getNumArmies()!=0){
+                return false;
+            }
         }
+    return true;
     }
-    cout<<"This player doesnt exist"<<endl;
-}
