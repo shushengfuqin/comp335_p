@@ -471,5 +471,6 @@ void Player::resetPlayer(Deck& d) {
     playerTerritoryList->clear();
     playerAttackList->clear();
     playerDefendList->clear();
+    armyNum = 50;
 }
 

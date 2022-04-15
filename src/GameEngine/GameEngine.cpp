@@ -525,20 +525,46 @@ void GameEng::mainGameLoop(){
 }
 
 void GameEng::tournamentGameLoop(){
-    // TODO: PROPERLY IMPLEMENT TOURNAMENTS
     string results[tMaps.size()][tGames];
 
     // TODO: CREATE AND ADD PLAYERS
-
+    for(int i = 0; i < tPlayers.size(); i++) {
+        /*PlayerStrategy *human = new Human();
+        string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
+        auto *player = new Player(tPlayers[i]);
+        player->setPlayerId(++playerCount);
+        player->setStrategy(human);
+        player->setStrategyString(human->getStrategyName());
+        playerList->push_back(player);
+        cout << "Added player: " << playerName << endl;*/
+    }
+    
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
         LoadMap(tMaps[i]);
 
         // Game Loop
         for(int j = 0; j < tGames; j++){
-            cout << "STARTING MAP " << (i+1) << " - GAME " << (j+1) << endl;
 
             // TODO: ASSIGN TERRITORIES HERE
+            // Fairly distributing the territories among all players
+            /*neutral = new Player("N/A");
+            generatedMap->assignTerritoriesToPlayers(*playerList);
+            generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
+
+            // Randomly determine the order of play of the players in the game
+            unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+            auto rng = std::default_random_engine { seed };
+            shuffle(playerList->begin(), playerList->end(), rng);
+
+            // Each player to draw 2 cards each from the deck
+            for(int i = 0; i < playerCount; i++){
+                Player *p = playerList->at(i);
+                gameDeck->draw(*p->getHand());
+                gameDeck->draw(*p->getHand());
+            }*/
+
+            cout << "STARTING MAP " << (i+1) << " - GAME " << (j+1) << endl;
 
             // TODO: PLAY GAME HERE
             turnNum = 1;
@@ -564,7 +590,6 @@ void GameEng::tournamentGameLoop(){
                 turnNum++;
             }
 
-            // TODO: RESET PLAYER TERRITORIES AND CARDS
             // Reset player territories and cards;
             for(int i = 0; i < playerCount; i++){
                 Player *p = playerList->at(i);
