@@ -118,7 +118,6 @@ public:
     virtual void execute()override;
     virtual bool validate2(Map *map) override;
     virtual void execute2(Map *map) override;
-    void executeForCheater(Map *map);
     //stringTolog from observer
     string stringToLog() override;
 private:

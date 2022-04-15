@@ -167,7 +167,7 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *cheater = new Cheater();
+            PlayerStrategy *cheater = new Aggressive();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
@@ -214,7 +214,7 @@ string GameEng::playeraddedFunc()
             }
             else{
                 // *** ADD PLAYER HERE ***
-                PlayerStrategy *cheater = new Cheater();
+                PlayerStrategy *cheater = new Aggressive();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
