@@ -68,8 +68,10 @@ public:
     int removeArmyNum(int number);
     Hand *getHand(){ return playerHand ;};
     bool containsOrder(string orderType);
-
+    Territory *findStrongestCountry();
+    Territory *findWeakestCountry();
     Order *getOrderbyType(string orderType);
+    bool isNoArmy();
 private:
     vector<Territory*>* playerTerritoryList;
     vector<Territory*>* playerDefendList;
@@ -81,6 +83,9 @@ private:
     string playerName;
     PlayerStrategy *strategy;
     string strategyString;
+
+
+
 };
 
 #endif //COMP335_P_PLAYER_H
