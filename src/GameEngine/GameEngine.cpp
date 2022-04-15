@@ -230,12 +230,12 @@ string GameEng::mapvalidatedFunc()
 
         if(regex_match (cmdInput, playerRegex)){
             // *** ADD PLAYER HERE ***
-            PlayerStrategy *cheater = new Aggressive();
+            PlayerStrategy *ps = new Human();
             string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
             auto *player = new Player(playerName);
             player->setPlayerId(++playerCount);
-            player->setStrategy(cheater);
-            player->setStrategyString(cheater->getStrategyName());
+            player->setStrategy(ps);
+            player->setStrategyString(ps->getStrategyName());
             playerList->push_back(player);
             cout << "Added player: " << playerName << endl;
 
@@ -277,12 +277,12 @@ string GameEng::playeraddedFunc()
             }
             else{
                 // *** ADD PLAYER HERE ***
-                PlayerStrategy *cheater = new Aggressive();
+                PlayerStrategy *ps = new Human();
                 string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
                 auto *player = new Player(playerName);
                 player->setPlayerId(++playerCount);
-                player->setStrategy(cheater);
-                player->setStrategyString(cheater->getStrategyName());
+                player->setStrategy(ps);
+                player->setStrategyString(ps->getStrategyName());
                 playerList->push_back(player);
                 cout << "Added player: " << playerName << endl;
             }
@@ -536,14 +536,25 @@ void GameEng::tournamentGameLoop(){
 
     // TODO: CREATE AND ADD PLAYERS
     for(int i = 0; i < tPlayers.size(); i++) {
-        /*PlayerStrategy *human = new Human();
-        string playerName = cmdInput.substr(cmdInput.find(' ') + 1);
-        auto *player = new Player(tPlayers[i]);
+        PlayerStrategy *ps;
+        if(tPlayers[i] =="Aggressive")
+            ps = new Aggressive();
+        else if(tPlayers[i] =="Benevolent")
+            ps = new Benevolent();
+        else if(tPlayers[i] =="Neutral")
+            ps = new Neutral();
+        else if(tPlayers[i] =="Cheater")
+            ps = new Cheater();
+        else
+            ps = new Human();
+
+        string playerName = tPlayers[i];
+        auto *player = new Player(playerName + "_" + to_string(i));
         player->setPlayerId(++playerCount);
-        player->setStrategy(human);
-        player->setStrategyString(human->getStrategyName());
+        player->setStrategy(ps);
+        player->setStrategyString(ps->getStrategyName());
         playerList->push_back(player);
-        cout << "Added player: " << playerName << endl;*/
+        cout << "Added player: " << playerName << endl;
     }
     
     // Map Loop
@@ -555,7 +566,7 @@ void GameEng::tournamentGameLoop(){
 
             // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
-            /*neutral = new Player("N/A");
+            neutral = new Player("N/A");
             generatedMap->assignTerritoriesToPlayers(*playerList);
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
@@ -569,7 +580,7 @@ void GameEng::tournamentGameLoop(){
                 Player *p = playerList->at(i);
                 gameDeck->draw(*p->getHand());
                 gameDeck->draw(*p->getHand());
-            }*/
+            }
 
             cout << "STARTING MAP " << (i+1) << " - GAME " << (j+1) << endl;
 
@@ -580,7 +591,7 @@ void GameEng::tournamentGameLoop(){
             while(playerCount != 1 && turnNum <= tTurns){
                 cout << "------------ TURN : " << turnNum << " ------------\n";
                 // call the reinforcementphase
-                /*if(turnNum != 1){
+                if(turnNum != 1){
                     reinforcementPhase();
                 }
                 issueOrdersPhase();
@@ -592,10 +603,20 @@ void GameEng::tournamentGameLoop(){
                         playerList->push_back(pl);
                         playerCount--;
                     }
-                }*/
+                }
 
                 turnNum++;
             }
+
+            // TODO: DETERMINE THE WINNER
+            // Stalemate
+            if(turnNum > tTurns)
+                results[i][j] = "Draw";
+            else{
+                results[i][j] = "We have a winner?";
+            }
+
+            //results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
 
             // Reset player territories and cards;
             for(int i = 0; i < playerCount; i++){
@@ -604,7 +625,6 @@ void GameEng::tournamentGameLoop(){
             }
 
             cout << "ENDING MAP " << (i+1) << " - GAME " << (j+1) << endl;
-            results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
         }
 
         // Clear map loader
@@ -612,7 +632,8 @@ void GameEng::tournamentGameLoop(){
         pMapLoader = NULL;
     }
 
-    // tournament -M canada win solar -P TEST1 TEST2 -G 4 -D 10
+    // tournament -M canada win solar -P Aggressive Cheater -G 4 -D 20
+    // tournament -M canada win solar -P Aggressive Aggressive -G 4 -D 20
     /// End the tournament
     // Print results
     // TODO: ALSO PRINT RESULTS TO LOG (somehow)
@@ -690,20 +711,20 @@ void GameEng::issueOrdersPhase() {
 
                 string done;
                 i->issueOrders(i,generatedMap,deployOrNot, playerList);
-//                if(!i->getPlayerStrategyString().compare("Human")){
+                if(!i->getPlayerStrategyString().compare("Human")){
                     cout << "are you done with issue Order? If yes type Y. Else type anything\n";
                     cin >> done;
                     if(done == "Y"){
                         exit_Count2++;
                         x[i->getPlayerId() - 1] = 1;
                     }
-//                }else{
-//                    cout << "Player is done with the order\n";
-//
-//                        exit_Count2++;
-//                        x[i->getPlayerId() - 1] = 1;
-//
-//                }
+                }else{
+                    cout << "Player " << i->getPlayerName() << " is done with the order\n";
+
+                        exit_Count2++;
+                        x[i->getPlayerId() - 1] = 1;
+
+                }
 
             }
         }

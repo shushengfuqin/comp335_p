@@ -1,5 +1,6 @@
 #include "CommandProcessor.h"
 #include <iostream>
+#include <sstream>
 #include <regex>
 #include <utility>
 
@@ -100,7 +101,7 @@ string CommandProcessor::validate(GameState gs) {
 
 void CommandProcessor::tournamentData(vector<string>* m, vector<string>* p, int& g, int& d){
     // Change data to string array
-    stringstream ss(lc->back().getCommandText());
+    std::stringstream ss(lc->back().getCommandText());
     istream_iterator<string> begin(ss);
     istream_iterator<string> end;
     vector<string> tData(begin, end);
