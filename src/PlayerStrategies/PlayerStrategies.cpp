@@ -560,20 +560,28 @@ void Benevolent::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vec
         for (int j = 0; j < i->getTerritoryList()->size(); j++) {
             if (i->getTerritoryList()->at(j)->getTerritoryId() != weakest->getTerritoryId()) {
                 srand((unsigned int) time(NULL));
-                int x = rand() % 100;
-                if (x <= 50) {
-                    cout << "you chose advance\n";
-                    cout << "Your territory\n";
-                    i->displayTerritory(i->getTerritoryList());
-                    cout << "All Adjacent territory\n";
-                    i->toAttack(generatedMap);
-                    i->displayTerritory(i->getAttackList());
-                    int y = rand() % i->getTerritoryList()->at(j)->getNumArmies() + 1;
-                    cout << "You choose to advanced to your own territories: " + weakest->getTerritoryId() << endl;
-                    auto *advance = new Advance(i, i, i->getTerritoryList()->at(j), weakest, y);
-                    i->getOrderList()->setOrderList(advance);
-
+                for(int k=0;k<i->getTerritoryList()->size();k++){
+                    Territory* temp = i->getTerritoryList()->at(k);
+                    if(temp->getTerritoryId()!=weakest->getTerritoryId()&&generatedMap->isAdjacentTerritory(temp,weakest)&&temp->getNumArmies()!=0){
+                        cout << "you chose advance\n";
+                        cout << "Your territory\n";
+                        i->displayTerritory(i->getTerritoryList());
+                        cout << "All Adjacent territory\n";
+                        i->toAttack(generatedMap);
+                        i->displayTerritory(i->getAttackList());
+                        cout << "You choose to advanced to your own territories:"<<temp->getTerritoryId()<<" to "<< weakest->getTerritoryId() << endl;
+                        auto *advance = new Advance(i, i, temp, weakest, temp->getNumArmies());
+                        i->getOrderList()->setOrderList(advance);
+                    }
                 }
+
+
+
+
+
+
+
+
             }
         }
 
