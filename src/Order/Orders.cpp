@@ -894,11 +894,11 @@ void Cheat::execute2(Map *map) {
 
     if(validate2(map)){
         territory->setPlayer(player->getPlayerId());
-        cout << "hello testing" << endl;
         targetPlayer->removeTerritory(territory);
         player->addTerritory(territory);
         //targetPlayer->switchTerritories(territory,targetPlayer,player);
-        cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+        cheatExecute = "The target territory now is belongs to player " + player->getPlayerName()+" and gets a random card \n";
+        cout<<"The target territory now is belongs to player " + player->getPlayerName()+" and gets a random card"<<endl;
 
     }
     else{
@@ -910,7 +910,7 @@ void Cheat::execute2(Map *map) {
 
 
 string Cheat::stringToLog() {
-    return advanceExecute;
+    return cheatExecute;
 }
 
 /*********** ORDER LIST ************/
