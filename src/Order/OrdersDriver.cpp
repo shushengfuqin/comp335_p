@@ -105,11 +105,11 @@ public:
         airlift1->execute();
 
 
-        player1->issueOrders(deploy1);
-        player1->issueOrders(advance1);
-        player1->issueOrders(bomb1);
-        player1->issueOrders(blockade1);
-        player2->issueOrders(airlift1);
+//        player1->issueOrders(deploy1);
+//        player1->issueOrders(advance1);
+//        player1->issueOrders(bomb1);
+//        player1->issueOrders(blockade1);
+//        player2->issueOrders(airlift1);
 
         Orderslist ol;
 
@@ -124,7 +124,7 @@ public:
         Negotiate *negotiate1 = new Negotiate(player1, player2);
 
 
-        player1->issueOrders(negotiate1);
+//        player1->issueOrders(negotiate1);
 
         cout << "validate negotiate---------" << endl;
         negotiate1->validate();
@@ -132,7 +132,7 @@ public:
         negotiate1->execute();
 
 
-        player1->issueOrders(bomb1);
+//        player1->issueOrders(bomb1);
         bomb1->validate();
         bomb1->execute();
 

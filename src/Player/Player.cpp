@@ -302,13 +302,13 @@ bool Player::alreadyOwn(Territory *territory) {
         return playerTerritoryList;
     }
 
-    void Player::displayTerritory(vector<Territory *> *territoryList) {
+    void Player::displayTerritory(vector<Territory *> *territory) {
 
         //print out all territory of this player in the list in the console
         std::cout << '\n' << "Player " << playerName << "'s Territory List:" << '\n' << endl;
 
-        for (int i = 0; i < territoryList->size(); ++i) {
-            cout << territoryList->at(i)->getName() << '\n' << endl;
+        for(auto &t : *territory){
+            cout << "Territory ID: " << t->getTerritoryId() << " Territory Name : " << t->getName() << " Territory current Army Num: " <<t->getNumArmies()<< endl;
         }
 
     }
@@ -331,10 +331,10 @@ bool Player::alreadyOwn(Territory *territory) {
         }
 
     }
-    void Player::issueOrders(Order *order) {
-        //add the order in the order list
-        orderList->setOrderList(order);
-
+    void Player::issueOrders(Player*& i, Map* generatedMap,bool deployOrNot,vector<Player*> *playerList ) {
+//        add the order in the order list
+//        orderList->setOrderList(order);
+        this->strategy->issueOrder(i, generatedMap, deployOrNot, playerList);
     }
 
 
@@ -465,3 +465,18 @@ bool Player::alreadyOwn(Territory *territory) {
         return nullptr;
     }
 
+void Player::setStrategy(PlayerStrategy *newStrategy) {
+    this->strategy = newStrategy;
+}
+
+void Player::setStrategyString(string strategyString) {
+    this->strategyString = strategyString;
+}
+
+PlayerStrategy* Player::getPlayerStrategy() {
+    return strategy;
+}
+
+string Player::getPlayerStrategyString() {
+    return strategyString;
+}
