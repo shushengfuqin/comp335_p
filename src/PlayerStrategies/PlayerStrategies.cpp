@@ -725,3 +725,28 @@ void Cheater::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector
 //}
 
 
+/**
+*  Player Strat Gaia
+*/
+
+//Default Constructor
+Gaia::Gaia() : PlayerStrategy() {
+    setStrategyName("Neutral");
+}
+
+
+// Does not thing
+void Gaia::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
+
+    if (deployOrNot) {
+
+        cout << "I am a bitch i don't work" << endl;
+        auto territory = i->getTerritoryList();
+        i->displayTerritory(territory);
+        cout << "Where would you like to deploy for army. Chose by territory Id\n";
+        cout << "No, I don't want to deploy" << endl;
+
+    } else {
+        cout << "I am a bitch i don't work" << endl;
+    }
+}
