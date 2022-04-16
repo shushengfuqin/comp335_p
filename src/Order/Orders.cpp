@@ -290,7 +290,6 @@ void Advance::execute() {
     if(validate()){
         if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
         {
-
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
             toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
             cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
@@ -348,7 +347,11 @@ void Advance::execute2(Map *map) {
     if(validate2(map)){
         if(player->containsTerritory(fromTerritory) && player->containsTerritory(toTerritory))
         {
-
+            if(targetPlayer->getPlayerStrategy()->getStrategyName() == "Neutral"){
+                PlayerStrategy *aggressive = new Aggressive();
+                targetPlayer->setStrategy(aggressive);
+                targetPlayer->setStrategyString(aggressive->getStrategyName());
+            }
             fromTerritory->setNumArmies(fromTerritory->getNumArmies()-armies);
             toTerritory->setNumArmies(toTerritory->getNumArmies()+armies);
             cout<<"Advance is executed: Advance "<<armies<<" armies from "<<fromTerritory->getName()<<" to "<<toTerritory->getName()<<"\n"<<endl;
@@ -894,11 +897,11 @@ void Cheat::execute2(Map *map) {
 
     if(validate2(map)){
         territory->setPlayer(player->getPlayerId());
-        cout << "hello testing" << endl;
         targetPlayer->removeTerritory(territory);
         player->addTerritory(territory);
         //targetPlayer->switchTerritories(territory,targetPlayer,player);
-        cout<<"The target territory now is belongs to player" + player->getPlayerName()+" and gets a random card"<<endl;
+        cheatExecute = "The target territory now is belongs to player " + player->getPlayerName()+" and gets a random card \n";
+        cout<<"The target territory now is belongs to player " + player->getPlayerName()+" and gets a random card"<<endl;
 
     }
     else{
@@ -910,7 +913,7 @@ void Cheat::execute2(Map *map) {
 
 
 string Cheat::stringToLog() {
-    return advanceExecute;
+    return cheatExecute;
 }
 
 /*********** ORDER LIST ************/

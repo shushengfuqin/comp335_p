@@ -221,7 +221,7 @@ private:
     Territory* territory;
     Player* targetPlayer;
     unsigned int armies;
-    string advanceExecute;
+    string cheatExecute;
     Card *card = new Card();
 };
 
