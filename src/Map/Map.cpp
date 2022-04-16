@@ -379,7 +379,7 @@ int Map::getArmyContinentBonus(int continentId) {
  * @param players
  */
 void Map::assignTerritoriesToPlayers(vector<Player*> players) {
-    int numOfPlayers = players.size() -1;
+    int numOfPlayers = players.size();
     int remainder = SIZE % numOfPlayers;
     srand(time(0));
     int randomContinentIdStart = rand() % (territory[SIZE - 1][0].getContinentId() - numOfPlayers + 1); // random number between num of continents - size of players
@@ -397,7 +397,7 @@ void Map::assignTerritoriesToPlayers(vector<Player*> players) {
             }
         }
         for (int playerIndex = 0; playerIndex < numOfPlayers; ++playerIndex) {
-            if (playerIndex + 1 + randomContinentIdStart == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer && players[playerIndex]->getPlayerId() != -1) {
+            if (playerIndex + 1 + randomContinentIdStart == territory[i][0].getContinentId() && numOfTerritoriesAssignedAtPlayer < territoryLimitPerPlayer) {
                 //// Debug: Print the player Id with the assignment of a territory
                 cout << "Player ID " << playerIndex << " ";
                 players.at(playerIndex)->addTerritory(&territory[i][0]);
