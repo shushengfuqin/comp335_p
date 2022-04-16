@@ -556,6 +556,13 @@ void GameEng::tournamentGameLoop(){
         playerList->push_back(player);
         cout << "Added player: " << playerName << endl;
     }
+
+    neutral = new Player("Null");
+    neutral->setPlayerId(-1);
+    PlayerStrategy *ns = new Gaia();
+    neutral->setStrategy(ns);
+    neutral->setStrategyString(ns->getStrategyName());
+    playerList->push_back(neutral);
     
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
@@ -566,12 +573,7 @@ void GameEng::tournamentGameLoop(){
 
             // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
-            neutral = new Player("Null");
-            neutral->setPlayerId(-1);
-            PlayerStrategy *ns = new Gaia();
-            neutral->setStrategy(ns);
-            neutral->setStrategyString(ns->getStrategyName());
-            playerList->push_back(neutral);
+
             generatedMap->assignTerritoriesToPlayers(*playerList);
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
@@ -649,7 +651,6 @@ void GameEng::tournamentGameLoop(){
     // tournament -M canada win solar -P Benevolent Neutral -G 4 -D 20
     /// End the tournament
     // Print results
-    // TODO: ALSO PRINT RESULTS TO LOG (somehow)
     string resultString = "\nResults: \n       | ";
     // Game Loop
     for(int i = 0; i < tGames; i++) {
