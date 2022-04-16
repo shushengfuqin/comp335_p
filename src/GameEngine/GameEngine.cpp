@@ -541,8 +541,6 @@ void GameEng::tournamentGameLoop(){
         // Game Loop
         for(int j = 0; j < tGames; j++){
             /// Load players
-            bool hasNeutral = false;
-            // TODO: CREATE AND ADD PLAYERS
             for(int i = 0; i < tPlayers.size(); i++) {
                 PlayerStrategy *ps;
                 if(tPlayers[i] =="Aggressive")
@@ -551,10 +549,8 @@ void GameEng::tournamentGameLoop(){
                     ps = new Benevolent();
                 else if(tPlayers[i] =="Cheater")
                     ps = new Cheater();
-                else if(tPlayers[i] =="Neutral"){
+                else if(tPlayers[i] =="Neutral")
                     ps = new Neutral();
-                    hasNeutral = true;
-                }
                 else
                     ps = new Human();
 
@@ -568,14 +564,13 @@ void GameEng::tournamentGameLoop(){
             }
 
             // Fairly distributing the territories among all players
-            neutral = new Player("N/A");
+            /*neutral = new Player("N/A");
             neutral->setPlayerId(-1);
             PlayerStrategy *ns = new Neutral();
             neutral->setStrategy(ns);
             neutral->setStrategyString(ns->getStrategyName());
             playerList->push_back(neutral);
-            generatedMap->assignTerritoriesToPlayers(*playerList);
-            //generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
+            generatedMap->assignTerritoriesToPlayers(*playerList);*/
 
             /////////
 
