@@ -566,9 +566,9 @@ void GameEng::tournamentGameLoop(){
 
             // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
-            neutral = new Player("Bitch Ass");
+            neutral = new Player("Null");
             neutral->setPlayerId(-1);
-            PlayerStrategy *ns = new Neutral();
+            PlayerStrategy *ns = new Gaia();
             neutral->setStrategy(ns);
             neutral->setStrategyString(ns->getStrategyName());
             playerList->push_back(neutral);
