@@ -583,8 +583,7 @@ void GameEng::tournamentGameLoop(){
             }
 
             cout << "STARTING MAP " << (i+1) << " - GAME " << (j+1) << endl;
-
-            // TODO: PLAY GAME HERE
+            
             turnNum = 1;
             //while the amount of player is not 1 the main game loop will keep looping.
             // Also when we haven't reached the turn limit
@@ -613,7 +612,14 @@ void GameEng::tournamentGameLoop(){
             if(turnNum > tTurns)
                 results[i][j] = "Draw";
             else{
-                results[i][j] = "We have a winner?";
+
+                string winner;
+                // Find the winner
+                for(auto pl : *playerList){
+                    if(pl->getArmyNum() > 0)
+                        winner = pl->getPlayerName();
+                }
+                results[i][j] = winner;
             }
 
             //results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
@@ -634,28 +640,34 @@ void GameEng::tournamentGameLoop(){
 
     // tournament -M canada win solar -P Aggressive Cheater -G 4 -D 20
     // tournament -M canada win solar -P Aggressive Aggressive -G 4 -D 20
+    // tournament -M canada win solar -P Benevolent Neutral -G 4 -D 20
     /// End the tournament
     // Print results
     // TODO: ALSO PRINT RESULTS TO LOG (somehow)
-    cout << "\nResults: \n       | ";
+    string resultString = "\nResults: \n       | ";
     // Game Loop
     for(int i = 0; i < tGames; i++) {
-        cout << "    GAME " << (i+1) <<"     | ";
+        resultString += "    GAME " + to_string(i+1) + "     | ";
     }
 
-    cout << endl;
+    resultString += "\n";
 
     for(int i = 0; i < tMaps.size(); i++){
-
-        cout << tMaps[i] << " | ";
+        resultString += tMaps[i] + " | ";
         // Game Loop
         for(int j = 0; j < tGames; j++) {
-            cout << results[i][j] << " | ";
+            resultString += results[i][j] + " | ";
         }
-        cout << endl;
+        resultString += "\n";
     }
 
-    cout << endl << endl;
+    resultString += "\n\n";
+
+    // Output to log
+    userCmd = resultString;
+    Notify(this);
+    // Output to screen
+    cout << resultString;
 
     // Clear map and player strategy lists
     tMaps.clear();
