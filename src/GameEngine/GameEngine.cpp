@@ -566,7 +566,12 @@ void GameEng::tournamentGameLoop(){
 
             // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
-            neutral = new Player("N/A");
+            neutral = new Player("Bitch Ass");
+            neutral->setPlayerId(-1);
+            PlayerStrategy *ns = new Neutral();
+            neutral->setStrategy(ns);
+            neutral->setStrategyString(ns->getStrategyName());
+            playerList->push_back(neutral);
             generatedMap->assignTerritoriesToPlayers(*playerList);
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
@@ -640,6 +645,7 @@ void GameEng::tournamentGameLoop(){
 
     // tournament -M canada win solar -P Aggressive Cheater -G 4 -D 20
     // tournament -M canada win solar -P Aggressive Aggressive -G 4 -D 20
+    // tournament -M canada win solar -P Aggressive Neutral -G 4 -D 20
     // tournament -M canada win solar -P Benevolent Neutral -G 4 -D 20
     /// End the tournament
     // Print results
