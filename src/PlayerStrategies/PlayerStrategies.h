@@ -17,7 +17,7 @@ class Territory;
 class Map;
 class PlayerStrategy {
 public:
-    Player* p;
+//    Player* p;
     PlayerStrategy(); // default constructor
     ~PlayerStrategy(); // destructor
     void setPlayer(Player* p);

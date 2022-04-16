@@ -15,12 +15,12 @@ PlayerStrategy::PlayerStrategy() {
 
 //Destructor
 PlayerStrategy::~PlayerStrategy() {
-    delete p;
+//    delete p;
 }
 
-void PlayerStrategy::setPlayer(Player *p) {
-    this->p = p;
-}
+//void PlayerStrategy::setPlayer(Player *p) {
+//    this->p = p;
+//}
 
 void PlayerStrategy::setStrategyName(string name) {
     strategy_name = name;
