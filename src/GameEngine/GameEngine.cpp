@@ -534,50 +534,41 @@ void GameEng::mainGameLoop(){
 void GameEng::tournamentGameLoop(){
     string results[tMaps.size()][tGames];
 
+    // TODO: CREATE AND ADD PLAYERS
+    for(int i = 0; i < tPlayers.size(); i++) {
+        PlayerStrategy *ps;
+        if(tPlayers[i] =="Aggressive")
+            ps = new Aggressive();
+        else if(tPlayers[i] =="Benevolent")
+            ps = new Benevolent();
+        else if(tPlayers[i] =="Neutral")
+            ps = new Neutral();
+        else if(tPlayers[i] =="Cheater")
+            ps = new Cheater();
+        else
+            ps = new Human();
+
+        string playerName = tPlayers[i];
+        auto *player = new Player(playerName + "_" + to_string(i));
+        player->setPlayerId(++playerCount);
+        player->setStrategy(ps);
+        player->setStrategyString(ps->getStrategyName());
+        playerList->push_back(player);
+        cout << "Added player: " << playerName << endl;
+    }
+    
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
         LoadMap(tMaps[i]);
 
         // Game Loop
         for(int j = 0; j < tGames; j++){
-            /// Load players
-            bool hasNeutral = false;
-            // TODO: CREATE AND ADD PLAYERS
-            for(int i = 0; i < tPlayers.size(); i++) {
-                PlayerStrategy *ps;
-                if(tPlayers[i] =="Aggressive")
-                    ps = new Aggressive();
-                else if(tPlayers[i] =="Benevolent")
-                    ps = new Benevolent();
-                else if(tPlayers[i] =="Cheater")
-                    ps = new Cheater();
-                else if(tPlayers[i] =="Neutral"){
-                    ps = new Neutral();
-                    hasNeutral = true;
-                }
-                else
-                    ps = new Human();
 
-                string playerName = tPlayers[i];
-                auto *player = new Player(playerName + "_" + to_string(i));
-                player->setPlayerId(++playerCount);
-                player->setStrategy(ps);
-                player->setStrategyString(ps->getStrategyName());
-                playerList->push_back(player);
-                cout << "Added player: " << playerName << endl;
-            }
-
+            // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
             neutral = new Player("N/A");
-            neutral->setPlayerId(-1);
-            PlayerStrategy *ns = new Neutral();
-            neutral->setStrategy(ns);
-            neutral->setStrategyString(ns->getStrategyName());
-            playerList->push_back(neutral);
             generatedMap->assignTerritoriesToPlayers(*playerList);
-            //generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
-
-            /////////
+            generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
             // Randomly determine the order of play of the players in the game
             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -631,7 +622,13 @@ void GameEng::tournamentGameLoop(){
                 results[i][j] = winner;
             }
 
-            playerList->clear();
+            //results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
+
+            // Reset player territories and cards;
+            for(int i = 0; i < playerCount; i++){
+                Player *p = playerList->at(i);
+                p->resetPlayer(*gameDeck);
+            }
 
             cout << "ENDING MAP " << (i+1) << " - GAME " << (j+1) << endl;
         }
@@ -644,7 +641,6 @@ void GameEng::tournamentGameLoop(){
     // tournament -M canada win solar -P Aggressive Cheater -G 4 -D 20
     // tournament -M canada win solar -P Aggressive Aggressive -G 4 -D 20
     // tournament -M canada win solar -P Benevolent Neutral -G 4 -D 20
-    // tournament -M canada win solar -P Human Cheater -G 4 -D 20
     /// End the tournament
     // Print results
     // TODO: ALSO PRINT RESULTS TO LOG (somehow)
