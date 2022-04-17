@@ -535,34 +535,8 @@ void GameEng::tournamentGameLoop(){
     string results[tMaps.size()][tGames];
 
     // TODO: CREATE AND ADD PLAYERS
-    for(int i = 0; i < tPlayers.size(); i++) {
-        PlayerStrategy *ps;
-        if(tPlayers[i] =="Aggressive")
-            ps = new Aggressive();
-        else if(tPlayers[i] =="Benevolent")
-            ps = new Benevolent();
-        else if(tPlayers[i] =="Neutral")
-            ps = new Neutral();
-        else if(tPlayers[i] =="Cheater")
-            ps = new Cheater();
-        else
-            ps = new Human();
 
-        string playerName = tPlayers[i];
-        auto *player = new Player(playerName + "_" + to_string(i));
-        player->setPlayerId(++playerCount);
-        player->setStrategy(ps);
-        player->setStrategyString(ps->getStrategyName());
-        playerList->push_back(player);
-        cout << "Added player: " << playerName << endl;
-    }
 
-    neutral = new Player("Gaia");
-    neutral->setPlayerId(-1);
-    PlayerStrategy *ns = new Neutral();
-    neutral->setStrategy(ns);
-    neutral->setStrategyString(ns->getStrategyName());
-    
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
         LoadMap(tMaps[i]);
@@ -570,12 +544,40 @@ void GameEng::tournamentGameLoop(){
         // Game Loop
         for(int j = 0; j < tGames; j++){
 
+            for(int i = 0; i < tPlayers.size(); i++) {
+                PlayerStrategy *ps;
+                if(tPlayers[i] =="Aggressive")
+                    ps = new Aggressive();
+                else if(tPlayers[i] =="Benevolent")
+                    ps = new Benevolent();
+                else if(tPlayers[i] =="Neutral")
+                    ps = new Neutral();
+                else if(tPlayers[i] =="Cheater")
+                    ps = new Cheater();
+                else
+                    ps = new Human();
+
+                string playerName = tPlayers[i];
+                auto *player = new Player(playerName + "_" + to_string(i));
+                player->setPlayerId(++playerCount);
+                player->setStrategy(ps);
+                player->setStrategyString(ps->getStrategyName());
+                playerList->push_back(player);
+                cout << "Added player: " << playerName << endl;
+            }
+
             // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
-
-            //playerList->push_back(neutral);
             generatedMap->assignTerritoriesToPlayers(*playerList);
+
+
+            neutral = new Player("Gaia");
+            neutral->setPlayerId(-1);
+            PlayerStrategy *ns = new Gaia();
+            neutral->setStrategy(ns);
+            neutral->setStrategyString(ns->getStrategyName());
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
+            playerList->push_back(neutral);
 
             // Randomly determine the order of play of the players in the game
             unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -623,7 +625,8 @@ void GameEng::tournamentGameLoop(){
                 string winner;
                 // Find the winner
                 for(auto pl : *playerList){
-                    if(pl->getArmyNum() > 0)
+                    //cout << pl->getPlayerName() << " - " << pl->getArmyNum() << endl;
+                    if(pl->getTerritoryList()->size() > 0)
                         winner = pl->getPlayerName();
                 }
                 results[i][j] = winner;
@@ -637,6 +640,9 @@ void GameEng::tournamentGameLoop(){
                 p->resetPlayer(*gameDeck);
             }
 
+            playerList->clear();
+            playerCount = 0;
+
             cout << "ENDING MAP " << (i+1) << " - GAME " << (j+1) << endl;
         }
 
@@ -647,7 +653,7 @@ void GameEng::tournamentGameLoop(){
 
     // tournament -M canada win solar -P Aggressive Cheater -G 4 -D 20
     // tournament -M canada win solar -P Aggressive Aggressive -G 4 -D 20
-    // tournament -M canada win solar -P Aggressive Neutral -G 4 -D 20
+    // tournament -M canada win solar -P Aggressive Neutral -G 2 -D 50
     // tournament -M canada win solar -P Benevolent Neutral -G 4 -D 20
     /// End the tournament
     // Print results
