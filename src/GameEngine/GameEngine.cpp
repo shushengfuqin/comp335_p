@@ -556,6 +556,12 @@ void GameEng::tournamentGameLoop(){
         playerList->push_back(player);
         cout << "Added player: " << playerName << endl;
     }
+
+    neutral = new Player("Gaia");
+    neutral->setPlayerId(-1);
+    PlayerStrategy *ns = new Neutral();
+    neutral->setStrategy(ns);
+    neutral->setStrategyString(ns->getStrategyName());
     
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
@@ -566,11 +572,7 @@ void GameEng::tournamentGameLoop(){
 
             // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
-            neutral = new Player("Bitch Ass");
-            neutral->setPlayerId(-1);
-            PlayerStrategy *ns = new Neutral();
-            neutral->setStrategy(ns);
-            neutral->setStrategyString(ns->getStrategyName());
+
             //playerList->push_back(neutral);
             generatedMap->assignTerritoriesToPlayers(*playerList);
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
