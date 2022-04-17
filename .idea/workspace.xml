@@ -12,8 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1ac1c22-5d5f-4b32-9dd5-24fa364dda5c" name="Changes" comment="add player some functons for the engine and have some implementation for the deploy process.">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map/Map.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map/Map.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Player/Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player/Player.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.h" afterDir="false" />
     </list>
@@ -240,21 +240,5 @@
     <MESSAGE value="add player name attribute and tested" />
     <MESSAGE value="add player some functons for the engine and have some implementation for the deploy process." />
     <option name="LAST_COMMIT_MESSAGE" value="add player some functons for the engine and have some implementation for the deploy process." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/Player/Player.cpp</url>
-          <line>173</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/PlayerStrategies/PlayerStrategies.cpp</url>
-          <line>529</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

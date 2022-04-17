@@ -196,19 +196,7 @@ void Player::removeTerritory(Territory *territory) {
         std::cout << "The player does not have such territory, so the remove from player " << playerName
                   << "'s territory list failed: " << territory->getName() << endl;
     }
-//    if (std::count(playerTerritoryList->begin(), playerTerritoryList->end(), territory)) {
-//        //remove the territory from the list
-//        playerTerritoryList->erase(std::remove(playerTerritoryList->begin(), playerTerritoryList->end(), territory),
-//                                   playerTerritoryList->end());
-//
-//        std::cout << "Element removed from the player " << playerName << "'s Territory list: "
-//                  << territory->getName() << endl;
-//
-//    } else {
-//
-//        std::cout << "The player does not have such territory, so the remove from player " << playerName
-//                  << "'s territory list failed: " << territory->getName() << endl;
-//    }
+
 
 
 }
@@ -525,12 +513,6 @@ Territory*  Player::findStrongestCountry(){
         }
     }
     strongest = playerTerritoryList->at(largestIndex);
-//    auto iter = playerTerritoryList->begin();
-//    for(; iter != playerTerritoryList->end(); iter++){
-//        if((*iter)->getNumArmies()>=strongest->getNumArmies()){
-//            strongest = *iter;
-//        }
-//    }
     cout<< "The Strongest country from "<< playerName << "is Territory " <<strongest->getName();
     return strongest;
 }

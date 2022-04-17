@@ -15,12 +15,7 @@ PlayerStrategy::PlayerStrategy() {
 
 //Destructor
 PlayerStrategy::~PlayerStrategy() {
-//    delete p;
 }
-
-//void PlayerStrategy::setPlayer(Player *p) {
-//    this->p = p;
-//}
 
 void PlayerStrategy::setStrategyName(string name) {
     strategy_name = name;
@@ -102,9 +97,6 @@ void Human::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<P
                 auto territory = i->getTerritoryList();
                 cout << "Your territory\n";
                 i->displayTerritory(territory);
-//                        for(auto &pT: *territory){
-//                            cout << "Territory id: " <<pT->getTerritoryId() <<endl;
-//                        }
 
                 //get all adjacent territory of each of your territory
                 //get the toAttackList
@@ -129,15 +121,6 @@ void Human::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<P
                     cout << "How many army would you like to send?\n";
                     cin >> armyNum;
 
-                    // find owner of the target territory
-                    // is it controled by a neutral player
-//                auto neutralTerritory = neutral->getTerritoryList();
-//                for(auto &neutralP: *neutralTerritory){
-//                    if(neutralP->getTerritoryId() == tt){
-//                        targetPl = neutral;
-//                        targetTerritory = neutralP;
-//                    }
-//                }
                     // if it's controled by a player
                     for (auto &playerlist: *playerList) {
                         auto plTerritory = playerlist->getTerritoryList();
@@ -304,17 +287,6 @@ void Human::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<P
 }
 
 
-//vector<Territory *>* Human::toDefend(Map* Map, Player &player) {
-//    cout << "Human to defend" << endl;
-//    return {};
-//}
-//vector<Territory *>* Human::toAttack() {
-//    return p->getAttackList();
-//}
-//Random an object from a list
-
-//Random an object from a list
-
 template<typename Iter, typename RandomGenerator>
 Iter select_randomly(Iter start, Iter end, RandomGenerator& g) {
     std::uniform_int_distribution<> dis(0, std::distance(start, end) - 1);
@@ -451,20 +423,6 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
                             }
                         }
                     }
-//                    for(auto &pT: *territory){
-//                        if(pT->getTerritoryId() == st){
-//                            sourceTerritory = pT;
-//                            auto adjacent_territory = generatedMap->getAllAdjacentTerritories(*pT);
-//                            for(auto &adj: adjacent_territory){
-//                                // find if this is not part one of his territory
-//                                if(!i->alreadyOwn(adj)){
-//                                    cout << "Territory Id: " << adj->getTerritoryId() << endl;
-//                                    adjacentForSource->push_back(adj);
-//                                }
-//                            }
-//                        }
-//                    }
-
 
                     targetTerritory = *select_randomly(adjacentForSource.begin(),adjacentForSource.end());
                     tt = targetTerritory->getTerritoryId();
@@ -503,16 +461,6 @@ void Aggressive::issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vec
     }
     i->getAttackList()->clear();
 }
-
-//vector<Territory *>* Aggressive::toAttack(Map* Map, Player &player) {
-//    cout << "Aggressive to attack" << endl;
-//    return {};
-//}
-//
-//vector<Territory *>* Aggressive::toDefend(Map* Map, Player &player) {
-//    cout << "Aggressive to defend" << endl;
-//    return {};
-//}
 
 /**
 *  Player Strat Benevolent
@@ -572,36 +520,11 @@ void Benevolent::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vec
                         i->getOrderList()->setOrderList(advance);
                     }
                 }
-
-
-
-
-
-
-
-
             }
         }
-
-
     }
 }
 
-//vector<Territory *>* Benevolent::toAttack(Map* Map, Player &player) {
-//    cout << "Benevolent to attack" <<endl;
-//    return {};
-//}
-//
-//vector<Territory *> *Benevolent::toDefend(Map *Map, Player &player) {
-//    cout << "Benevolent to defend" << endl;
-//    Territory *weakest;
-//    if (player.isNoArmy()) {
-//        weakest = *select_randomly(player.getTerritoryList()->begin(), player.getTerritoryList()->end());
-//    } else {
-//        weakest = player.findWeakestCountry();
-//    }
-//    return {};
-//}
 
 /**
 *  Player Strat Neutral
@@ -637,16 +560,6 @@ void Neutral::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector
 
     }
 }
-
-//vector<Territory *>* Neutral::toAttack(Map* Map, Player &player) {
-//    cout << "Neutral to attack" << endl;
-//    return {};
-//}
-//
-//vector<Territory *>* Neutral::toDefend(Map* Map, Player &player) {
-//    cout << "Neutral to defend" << endl;
-//    return {};
-//}
 
 /**
 *  Player Strat Cheater
@@ -714,16 +627,6 @@ void Cheater::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector
     }
 }
 
-//vector<Territory *> Cheater::toAttack(Map* Map, Player &player) {
-//    cout << "Cheater to attack" << endl;
-//    return {};
-//}
-//
-//vector<Territory *> Cheater::toDefend(Map* Map, Player &player) {
-//    cout << "Cheater to defend" << endl;
-//    return {};
-//}
-
 
 /**
 *  Player Strat Gaia
@@ -759,13 +662,3 @@ void Gaia::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Pl
 
     }
 }
-
-//vector<Territory *>* Gaia::toAttack(Map* Map, Player &player) {
-//    cout << "Gaia to attack" << endl;
-//    return {};
-//}
-//
-//vector<Territory *>* Gaia::toDefend(Map* Map, Player &player) {
-//    cout << "Gaia to defend" << endl;
-//    return {};
-//}
