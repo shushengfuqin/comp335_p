@@ -96,4 +96,17 @@ public:
 //    vector <Territory*>* toDefend() override;
 };
 
+/**
+ *  Player strat Neutral
+ */
+class Gaia: public PlayerStrategy {
+public:
+    Gaia(); // default constructor
+    void issueOrder(Player*& i, Map* generatedMap, bool deployOrNot, vector<Player*> *playerList ) override;
+//    vector <Territory*> toAttack(Map* Map, Player &player) override;
+//    vector <Territory*> toDefend(Map* Map, Player &player) override;
+//    vector <Territory*>* toAttack() override;
+//    vector <Territory*>* toDefend() override;
+};
+
 #endif //COMP335_P_PLAYERSTRATEGIES_H

@@ -725,3 +725,47 @@ void Cheater::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector
 //}
 
 
+/**
+*  Player Strat Gaia
+*/
+
+//Default Constructor
+Gaia::Gaia() : PlayerStrategy() {
+    setStrategyName("Gaia");
+}
+
+
+// Does not thing
+void Gaia::issueOrder(Player *&i, Map *generatedMap, bool deployOrNot, vector<Player *> *playerList) {
+
+    if (deployOrNot) {
+
+        cout << "------------ Player : " << i->getPlayerName() << " ------------" << endl;
+        cout << "You have " << i->getArmyNum() << " army left\n";
+        cout << "List of territory that you control\n";
+        auto territory = i->getTerritoryList();
+        i->displayTerritory(territory);
+
+
+        cout << "Where would you like to deploy for army. Chose by territory Id\n";
+        cout << "No, I don't want to deploy" << endl;
+
+
+    } else {
+        cout << "what would you like to do\n";
+        cout << "Here is the list of orders\nAdvance\nBomb\nBlockade\nAirlift\nNegotiate\n";
+        cout << "No, I don't want to do any orders" << endl;
+
+
+    }
+}
+
+//vector<Territory *>* Gaia::toAttack(Map* Map, Player &player) {
+//    cout << "Gaia to attack" << endl;
+//    return {};
+//}
+//
+//vector<Territory *>* Gaia::toDefend(Map* Map, Player &player) {
+//    cout << "Gaia to defend" << endl;
+//    return {};
+//}
