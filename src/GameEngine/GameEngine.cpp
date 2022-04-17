@@ -534,9 +534,6 @@ void GameEng::mainGameLoop(){
 void GameEng::tournamentGameLoop(){
     string results[tMaps.size()][tGames];
 
-    // TODO: CREATE AND ADD PLAYERS
-
-
     // Map Loop
     for(int i = 0; i < tMaps.size(); i++){
         LoadMap(tMaps[i]);
@@ -566,10 +563,8 @@ void GameEng::tournamentGameLoop(){
                 cout << "Added player: " << playerName << endl;
             }
 
-            // TODO: ASSIGN TERRITORIES HERE
             // Fairly distributing the territories among all players
             generatedMap->assignTerritoriesToPlayers(*playerList);
-
 
             neutral = new Player("Gaia");
             neutral->setPlayerId(-1);
@@ -616,7 +611,6 @@ void GameEng::tournamentGameLoop(){
                 turnNum++;
             }
 
-            // TODO: DETERMINE THE WINNER
             // Stalemate
             if(turnNum > tTurns)
                 results[i][j] = "Draw";
@@ -632,14 +626,11 @@ void GameEng::tournamentGameLoop(){
                 results[i][j] = winner;
             }
 
-            //results[i][j] = "PLACEHOLDER " + to_string(i) + " - " + to_string(j);
-
             // Reset player territories and cards;
             for(int i = 0; i < playerCount; i++){
                 Player *p = playerList->at(i);
                 p->resetPlayer(*gameDeck);
             }
-
             playerList->clear();
             playerCount = 0;
 
@@ -657,7 +648,6 @@ void GameEng::tournamentGameLoop(){
     // tournament -M canada win solar -P Benevolent Neutral -G 4 -D 20
     /// End the tournament
     // Print results
-    // TODO: ALSO PRINT RESULTS TO LOG (somehow)
     string resultString = "\nResults: \n       | ";
     // Game Loop
     for(int i = 0; i < tGames; i++) {
