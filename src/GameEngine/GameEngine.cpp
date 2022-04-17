@@ -571,7 +571,7 @@ void GameEng::tournamentGameLoop(){
             PlayerStrategy *ns = new Neutral();
             neutral->setStrategy(ns);
             neutral->setStrategyString(ns->getStrategyName());
-            playerList->push_back(neutral);
+            //playerList->push_back(neutral);
             generatedMap->assignTerritoriesToPlayers(*playerList);
             generatedMap->assignTerritoriesToNeutralPlayer(neutral, *playerList);
 
